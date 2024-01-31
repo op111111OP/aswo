@@ -1,0 +1,13 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 3px solid #0058a2;
+}
+.footer_box {
+  width: 1100px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

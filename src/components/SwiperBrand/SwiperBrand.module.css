@@ -1,0 +1,42 @@
+.swiper {
+  user-select: none;
+  width: 95vw;
+  height: 100px;
+}
+
+.swiper_slide {
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+.box_carusel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 0px 50px 0px;
+}
+.now {
+  background: #0058a2;
+  color: white;
+  padding: 7px;
+  font-size: 24px;
+  margin: 0px 0px 50px 0px;
+}
+.now_down {
+  background: #d7d7d7;
+  cursor: pointer;
+  color: #0058a2;
+  padding: 7px;
+  font-size: 16px;
+  margin: 50px 0px 0px 0px;
+}
+.now_down:hover {
+  background: #ececec;
+}

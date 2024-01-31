@@ -1,0 +1,15 @@
+.swiper {
+  user-select: none;
+  width: 100vw;
+  height: 432px;
+}
+
+.swiper_slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
