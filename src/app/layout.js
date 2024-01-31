@@ -22,13 +22,13 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <div className="wraper">
-          {/* <Header /> */}
+          <Header />
 
           <GlobalContextProvider>
             <section>{children}</section>
           </GlobalContextProvider>
 
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </body>
     </html>

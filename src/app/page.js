@@ -9,9 +9,9 @@ import SwiperBrand from "../components/SwiperBrand/SwiperBrand";
 export default function Home() {
   return (
     <main className={styles.main}>
-      {/* <Swipe />
+      <Swipe />
       <SwipeNovelty />
-      <SwiperBrand /> */}
+      <SwiperBrand />
     </main>
   );
 }
