@@ -1,6 +1,6 @@
 [build]
-  command = "CI=false npm run build"
+  command = " npm run build"
   publish = "/opt/build/repo/.next"
 
 [build.environment]
-  NODE_VERSION = "14"
+  NODE_VERSION = "18"
