@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
+
 const ordersSchema = new Schema({
   img: String,
   price: Number,
