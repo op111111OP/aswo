@@ -19,18 +19,18 @@ export default function App() {
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   useEffect(() => {
-    //  const fetchData = async () => {
-    //    try {
-    //      const response = await fetch("/api/findNovelty");
-    //      const data = await response.json();
-    //      setFlutters(data);
-    //    } catch (error) {
-    //      console.log("Что-то пошло не так...", error);
-    //    } finally {
-    //      console.log("пошло так...");
-    //    }
-    //  };
-    //  fetchData();
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/findNovelty");
+        const data = await response.json();
+        setFlutters(data);
+      } catch (error) {
+        console.log("Что-то пошло не так...", error);
+      } finally {
+        console.log("пошло так...");
+      }
+    };
+    fetchData();
   }, []);
   console.log(flutters);
   return (
