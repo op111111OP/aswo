@@ -7,6 +7,7 @@ import SwipeNovelty from "../components/SwiperNovelty/SwiperNovelty";
 import SwiperBrand from "../components/SwiperBrand/SwiperBrand";
 
 export default function Home() {
+  console.log(process.env.MONGODB_URI);
   return (
     <main className={styles.main}>
       <Swipe />
