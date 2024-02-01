@@ -1,7 +1,7 @@
 import Orders from "./models/orders";
 import mongoose from "mongoose";
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

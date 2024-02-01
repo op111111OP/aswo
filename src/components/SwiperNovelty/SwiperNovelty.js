@@ -32,7 +32,6 @@ export default function App() {
     };
     fetchData();
   }, []);
-  console.log(flutters);
   return (
     <div className={styles.box_carusel}>
       <div className={styles.now}>Новинки</div>
