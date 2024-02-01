@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 const ordersSchema = new Schema({
-  orderNumber: String,
+  img: String,
+  price: Number,
+  brand: String,
+  country: String,
+  name: String,
 });
 
 const Novelty =

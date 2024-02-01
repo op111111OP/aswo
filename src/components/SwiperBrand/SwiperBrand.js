@@ -34,7 +34,7 @@ export default function App() {
         spaceBetween={0}
         navigation={false}
         autoplay={{
-          delay: 2000,
+          delay: 6000,
           disableOnInteraction: true,
         }}
         loop={true}

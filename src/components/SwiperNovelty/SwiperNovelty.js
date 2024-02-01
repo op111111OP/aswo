@@ -32,20 +32,21 @@ export default function App() {
     };
     fetchData();
   }, []);
+  console.log(flutters);
   return (
     <div className={styles.box_carusel}>
       <div className={styles.now}>Новинки</div>
       <div id="gallery">
-        {Array.isArray(flutters) && (
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={30}
-            navigation={true}
-            loop={true}
-            modules={[Navigation]}
-            className={styles.swiper}
-          >
-            {flutters.map((item, index) => (
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={30}
+          navigation={true}
+          loop={true}
+          modules={[Navigation]}
+          className={styles.swiper}
+        >
+          {Array.isArray(flutters) &&
+            flutters.map((item, index) => (
               <SwiperSlide
                 className={styles.swiper_slide}
                 key={index}
@@ -92,8 +93,7 @@ export default function App() {
                 </div>
               </SwiperSlide>
             ))}
-          </Swiper>
-        )}
+        </Swiper>
       </div>
     </div>
   );

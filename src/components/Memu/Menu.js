@@ -32,7 +32,10 @@ export default function Menu({ flutters, onMouseEnter, onMouseLeave }) {
                     key={index}
                     className={styles.component_mas_elem}
                   >
-                    {item.text}
+                    <div className={styles.component_mas_elem_text}>
+                      {" "}
+                      {index + 1}.{item.text}.
+                    </div>
                   </Link>
                 ))}
               </div>

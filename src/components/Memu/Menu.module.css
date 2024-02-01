@@ -17,3 +17,7 @@
   width: 250px;
   margin: 0px 0px 10px 0px;
 }
+.component_mas_elem_text:hover {
+  color: #250ba6;
+  font-weight: 600;
+}
