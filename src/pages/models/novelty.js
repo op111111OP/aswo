@@ -2,11 +2,26 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const ordersSchema = new Schema({
-  img: String,
-  price: Number,
-  brand: String,
-  country: String,
-  name: String,
+  img: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  brand: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
 });
 
 const Novelty =
