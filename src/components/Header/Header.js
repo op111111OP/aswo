@@ -3,7 +3,7 @@ import styles from "./Header.module.css";
 import Image from "next/image";
 import { BsTelephoneFill } from "react-icons/bs";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
-import Menu from "../Memu/Menu";
+// import Menu from "../Memu/Menu";
 import { useEffect, useState } from "react";
 
 export default function Header() {
@@ -146,7 +146,7 @@ export default function Header() {
             >
               Запчастини та комплектуючі до холодильного обладнання
             </div>
-            {cehage && (
+            {/* {cehage && (
               <Menu
                 onMouseEnter={() => {
                   setCehage(true);
@@ -156,7 +156,7 @@ export default function Header() {
                 }}
                 flutters={idItem}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>
