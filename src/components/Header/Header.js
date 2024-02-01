@@ -12,20 +12,20 @@ export default function Header() {
 
   const [idItem, setIdItem] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/find");
-        const data = await response.json();
-        setFlutters(data);
-      } catch (error) {
-        console.log("Что-то пошло не так...");
-      } finally {
-        console.log("пошло так...");
-      }
-    };
-    fetchData();
-  }, []);
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       try {
+  //         const response = await fetch("/api/find");
+  //         const data = await response.json();
+  //         setFlutters(data);
+  //       } catch (error) {
+  //         console.log("Что-то пошло не так...");
+  //       } finally {
+  //         console.log("пошло так...");
+  //       }
+  //     };
+  //     fetchData();
+  //   }, []);
 
   return (
     <header className={styles.header}>
