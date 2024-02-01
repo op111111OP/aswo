@@ -19,9 +19,16 @@ export default function Menu({ flutters, onMouseEnter, onMouseLeave }) {
                 <div className={styles.component_name}>{item.name}</div>
               </div>
             )) || (
-              <Link href="/" className={styles.component_name_box}>
-                <Image src={item.img} alt={item.name} width={30} height={30} />
-                <div className={styles.component_name}>{item.name}</div>
+              <Link href="/">
+                <div className={styles.component_name_box}>
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    width={30}
+                    height={30}
+                  />
+                  <div className={styles.component_name}>{item.name}</div>
+                </div>
               </Link>
             )}
             {flutters[index].mas && (
