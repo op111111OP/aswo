@@ -54,7 +54,12 @@
   display: flex;
   gap: 5px;
 }
-
+.box_telephone_box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
 .header_input {
   height: 30px;
   width: 250px;

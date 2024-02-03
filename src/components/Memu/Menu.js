@@ -35,7 +35,7 @@ export default function Menu({ flutters, onMouseEnter, onMouseLeave }) {
               <div className={styles.component_mas}>
                 {flutters[index].mas.map((item, index) => (
                   <Link
-                    href="/"
+                    href="/categori"
                     key={index}
                     className={styles.component_mas_elem}
                   >

@@ -11,3 +11,13 @@
   justify-content: center;
   align-items: center;
 }
+.box_telephone {
+  display: flex;
+  gap: 5px;
+}
+.box_telephone_box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}

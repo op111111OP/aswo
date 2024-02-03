@@ -1,4 +1,4 @@
-import Orders from "./models/orders";
+import Novelty from "../models/novelty";
 import mongoose from "mongoose";
 
 mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
@@ -11,12 +11,13 @@ const handleError = (res, err) => {
 };
 
 const font = async (req, res) => {
+  const { name } = req.query;
   if (req.method === "GET") {
-    Orders.find()
+    Novelty.find({ country: name })
       .then((product) => {
         res.status(200).json(product);
       })
-      .catch(console.log((err) => handleError(res, err)));
+      .catch((err) => handleError(res, err));
   }
 };
 export default font;

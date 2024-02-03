@@ -5,6 +5,7 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import Menu from "../Memu/Menu";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Header() {
   const [flutters, setFlutters] = useState(null);
@@ -31,10 +32,16 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.header_container_one}>
         <div className={styles.header_one}>
-          <a href="tel:0991703480" className={styles.box_telephone}>
-            <BsTelephoneFill />
-            <div className={styles.telephone}>+380 99 333 98 80</div>
-          </a>
+          <div className={styles.box_telephone_box}>
+            <a href="tel:0666528759" className={styles.box_telephone}>
+              <BsTelephoneFill />
+              <div className={styles.telephone}>+380 066 65 28 759</div>
+            </a>
+            <a href="tel:0800800112" className={styles.box_telephone}>
+              <BsTelephoneFill />
+              <div className={styles.telephone}>0800 800 112</div>
+            </a>
+          </div>
           <div className={styles.search_container}>
             <input
               className={styles.header_input}
@@ -52,14 +59,16 @@ export default function Header() {
       </div>
       <div className={styles.header_container_two}>
         <div className={styles.header_two}>
-          <Image
-            src={
-              "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/header-logo.jpg"
-            }
-            width={150}
-            height={47.63}
-            alt="logo"
-          />
+          <Link href="./">
+            <Image
+              src={
+                "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/header-logo.jpg"
+              }
+              width={150}
+              height={47.63}
+              alt="logo"
+            />
+          </Link>
 
           <div className={styles.catalogue_box}>
             <div
