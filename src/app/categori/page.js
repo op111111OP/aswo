@@ -9,7 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 
-export default function page() {
+export default function Page() {
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState(null);
@@ -31,14 +31,12 @@ export default function page() {
 
   const handleSliderChange = (value) => {
     setPriceRange(value);
-    useEffect(() => {
-      // Filter products based on price range
-      const filtered = mockProducts.filter(
-        (product) =>
-          product.price >= priceRange[0] && product.price <= priceRange[1]
-      );
-      setFilteredProducts(filtered);
-    }, [priceRange]);
+    // Filter products based on price range
+    const filtered = mockProducts.filter(
+      (product) =>
+        product.price >= priceRange[0] && product.price <= priceRange[1]
+    );
+    setFilteredProducts(filtered);
   };
   return (
     <div className={styles.main}>
