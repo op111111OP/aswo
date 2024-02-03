@@ -5,7 +5,7 @@ import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
-import Basket from "../../components/Basket";
+import Basket from "../../components/Basket/Basket";
 
 export default function OneProduct() {
   const [flutters, setFlutters] = useState(null);
