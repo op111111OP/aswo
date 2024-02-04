@@ -109,6 +109,7 @@ section {
   width: 100vw;
   flex: 1 1 auto;
   justify-content: center;
+  overflow: hidden;
 }
 /*  */
 @media (prefers-color-scheme: dark) {

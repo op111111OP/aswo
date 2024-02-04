@@ -1,8 +1,9 @@
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-import { GlobalContextProvider } from "./Context/store";
+
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import { GlobalContextProvider } from "./Context/store";
 const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
@@ -23,11 +24,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="wraper">
           <Header />
-
           <GlobalContextProvider>
             <section>{children}</section>
           </GlobalContextProvider>
-
           <Footer />
         </div>
       </body>

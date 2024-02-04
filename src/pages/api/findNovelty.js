@@ -12,7 +12,7 @@ const handleError = (res, err) => {
 
 const font = async (req, res) => {
   if (req.method === "GET") {
-    Novelty.find()
+    Novelty.find({ new: true })
       .then((product) => {
         res.status(200).json(product);
       })

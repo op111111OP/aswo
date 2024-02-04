@@ -1,9 +1,18 @@
+"use client";
 import styles from "./Menu.module.css";
 import Link from "next/link";
 import Image from "next/image";
-
+import { useState } from "react";
+import { useLocalStorage } from "react-use";
 export default function Menu({ flutters, onMouseEnter, onMouseLeave }) {
-  //   console.log(flutters);
+  const [onCategori, setOnCategori] = useLocalStorage("onCategori");
+  //   const [categori, setComponent] = useState("");
+  const userId = (newItem) => {
+    if (newItem !== undefined && newItem !== "") {
+      setOnCategori(newItem);
+    }
+  };
+
   return (
     <div
       className={styles.container}
@@ -39,7 +48,12 @@ export default function Menu({ flutters, onMouseEnter, onMouseLeave }) {
                     key={index}
                     className={styles.component_mas_elem}
                   >
-                    <div className={styles.component_mas_elem_text}>
+                    <div
+                      className={styles.component_mas_elem_text}
+                      onClick={() => {
+                        userId(item.text);
+                      }}
+                    >
                       {" "}
                       {index + 1}.{item.text}.
                     </div>

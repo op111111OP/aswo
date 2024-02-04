@@ -1,5 +1,6 @@
 "use client";
 // Import Swiper React components
+import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import "./SwipeNovelty.css";
 import styles from "./SwiperNovelty.module.css";
@@ -32,17 +33,20 @@ export default function App() {
     };
     fetchData();
   }, []);
+
   return (
     <div className={styles.box_carusel}>
       <div className={styles.now}>Новинки</div>
-      <div id="gallery">
+      <div id="gallery1">
         <Swiper
           slidesPerView={4}
           spaceBetween={30}
           navigation={true}
+          observeVisibility={true}
           loop={true}
           modules={[Navigation]}
           className={styles.swiper}
+          //  onSwiper={new Swiper("#gallery1", {})}
         >
           {Array.isArray(flutters) &&
             flutters.map((item, index) => (

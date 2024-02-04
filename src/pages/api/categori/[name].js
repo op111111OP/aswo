@@ -13,7 +13,7 @@ const handleError = (res, err) => {
 const font = async (req, res) => {
   const { name } = req.query;
   if (req.method === "GET") {
-    Novelty.find({ country: name })
+    Novelty.find({ categori: name })
       .then((product) => {
         res.status(200).json(product);
       })

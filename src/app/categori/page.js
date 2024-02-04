@@ -8,16 +8,30 @@ import "rc-slider/assets/index.css";
 import Link from "next/link";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
+import Basket from "../../components/Basket/Basket";
+import { useLocalStorage } from "react-use";
 
 export default function Page() {
+  const [onCategori, setOnCategori] = useLocalStorage("onCategori");
+  const [onCard, setOnCard] = useLocalStorage("onCard", []);
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
+
+  const addToArray = (newItem) => {
+    setOnCard((prevArray) => {
+      if (!prevArray.includes(newItem)) {
+        return [...prevArray, newItem];
+      } else {
+        return prevArray;
+      }
+    });
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/findNovelty");
+        const response = await fetch(`api/categori/${onCategori}`);
         const data = await response.json();
         setFlutters(data);
       } catch (error) {
@@ -27,19 +41,18 @@ export default function Page() {
       }
     };
     fetchData();
-  }, []);
-
+  }, [onCategori]);
+  console.log(onCategori);
   const handleSliderChange = (value) => {
     setPriceRange(value);
-    // Filter products based on price range
-    const filtered = mockProducts.filter(
-      (product) =>
-        product.price >= priceRange[0] && product.price <= priceRange[1]
+    const filtered = priceRange.filter(
+      (product) => product.price >= value[0] && product.price <= value[1]
     );
     setFilteredProducts(filtered);
   };
   return (
     <div className={styles.main}>
+      <Basket onCards={onCard} />
       <div className={styles.main_h1_box}>
         <div className={styles.main_h1}>Пускова кнопка для бетономішалки</div>
         <div className={styles.main_h2}>
@@ -128,9 +141,13 @@ export default function Page() {
                       <div className={styles.text_box_price}>
                         {item.price}грн
                       </div>
-                      <Link className={styles.shopping} href="./">
-                        <FaShoppingCart size={25} color=" #0058a2" />
-                      </Link>
+
+                      <FaShoppingCart
+                        size={25}
+                        color=" #0058a2"
+                        onClick={() => addToArray("новий елемент")}
+                        className={styles.shopping}
+                      />
                     </div>
                     {cehage === index && (
                       <div className={styles.text_botom_box}>
