@@ -90,7 +90,9 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
+  /* overflow-y: scroll; */
 }
+
 .wraper {
   min-height: 100%;
   width: 100vw;
@@ -109,7 +111,6 @@ section {
   width: 100vw;
   flex: 1 1 auto;
   justify-content: center;
-  overflow: hidden;
 }
 /*  */
 @media (prefers-color-scheme: dark) {

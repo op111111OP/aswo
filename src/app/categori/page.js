@@ -18,7 +18,8 @@ export default function Page() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
-
+  const [cehageCor, setCehageCor] = useState(false);
+  //   console.log(onCard);
   const addToArray = (newItem) => {
     setOnCard((prevArray) => {
       if (!prevArray.includes(newItem)) {
@@ -42,7 +43,6 @@ export default function Page() {
     };
     fetchData();
   }, [onCategori]);
-  console.log(onCategori);
   const handleSliderChange = (value) => {
     setPriceRange(value);
     const filtered = priceRange.filter(
@@ -50,10 +50,26 @@ export default function Page() {
     );
     setFilteredProducts(filtered);
   };
+
+  const handleBoxClick = () => {
+    // Ваша логика обработки клика на боксе
+    console.log("Clicked on the box");
+    // Скрыть корзину при клике на боксе
+    setCehageCor(false);
+  };
+
+  const handleBasketClick = (e, object) => {
+    // Ваша логика обработки клика на корзине
+    addToArray(object);
+    //  setOnCard([]);
+    setCehageCor(true);
+    // Остановить всплытие события, чтобы не срабатывал клик на боксе
+    e.stopPropagation();
+  };
   return (
     <div className={styles.main}>
-      <Basket onCards={onCard} />
-      <div className={styles.main_h1_box}>
+      {cehageCor && <Basket />}
+      <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.main_h1}>Пускова кнопка для бетономішалки</div>
         <div className={styles.main_h2}>
           <div className={styles.main_sort}>Сортування:</div>
@@ -70,7 +86,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className={styles.box}>
+      <div className={styles.box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.box_left}>
           <div className={styles.box_slider}>
             <div className={styles.price_box}>
@@ -117,7 +133,7 @@ export default function Page() {
                   }}
                 >
                   <div className={styles.slide_box}>
-                    <Link href="./">
+                    <Link href="./product">
                       <div className={styles.link_box}>
                         <div className={styles.img_box}>
                           <Image
@@ -145,7 +161,19 @@ export default function Page() {
                       <FaShoppingCart
                         size={25}
                         color=" #0058a2"
-                        onClick={() => addToArray("новий елемент")}
+                        id="basket"
+                        onClick={(e) =>
+                          handleBasketClick(e, {
+                            categori: item.categori,
+                            brand: item.brand,
+                            country: item.country,
+                            description: item.description,
+                            img: item.img,
+                            name: item.name,
+                            price: item.price,
+                            id: item.id,
+                          })
+                        }
                         className={styles.shopping}
                       />
                     </div>

@@ -6,6 +6,7 @@
   min-height: 100vh;
   width: 100vw;
   position: relative;
+  overflow: hidden;
 }
 .now {
   background: #0058a2;
