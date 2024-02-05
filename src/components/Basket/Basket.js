@@ -6,9 +6,9 @@ import styles from "./Basket.module.css";
 import { useLocalStorage } from "react-use";
 import { BsTrash3 } from "react-icons/bs";
 
-export default function Basket({ fals, onCard, updated }) {
+export default function Basket({ fals }) {
+  const [onCard, setOnCard] = useLocalStorage("onCard", []);
   const [valueButon, setValuebButon] = useState(1);
-  const [OnCardUpdated, setOnCard] = useState();
   const [total, setTotal] = useState(0);
   const [t, setT] = useState(true);
   const handleRemoveItem = (indexToRemove) => {
@@ -18,11 +18,8 @@ export default function Basket({ fals, onCard, updated }) {
     setOnCard(updatedItems);
   };
 
-  updated(OnCardUpdated);
   fals(t);
-  useEffect(() => {
-    setOnCard(onCard);
-  }, []);
+
   //   console.log(onCard);
   return (
     <div className={styles.main}>
@@ -32,8 +29,8 @@ export default function Basket({ fals, onCard, updated }) {
         <div className={styles.number_textP}>Ціна</div>
         <div className={styles.number_text}>Кількість</div>
         <div className={styles.price_box_h1}>Вартість</div>
-        {Array.isArray(OnCardUpdated) &&
-          OnCardUpdated.map((item, index) => (
+        {Array.isArray(onCard) &&
+          onCard.map((item, index) => (
             <div className={styles.swiper_slide} key={index}>
               <div className={styles.image_box}>
                 <Image
