@@ -13,9 +13,8 @@ import { useLocalStorage } from "react-use";
 
 export default function Page() {
   const [onCategori, setOnCategori] = useLocalStorage("onCategori");
-  const [onCard, setOnCard] = useLocalStorage("onCard", []);
   const [priceRange, setPriceRange] = useState([0, 100]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [onCard, setOnCard] = useState([]);
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
@@ -23,12 +22,16 @@ export default function Page() {
   const addToArray = (newItem) => {
     setOnCard((prevArray) => {
       if (!prevArray.includes(newItem)) {
-        return [...prevArray, newItem];
+        const updatedArray = [...prevArray, newItem];
+        return updatedArray;
       } else {
         return prevArray;
       }
     });
   };
+  function updated(OnCardUpdated) {
+    setOnCard(OnCardUpdated);
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,9 +69,12 @@ export default function Page() {
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
   };
+  function fals(t) {
+    setCehageCor(t);
+  }
   return (
     <div className={styles.main}>
-      {cehageCor && <Basket />}
+      {cehageCor && <Basket fals={fals} onCard={onCard} updated={updated} />}
       <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.main_h1}>Пускова кнопка для бетономішалки</div>
         <div className={styles.main_h2}>

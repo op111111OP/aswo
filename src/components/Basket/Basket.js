@@ -4,30 +4,36 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Basket.module.css";
 import { useLocalStorage } from "react-use";
+import { BsTrash3 } from "react-icons/bs";
 
-export default function Basket() {
-  const [onCard, setOnCard] = useLocalStorage("onCard", []);
+export default function Basket({ fals, onCard, updated }) {
   const [valueButon, setValuebButon] = useState(1);
+  const [OnCardUpdated, setOnCard] = useState();
   const [total, setTotal] = useState(0);
+  const [t, setT] = useState(true);
+  const handleRemoveItem = (indexToRemove) => {
+    const updatedItems = onCard.filter(
+      (item, index) => index !== indexToRemove
+    );
+    setOnCard(updatedItems);
+  };
 
-  //  useEffect(() => {
-  // Код, который выполняется после монтирования компонента
-
-  // Получение значения из localStorage
-  // const storedValue = localStorage.getItem("onCard");
-
-  // Если значение найдено, обновите состояние
-  //  if (storedValue) {
-  //    setOnCard(JSON.parse(storedValue));
-  //  }
-  //   }, []);
-  console.log(onCard);
+  updated(OnCardUpdated);
+  fals(t);
+  useEffect(() => {
+    setOnCard(onCard);
+  }, []);
+  //   console.log(onCard);
   return (
     <div className={styles.main}>
       <div className={styles.h1}>Кошик</div>
       <div className={styles.main1}>
-        {Array.isArray(onCard) &&
-          onCard.map((item, index) => (
+        <div className={styles.number_textN}>Назва</div>
+        <div className={styles.number_textP}>Ціна</div>
+        <div className={styles.number_text}>Кількість</div>
+        <div className={styles.price_box_h1}>Вартість</div>
+        {Array.isArray(OnCardUpdated) &&
+          OnCardUpdated.map((item, index) => (
             <div className={styles.swiper_slide} key={index}>
               <div className={styles.image_box}>
                 <Image
@@ -45,11 +51,12 @@ export default function Basket() {
                 />
               </div>
               <div className={styles.text}>
-                <div className={styles.name}>{item.name}</div>
+                <div className={styles.name} onClick={() => setT((t) => !t)}>
+                  {item.name}
+                </div>
                 <div className={styles.price}>{item.price} грн.</div>
               </div>
               <div className={styles.number_box}>
-                <div className={styles.number_text}>Кількість</div>
                 <div className={styles.button_box}>
                   <div
                     className={styles.button1}
@@ -75,11 +82,15 @@ export default function Basket() {
                 </div>
               </div>
               <div className={styles.price_box}>
-                <div className={styles.price_box_h1}>Вартість</div>
                 <div className={styles.price_span}>
                   {item.price * valueButon} грн.
                 </div>
               </div>
+              <BsTrash3
+                className={styles.dustbin}
+                size={20}
+                onClick={() => handleRemoveItem(index)}
+              />
             </div>
           ))}
       </div>
