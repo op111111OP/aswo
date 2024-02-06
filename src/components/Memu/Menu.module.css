@@ -5,7 +5,9 @@
   padding: 20px;
   color: rgb(8, 0, 0);
   z-index: 100;
-  /* border: 3px solid rgb(98, 98, 156); */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .component_name_box {
   display: flex;
@@ -23,4 +25,30 @@
 }
 .component_mas_elem_text {
   font-size: 14px;
+}
+.a {
+  left: -10%;
+  flex-direction: column;
+}
+.b {
+  left: -10%;
+}
+.c {
+  left: 0%;
+}
+
+.d {
+  right: 40%;
+  transform: translate(0%, 0%);
+}
+.f {
+  right: 20%;
+  transform: translate(0%, 0%);
+}
+.g {
+  right: 5%;
+}
+.o {
+  right: -80px;
+  flex-direction: column;
 }

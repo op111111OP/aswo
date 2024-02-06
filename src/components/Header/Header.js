@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function Header() {
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
-
+  const [num, setNum] = useState();
   const [idItem, setIdItem] = useState(false);
 
   useEffect(() => {
@@ -49,11 +49,11 @@ export default function Header() {
               type="text"
             />
             <button className={styles.header_button}>
-              <FaSearch />
+              <FaSearch className={styles.FaSearch} />
             </button>
           </div>
           <div>
-            <FaShoppingCart size={25} />
+            <FaShoppingCart size={25} className={styles.FaShoppingCart} />
           </div>
         </div>
       </div>
@@ -76,6 +76,7 @@ export default function Header() {
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[0].HoReCa);
+                setNum("a");
               }}
               onMouseOut={() => {
                 setCehage(false);
@@ -88,6 +89,7 @@ export default function Header() {
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[1].bigMachinery);
+                setNum("b");
               }}
               onMouseOut={() => {
                 setCehage(false);
@@ -100,6 +102,7 @@ export default function Header() {
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[2].kukhonnaTekhnika);
+                setNum("c");
               }}
               onMouseOut={() => {
                 setCehage(false);
@@ -112,6 +115,7 @@ export default function Header() {
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[3].equipmentBAHC);
+                setNum("d");
               }}
               onMouseOut={() => {
                 setCehage(false);
@@ -124,6 +128,7 @@ export default function Header() {
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[4].climateTechno);
+                setNum("f");
               }}
               onMouseOut={() => {
                 setCehage(false);
@@ -136,6 +141,7 @@ export default function Header() {
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[5].universalSPHAR);
+                setNum("g");
               }}
               onMouseOut={() => {
                 setCehage(false);
@@ -148,6 +154,7 @@ export default function Header() {
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[6].sparePCRE);
+                setNum("o");
               }}
               onMouseOut={() => {
                 setCehage(false);
@@ -164,6 +171,7 @@ export default function Header() {
                   setCehage(false);
                 }}
                 flutters={idItem}
+                num={num}
               />
             )}
           </div>

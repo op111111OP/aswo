@@ -1,14 +1,16 @@
 .main {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background-color: rgb(254, 255, 255);
   z-index: 30;
-  top: 100px;
   box-shadow: 0px 0px 15px #0059a271;
-  padding-top: 20px;
+  padding-top: 40px;
+  overflow: auto;
+  height: 100vh;
+  top: 0;
 }
 
 .button_box {
@@ -17,6 +19,7 @@
   width: 100px;
   display: flex;
   justify-content: space-between;
+  border: 0.1px solid #00000088;
   /* border: 3px solid; */
 }
 .button_box > * {
@@ -27,10 +30,10 @@
 }
 .button3 {
   width: 40px;
-  background-color: rgb(202, 210, 229);
+  background-color: rgb(236, 238, 241);
 }
 .button1 {
-  background-color: rgb(243, 234, 234);
+  background-color: rgb(241, 240, 240);
 }
 .button3,
 .button1 {
@@ -66,7 +69,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
+
   position: relative;
 }
 .text {
@@ -91,6 +94,10 @@
   justify-content: start;
   width: 15%;
 }
+.price_box {
+  position: relative;
+  width: 25%;
+}
 
 .price_box_h1 {
   position: absolute;
@@ -113,8 +120,10 @@
   position: absolute;
 }
 .price_span {
-  top: -10px;
-
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
   font-weight: 600;
 }
 
@@ -123,12 +132,59 @@
   font-weight: 700;
   position: absolute;
   left: 30px;
-  top: 0px;
+  top: 5px;
 }
 .dustbin {
   position: absolute;
   right: 5px;
-  top: 30%;
-  color: rgba(0, 0, 0, 0); /* Это значение цвета может вызывать проблему */
+
+  color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  top: 50%;
+  right: 1%;
+  transform: translate(-2%, -50%);
+}
+/* issue_box */
+.issue_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 95%;
+  height: 150px;
+  border: 1px solid #000;
+  margin: 10px 0px 0px 0px;
+  font-size: 18px;
+}
+.issue_come {
+  display: flex;
+  gap: 20px;
   cursor: pointer;
 }
+.issue_price_span {
+  font-weight: 700;
+}
+.issue_price {
+  display: flex;
+  gap: 10px;
+}
+.issue_total {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.issue_order {
+  height: 35px;
+  background-color: rgb(58, 103, 200);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+.issue_order:hover {
+  color: #8f8d8d;
+  text-shadow: 3px 3px 4px rgba(204, 20, 20, 0.5);
+}
+/* issue_box and*/

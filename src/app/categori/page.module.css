@@ -1,11 +1,11 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   min-height: 100vh;
   width: 95vw;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .now {
   background: #0058a2;
@@ -48,7 +48,7 @@
   padding-left: 5px;
   width: 250px;
   height: 450px;
-  /* margin: 10px 0px 10px 0px; */
+  margin: 2px 0px 10px 0px;
 }
 .swiper_slide:hover {
   box-shadow: 0px 0px 15px #0059a271;
@@ -119,3 +119,15 @@
 .shopping {
   cursor: pointer;
 }
+/* main_p2 */
+.reflection .main_p2,
+.main_p1,
+.main_p_box,
+.main_sort,
+.reflection,
+.reflection_icon2,
+.reflection_icon1 {
+  cursor: pointer;
+}
+
+/* main_p2 */

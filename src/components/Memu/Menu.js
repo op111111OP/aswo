@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useLocalStorage } from "react-use";
-export default function Menu({ flutters, onMouseEnter, onMouseLeave }) {
+export default function Menu({ flutters, onMouseEnter, onMouseLeave, num }) {
   const [onCategori, setOnCategori] = useLocalStorage("onCategori");
-  //   const [categori, setComponent] = useState("");
+
   const userId = (newItem) => {
     if (newItem !== undefined && newItem !== "") {
       setOnCategori(newItem);
@@ -15,7 +15,7 @@ export default function Menu({ flutters, onMouseEnter, onMouseLeave }) {
 
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${styles[num]}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

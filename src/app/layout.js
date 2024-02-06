@@ -5,7 +5,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
 const inter = Montserrat({ subsets: ["latin"] });
-import { UserProvider } from "./(Context)/store";
+import { UserProvider } from "./context/page";
 
 export const metadata = {
   title: "",

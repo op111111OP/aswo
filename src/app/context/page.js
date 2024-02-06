@@ -14,14 +14,11 @@ export const UserProvider = ({ children }) => {
       if (existingIndex === -1) {
         return [...prevOnCard, userId];
       } else {
-        console.log(
-          `Элемент с именем ${userId.name} уже существует в массиве.`
-        );
         return prevOnCard;
       }
     });
   }, [userId]);
-  console.log(onCard);
+
   useEffect(() => {
     const handleRemoveItem = (indexToRemove) => {
       const updatedItems = senter.filter((obj) => obj.name !== indexToRemove);

@@ -89,8 +89,7 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  /* overflow-y: scroll; */
+  color: rgb(1, 1, 35);
 }
 
 .wraper {
@@ -111,6 +110,32 @@ section {
   width: 100vw;
   flex: 1 1 auto;
   justify-content: center;
+}
+.a {
+  left: -10%;
+  flex-direction: column;
+}
+.b {
+  left: 10%;
+}
+.c {
+  left: 0%;
+}
+
+.d {
+  right: 40%;
+  transform: translate(0%, 0%);
+}
+.f {
+  right: 20%;
+  transform: translate(0%, 0%);
+}
+.g {
+  right: 5%;
+}
+.o {
+  right: -80px;
+  flex-direction: column;
 }
 /*  */
 @media (prefers-color-scheme: dark) {
