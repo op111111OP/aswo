@@ -13,6 +13,9 @@ export default function Header() {
   const [num, setNum] = useState();
   const [idItem, setIdItem] = useState(false);
 
+  function menuFalse(fals) {
+    setCehage(fals);
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -172,6 +175,7 @@ export default function Header() {
                 }}
                 flutters={idItem}
                 num={num}
+                menuFalse={menuFalse}
               />
             )}
           </div>

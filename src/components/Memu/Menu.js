@@ -4,15 +4,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useLocalStorage } from "react-use";
-export default function Menu({ flutters, onMouseEnter, onMouseLeave, num }) {
-  const [onCategori, setOnCategori] = useLocalStorage("onCategori");
 
+export default function Menu({
+  flutters,
+  onMouseEnter,
+  onMouseLeave,
+  num,
+  menuFalse,
+}) {
+  const [onCategori, setOnCategori] = useLocalStorage("onCategori");
+  const [fels, setFals] = useState(true);
   const userId = (newItem) => {
     if (newItem !== undefined && newItem !== "") {
       setOnCategori(newItem);
     }
   };
-
+  menuFalse(fels);
   return (
     <div
       className={`${styles.container} ${styles[num]}`}
@@ -28,17 +35,10 @@ export default function Menu({ flutters, onMouseEnter, onMouseLeave, num }) {
                 <div className={styles.component_name}>{item.name}</div>
               </div>
             )) || (
-              <Link href="/">
-                <div className={styles.component_name_box}>
-                  <Image
-                    src={item.img}
-                    alt={item.name}
-                    width={30}
-                    height={30}
-                  />
-                  <div className={styles.component_name}>{item.name}</div>
-                </div>
-              </Link>
+              <div className={styles.component_name_box}>
+                <Image src={item.img} alt={item.name} width={30} height={30} />
+                <div className={styles.component_name}>{item.name}</div>
+              </div>
             )}
             {flutters[index].mas && (
               <div className={styles.component_mas}>
@@ -51,6 +51,7 @@ export default function Menu({ flutters, onMouseEnter, onMouseLeave, num }) {
                     <div
                       className={styles.component_mas_elem_text}
                       onClick={() => {
+                        setFals();
                         userId(item.text);
                       }}
                     >

@@ -27,17 +27,14 @@
   font-size: 14px;
   margin: 0px 0px 15px 0px;
 }
-.img {
-  /* object-fit: cover; */
-}
+
 .text_botom_box {
   margin: 30px 0px 0px 0px;
 }
 .text_box {
   height: 57px;
 }
-.slide_box {
-}
+
 .price_box {
   display: flex;
   justify-content: space-around;
@@ -48,10 +45,10 @@
   padding-left: 5px;
   width: 250px;
   height: 450px;
-  margin: 2px 0px 10px 0px;
+  margin: 2px 10px 10px 10px;
 }
 .swiper_slide:hover {
-  box-shadow: 0px 0px 15px #0059a271;
+  box-shadow: 2px 0px 15px #0059a271;
 }
 .text_box_price {
   font-size: 18px;
@@ -114,7 +111,11 @@
   flex-wrap: wrap;
 }
 .slider {
-  width: 200px;
+  width: 160px;
+}
+.slider_el {
+  width: 160px;
+  background-color: #2c57f6;
 }
 .shopping {
   cursor: pointer;
@@ -124,7 +125,6 @@
 .main_p1,
 .main_p_box,
 .main_sort,
-.reflection,
 .reflection_icon2,
 .reflection_icon1 {
   cursor: pointer;
