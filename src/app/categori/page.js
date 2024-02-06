@@ -10,7 +10,7 @@ import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
-import { useUserContext } from "../Context/store";
+import { useUserContext } from "../(Context)/store";
 
 export default function Page() {
   const { setUserId } = useUserContext();

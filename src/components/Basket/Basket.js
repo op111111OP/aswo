@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "./Basket.module.css";
 import { useLocalStorage } from "react-use";
 import { BsTrash3 } from "react-icons/bs";
-import { useUserContext } from "../../app/Context/store";
+import { useUserContext } from "../../app/(Context)/store";
 
 export default function Basket({ fals }) {
   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
