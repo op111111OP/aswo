@@ -1,21 +1,42 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+const UserContext = createContext();
 
-const GlobalContext = createContext({
-  userId: "",
-  setUserId: () => "",
-  data: [],
-  setData: () => [],
-});
-
-export const GlobalContextProvider = ({ children }) => {
-  const [userId, setUserId] = useState("");
+export const UserProvider = ({ children }) => {
+  const [userId, setUserId] = useState({});
+  const [senter, setSenter] = useState([]);
+  const [onCard, setOnCard] = useState("");
+  useEffect(() => {
+    setSenter((prevOnCard) => {
+      const existingIndex = prevOnCard.findIndex(
+        (obj) => obj.name === userId.name
+      );
+      if (existingIndex === -1) {
+        return [...prevOnCard, userId];
+      } else {
+        console.log(
+          `Элемент с именем ${userId.name} уже существует в массиве.`
+        );
+        return prevOnCard;
+      }
+    });
+  }, [userId]);
+  console.log(onCard, 5);
+  useEffect(() => {
+    const handleRemoveItem = (indexToRemove) => {
+      const updatedItems = senter.filter((obj) => obj.name !== indexToRemove);
+      setSenter(updatedItems);
+    };
+    handleRemoveItem(onCard);
+  }, [onCard]);
 
   return (
-    <GlobalContext.Provider value={{ userId, setUserId }}>
+    <UserContext.Provider
+      value={{ userId, setUserId, senter, setSenter, onCard, setOnCard }}
+    >
       {children}
-    </GlobalContext.Provider>
+    </UserContext.Provider>
   );
 };
 
-export const useGlobalContext = () => useContext(GlobalContext);
+export const useUserContext = () => useContext(UserContext);

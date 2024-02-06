@@ -5,22 +5,21 @@ import { useEffect, useState } from "react";
 import styles from "./Basket.module.css";
 import { useLocalStorage } from "react-use";
 import { BsTrash3 } from "react-icons/bs";
+import { useUserContext } from "../../app/Context/store";
 
 export default function Basket({ fals }) {
-  const [onCard, setOnCard] = useLocalStorage("onCard", []);
+  const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
+
+  const { senter, setOnCard } = useUserContext();
   const [valueButon, setValuebButon] = useState(1);
   const [total, setTotal] = useState(0);
   const [t, setT] = useState(true);
-  const handleRemoveItem = (indexToRemove) => {
-    const updatedItems = onCard.filter(
-      (item, index) => index !== indexToRemove
-    );
-    setOnCard(updatedItems);
-  };
 
+  console.log(senter, 1);
   fals(t);
-
-  //   console.log(onCard);
+  const handleRemoveItem = (m) => {
+    setOnCard(m);
+  };
   return (
     <div className={styles.main}>
       <div className={styles.h1}>Кошик</div>
@@ -29,8 +28,8 @@ export default function Basket({ fals }) {
         <div className={styles.number_textP}>Ціна</div>
         <div className={styles.number_text}>Кількість</div>
         <div className={styles.price_box_h1}>Вартість</div>
-        {Array.isArray(onCard) &&
-          onCard.map((item, index) => (
+        {Array.isArray(senter) &&
+          senter.map((item, index) => (
             <div className={styles.swiper_slide} key={index}>
               <div className={styles.image_box}>
                 <Image
@@ -86,7 +85,7 @@ export default function Basket({ fals }) {
               <BsTrash3
                 className={styles.dustbin}
                 size={20}
-                onClick={() => handleRemoveItem(index)}
+                onClick={() => handleRemoveItem(item.name)}
               />
             </div>
           ))}

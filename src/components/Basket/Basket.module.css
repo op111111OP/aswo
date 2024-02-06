@@ -34,11 +34,12 @@
 }
 .button3,
 .button1 {
-  font-size: 24px;
+  font-size: 16px; /* Это значение размера шрифта может вызывать проблему */
   width: 40px;
   cursor: pointer;
   user-select: none;
 }
+
 .button2 {
   width: 50px;
 }
@@ -128,6 +129,6 @@
   position: absolute;
   right: 5px;
   top: 30%;
-  color: #00000000;
+  color: rgba(0, 0, 0, 0); /* Это значение цвета может вызывать проблему */
   cursor: pointer;
 }

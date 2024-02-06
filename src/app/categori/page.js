@@ -10,26 +10,26 @@ import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
+import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const [onCategori, setOnCategori] = useLocalStorage("onCategori");
-  const [onCard, setOnCard] = useLocalStorage("onCard");
+  const { setUserId } = useUserContext();
+  const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
+  //   const [onCard, setOnCard] = useLocalStorage("onCard", []);
+  //   const [onCard, setOnCard] = useState([]);
+
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
-  //   console.log(onCard);
+
   const addToArray = (newItem) => {
-    setOnCard((prevArray) => {
-      if (!prevArray.includes(newItem)) {
-        const updatedArray = [...prevArray, newItem];
-        return updatedArray;
-      } else {
-        return prevArray;
-      }
-    });
+    setUserId(newItem);
   };
+  //   useEffect(() => {
+  //     setUserId("55555");
+  //   }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,8 +63,10 @@ export default function Page() {
   const handleBasketClick = (e, object) => {
     // Ваша логика обработки клика на корзине
     addToArray(object);
+    //   setOnCard1([]);
     //  setOnCard([]);
     setCehageCor(true);
+    //  setCeh(object);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
   };
