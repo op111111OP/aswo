@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
       }
     });
   }, [userId]);
-  console.log(onCard, 5);
+  console.log(onCard);
   useEffect(() => {
     const handleRemoveItem = (indexToRemove) => {
       const updatedItems = senter.filter((obj) => obj.name !== indexToRemove);
