@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "./Basket.module.css";
 import { useLocalStorage } from "react-use";
 import { BsTrash3 } from "react-icons/bs";
-import { useUserContext } from "../../app/context/page";
+import { useUserContext } from "../../app/Context/store";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsX } from "react-icons/bs";
 
