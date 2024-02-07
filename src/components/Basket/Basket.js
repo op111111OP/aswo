@@ -20,6 +20,7 @@ export default function Basket({ fals }) {
   const handleRemoveItem = (m) => {
     setOnCard(m);
   };
+  console.log(senter, "b");
   return (
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
@@ -30,6 +31,7 @@ export default function Basket({ fals }) {
         <div className={styles.number_text}>Кількість</div>
         <div className={styles.price_box_h1}>Вартість</div>
         {Array.isArray(senter) &&
+          senter.length > 0 &&
           senter.map((item, index) => (
             <div className={styles.swiper_slide} key={index}>
               <div className={styles.image_box}>
@@ -84,7 +86,7 @@ export default function Basket({ fals }) {
               <BsTrash3
                 className={styles.dustbin}
                 size={20}
-                onClick={() => handleRemoveItem(item.name)}
+                onClick={() => handleRemoveItem(index)}
               />
             </div>
           ))}
