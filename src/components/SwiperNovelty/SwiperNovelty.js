@@ -38,18 +38,18 @@ export default function App() {
     <div className={styles.box_carusel}>
       <div className={styles.now}>Новинки</div>
       <div id="gallery1">
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
-          navigation={true}
-          observeVisibility={true}
-          loop={true}
-          modules={[Navigation]}
-          className={styles.swiper}
-          //  onSwiper={new Swiper("#gallery1", {})}
-        >
-          {Array.isArray(flutters) &&
-            flutters.map((item, index) => (
+        {Array.isArray(flutters) ? (
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={30}
+            navigation={true}
+            observeVisibility={true}
+            loop={true}
+            modules={[Navigation]}
+            className={styles.swiper}
+            //  onSwiper={new Swiper("#gallery1", {})}
+          >
+            {flutters.map((item, index) => (
               <SwiperSlide
                 className={styles.swiper_slide}
                 key={index}
@@ -96,7 +96,10 @@ export default function App() {
                 </div>
               </SwiperSlide>
             ))}
-        </Swiper>
+          </Swiper>
+        ) : (
+          <div className={styles.swiper}>Загрузка...</div>
+        )}
       </div>
     </div>
   );

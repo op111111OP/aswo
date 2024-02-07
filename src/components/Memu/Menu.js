@@ -12,21 +12,24 @@ export default function Menu({
   num,
   menuFalse,
 }) {
-  const [onCategori, setOnCategori] = useLocalStorage("onCategori");
-  const [resCategori, setResCategori] = useLocalStorage("resCategori");
   const [fels, setFals] = useState(true);
   const userId = (newItem) => {
     if (newItem !== undefined && newItem !== "") {
       setOnCategori(newItem);
     }
   };
+
   function userIdCategori(i) {
-    const result = flutters.find((item) =>
+    const setResCategor = flutters.find((item) =>
       item.mas.some((innerItem) => innerItem.text === i)
     );
-    setResCategori(result);
+
+    console.log(resCategori, "m");
+    setResCategori(setResCategor);
     //  console.log(result, "m");
   }
+  const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
+  const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   menuFalse(fels);
   return (
     <div

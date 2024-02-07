@@ -15,7 +15,7 @@ import { useUserContext } from "../context/page";
 export default function Page() {
   const { setUserId } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
-  const [resCategori, setResCategori] = useLocalStorage("resCategori");
+  const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
@@ -59,7 +59,7 @@ export default function Page() {
     };
     fetchData();
     //  setNum(null);
-  }, [onCategori, num1]);
+  }, [onCategori, num1, IdCategori]);
   const handleSliderChange = (value) => {
     setPriceRange(value);
     const filtered = flutters.filter(

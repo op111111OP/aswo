@@ -21,8 +21,9 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const handleRemoveItem = (indexToRemove) => {
-      const updatedItems = senter.filter((obj) => obj.name !== indexToRemove);
-      setSenter(updatedItems);
+      setSenter((prevSenter) => {
+        return prevSenter.filter((obj) => obj.name !== indexToRemove);
+      });
     };
     handleRemoveItem(onCard);
   }, [onCard]);
