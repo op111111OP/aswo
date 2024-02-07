@@ -24,9 +24,8 @@ export default function Menu({
       item.mas.some((innerItem) => innerItem.text === i)
     );
 
-    console.log(resCategori, "m");
+    //  console.log(resCategori, "m");
     setResCategori(setResCategor);
-    //  console.log(result, "m");
   }
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
