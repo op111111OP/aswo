@@ -8,26 +8,32 @@ export const UserProvider = ({ children }) => {
   //   const [senter, setSenter] = useLocalStorage("senter", []);
   //   const [onCard, setOnCard] = useLocalStorage("onCard", "");
 
-  const [userId, setUserId] = useState({});
+  const [userId, setUserId] = useState(1);
   const [senter, setSenter] = useState([]);
-  const [onCard, setOnCard] = useState("");
+  const [onCard, setOnCard] = useState(1000);
   useEffect(() => {
-    setSenter((prevOnCard) => {
-      const existingIndex = prevOnCard.findIndex(
-        (obj) => obj.name === userId.name
-      );
-      if (existingIndex === -1) {
-        return [...prevOnCard, userId];
-      } else {
-        return prevOnCard;
-      }
-    });
+    if (userId !== 1) {
+      setSenter((prevOnCard) => {
+        const existingIndex = prevOnCard.findIndex(
+          (obj) => obj.name === userId.name
+        );
+        if (existingIndex === -1) {
+          return [...prevOnCard, userId];
+        } else {
+          return prevOnCard;
+        }
+      });
+    }
   }, [userId]);
 
   useEffect(() => {
     const handleRemoveItem = (indexToRemove) => {
       setSenter((prevSenter) => {
-        return prevSenter.filter((obj) => obj.name !== indexToRemove);
+        if (Array.isArray(prevSenter)) {
+          const updatedSenter = [...prevSenter];
+          updatedSenter.splice(indexToRemove, 1); // Видаляємо елемент за його індексом
+          return updatedSenter;
+        }
       });
     };
     handleRemoveItem(onCard);
