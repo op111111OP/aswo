@@ -15,12 +15,15 @@ import { useUserContext } from "../context/page";
 export default function Page() {
   const { setUserId } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
+  const [resCategori, setResCategori] = useLocalStorage("resCategori");
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
-
+  const [IdCategori, setIdCategori] = useState([]);
+  const [num1, setNum1] = useState(1);
+  const num2 = 1;
   const sortByValueAscending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => a.price - b.price);
     setFilteredProducts(sortedArray);
@@ -37,11 +40,14 @@ export default function Page() {
   //   useEffect(() => {
   //     setUserId("55555");
   //   }, []);
-  console.log(filteredProducts);
+
+  //   console.log(filteredProducts);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`api/categori/${onCategori}`);
+        const response = await fetch(
+          `api/categori/${num1 > num2 ? IdCategori : onCategori}`
+        );
         const data = await response.json();
         setFlutters(data);
         setFilteredProducts(data);
@@ -52,7 +58,8 @@ export default function Page() {
       }
     };
     fetchData();
-  }, [onCategori]);
+    //  setNum(null);
+  }, [onCategori, num1]);
   const handleSliderChange = (value) => {
     setPriceRange(value);
     const filtered = flutters.filter(
@@ -123,11 +130,21 @@ export default function Page() {
             </div>
           </div>
           <div className={styles.categori_box_left}>
-            <div className={styles.categori_left}>Перемикачі</div>
-            <div className={styles.categori_left}>Перемикачі</div>
-            <div className={styles.categori_left}>Перемикачі</div>
-            <div className={styles.categori_left}>Перемикачі</div>
-            <div className={styles.categori_left}>Перемикачі</div>
+            {Array.isArray(resCategori.mas) &&
+              resCategori.mas.map((item, index) => (
+                <div
+                  className={styles.categori_box_left_elem}
+                  key={index}
+                  onClick={() => {
+                    setNum1(num1 + 1);
+                    setIdCategori(item.text);
+                  }}
+                >
+                  <div className={styles.categori_left_elem}>
+                    {index + 1}. {item.text}.
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
         <div className={styles.box_right}>

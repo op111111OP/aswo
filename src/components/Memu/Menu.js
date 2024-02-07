@@ -13,12 +13,20 @@ export default function Menu({
   menuFalse,
 }) {
   const [onCategori, setOnCategori] = useLocalStorage("onCategori");
+  const [resCategori, setResCategori] = useLocalStorage("resCategori");
   const [fels, setFals] = useState(true);
   const userId = (newItem) => {
     if (newItem !== undefined && newItem !== "") {
       setOnCategori(newItem);
     }
   };
+  function userIdCategori(i) {
+    const result = flutters.find((item) =>
+      item.mas.some((innerItem) => innerItem.text === i)
+    );
+    setResCategori(result);
+    //  console.log(result, "m");
+  }
   menuFalse(fels);
   return (
     <div
@@ -51,8 +59,9 @@ export default function Menu({
                     <div
                       className={styles.component_mas_elem_text}
                       onClick={() => {
-                        setFals();
+                        setFals(false);
                         userId(item.text);
+                        userIdCategori(item.text);
                       }}
                     >
                       {" "}

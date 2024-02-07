@@ -22,9 +22,9 @@ export default function Basket({ fals }) {
   };
   return (
     <div className={styles.main}>
-      <div className={styles.h1}>Кошик</div>
-      <BsX size={20} />
+      <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
+        <div className={styles.h1}>Кошик</div>
         <div className={styles.number_textN}>Назва</div>
         <div className={styles.number_textP}>Ціна</div>
         <div className={styles.number_text}>Кількість</div>

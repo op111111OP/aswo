@@ -131,3 +131,16 @@
 }
 
 /* main_p2 */
+/* categori_box_left */
+.categori_box_left {
+  margin: 20px 0px 0px 0px;
+}
+.categori_left_elem:hover {
+  color: #250ba6;
+  font-weight: 600;
+  cursor: pointer;
+}
+.categori_left_elem {
+  font-size: 14px;
+}
+/* categori_box_left */
