@@ -12,9 +12,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "/api/oneproduct/65b8d7d8a4679a9e1fd7baa5"
-        );
+        const response = await fetch(`/api/oneproduct/${id}`);
         const data = await response.json();
         setFlutters(data);
       } catch (error) {
