@@ -4,18 +4,18 @@ import { useLocalStorage } from "react-use";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  //   const [userId, setUserId] = useLocalStorage("userId", {});
-  //   const [senter, setSenter] = useLocalStorage("senter", []);
-  //   const [onCard, setOnCard] = useLocalStorage("onCard", "");
+  const [userId, setUserId] = useLocalStorage("userId", 1);
+  const [senter, setSenter] = useLocalStorage("senter", []);
+  const [onCard, setOnCard] = useLocalStorage("onCard", "");
   // ---------
   //   const [id, setId] = useState("");
   const [id, setId] = useLocalStorage("Id", "");
   // ---------
   const [numBas, setNumBas] = useState(0);
   //   --------------
-  const [userId, setUserId] = useState(1);
-  const [senter, setSenter] = useState([]);
-  const [onCard, setOnCard] = useState("");
+  //   const [userId, setUserId] = useState(1);
+  //   const [senter, setSenter] = useState([]);
+  //   const [onCard, setOnCard] = useState("");
   useEffect(() => {
     if (userId !== 1) {
       setSenter((prevOnCard) => {
