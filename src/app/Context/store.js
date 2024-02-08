@@ -7,10 +7,15 @@ export const UserProvider = ({ children }) => {
   //   const [userId, setUserId] = useLocalStorage("userId", {});
   //   const [senter, setSenter] = useLocalStorage("senter", []);
   //   const [onCard, setOnCard] = useLocalStorage("onCard", "");
-
+  // ---------
+  //   const [id, setId] = useState("");
+  const [id, setId] = useLocalStorage("Id", "");
+  // ---------
+  const [numBas, setNumBas] = useState(0);
+  //   --------------
   const [userId, setUserId] = useState(1);
   const [senter, setSenter] = useState([]);
-  const [onCard, setOnCard] = useState(1000);
+  const [onCard, setOnCard] = useState("");
   useEffect(() => {
     if (userId !== 1) {
       setSenter((prevOnCard) => {
@@ -27,21 +32,32 @@ export const UserProvider = ({ children }) => {
   }, [userId]);
 
   useEffect(() => {
-    const handleRemoveItem = (indexToRemove) => {
-      setSenter((prevSenter) => {
-        if (Array.isArray(prevSenter)) {
-          const updatedSenter = [...prevSenter];
-          updatedSenter.splice(indexToRemove, 1); // Видаляємо елемент за його індексом
-          return updatedSenter;
-        }
-      });
-    };
-    handleRemoveItem(onCard);
-  }, [onCard]);
+    if (numBas === 1) {
+      const handleRemoveItem = () => {
+        setSenter((prevSenter) => {
+          return prevSenter.filter((obj) => obj.id !== onCard);
+        });
+      };
+      handleRemoveItem();
+
+      setNumBas(5);
+    }
+  }, [numBas]);
 
   return (
     <UserContext.Provider
-      value={{ userId, setUserId, senter, setSenter, onCard, setOnCard }}
+      value={{
+        userId,
+        setUserId,
+        senter,
+        setSenter,
+        onCard,
+        setOnCard,
+        setId,
+        id,
+        setNumBas,
+        numBas,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -13,7 +13,7 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const { setUserId } = useUserContext();
+  const { setUserId, setId } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [priceRange, setPriceRange] = useState([0, 20000]);
@@ -22,6 +22,7 @@ export default function Page() {
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
   const [IdCategori, setIdCategori] = useState([]);
+  const [name, setName] = useState("");
   const [num1, setNum1] = useState(1);
   const num2 = 1;
   const sortByValueAscending = () => {
@@ -36,18 +37,13 @@ export default function Page() {
   const addToArray = (newItem) => {
     setUserId(newItem);
   };
-
-  //   useEffect(() => {
-  //     setUserId("55555");
-  //   }, []);
-
-  //   console.log(filteredProducts);
+  useEffect(() => {
+    setName(num1 > num2 ? IdCategori : onCategori);
+  }, [num1, num2]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `api/categori/${num1 > num2 ? IdCategori : onCategori}`
-        );
+        const response = await fetch(`api/categori/${name}`);
         const data = await response.json();
         setFlutters(data);
         setFilteredProducts(data);
@@ -58,8 +54,7 @@ export default function Page() {
       }
     };
     fetchData();
-    //  setNum(null);
-  }, [onCategori, num1, IdCategori]);
+  }, [name]);
   const handleSliderChange = (value) => {
     setPriceRange(value);
     const filtered = flutters.filter(
@@ -90,7 +85,9 @@ export default function Page() {
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
       <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
-        <div className={styles.main_h1}>{onCategori}</div>
+        <div className={styles.main_h1}>
+          {num1 > num2 ? IdCategori : onCategori}
+        </div>
         <div className={styles.main_h2}>
           <div className={styles.main_sort}>Сортування:</div>
           <div className={styles.main_p_box}>
@@ -169,7 +166,12 @@ export default function Page() {
                 >
                   <div className={styles.slide_box}>
                     <Link href="./product">
-                      <div className={styles.link_box}>
+                      <div
+                        className={styles.link_box}
+                        onClick={() => {
+                          setId(item._id);
+                        }}
+                      >
                         <div className={styles.img_box}>
                           <Image
                             className={styles.img}
@@ -206,7 +208,7 @@ export default function Page() {
                             img: item.img,
                             name: item.name,
                             price: item.price,
-                            id: item.id,
+                            id: item._id,
                           })
                         }
                         className={styles.shopping}

@@ -7,10 +7,23 @@
   background-color: rgb(254, 255, 255);
   z-index: 30;
   box-shadow: 0px 0px 15px #0059a271;
-  padding-top: 40px;
+  padding-top: 85px;
   overflow: auto;
   height: 100vh;
   top: 0;
+  min-width: 900px;
+}
+.novBnov {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.novB {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .button_box {
@@ -79,24 +92,34 @@
   justify-content: space-between;
   padding-right: 3%;
 }
-.price {
+.priceB {
   width: 17%;
   font-weight: 600;
+  font-size: 18px;
 }
 .name {
   width: 80%;
 }
 .number_box,
-.price_box {
+.price_boxB {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: start;
   width: 15%;
+  font-size: 18px;
+  font-weight: 600;
 }
-.price_box {
+.price_boxB {
   position: relative;
-  width: 25%;
+  width: 15%;
+}
+.h1nov {
+  font-weight: 900;
+  font-size: 40px;
+  color: rgb(58, 103, 200);
+  background-color: whitesmoke;
+  margin: 0px 0px 50px 0px;
 }
 /* absolute price_box_h1 */
 .price_box_h1 {
@@ -195,3 +218,140 @@
   text-shadow: 3px 3px 4px rgba(204, 20, 20, 0.5);
 }
 /* issue_box and*/
+/* KKKKKKKKKKKKKKKKKKK n*/
+.box {
+  width: 70%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: 20px;
+  margin: 200px 0px 0px 0px;
+}
+.box_h4 {
+  width: 100%;
+  height: 60px;
+}
+
+.box_сontacts {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+.box_h3 {
+  width: 100%;
+  padding: 15px;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.h3_dox {
+  z-index: 2;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.box_h3::after {
+  content: "";
+  height: 1px;
+  background: #120000;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 95%;
+  z-index: 1;
+}
+.form_сontacts {
+  width: 100%;
+  padding: 0 15px 15px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+}
+.form_сontacts input {
+  width: 49%;
+  height: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.form_сontacts > *:not(:last-child) {
+  margin: 0px 0px 20px 0px;
+}
+.form_delivery .name1 {
+  width: 100%;
+}
+.form_delivery .name2 {
+  width: 100%;
+}
+.textarea {
+  width: 100%;
+  height: 70px;
+  padding: 5px;
+}
+.form_delivery_text {
+  font-size: 14px;
+}
+.form_delivery .button_delivery {
+  width: max-content;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #df9e9e;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.price_span {
+  font-size: 24px;
+  font-weight: 600;
+}
+.form_delivery {
+  display: flex;
+  flex-direction: column;
+}
+.error {
+  font-weight: 700;
+  font-size: 12px;
+  position: absolute;
+  color: #e11212;
+}
+.error1 {
+  left: 15px;
+  top: 32px;
+}
+.error2 {
+  right: 15px;
+  top: 32px;
+}
+.error3 {
+  left: 15px;
+  top: 82px;
+}
+.error4 {
+  right: 15px;
+  top: 82px;
+}
+.error5 {
+  left: 15px;
+  top: 86px;
+}
+.error6 {
+  left: 15px;
+  top: 137px;
+}
+/* @media (max-width: 950px) {
+  .box {
+    order: 2;
+    width: 100%;
+  }
+  .form_сontacts input {
+    width: 100%;
+  }
+} */
+
+/* KKKKKKKKKKKKKKKKKKK */

@@ -8,6 +8,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  overflow: hidden;
+  height: 60vh;
+  overflow: auto;
 }
 .component_name_box {
   display: flex;

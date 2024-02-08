@@ -47,7 +47,6 @@ export default function App() {
             loop={true}
             modules={[Navigation]}
             className={styles.swiper}
-            //  onSwiper={new Swiper("#gallery1", {})}
           >
             {flutters.map((item, index) => (
               <SwiperSlide
