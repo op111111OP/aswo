@@ -17,12 +17,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 export default function Basket({ fals }) {
   const { senter, setOnCard, setNumBas } = useUserContext();
   //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
-  const [valueButon, setValuebButon] = useState(1);
+
   //   const [total, setTotal] = useState(0);
   const [t, setT] = useState(true);
   const [truF, setTruF] = useState(false);
   const [numB, setNumB] = useState([]);
   const [numBd, setNumBd] = useState(0);
+  const [numB2, setNumB2] = useState(0);
+  const [numB1, setNumB1] = useState([]);
   const addOnes = () => {
     const numbers = senter.map((obj) => obj.price);
     setNumB(numbers);
@@ -31,8 +33,12 @@ export default function Basket({ fals }) {
     const sum = numB.reduce((total, num) => total + num, 0);
     setNumBd(sum);
   }, [numB]);
-
+  console.log(numB1, "b1");
   useEffect(() => {
+    setNumB2(senter.length);
+  }, [senter]);
+  useEffect(() => {
+    setNumB1(Array(numB2 + 1).fill(1));
     addOnes();
   }, [senter]);
 
@@ -44,7 +50,6 @@ export default function Basket({ fals }) {
     });
   };
   const updateNumBn = (index, value) => {
-    console.log(value, "v");
     if (numB[index] >= value) {
       setNumB((prevNumB) => {
         const updatedNumB = [...prevNumB];
@@ -53,9 +58,26 @@ export default function Basket({ fals }) {
       });
     }
   };
+  const updateNumB22 = (index) => {
+    setNumB1((prevNumB) => {
+      const updatedNumB = [...prevNumB];
+      updatedNumB[index] = updatedNumB[index] + 1;
+      return updatedNumB;
+    });
+  };
+  const updateNumBn22 = (index) => {
+    if (numB1[index] > 0) {
+      setNumB1((prevNumB) => {
+        const updatedNumB = [...prevNumB];
+        updatedNumB[index] = updatedNumB[index] - 1;
+        return updatedNumB;
+      });
+    }
+    console.log(index, "i");
+  };
   //   updateNumB(0, 11000);
   //   updateNumBn(2, 1);
-  console.log(numB, "numB", numBd);
+
   // Змінити перший елемент на 2
   //   __________________
   //   dddddddddd
@@ -315,28 +337,20 @@ export default function Basket({ fals }) {
                     <div className={styles.button_box}>
                       <div
                         className={styles.button1}
-                        onClick={() =>
-                          setValuebButon((prevValue) => {
-                            {
-                              prevValue == 1 ? prevValue : prevValue - 1;
-                            }
-                            updateNumBn([index], item.price);
-                          })
-                        }
+                        onClick={() => {
+                          updateNumBn22(index);
+                          updateNumBn(index, item.price);
+                        }}
                       >
                         -
                       </div>
-                      <div className={styles.button2}>{valueButon}</div>
+                      <div className={styles.button2}>{numB1[index]}</div>
                       <div
                         className={styles.button3}
-                        onClick={() =>
-                          setValuebButon((prevValue) => {
-                            {
-                              prevValue > 10000 ? prevValue : prevValue + 1;
-                            }
-                            updateNumB([index], item.price);
-                          })
-                        }
+                        onClick={() => {
+                          updateNumB22(index);
+                          updateNumB(index, item.price);
+                        }}
                       >
                         +
                       </div>

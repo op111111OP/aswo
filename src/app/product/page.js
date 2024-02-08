@@ -11,7 +11,7 @@ import { BsArrowLeft } from "react-icons/bs";
 export default function Page() {
   const { id, setUserId } = useUserContext();
   const [flutters, setFlutters] = useState(null);
-  const [truF, setTruF] = useState(false);
+  const [truF, setTruF] = useState(true);
   //   const [idp, seIdp] = useState();
   useEffect(() => {
     const fetchData = async () => {
@@ -58,10 +58,10 @@ export default function Page() {
                   height={100}
                   style={
                     truF
-                      ? { height: "100%", width: "100%", objectFit: "contain" }
+                      ? { height: "50vh", width: "70%", objectFit: "contain" }
                       : {
-                          height: "auto",
-                          width: "80vw",
+                          height: "400px",
+                          width: "50vw",
                           objectFit: "contain",
                         }
                   }

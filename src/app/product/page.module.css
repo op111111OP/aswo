@@ -13,17 +13,17 @@
 .img_box {
   display: flex;
   justify-content: center;
-  max-height: 500px;
+  max-height: 400px;
   min-height: 400px;
   overflow: hidden;
   margin: 0px 0px 15px 0px;
   cursor: pointer;
 }
-.img_box {
+.img_box_fals {
   display: flex;
   justify-content: center;
-  max-height: 700px;
-  min-width: 80vh;
+  max-height: 400px;
+  min-width: 95vh;
   overflow: hidden;
   margin: 0px 0px 15px 0px;
   cursor: pointer;
@@ -59,6 +59,7 @@
 .description_box {
   border: 0.2px solid #1d71d28e;
   padding: 5px;
+  margin: -20px 0px 0px 0px;
 }
 .description_h1 {
   border-bottom: 0.2px solid #1d71d28e;

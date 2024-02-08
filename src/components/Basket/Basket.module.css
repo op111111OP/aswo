@@ -7,10 +7,10 @@
   background-color: rgb(254, 255, 255);
   z-index: 30;
   box-shadow: 0px 0px 15px #0059a271;
-  padding-top: 85px;
+  padding-top: 30px;
   overflow: auto;
   height: 100vh;
-  top: 0;
+  top: 0px;
   min-width: 900px;
 }
 .novBnov {
@@ -60,12 +60,12 @@
   width: 50px;
 }
 .swiper_slide {
-  height: 80px;
+  height: 50px;
   width: 95%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0px 0px 0px;
+  margin: 6px 0px 0px 0px;
   border: 1px solid #000;
   background-color: whitesmoke;
   position: relative;
@@ -93,9 +93,10 @@
   padding-right: 3%;
 }
 .priceB {
-  width: 17%;
+  width: 20%;
   font-weight: 600;
   font-size: 18px;
+  white-space: nowrap;
 }
 .name {
   width: 80%;
@@ -109,10 +110,11 @@
   width: 15%;
   font-size: 18px;
   font-weight: 600;
+  white-space: nowrap;
 }
 .price_boxB {
   position: relative;
-  width: 15%;
+  width: 20%;
 }
 .h1nov {
   font-weight: 900;
@@ -124,21 +126,21 @@
 /* absolute price_box_h1 */
 .price_box_h1 {
   position: absolute;
-  top: -10px;
+  top: -20px;
   right: 80px;
 }
 .number_text {
-  top: -10px;
+  top: -20px;
   position: absolute;
   right: 180px;
 }
 .number_textP {
-  top: -10px;
+  top: -20px;
   position: absolute;
   right: 330px;
 }
 .number_textN {
-  top: -10px;
+  top: -20px;
   left: 260px;
   position: absolute;
 }
@@ -153,7 +155,7 @@
   font-size: 24px;
   font-weight: 700;
   position: absolute;
-  top: -20px;
+  top: -30px;
   left: 30px;
 }
 .x {
@@ -180,7 +182,7 @@
   align-items: center;
   justify-content: space-around;
   width: 95%;
-  height: 150px;
+  height: 120px;
   border: 1px solid #000;
   margin: 10px 0px 0px 0px;
   font-size: 18px;
@@ -230,7 +232,7 @@
 }
 .box_h4 {
   width: 100%;
-  height: 60px;
+  height: 30px;
 }
 
 .box_сontacts {
