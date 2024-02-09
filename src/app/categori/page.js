@@ -16,6 +16,7 @@ export default function Page() {
   const { setUserId, setId } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
+
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
@@ -23,6 +24,7 @@ export default function Page() {
   const [cehageCor, setCehageCor] = useState(false);
   const [IdCategori, setIdCategori] = useState([]);
   const [name, setName] = useState("");
+
   const [num1, setNum1] = useState(1);
   const num2 = 1;
   const sortByValueAscending = () => {
@@ -38,8 +40,14 @@ export default function Page() {
     setUserId(newItem);
   };
   useEffect(() => {
-    setName(num1 > num2 ? IdCategori : onCategori);
+    if (num1 > num2) {
+      setOnCategori(IdCategori);
+      setResCategori(IdCategori);
+    } else {
+      setName(onCategori);
+    }
   }, [num1, num2]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,6 +63,8 @@ export default function Page() {
     };
     fetchData();
   }, [name]);
+
+  //   bbbbbbbbbbbbbbbbb
   const handleSliderChange = (value) => {
     setPriceRange(value);
     const filtered = flutters.filter(
