@@ -15,7 +15,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 // ----------
 
 export default function Basket({ fals }) {
-  const { senter, setOnCard, setNumBas } = useUserContext();
+  const { senter, setOnCard, setNumBas, numBas } = useUserContext();
+  const [aa1, setAa1] = useLocalStorage("resAa1", []);
+  console.log(aa1, "a1");
   //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
 
   //   const [total, setTotal] = useState(0);
@@ -25,13 +27,27 @@ export default function Basket({ fals }) {
   const [numBd, setNumBd] = useState(0);
   const [numB2, setNumB2] = useState(0);
   const [numB1, setNumB1] = useState([]);
-  //   const [mas, setMas] = useState([]);
+  const [n, setN] = useState(aa1);
+  const [onIds, setOnIds] = useState("");
+  const [numBas1, setNumBas1] = useState(0);
+
+  useEffect(() => {
+    if (numBas1 === 1) {
+      const handleRemoveItem = () => {
+        setN((prevSenter) => {
+          return prevSenter.filter((obj) => obj.id !== onIds);
+        });
+      };
+      handleRemoveItem();
+
+      setNumBas1(5);
+    }
+  }, [numBas1]);
+  useEffect(() => {
+    setAa1(n);
+  }, [n]);
   const addOnesx = () => {
-    //  if (numC > 0) {
-    //    const numbers = senterLoc.map((obj) => obj.price);
-    //    setNumB(numbers);
-    //  } else {
-    const numbers = senter.map((obj) => obj.price);
+    const numbers = aa1.map((obj) => obj.price);
     setNumB(numbers);
     //  }
   };
@@ -47,9 +63,9 @@ export default function Basket({ fals }) {
     //    setNumB2(senterLoc.length);
     //  } else {
     //  setMas(senter);
-    setNumB2(senter.length);
+    setNumB2(aa1.length);
     //  }
-  }, [senter]);
+  }, [aa1]);
   useEffect(() => {
     //  if (numC > 0) {
     //    setNumB1(Array(numB2 + 1).fill(1));
@@ -57,7 +73,7 @@ export default function Basket({ fals }) {
     setNumB1(Array(numB2 + 1).fill(1));
     //  }
     addOnesx();
-  }, [senter]);
+  }, [aa1]);
 
   const updateNumB = (index, value) => {
     setNumB((prevNumB) => {
@@ -90,7 +106,6 @@ export default function Basket({ fals }) {
         return updatedNumB;
       });
     }
-    console.log(index, "i");
   };
   //   updateNumB(0, 11000);
   //   updateNumBn(2, 1);
@@ -122,6 +137,7 @@ export default function Basket({ fals }) {
 
   fals(t);
   const handleRemoveItem = (m) => {
+    setOnIds(m);
     setOnCard(m);
     console.log(m, 22);
   };
@@ -133,7 +149,7 @@ export default function Basket({ fals }) {
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
-        {senter.length === 0 ? (
+        {aa1.length === 0 ? (
           <div className={styles.h1nov}>Ваш кошик пустий.</div>
         ) : (
           <div className={!truF ? styles.novB : styles.novBnov}>
@@ -318,7 +334,7 @@ export default function Basket({ fals }) {
             {/* ---------------------- */}
 
             <div className={styles.bas_ralac}>
-              {senter.length === 0 ? (
+              {aa1.length === 0 ? (
                 <p></p>
               ) : (
                 <div>
@@ -329,8 +345,8 @@ export default function Basket({ fals }) {
                   <div className={styles.price_box_h1}>Вартість</div>
                 </div>
               )}
-              {Array.isArray(senter) &&
-                senter.map((item, index) => (
+              {Array.isArray(aa1) &&
+                aa1.map((item, index) => (
                   <div className={styles.swiper_slide} key={index}>
                     <div className={styles.image_box}>
                       <Image
@@ -384,7 +400,7 @@ export default function Basket({ fals }) {
                       size={20}
                       onClick={() => {
                         handleRemoveItem(item.id);
-                        handleRemov(1);
+                        setNumBas1(1);
                       }}
                     />
                   </div>

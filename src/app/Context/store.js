@@ -18,6 +18,7 @@ export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(1);
   const [senter, setSenter] = useState([]);
   const [onCard, setOnCard] = useState("");
+  const [onIds, seOnIds] = useState();
 
   useEffect(() => {
     if (userId !== 1) {
@@ -43,9 +44,7 @@ export const UserProvider = ({ children }) => {
       // });
     }
   }, [userId]);
-  useEffect(() => {
-    setSenter(senter);
-  }, [senter]);
+
   useEffect(() => {
     if (numBas === 1) {
       const handleRemoveItem = () => {
@@ -75,6 +74,8 @@ export const UserProvider = ({ children }) => {
         id,
         setNumBas,
         numBas,
+        onIds,
+        seOnIds,
         //   senterLoc,
         //   setSenterLoc,
         //   numC,

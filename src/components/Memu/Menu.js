@@ -36,7 +36,7 @@ export default function Menu({
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
   menuFalse(fels);
-  console.log(flutters, "onCategori");
+
   return (
     <div
       className={`${styles.container} ${styles[num]}`}

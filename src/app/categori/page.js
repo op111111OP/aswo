@@ -13,9 +13,10 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const { setUserId, setId } = useUserContext();
+  const { setUserId, setId, seOnIds } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
+  const [aa1, setAa1] = useLocalStorage("resAa1", []);
 
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -24,6 +25,7 @@ export default function Page() {
   const [cehageCor, setCehageCor] = useState(false);
   const [IdCategori, setIdCategori] = useState([]);
   const [name, setName] = useState("");
+  const [n, setN] = useState(aa1);
 
   const [num1, setNum1] = useState(1);
   const num2 = 1;
@@ -37,10 +39,21 @@ export default function Page() {
     setFilteredProducts(sortedArray);
   };
   const addToArray = (newItem) => {
-    const num = 0;
-    setUserId(newItem);
-    //  setNumC(num + 2);
+    setN((prevOnCard) => {
+      const existingIndex = prevOnCard.findIndex(
+        (obj) => obj.name === newItem.name
+      );
+      if (existingIndex === -1) {
+        return [...prevOnCard, newItem];
+      } else {
+        return prevOnCard;
+      }
+    });
   };
+
+  useEffect(() => {
+    setAa1(n);
+  }, [n]);
   useEffect(() => {
     if (num1 > num2) {
       setIdCategori(IdCategori);
@@ -179,7 +192,7 @@ export default function Page() {
                       <div
                         className={styles.link_box}
                         onClick={() => {
-                          setId(item._id);
+                          setUserId(item._id);
                         }}
                       >
                         <div className={styles.img_box}>
@@ -209,7 +222,7 @@ export default function Page() {
                         size={25}
                         color=" #0058a2"
                         id="basket"
-                        onClick={(e) =>
+                        onClick={(e) => {
                           handleBasketClick(e, {
                             categori: item.categori,
                             brand: item.brand,
@@ -219,8 +232,8 @@ export default function Page() {
                             name: item.name,
                             price: item.price,
                             id: item._id,
-                          })
-                        }
+                          });
+                        }}
                         className={styles.shopping}
                       />
                     </div>

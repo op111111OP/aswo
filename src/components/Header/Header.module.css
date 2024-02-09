@@ -52,6 +52,7 @@
   display: flex;
   gap: 5px;
 }
+/*  */
 .box_telephone_box {
   display: flex;
   flex-direction: column;
@@ -60,16 +61,20 @@
 }
 .header_input {
   height: 30px;
-  width: 250px;
+  width: 260px;
   outline: none;
 }
 .header_button {
-  margin: 0px 0px 0px -20px;
+  margin: 3px 0px 0px -20px;
   height: 30px;
   border: none;
   background: none;
   outline: none;
 }
+.search_container {
+  display: flex;
+}
+/*  */
 @media screen and (max-width: 445px) {
   .telephone {
     display: none;
