@@ -13,10 +13,10 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const { setUserId, setId, seOnIds } = useUserContext();
+  const { setUserId, setId, seOnIds, numB22 } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
-  const [aa1, setAa1] = useLocalStorage("resAa11", ["."]);
+  const [aa1, setAa1] = useLocalStorage("resAa111", []);
   console.log(aa1, "aa1");
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -38,9 +38,14 @@ export default function Page() {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
   };
-  useEffect(() => {
-    setAa1(n);
-  }, [n]);
+  //   useEffect(() => {
+  //     setAa1(n);
+  //   }, [n]);
+  //   useEffect(() => {
+  //     if (numB22.length !== aa1.length) {
+  //       // setAa1(numB22);
+  //     }
+  //   }, [numB22]);
   const addToArray = (newItem) => {
     setN((prevOnCard) => {
       const existingIndex = prevOnCard.findIndex(

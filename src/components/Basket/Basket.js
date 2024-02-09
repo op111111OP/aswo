@@ -16,7 +16,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export default function Basket({ fals }) {
   const { senter, setOnCard, setNumBas, numBas, setNumB22 } = useUserContext();
-  const [aa1, setAa1] = useLocalStorage("resAa11", ["."]);
+  const [aa1, setAa1] = useLocalStorage("resAa111", []);
 
   //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
 
@@ -43,7 +43,7 @@ export default function Basket({ fals }) {
     }
     if (numBas1 === 1) {
       setAa1(n);
-      setNumB22(n);
+      // setNumB22(n);
     }
   }, [n, aa1]);
   //   useEffect(() => {
