@@ -117,17 +117,6 @@ export default function Basket({ fals }) {
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
         {senter.length === 0 ? (
-          <p></p>
-        ) : (
-          <div>
-            <div className={styles.h1}>Кошик</div>
-            <div className={styles.number_textN}>Назва</div>
-            <div className={styles.number_textP}>Ціна</div>
-            <div className={styles.number_text}>Кількість</div>
-            <div className={styles.price_box_h1}>Вартість</div>
-          </div>
-        )}
-        {senter.length === 0 ? (
           <div className={styles.h1nov}>Ваш кошик пустий.</div>
         ) : (
           <div className={!truF ? styles.novB : styles.novBnov}>
@@ -311,92 +300,108 @@ export default function Basket({ fals }) {
             )}
             {/* ---------------------- */}
 
-            {Array.isArray(senter) &&
-              senter.map((item, index) => (
-                <div className={styles.swiper_slide} key={index}>
-                  <div className={styles.image_box}>
-                    <Image
-                      className={styles.img}
-                      src={item.img}
-                      alt="Vercel Logo"
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
-                      width={35}
-                      height={35}
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                        objectFit: "contain",
+            <div className={styles.bas_ralac}>
+              {senter.length === 0 ? (
+                <p></p>
+              ) : (
+                <div>
+                  <div className={styles.h1}>Кошик</div>
+                  <div className={styles.number_textN}>Назва</div>
+                  <div className={styles.number_textP}>Ціна</div>
+                  <div className={styles.number_text}>Кількість</div>
+                  <div className={styles.price_box_h1}>Вартість</div>
+                </div>
+              )}
+              {Array.isArray(senter) &&
+                senter.map((item, index) => (
+                  <div className={styles.swiper_slide} key={index}>
+                    <div className={styles.image_box}>
+                      <Image
+                        className={styles.img}
+                        src={item.img}
+                        alt="Vercel Logo"
+                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
+                        width={35}
+                        height={35}
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </div>
+                    <div className={styles.text}>
+                      <div className={styles.name}>{item.name}</div>
+                      <div className={styles.priceB}>{item.price} грн.</div>
+                    </div>
+                    <div className={styles.number_box}>
+                      <div className={styles.button_box}>
+                        <div
+                          className={styles.button1}
+                          onClick={() => {
+                            updateNumBn22(index);
+                            updateNumBn(index, item.price);
+                          }}
+                        >
+                          -
+                        </div>
+                        <div className={styles.button2}>{numB1[index]}</div>
+                        <div
+                          className={styles.button3}
+                          onClick={() => {
+                            updateNumB22(index);
+                            updateNumB(index, item.price);
+                          }}
+                        >
+                          +
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.price_boxB}>
+                      <div className={styles.price_spanB}>
+                        {numB[index]} грн.
+                      </div>
+                    </div>
+                    <BsTrash3
+                      className={styles.dustbin}
+                      size={20}
+                      onClick={() => {
+                        handleRemoveItem(item.id);
+                        handleRemov(1);
                       }}
                     />
                   </div>
-                  <div className={styles.text}>
-                    <div className={styles.name}>{item.name}</div>
-                    <div className={styles.priceB}>{item.price} грн.</div>
-                  </div>
-                  <div className={styles.number_box}>
-                    <div className={styles.button_box}>
-                      <div
-                        className={styles.button1}
-                        onClick={() => {
-                          updateNumBn22(index);
-                          updateNumBn(index, item.price);
-                        }}
-                      >
-                        -
-                      </div>
-                      <div className={styles.button2}>{numB1[index]}</div>
-                      <div
-                        className={styles.button3}
-                        onClick={() => {
-                          updateNumB22(index);
-                          updateNumB(index, item.price);
-                        }}
-                      >
-                        +
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.price_boxB}>
-                    <div className={styles.price_spanB}>{numB[index]} грн.</div>
-                  </div>
-                  <BsTrash3
-                    className={styles.dustbin}
-                    size={20}
-                    onClick={() => {
-                      handleRemoveItem(item.id);
-                      handleRemov(1);
-                    }}
-                  />
-                </div>
-              ))}
+                ))}
+            </div>
           </div>
         )}
-      </div>
 
-      <div className={styles.issue_box}>
-        <div className={styles.issue_come}>
-          <BsArrowLeft className={styles.issue_} size={20} />
-          <div
-            className={styles.issue_}
-            onClick={() => {
-              setT((t) => !t);
-              setTruF(true);
-            }}
-          >
-            Повернутись до покупок
+        <div className={styles.issue_box}>
+          <div className={styles.issue_come}>
+            <BsArrowLeft className={styles.issue_} size={20} />
+            <div
+              className={styles.issue_}
+              onClick={() => {
+                setT((t) => !t);
+                setTruF(true);
+              }}
+            >
+              Повернутись до покупок
+            </div>
           </div>
-        </div>
-        <div className={styles.issue_total}>
-          <div className={styles.issue_price}>
-            Всього:<span className={styles.issue_price_span}> {numBd} грн</span>
-          </div>
-          <div
-            className={styles.issue_order}
-            onClick={() => {
-              setTruF(true);
-            }}
-          >
-            Перейти до оформлення
+          <div className={styles.issue_total}>
+            <div className={styles.issue_price}>
+              Всього:
+              <span className={styles.issue_price_span}> {numBd} грн</span>
+            </div>
+            <div
+              className={styles.issue_order}
+              onClick={() => {
+                setTruF(true);
+              }}
+            >
+              Перейти до оформлення
+            </div>
           </div>
         </div>
       </div>

@@ -18,6 +18,11 @@ export default function Menu({
       setOnCategori(newItem);
     }
   };
+  const userIdG = (newItem) => {
+    if (newItem !== undefined && newItem !== "") {
+      setOnCategoriG(newItem);
+    }
+  };
 
   function userIdCategori(i) {
     const setResCategor = flutters.find((item) =>
@@ -29,7 +34,9 @@ export default function Menu({
   }
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
+  const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
   menuFalse(fels);
+  console.log(flutters, "onCategori");
   return (
     <div
       className={`${styles.container} ${styles[num]}`}
@@ -45,10 +52,27 @@ export default function Menu({
                 <div className={styles.component_name}>{item.name}</div>
               </div>
             )) || (
-              <div className={styles.component_name_box}>
-                <Image src={item.img} alt={item.name} width={30} height={30} />
-                <div className={styles.component_name}>{item.name}</div>
-              </div>
+              <Link href="/categorione">
+                <div
+                  className={`${styles.component_name_box} ${styles.component_name_b}`}
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    width={30}
+                    height={30}
+                  />
+                  <div
+                    className={styles.component_name}
+                    onClick={() => {
+                      userIdG(item.name);
+                      setFals(false);
+                    }}
+                  >
+                    {item.name}
+                  </div>
+                </div>
+              </Link>
             )}
             {flutters[index].mas && (
               <div className={styles.component_mas}>

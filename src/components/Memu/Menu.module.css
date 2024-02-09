@@ -18,6 +18,9 @@
   font-size: 14px;
   font-weight: 600;
 }
+.component_name_b {
+  cursor: pointer;
+}
 .component_box {
   width: 250px;
   margin: 0px 0px 10px 0px;
@@ -32,6 +35,8 @@
 .a {
   left: -10%;
   flex-direction: column;
+  justify-content: start;
+  height: 200px;
 }
 .b {
   left: -10%;
@@ -54,4 +59,6 @@
 .o {
   right: -80px;
   flex-direction: column;
+  justify-content: start;
+  height: 200px;
 }
