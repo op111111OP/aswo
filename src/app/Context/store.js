@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
   const [senter, setSenter] = useState([]);
   const [onCard, setOnCard] = useState("");
   const [onIds, seOnIds] = useState();
+  const [numB22, setNumB22] = useState([]);
 
   useEffect(() => {
     if (userId !== 1) {
@@ -76,6 +77,8 @@ export const UserProvider = ({ children }) => {
         numBas,
         onIds,
         seOnIds,
+        numB22,
+        setNumB22,
         //   senterLoc,
         //   setSenterLoc,
         //   numC,

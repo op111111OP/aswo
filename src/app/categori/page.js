@@ -16,8 +16,8 @@ export default function Page() {
   const { setUserId, setId, seOnIds } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
-  const [aa1, setAa1] = useLocalStorage("resAa1", []);
-
+  const [aa1, setAa1] = useLocalStorage("resAa1", n);
+  console.log(aa1, "222");
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
@@ -25,9 +25,9 @@ export default function Page() {
   const [cehageCor, setCehageCor] = useState(false);
   const [IdCategori, setIdCategori] = useState([]);
   const [name, setName] = useState("");
-  const [n, setN] = useState(aa1);
-
+  const [n, setN] = useState([]);
   const [num1, setNum1] = useState(1);
+
   const num2 = 1;
   const sortByValueAscending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => a.price - b.price);
@@ -39,6 +39,7 @@ export default function Page() {
     setFilteredProducts(sortedArray);
   };
   const addToArray = (newItem) => {
+    setN(aa1);
     setN((prevOnCard) => {
       const existingIndex = prevOnCard.findIndex(
         (obj) => obj.name === newItem.name
@@ -49,11 +50,9 @@ export default function Page() {
         return prevOnCard;
       }
     });
+    setAa1(n);
   };
 
-  useEffect(() => {
-    setAa1(n);
-  }, [n]);
   useEffect(() => {
     if (num1 > num2) {
       setIdCategori(IdCategori);

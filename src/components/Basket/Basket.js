@@ -17,7 +17,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 export default function Basket({ fals }) {
   const { senter, setOnCard, setNumBas, numBas } = useUserContext();
   const [aa1, setAa1] = useLocalStorage("resAa1", []);
-  console.log(aa1, "a1");
+
   //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
 
   //   const [total, setTotal] = useState(0);
@@ -27,10 +27,13 @@ export default function Basket({ fals }) {
   const [numBd, setNumBd] = useState(0);
   const [numB2, setNumB2] = useState(0);
   const [numB1, setNumB1] = useState([]);
-  const [n, setN] = useState(aa1);
+  const [n, setN] = useState([]);
   const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
-
+  console.log(n, "a1");
+  useEffect(() => {
+    setN(aa1);
+  }, []);
   useEffect(() => {
     if (numBas1 === 1) {
       const handleRemoveItem = () => {
@@ -41,11 +44,10 @@ export default function Basket({ fals }) {
       handleRemoveItem();
 
       setNumBas1(5);
+      setAa1(n);
     }
   }, [numBas1]);
-  useEffect(() => {
-    setAa1(n);
-  }, [n]);
+
   const addOnesx = () => {
     const numbers = aa1.map((obj) => obj.price);
     setNumB(numbers);
@@ -149,7 +151,7 @@ export default function Basket({ fals }) {
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
-        {aa1.length === 0 ? (
+        {n.length === 0 ? (
           <div className={styles.h1nov}>Ваш кошик пустий.</div>
         ) : (
           <div className={!truF ? styles.novB : styles.novBnov}>
@@ -334,7 +336,7 @@ export default function Basket({ fals }) {
             {/* ---------------------- */}
 
             <div className={styles.bas_ralac}>
-              {aa1.length === 0 ? (
+              {n.length === 0 ? (
                 <p></p>
               ) : (
                 <div>
@@ -345,8 +347,8 @@ export default function Basket({ fals }) {
                   <div className={styles.price_box_h1}>Вартість</div>
                 </div>
               )}
-              {Array.isArray(aa1) &&
-                aa1.map((item, index) => (
+              {Array.isArray(n) &&
+                n.map((item, index) => (
                   <div className={styles.swiper_slide} key={index}>
                     <div className={styles.image_box}>
                       <Image
