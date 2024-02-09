@@ -42,7 +42,6 @@ export default function Page() {
   useEffect(() => {
     if (num1 > num2) {
       setOnCategori(IdCategori);
-      setResCategori(IdCategori);
     } else {
       setName(onCategori);
     }
@@ -95,9 +94,7 @@ export default function Page() {
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
       <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
-        <div className={styles.main_h1}>
-          {num1 > num2 ? IdCategori : onCategori}
-        </div>
+        <div className={styles.main_h1}>{onCategori}</div>
         <div className={styles.main_h2}>
           <div className={styles.main_sort}>Сортування:</div>
           <div className={styles.main_p_box}>
