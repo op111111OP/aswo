@@ -15,8 +15,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 // ----------
 
 export default function Basket({ fals }) {
-  const { senter, setOnCard, setNumBas, numBas } = useUserContext();
-  const [aa1, setAa1] = useLocalStorage("resAa1", []);
+  const { senter, setOnCard, setNumBas, numBas, setNumB22 } = useUserContext();
+  const [aa1, setAa1] = useLocalStorage("resAa11", ["."]);
 
   //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
 
@@ -30,24 +30,30 @@ export default function Basket({ fals }) {
   const [n, setN] = useState([]);
   const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
-  console.log(n, "a1");
-  useEffect(() => {
-    setN(aa1);
-  }, []);
-  useEffect(() => {
-    if (numBas1 === 1) {
-      const handleRemoveItem = () => {
-        setN((prevSenter) => {
-          return prevSenter.filter((obj) => obj.id !== onIds);
-        });
-      };
-      handleRemoveItem();
+  console.log("ccc", aa1, n, "n");
 
-      setNumBas1(5);
-      setAa1(n);
+  const addToArray = (newItem) => {
+    setN((prevSenter) => {
+      return prevSenter.filter((obj) => obj.id !== newItem);
+    });
+  };
+  useEffect(() => {
+    if (numBas1 !== 1 || n.length == 0) {
+      setN(aa1);
     }
-  }, [numBas1]);
-
+    if (numBas1 === 1) {
+      setAa1(n);
+      setNumB22(n);
+    }
+  }, [n, aa1]);
+  //   useEffect(() => {
+  //     if (aa1.length === n.length || aa1.length > n.length) {
+  //       setAa1(n);
+  //     }
+  //   }, [aa1]);
+  //   useEffect(() => {
+  //     setAa1(n);
+  //   }, [n]);
   const addOnesx = () => {
     const numbers = aa1.map((obj) => obj.price);
     setNumB(numbers);
@@ -139,7 +145,7 @@ export default function Basket({ fals }) {
 
   fals(t);
   const handleRemoveItem = (m) => {
-    setOnIds(m);
+    addToArray(m);
     setOnCard(m);
     console.log(m, 22);
   };
@@ -151,7 +157,7 @@ export default function Basket({ fals }) {
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
-        {n.length === 0 ? (
+        {aa1.length === 0 ? (
           <div className={styles.h1nov}>Ваш кошик пустий.</div>
         ) : (
           <div className={!truF ? styles.novB : styles.novBnov}>
@@ -336,7 +342,7 @@ export default function Basket({ fals }) {
             {/* ---------------------- */}
 
             <div className={styles.bas_ralac}>
-              {n.length === 0 ? (
+              {aa1.length === 0 ? (
                 <p></p>
               ) : (
                 <div>
@@ -347,8 +353,8 @@ export default function Basket({ fals }) {
                   <div className={styles.price_box_h1}>Вартість</div>
                 </div>
               )}
-              {Array.isArray(n) &&
-                n.map((item, index) => (
+              {Array.isArray(aa1) &&
+                aa1.map((item, index) => (
                   <div className={styles.swiper_slide} key={index}>
                     <div className={styles.image_box}>
                       <Image
