@@ -45,7 +45,7 @@ export default function Basket({ fals }) {
   const updateNumB = (index, value) => {
     setNumB((prevNumB) => {
       const updatedNumB = [...prevNumB];
-      updatedNumB[index] = updatedNumB[index] + value / 2;
+      updatedNumB[index] = updatedNumB[index] + value;
       return updatedNumB;
     });
   };
@@ -53,7 +53,7 @@ export default function Basket({ fals }) {
     if (numB[index] >= value) {
       setNumB((prevNumB) => {
         const updatedNumB = [...prevNumB];
-        updatedNumB[index] = updatedNumB[index] - value / 2;
+        updatedNumB[index] = updatedNumB[index] - value;
         return updatedNumB;
       });
     }
