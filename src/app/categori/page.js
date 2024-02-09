@@ -13,7 +13,7 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const { setUserId, setId, setNumC } = useUserContext();
+  const { setUserId, setId } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
@@ -39,7 +39,7 @@ export default function Page() {
   const addToArray = (newItem) => {
     const num = 0;
     setUserId(newItem);
-    setNumC(num + 2);
+    //  setNumC(num + 2);
   };
   useEffect(() => {
     if (num1 > num2) {
