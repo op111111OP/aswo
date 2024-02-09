@@ -6,13 +6,19 @@ import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import Menu from "../Memu/Menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useLocalStorage } from "react-use";
 
 export default function Header() {
+  const [request, setRequest] = useLocalStorage("onRequest", []);
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [num, setNum] = useState();
   const [idItem, setIdItem] = useState(false);
 
+  const [inputValue, setInputValue] = useState("");
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
   function menuFalse(fals) {
     setCehage(fals);
   }
@@ -50,10 +56,19 @@ export default function Header() {
               className={styles.header_input}
               placeholder="Пошук"
               type="text"
+              value={inputValue}
+              onChange={handleInputChange}
             />
-            <button className={styles.header_button}>
-              <FaSearch className={styles.FaSearch} />
-            </button>
+            <Link href="/search">
+              <button
+                className={styles.header_button}
+                onClick={() => {
+                  setRequest(inputValue);
+                }}
+              >
+                <FaSearch className={styles.FaSearch} />
+              </button>
+            </Link>
           </div>
           <div>
             <FaShoppingCart size={25} className={styles.FaShoppingCart} />
