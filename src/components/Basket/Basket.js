@@ -27,13 +27,13 @@ export default function Basket({ fals }) {
   const [numB1, setNumB1] = useState([]);
   const [mas, setMas] = useState([]);
   const addOnesx = () => {
-    if (numC > 0) {
-      const numbers = senterLoc.map((obj) => obj.price);
-      setNumB(numbers);
-    } else {
-      const numbers = senter.map((obj) => obj.price);
-      setNumB(numbers);
-    }
+    //  if (numC > 0) {
+    //    const numbers = senterLoc.map((obj) => obj.price);
+    //    setNumB(numbers);
+    //  } else {
+    const numbers = senter.map((obj) => obj.price);
+    setNumB(numbers);
+    //  }
   };
 
   useEffect(() => {
@@ -42,13 +42,13 @@ export default function Basket({ fals }) {
   }, [numB]);
 
   useEffect(() => {
-    if (numC > 0) {
-      setMas(senterLoc);
-      setNumB2(senterLoc.length);
-    } else {
-      setMas(senter);
-      setNumB2(senter.length);
-    }
+    //  if (numC > 0) {
+    //    setMas(senterLoc);
+    //    setNumB2(senterLoc.length);
+    //  } else {
+    setMas(senter);
+    setNumB2(senter.length);
+    //  }
   }, [senterLoc, senter]);
   useEffect(() => {
     if (numC > 0) {
