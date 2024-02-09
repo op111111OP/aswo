@@ -15,7 +15,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 // ----------
 
 export default function Basket({ fals }) {
-  const { senter, setOnCard, setNumBas } = useUserContext();
+  const { senter, setOnCard, setNumBas, senterLoc, numC } = useUserContext();
   //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
 
   //   const [total, setTotal] = useState(0);
@@ -25,22 +25,39 @@ export default function Basket({ fals }) {
   const [numBd, setNumBd] = useState(0);
   const [numB2, setNumB2] = useState(0);
   const [numB1, setNumB1] = useState([]);
-  const addOnes = () => {
-    const numbers = senter.map((obj) => obj.price);
-    setNumB(numbers);
+  const [mas, setMas] = useState([]);
+  const addOnesx = () => {
+    if (numC > 0) {
+      const numbers = senterLoc.map((obj) => obj.price);
+      setNumB(numbers);
+    } else {
+      const numbers = senter.map((obj) => obj.price);
+      setNumB(numbers);
+    }
   };
+
   useEffect(() => {
     const sum = numB.reduce((total, num) => total + num, 0);
     setNumBd(sum);
   }, [numB]);
-  console.log(numB1, "b1");
+
   useEffect(() => {
-    setNumB2(senter.length);
-  }, [senter]);
+    if (numC > 0) {
+      setMas(senterLoc);
+      setNumB2(senterLoc.length);
+    } else {
+      setMas(senter);
+      setNumB2(senter.length);
+    }
+  }, [senterLoc, senter]);
   useEffect(() => {
-    setNumB1(Array(numB2 + 1).fill(1));
-    addOnes();
-  }, [senter]);
+    if (numC > 0) {
+      setNumB1(Array(numB2 + 1).fill(1));
+    } else {
+      setNumB1(Array(numB2 + 1).fill(1));
+    }
+    addOnesx();
+  }, [senterLoc, senter]);
 
   const updateNumB = (index, value) => {
     setNumB((prevNumB) => {
@@ -116,7 +133,7 @@ export default function Basket({ fals }) {
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
-        {senter.length === 0 ? (
+        {mas.length === 0 ? (
           <div className={styles.h1nov}>Ваш кошик пустий.</div>
         ) : (
           <div className={!truF ? styles.novB : styles.novBnov}>
@@ -312,8 +329,8 @@ export default function Basket({ fals }) {
                   <div className={styles.price_box_h1}>Вартість</div>
                 </div>
               )}
-              {Array.isArray(senter) &&
-                senter.map((item, index) => (
+              {Array.isArray(mas) &&
+                mas.map((item, index) => (
                   <div className={styles.swiper_slide} key={index}>
                     <div className={styles.image_box}>
                       <Image
