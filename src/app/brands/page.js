@@ -1,20 +1,17 @@
 "use client";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import styles from "./page.module.css";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-// import required modules
-import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
+import { useUserContext } from "../Context/store";
+import { useState } from "react";
+import { useLocalStorage } from "react-use";
 
 export default function App() {
+  const { setNemeB } = useUserContext();
+
+  const [request, setRequest] = useLocalStorage("onRequest", []);
   const brend = [
     {
       img: "https://doctor-h.com.ua/content/images/29/77x38l75nn0/81827292297291.webp",
@@ -118,7 +115,7 @@ export default function App() {
       {brend.map((item, index) => (
         <div className={styles.swiper_slide} key={index}>
           <div className={styles.slide_box}>
-            <Link href="./">
+            <Link href="/search">
               <div className={styles.link_box}>
                 <div className={styles.img_box}>
                   <Image
@@ -135,7 +132,12 @@ export default function App() {
                     }}
                   />
                 </div>
-                <div className={styles.text_box}>{item.name}</div>
+                <div
+                  className={styles.text_box}
+                  onClick={() => setRequest(item.name)}
+                >
+                  {item.name}
+                </div>
               </div>
             </Link>
           </div>

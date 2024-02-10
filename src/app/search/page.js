@@ -13,9 +13,9 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const { setUserId, setId } = useUserContext();
+  const { setUserId, setId, nemeB } = useUserContext();
   const [request, setRequest] = useLocalStorage("onRequest", []);
-  console.log(request, 2);
+
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);

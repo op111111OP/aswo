@@ -155,13 +155,7 @@
   left: 260px;
   position: absolute;
 }
-.price_span {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  font-weight: 600;
-}
+
 .h1 {
   font-size: 24px;
   font-weight: 700;
@@ -320,7 +314,7 @@
   align-items: center;
 }
 .price_span {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
 }
 .form_delivery {
@@ -356,6 +350,9 @@
 .error6 {
   left: 15px;
   top: 137px;
+}
+.issue_or {
+  width: 300px;
 }
 /* @media (max-width: 950px) {
   .box {

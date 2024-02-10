@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
   const [onIds, seOnIds] = useState();
   const [numB22, setNumB22] = useState([]);
   const [trueHedLoc, setTrueHedLoc] = useState(false);
+  const [nemeB, setNemeB] = useState(1);
 
   useEffect(() => {
     if (userId !== 1) {
@@ -60,6 +61,8 @@ export const UserProvider = ({ children }) => {
         setNumB22,
         trueHedLoc,
         setTrueHedLoc,
+        nemeB,
+        setNemeB,
       }}
     >
       {children}

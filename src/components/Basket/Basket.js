@@ -311,18 +311,14 @@ export default function Basket({ fals }) {
                         />
                         <div className={styles.price}>
                           до сплати:{" "}
-                          <span className={styles.price_span}>
-                            {/* {externalValue} */}
-                          </span>
+                          <span className={styles.price_span}>{numBd}</span>
                           грн.
                         </div>
-                        <button
-                          disabled={isSubmitting}
-                          type="submit"
-                          className={styles.button_delivery}
+                        <div
+                          className={`${styles.issue_order} ${styles.issue_or}`}
                         >
                           Оформити замовлення
-                        </button>
+                        </div>
                       </div>
                     </div>
                   </Form>
