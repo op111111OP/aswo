@@ -38,9 +38,7 @@ export default function Page() {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
   };
-  useEffect(() => {
-    setAa1(n);
-  }, [n]);
+
   //   useEffect(() => {
   //     if (numB22.length !== aa1.length) {
   //       setAa1(numB22);
@@ -57,6 +55,7 @@ export default function Page() {
         return prevOnCard;
       }
     });
+    setAa1((prevAa1) => [...prevAa1, newItem]);
   };
   useEffect(() => {
     setN(aa1);
