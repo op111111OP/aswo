@@ -55,7 +55,7 @@ export default function App() {
                   width={0}
                   height={0}
                   style={{
-                    width: "100%",
+                    width: "100px",
                     height: "auto",
                   }}
                 />
@@ -64,7 +64,7 @@ export default function App() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Link href="./">
+      <Link href="/brands">
         <div className={styles.now_down}>всі бренди</div>
       </Link>
     </div>

@@ -15,10 +15,15 @@ import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useUserContext } from "../../app/Context/store";
+import Basket from "../Basket/Basket";
 
 export default function App() {
+  const { setId } = useUserContext();
+  const [cehageCor, setCehageCor] = useState(false);
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,9 +38,24 @@ export default function App() {
     };
     fetchData();
   }, []);
+  const handleBoxClick = () => {
+    setCehageCor(false);
+  };
+
+  const handleBasketClick = (e, object) => {
+    // addToArray(object);
+
+    setCehageCor(true);
+    // Остановить всплытие события, чтобы не срабатывал клик на боксе
+    e.stopPropagation();
+  };
+  function fals(t) {
+    setCehageCor(t);
+  }
 
   return (
-    <div className={styles.box_carusel}>
+    <div className={styles.box_carusel} onClick={handleBoxClick}>
+      {cehageCor && <Basket fals={fals} />}
       <div className={styles.now}>Новинки</div>
       <div id="gallery1">
         {Array.isArray(flutters) ? (
@@ -60,8 +80,11 @@ export default function App() {
                 }}
               >
                 <div className={styles.slide_box}>
-                  <Link href="./">
-                    <div className={styles.link_box}>
+                  <Link href="/product">
+                    <div
+                      className={styles.link_box}
+                      onClick={() => setId(item._id)}
+                    >
                       <div className={styles.img_box}>
                         <Image
                           className={styles.img}
@@ -82,9 +105,24 @@ export default function App() {
                   </Link>
                   <div className={styles.price_box}>
                     <div className={styles.text_box_price}>{item.price}грн</div>
-                    <Link className={styles.shopping} href="./">
-                      <FaShoppingCart size={25} color=" #0058a2" />
-                    </Link>
+
+                    <FaShoppingCart
+                      size={25}
+                      color=" #0058a2"
+                      onClick={(e) => {
+                        handleBasketClick(e, {
+                          categori: item.categori,
+                          brand: item.brand,
+                          country: item.country,
+                          description: item.description,
+                          img: item.img,
+                          name: item.name,
+                          price: item.price,
+                          id: item._id,
+                        });
+                      }}
+                      className={styles.FaShoppingCart}
+                    />
                   </div>
                   {cehage === index && (
                     <div className={styles.text_botom_box}>

@@ -18,9 +18,6 @@ export default function Basket({ fals }) {
   const { senter, setOnCard, setNumBas, numBas, setNumB22 } = useUserContext();
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
 
-  //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
-
-  //   const [total, setTotal] = useState(0);
   const [t, setT] = useState(true);
   const [truF, setTruF] = useState(false);
   const [numB, setNumB] = useState([]);
@@ -43,17 +40,10 @@ export default function Basket({ fals }) {
     }
     if (numBas1 === 1) {
       setAa1(n);
-      // setNumB22(n);
+      setNumB22(n);
     }
   }, [n, aa1]);
-  //   useEffect(() => {
-  //     if (aa1.length === n.length || aa1.length > n.length) {
-  //       setAa1(n);
-  //     }
-  //   }, [aa1]);
-  //   useEffect(() => {
-  //     setAa1(n);
-  //   }, [n]);
+
   const addOnesx = () => {
     const numbers = aa1.map((obj) => obj.price);
     setNumB(numbers);

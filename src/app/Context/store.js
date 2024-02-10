@@ -4,22 +4,14 @@ import { useLocalStorage } from "react-use";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  //   const [userId, setUserId] = useLocalStorage("userId", 1);
-  //   const [senter, setSenter] = useLocalStorage("senter", []);
-  //   const [onCard, setOnCard] = useLocalStorage("onCard", "");
-  //   const [senterLoc, setSenterLoc] = useState([]);
-  // ---------
-  //   const [id, setId] = useState("");
   const [id, setId] = useLocalStorage("Id", "");
-  // ---------
   const [numBas, setNumBas] = useState(0);
-  //   const [numC, setNumC] = useState(0);
-  //   --------------
   const [userId, setUserId] = useState(1);
   const [senter, setSenter] = useState([]);
   const [onCard, setOnCard] = useState("");
   const [onIds, seOnIds] = useState();
   const [numB22, setNumB22] = useState([]);
+  const [trueHedLoc, setTrueHedLoc] = useState(false);
 
   useEffect(() => {
     if (userId !== 1) {
@@ -33,16 +25,6 @@ export const UserProvider = ({ children }) => {
           return prevOnCard;
         }
       });
-      // setSenterLoc((prevOnCard) => {
-      //   const existingIndex = prevOnCard.findIndex(
-      //     (obj) => obj.name === userId.name
-      //   );
-      //   if (existingIndex === -1) {
-      //     return [...prevOnCard, userId];
-      //   } else {
-      //     return prevOnCard;
-      //   }
-      // });
     }
   }, [userId]);
 
@@ -52,9 +34,6 @@ export const UserProvider = ({ children }) => {
         setSenter((prevSenter) => {
           return prevSenter.filter((obj) => obj.id !== onCard);
         });
-        //   setSenterLoc((prevSenter) => {
-        //     return prevSenter.filter((obj) => obj.id !== onCard);
-        //   });
       };
       handleRemoveItem();
 
@@ -79,10 +58,8 @@ export const UserProvider = ({ children }) => {
         seOnIds,
         numB22,
         setNumB22,
-        //   senterLoc,
-        //   setSenterLoc,
-        //   numC,
-        //   setNumC,
+        trueHedLoc,
+        setTrueHedLoc,
       }}
     >
       {children}

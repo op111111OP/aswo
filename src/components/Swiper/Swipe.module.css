@@ -1,12 +1,13 @@
 .swiper {
   user-select: none;
   width: 100vw;
-  height: 432px;
+  height: 600px;
 }
 
 .swiper_slide {
   background-position: center;
   background-size: cover;
+  top: -200px;
 }
 
 .swiper-slide img {

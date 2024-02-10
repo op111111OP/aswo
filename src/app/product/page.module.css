@@ -16,7 +16,7 @@
   max-height: 400px;
   min-height: 400px;
   overflow: hidden;
-  margin: 0px 0px 15px 0px;
+  margin: 10px 0px 15px 0px;
   cursor: pointer;
 }
 .img_box_fals {
@@ -31,9 +31,10 @@
 
 .dustbinI {
   position: absolute;
-  top: 75%;
+  top: 50%;
   left: 30px;
   transform: translate(-1%, -50%);
+  cursor: pointer;
 }
 .link_box {
   font-size: 16px;

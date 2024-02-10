@@ -10,18 +10,20 @@ import { useLocalStorage } from "react-use";
 
 export default function Header() {
   const [request, setRequest] = useLocalStorage("onRequest", []);
+
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [num, setNum] = useState();
   const [idItem, setIdItem] = useState(false);
-
   const [inputValue, setInputValue] = useState("");
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
   function menuFalse(fals) {
     setCehage(fals);
   }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -71,7 +73,13 @@ export default function Header() {
             </Link>
           </div>
           <div>
-            <FaShoppingCart size={25} className={styles.FaShoppingCart} />
+            <FaShoppingCart
+              size={25}
+              className={styles.FaShoppingCart}
+              //   onClick={() => {
+              //     setTrueHedLoc((c) => c + 1);
+              //   }}
+            />
           </div>
         </div>
       </div>

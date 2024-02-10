@@ -37,7 +37,7 @@ export default function Page() {
       {!truF && (
         <BsArrowLeft
           className={styles.dustbinI}
-          size={35}
+          size={40}
           onClick={() => {
             setTruF(true);
           }}

@@ -13,11 +13,12 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const { setUserId, setId, seOnIds, numB22 } = useUserContext();
+  const { setId, seOnIds, numB22 } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
+
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
-  console.log(aa1, "aa1");
+
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
@@ -38,12 +39,15 @@ export default function Page() {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
   };
+  useEffect(() => {
+    setAa1(n);
+  }, [n]);
 
-  //   useEffect(() => {
-  //     if (numB22.length !== aa1.length) {
-  //       setAa1(numB22);
-  //     }
-  //   }, [numB22]);
+  useEffect(() => {
+    if (numB22.length !== aa1.length) {
+      setAa1(numB22);
+    }
+  }, [numB22]);
   const addToArray = (newItem) => {
     setN((prevOnCard) => {
       const existingIndex = prevOnCard.findIndex(
@@ -55,7 +59,6 @@ export default function Page() {
         return prevOnCard;
       }
     });
-    setAa1((prevAa1) => [...prevAa1, newItem]);
   };
   useEffect(() => {
     setN(aa1);
@@ -198,7 +201,7 @@ export default function Page() {
                       <div
                         className={styles.link_box}
                         onClick={() => {
-                          setUserId(item._id);
+                          setId(item._id);
                         }}
                       >
                         <div className={styles.img_box}>

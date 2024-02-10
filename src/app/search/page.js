@@ -11,7 +11,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
-import { useRouter } from "next/navigation";
 
 export default function Page() {
   const { setUserId, setId } = useUserContext();
