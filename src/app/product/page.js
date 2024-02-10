@@ -7,12 +7,19 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../Context/store";
 import { BsArrowLeft } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const { id, setUserId } = useUserContext();
+  const { setUserId } = useUserContext();
+
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
   const [flutters, setFlutters] = useState(null);
   const [truF, setTruF] = useState(true);
   //   const [idp, seIdp] = useState();
+
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -12,6 +12,7 @@ import { BsX } from "react-icons/bs";
 import { PiWechatLogoFill } from "react-icons/pi";
 import { ImTruck } from "react-icons/im";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import Cookies from "js-cookie";
 // ----------
 
 export default function Basket({ fals }) {
@@ -25,10 +26,13 @@ export default function Basket({ fals }) {
   const [numB2, setNumB2] = useState(0);
   const [numB1, setNumB1] = useState([]);
   const [n, setN] = useState([]);
+  const [a, setA] = useState(1);
   const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
-  console.log("ccc", aa1, n, "n");
+  //   console.log("ccc", aa1, n, "n");
 
+  Cookies.set("name", a, { expires: 1 });
+  console.log(Cookies.get("name"));
   const addToArray = (newItem) => {
     setN((prevSenter) => {
       return prevSenter.filter((obj) => obj.id !== newItem);
@@ -143,6 +147,7 @@ export default function Basket({ fals }) {
     setNumBas(m);
   };
   //   console.log(senter, "b");
+
   return (
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
@@ -332,7 +337,14 @@ export default function Basket({ fals }) {
                 <p></p>
               ) : (
                 <div>
-                  <div className={styles.h1}>Кошик</div>
+                  <div
+                    className={styles.h1}
+                    onClick={() => {
+                      setA((a) => a + 1);
+                    }}
+                  >
+                    Кошик
+                  </div>
                   <div className={styles.number_textN}>Назва</div>
                   <div className={styles.number_textP}>Ціна</div>
                   <div className={styles.number_text}>Кількість</div>
