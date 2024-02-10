@@ -16,7 +16,7 @@ export default function Page() {
   const { setUserId, setId, seOnIds, numB22 } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
-  const [aa1, setAa1] = useLocalStorage("resAa111", []);
+  const [aa1, setAa1] = useLocalStorage("resAa1111", []);
   console.log(aa1, "aa1");
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);

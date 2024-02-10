@@ -16,7 +16,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export default function Basket({ fals }) {
   const { senter, setOnCard, setNumBas, numBas, setNumB22 } = useUserContext();
-  const [aa1, setAa1] = useLocalStorage("resAa111", []);
+  const [aa1, setAa1] = useLocalStorage("resAa1111", []);
 
   //   const [onCard2, setOnCard2] = useLocalStorage("onCard2", []);
 
