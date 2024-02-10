@@ -38,12 +38,12 @@ export default function Page() {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
   };
-  //   useEffect(() => {
-  //     setAa1(n);
-  //   }, [n]);
+  useEffect(() => {
+    setAa1(n);
+  }, [n]);
   //   useEffect(() => {
   //     if (numB22.length !== aa1.length) {
-  //       // setAa1(numB22);
+  //       setAa1(numB22);
   //     }
   //   }, [numB22]);
   const addToArray = (newItem) => {
