@@ -11,6 +11,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const { setId, seOnIds, numB22 } = useUserContext();
@@ -18,6 +19,9 @@ export default function Page() {
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
+
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
 
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
