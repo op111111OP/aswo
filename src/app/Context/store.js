@@ -1,10 +1,10 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useLocalStorage } from "react-use";
+
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [id, setId] = useLocalStorage("Id", "");
+  const [id, setId] = useState([]);
   // ---------
   const [numBas, setNumBas] = useState(0);
   //   --------------
