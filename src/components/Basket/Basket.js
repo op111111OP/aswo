@@ -16,7 +16,7 @@ import Cookies from "js-cookie";
 // ----------
 
 export default function Basket({ fals }) {
-  const { id, setOnCard, setNumBas, numBas, setNumB22 } = useUserContext();
+  const { senter, setOnCard, setNumBas, numBas, setNumB22 } = useUserContext();
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
 
   const [t, setT] = useState(true);
@@ -29,55 +29,65 @@ export default function Basket({ fals }) {
   const [nkk, setNkk] = useState([]);
   const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
-  const [num1, setNum1] = useState(false);
-  const [num2, setNum2] = useState(false);
-
   //   console.log("ccc", aa1, n, "n");
   //  var y = JSON.parse(Cookies.get("name"));
   //  const [a, setA] = useState(y);
   //   Cookies.set("ras", JSON.stringify([{ name: 1 }]), { expires: 1 });
-  //   useEffect(() => {
-  //     const y = Cookies.get("nam1");
-  //     if (y !== undefined) {
-  //       setNkk(JSON.parse(Cookies.get("nam4")));
-  //       console.log(JSON.parse(Cookies.get("nam4")));
-  //     }
-  //   }, [id]);
-  //   console.log(nkk);
-  //   useEffect(() => {
-  //     Cookies.set("nam1", JSON.stringify(nkk), { expires: 1 });
-  //   }, [nkk]);
-  // прий дoб
-  //  мас 1
+
   useEffect(() => {
-    setNumB2(nkk.length);
-  }, [nkk]);
-  useEffect(() => {
-    setNumB1(Array(numB2 + 1).fill(1));
-    addOnesx();
-  }, [numB2]);
-  const updateNumB22 = (index) => {
-    setNumB1((prevNumB) => {
-      const updatedNumB = [...prevNumB];
-      updatedNumB[index] = updatedNumB[index] + 1;
-      return updatedNumB;
+    setNkk(JSON.parse(Cookies.get("ras")));
+  }, []);
+
+  console.log(nkk);
+  function funtezt(x) {
+    x[0].name = x[0].name + 1;
+    setNkk(x);
+    Cookies.set("ras", JSON.stringify(nkk), { expires: 1 });
+  }
+  const addToArray = (newItem) => {
+    setN((prevSenter) => {
+      return prevSenter.filter((obj) => obj.id !== newItem);
     });
   };
-  const updateNumBn22 = (index) => {
-    if (numB1[index] > 0) {
-      setNumB1((prevNumB) => {
-        const updatedNumB = [...prevNumB];
-        updatedNumB[index] = updatedNumB[index] - 1;
-        return updatedNumB;
-      });
+  useEffect(() => {
+    if (numBas1 !== 1 || n.length == 0) {
+      setN(aa1);
     }
-  };
-  //  мас 1
-  // ммас грн
+    if (numBas1 === 1) {
+      setAa1(n);
+      setNumB22(n);
+    }
+  }, [n, aa1]);
+
   const addOnesx = () => {
-    const numbers = nkk.map((obj) => obj.price);
+    const numbers = aa1.map((obj) => obj.price);
     setNumB(numbers);
+    //  }
   };
+
+  useEffect(() => {
+    const sum = numB.reduce((total, num) => total + num, 0);
+    setNumBd(sum);
+  }, [numB]);
+
+  useEffect(() => {
+    //  if (numC > 0) {
+    //    setMas(senterLoc);
+    //    setNumB2(senterLoc.length);
+    //  } else {
+    //  setMas(senter);
+    setNumB2(aa1.length);
+    //  }
+  }, [aa1]);
+  useEffect(() => {
+    //  if (numC > 0) {
+    //    setNumB1(Array(numB2 + 1).fill(1));
+    //  } else {
+    setNumB1(Array(numB2 + 1).fill(1));
+    //  }
+    addOnesx();
+  }, [aa1]);
+
   const updateNumB = (index, value) => {
     setNumB((prevNumB) => {
       const updatedNumB = [...prevNumB];
@@ -94,19 +104,22 @@ export default function Basket({ fals }) {
       });
     }
   };
-  useEffect(() => {
-    const sum = numB.reduce((total, num) => total + num, 0);
-    setNumBd(sum);
-  }, [numB]);
-  //  ммас грн
-
-  //  уд
-  const handleRemoveItem = (m) => {
-    setNkk((prevSenter) => {
-      return prevSenter.filter((obj) => obj.id !== m);
+  const updateNumB22 = (index) => {
+    setNumB1((prevNumB) => {
+      const updatedNumB = [...prevNumB];
+      updatedNumB[index] = updatedNumB[index] + 1;
+      return updatedNumB;
     });
   };
-  //   уд фanl
+  const updateNumBn22 = (index) => {
+    if (numB1[index] > 0) {
+      setNumB1((prevNumB) => {
+        const updatedNumB = [...prevNumB];
+        updatedNumB[index] = updatedNumB[index] - 1;
+        return updatedNumB;
+      });
+    }
+  };
   //   updateNumB(0, 11000);
   //   updateNumBn(2, 1);
 
@@ -136,12 +149,21 @@ export default function Basket({ fals }) {
   // _______________________
 
   fals(t);
+  const handleRemoveItem = (m) => {
+    addToArray(m);
+    setOnCard(m);
+    console.log(m, 22);
+  };
+  const handleRemov = (m) => {
+    setNumBas(m);
+  };
+  //   console.log(senter, "b");
 
   return (
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
-        {nkk.length === 0 ? (
+        {aa1.length === 0 ? (
           <div className={styles.h1nov}>Ваш кошик пустий.</div>
         ) : (
           <div className={!truF ? styles.novB : styles.novBnov}>
@@ -322,19 +344,27 @@ export default function Basket({ fals }) {
             {/* ---------------------- */}
 
             <div className={styles.bas_ralac}>
-              {nkk.length === 0 ? (
+              {aa1.length === 0 ? (
                 <p></p>
               ) : (
                 <div>
-                  <div className={styles.h1}>Кошик</div>
+                  <div
+                    className={styles.h1}
+                    onClick={() => {
+                      //  setA((a[0].name = a[0].name + 1)),
+                      funtezt([...nkk]);
+                    }}
+                  >
+                    Кошик
+                  </div>
                   <div className={styles.number_textN}>Назва</div>
                   <div className={styles.number_textP}>Ціна</div>
                   <div className={styles.number_text}>Кількість</div>
                   <div className={styles.price_box_h1}>Вартість</div>
                 </div>
               )}
-              {Array.isArray(nkk) &&
-                nkk.map((item, index) => (
+              {Array.isArray(aa1) &&
+                aa1.map((item, index) => (
                   <div className={styles.swiper_slide} key={index}>
                     <div className={styles.image_box}>
                       <Image
