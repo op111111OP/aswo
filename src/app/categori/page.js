@@ -105,7 +105,7 @@ export default function Page() {
 
   const handleBasketClick = (e, object) => {
     // Ваша логика обработки клика на корзине
-    addToArray(object);
+    setId(object);
 
     setCehageCor(true);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
