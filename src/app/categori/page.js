@@ -11,19 +11,14 @@ import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
-import { useSearchParams } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function Page() {
-  const { setId, numB22 } = useUserContext();
-
-  // const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
-
+  const { setId, seOnIds, numB22 } = useUserContext();
+  const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
-
-  const searchParams = useSearchParams();
-  const onCategori = searchParams.get("oncategori");
 
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -34,36 +29,6 @@ export default function Page() {
   const [name, setName] = useState("");
   const [n, setN] = useState([]);
   const [num1, setNum1] = useState(1);
-  const [nkk, setNkk] = useState([]);
-  //   const [id, setId] = useState([]);
-  const [a, setA] = useState(0);
-
-  // прий дoб
-  //   useEffect(() => {
-  //     const y = Cookies.get("nam11");
-  //     if (y !== undefined) {
-  //       setNkk(JSON.parse(Cookies.get("nam11")));
-  //       console.log(JSON.parse(Cookies.get("nam11")), "cn");
-  //     }
-  //     if (y === undefined) {
-  //       setNkk([]);
-  //     }
-  //   }, []);
-  //   useEffect(() => {
-  //     const y = Cookies.get("nam11");
-  //     if (y !== undefined && nkk.length > y.length) {
-  //       Cookies.set("nam11", JSON.stringify(nkk), { expires: 1 });
-  //     }
-  //   }, [nkk]);
-  //   useEffect(() => {
-  //     const a = () => {
-
-  //     };
-  //     a();
-  //   }, [id]);
-  //   console.log(nkk, "h");
-
-  // прий дoб
 
   const num2 = 1;
   const sortByValueAscending = () => {
@@ -84,7 +49,21 @@ export default function Page() {
       setAa1(numB22);
     }
   }, [numB22]);
-
+  const addToArray = (newItem) => {
+    setN((prevOnCard) => {
+      const existingIndex = prevOnCard.findIndex(
+        (obj) => obj.name === newItem.name
+      );
+      if (existingIndex === -1) {
+        return [...prevOnCard, newItem];
+      } else {
+        return prevOnCard;
+      }
+    });
+  };
+  useEffect(() => {
+    setN(aa1);
+  }, []);
   useEffect(() => {
     if (num1 > num2) {
       setIdCategori(IdCategori);
@@ -123,18 +102,15 @@ export default function Page() {
     // Скрыть корзину при клике на боксе
     setCehageCor(false);
   };
-  // пол
+
   const handleBasketClick = (e, object) => {
-    setId(object);
+    // Ваша логика обработки клика на корзине
+    addToArray(object);
 
     setCehageCor(true);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
   };
-
-  //   console.log(JSON.parse(Cookies.get("nam111")), "k");
-
-  //   пол
   function fals(t) {
     setCehageCor(t);
   }
@@ -171,6 +147,7 @@ export default function Page() {
             <div className={styles.price_box}>
               <div className={styles.price_min}>{priceRange[0]}</div>
               <div className={styles.price_max}>{priceRange[1]}</div>
+              <div className={styles.price_ok}>ok</div>
             </div>
             <div className={styles.slider}>
               <Slider
@@ -262,7 +239,6 @@ export default function Page() {
                             price: item.price,
                             id: item._id,
                           });
-                          setA(1);
                         }}
                         className={styles.shopping}
                       />
