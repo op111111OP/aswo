@@ -6,10 +6,10 @@ import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import Menu from "../Memu/Menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useLocalStorage } from "react-use";
-
+import { useSearchParams } from "next/navigation";
+import AutoComplit from "../AutoComplit/AutoComplit";
 export default function Header() {
-  const [request, setRequest] = useLocalStorage("onRequest", []);
+  const searchParams = useSearchParams();
 
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
@@ -61,25 +61,17 @@ export default function Header() {
               value={inputValue}
               onChange={handleInputChange}
             />
-            <Link href="/search">
-              <button
-                className={styles.header_button}
-                onClick={() => {
-                  setRequest(inputValue);
-                }}
-              >
+            <Link href={`/search?search=${inputValue}`}>
+              <button className={styles.header_button}>
                 <FaSearch className={styles.FaSearch} />
               </button>
             </Link>
+            {inputValue && <AutoComplit  value={inputValue}/>}
           </div>
           <div>
-            <FaShoppingCart
-              size={25}
-              className={styles.FaShoppingCart}
-              //   onClick={() => {
-              //     setTrueHedLoc((c) => c + 1);
-              //   }}
-            />
+            <Link href={`?bascet=${true}`}>
+              <FaShoppingCart size={25} className={styles.FaShoppingCart} />
+            </Link>
           </div>
         </div>
       </div>
