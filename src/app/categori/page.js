@@ -11,6 +11,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
+import Cookies from "js-cookie";
 
 export default function Page() {
   const { setId, seOnIds, numB22 } = useUserContext();
@@ -113,6 +114,7 @@ export default function Page() {
   function fals(t) {
     setCehageCor(t);
   }
+
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -145,7 +147,6 @@ export default function Page() {
             <div className={styles.price_box}>
               <div className={styles.price_min}>{priceRange[0]}</div>
               <div className={styles.price_max}>{priceRange[1]}</div>
-              <div className={styles.price_ok}>ok</div>
             </div>
             <div className={styles.slider}>
               <Slider
@@ -197,13 +198,8 @@ export default function Page() {
                   }}
                 >
                   <div className={styles.slide_box}>
-                    <Link href="./product">
-                      <div
-                        className={styles.link_box}
-                        onClick={() => {
-                          setId(item._id);
-                        }}
-                      >
+                    <Link href={`./product?id=${item._id}`}>
+                      <div className={styles.link_box}>
                         <div className={styles.img_box}>
                           <Image
                             className={styles.img}
