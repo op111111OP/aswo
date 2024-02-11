@@ -15,13 +15,12 @@ import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const { setId, seOnIds, numB22 } = useUserContext();
-  const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
 
   const searchParams = useSearchParams();
-  const search = searchParams.get("search");
+  const onCategori = searchParams.get("categori");
 
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
