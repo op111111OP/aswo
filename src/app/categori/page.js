@@ -14,7 +14,7 @@ import { useUserContext } from "../Context/store";
 import Cookies from "js-cookie";
 
 export default function Page() {
-  const { seOnIds, numB22 } = useUserContext();
+  const { setId, numB22 } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
@@ -30,7 +30,7 @@ export default function Page() {
   const [n, setN] = useState([]);
   const [num1, setNum1] = useState(1);
   const [nkk, setNkk] = useState([]);
-  const [id, setId] = useState([]);
+  //   const [id, setId] = useState([]);
   const [a, setA] = useState(0);
 
   // прий дoб
@@ -120,39 +120,15 @@ export default function Page() {
   };
   // пол
   const handleBasketClick = (e, object) => {
-    //  const y = Cookies.get("nam4");
-    //  if (y !== undefined) {
-    //    setNkk(JSON.parse(Cookies.get("nam4")));
-    //    console.log(JSON.parse(Cookies.get("nam4")), "cn");
-    //  }
-    setNkk((prevOnCard) => {
-      const existingIndex = prevOnCard.findIndex(
-        (obj) => obj.name === object.name
-      );
-      if (existingIndex === -1) {
-        return [...prevOnCard, object];
-      } else {
-        return prevOnCard;
-      }
-    });
+    setId(object);
 
     setCehageCor(true);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
   };
-  useEffect(() => {
-    Cookies.set("nam4", JSON.stringify(nkk), { expires: 1 });
-  }, [nkk]);
 
-  useEffect(() => {
-    //  if (nkk.length !== 0 && a === 1) {
-
-    setA(0);
-    //  }
-  }, [a]);
   //   console.log(JSON.parse(Cookies.get("nam111")), "k");
-  console.log(a);
-  console.log(nkk);
+
   //   пол
   function fals(t) {
     setCehageCor(t);
