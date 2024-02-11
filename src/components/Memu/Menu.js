@@ -33,7 +33,7 @@ export default function Menu({
     setResCategori(setResCategor);
   }
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
-  const [onCategori, setOnCategori] = useState("");
+  const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
   menuFalse(fels);
 
@@ -52,7 +52,7 @@ export default function Menu({
                 <div className={styles.component_name}>{item.name}</div>
               </div>
             )) || (
-              <Link href={`/categori?oncategori=${item.name}`}>
+              <Link href="/categorione">
                 <div
                   className={`${styles.component_name_box} ${styles.component_name_b}`}
                 >
@@ -78,7 +78,7 @@ export default function Menu({
               <div className={styles.component_mas}>
                 {flutters[index].mas.map((item, index) => (
                   <Link
-                    href={`/categori?oncategori=${item.text}`}
+                    href="/categori"
                     key={index}
                     className={styles.component_mas_elem}
                   >

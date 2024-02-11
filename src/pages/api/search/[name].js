@@ -12,13 +12,9 @@ const handleError = (res, err) => {
 
 const font = async (req, res) => {
   const { name } = req.query;
-
+  console.log("!!!!!!!!!!!!!!!!!!!!", name);
   if (req.method === "GET") {
-    Novelty.find(
-      { name: { $regex: name, $options: 'i' } }
-      ,
-      {score: { $meta: "searchScore" }} 
-      )
+    Novelty.find({ $text: { $search: name } })
       .then((product) => {
         res.status(200).json(product);
       })

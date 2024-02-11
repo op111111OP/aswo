@@ -12,7 +12,6 @@ import { BsX } from "react-icons/bs";
 import { PiWechatLogoFill } from "react-icons/pi";
 import { ImTruck } from "react-icons/im";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Cookies from "js-cookie";
 // ----------
 
 export default function Basket({ fals }) {
@@ -26,24 +25,10 @@ export default function Basket({ fals }) {
   const [numB2, setNumB2] = useState(0);
   const [numB1, setNumB1] = useState([]);
   const [n, setN] = useState([]);
-  const [nkk, setNkk] = useState([]);
   const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
-  //   console.log("ccc", aa1, n, "n");
-  //  var y = JSON.parse(Cookies.get("name"));
-  //  const [a, setA] = useState(y);
-  //   Cookies.set("ras", JSON.stringify([{ name: 1 }]), { expires: 1 });
+  console.log("ccc", aa1, n, "n");
 
-  useEffect(() => {
-    setNkk(JSON.parse(Cookies.get("ras")));
-  }, []);
-
-  console.log(nkk);
-  function funtezt(x) {
-    x[0].name = x[0].name + 1;
-    setNkk(x);
-    Cookies.set("ras", JSON.stringify(nkk), { expires: 1 });
-  }
   const addToArray = (newItem) => {
     setN((prevSenter) => {
       return prevSenter.filter((obj) => obj.id !== newItem);
@@ -158,7 +143,6 @@ export default function Basket({ fals }) {
     setNumBas(m);
   };
   //   console.log(senter, "b");
-
   return (
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
@@ -348,15 +332,7 @@ export default function Basket({ fals }) {
                 <p></p>
               ) : (
                 <div>
-                  <div
-                    className={styles.h1}
-                    onClick={() => {
-                      //  setA((a[0].name = a[0].name + 1)),
-                      funtezt([...nkk]);
-                    }}
-                  >
-                    Кошик
-                  </div>
+                  <div className={styles.h1}>Кошик</div>
                   <div className={styles.number_textN}>Назва</div>
                   <div className={styles.number_textP}>Ціна</div>
                   <div className={styles.number_text}>Кількість</div>

@@ -6,9 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useUserContext } from "../Context/store";
 import { useState } from "react";
+import { useLocalStorage } from "react-use";
 
 export default function App() {
   const { setNemeB } = useUserContext();
+
+  const [request, setRequest] = useLocalStorage("onRequest", []);
   const brend = [
     {
       img: "https://doctor-h.com.ua/content/images/29/77x38l75nn0/81827292297291.webp",
@@ -112,7 +115,7 @@ export default function App() {
       {brend.map((item, index) => (
         <div className={styles.swiper_slide} key={index}>
           <div className={styles.slide_box}>
-            <Link href={`/search?search=${item.name}`}>
+            <Link href="/search">
               <div className={styles.link_box}>
                 <div className={styles.img_box}>
                   <Image
@@ -129,7 +132,12 @@ export default function App() {
                     }}
                   />
                 </div>
-                <div className={styles.text_box}>{item.name}</div>
+                <div
+                  className={styles.text_box}
+                  onClick={() => setRequest(item.name)}
+                >
+                  {item.name}
+                </div>
               </div>
             </Link>
           </div>

@@ -11,22 +11,13 @@ const handleError = (res, err) => {
 };
 
 const font = async (req, res) => {
-  const { name } = req.query;
-
+  const { text } = req.query;
   if (req.method === "GET") {
-    Novelty.find(
-      { name: { $regex: name, $options: 'i' } },
-      { _id: 1, name: 1 }
-    )
-      .limit(5)
-
+    Novelty.find({ categori: text })
       .then((product) => {
         res.status(200).json(product);
       })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
-      });
+      .catch((err) => handleError(res, err));
   }
 };
 export default font;

@@ -13,15 +13,19 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 
 export default function Page() {
-  const { setUserId, setId, nemeB } = useUserContext();
-  const [request, setRequest] = useLocalStorage("onRequest", []);
+  const { setUserId, setId } = useUserContext();
+  const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
 
-  const [priceRange, setPriceRange] = useState([0, 100000]);
+  const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
+  const [IdCategori, setIdCategori] = useState([]);
+  const [text, setNameG] = useState("");
 
+  const [num1, setNum1] = useState(1);
+  const num2 = 1;
   const sortByValueAscending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => a.price - b.price);
     setFilteredProducts(sortedArray);
@@ -34,13 +38,13 @@ export default function Page() {
   const addToArray = (newItem) => {
     setUserId(newItem);
   };
-  //   useEffect(() => {
-  //     setNameG(num1 > num2 ? IdCategori : onCategoriG);
-  //   }, [num1, num2]);
+  useEffect(() => {
+    setNameG(num1 > num2 ? IdCategori : onCategoriG);
+  }, [num1, num2]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`api/search/${request}`);
+        const response = await fetch(`api/categorigg/${text}`);
         const data = await response.json();
         setFlutters(data);
         setFilteredProducts(data);
@@ -51,8 +55,8 @@ export default function Page() {
       }
     };
     fetchData();
-  }, [request]);
-  console.log(filteredProducts);
+  }, [text]);
+
   //   bbbbbbbbbbbbbbbbb
   const handleSliderChange = (value) => {
     setPriceRange(value);
@@ -84,6 +88,9 @@ export default function Page() {
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
       <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
+        <div className={styles.main_h1}>
+          {num1 > num2 ? IdCategori : onCategoriG}
+        </div>
         <div className={styles.main_h2}>
           <div className={styles.main_sort}>Сортування:</div>
           <div className={styles.main_p_box}>
