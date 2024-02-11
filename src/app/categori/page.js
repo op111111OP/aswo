@@ -15,17 +15,10 @@ import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-<<<<<<< HEAD
   const { setId, numB22 } = useUserContext();
-=======
-<<<<<<< HEAD
-  const { setId, seOnIds, numB22 } = useUserContext();
+
   // const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
-=======
-  const { seOnIds, numB22 } = useUserContext();
->>>>>>> d04a763318e5c8be6634b06214ec508ccc1b944b
-  const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
->>>>>>> f46d89fd97c27737c0479c6d6de3cf73e6901299
+
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
