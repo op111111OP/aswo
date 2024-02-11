@@ -3,6 +3,9 @@ const nextConfig = {
   images: {
     domains: ["www.aswo.com", "doctor-h.com.ua", "lh3.googleusercontent.com"],
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 module.exports = nextConfig;
