@@ -16,9 +16,6 @@ export default function Page() {
   const { setUserId, setId, nemeB } = useUserContext();
   const [request, setRequest] = useLocalStorage("onRequest", []);
 
-  const searchParams = useSearchParams();
-  const search = searchParams.get("search");
-
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
@@ -43,7 +40,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`api/search/${search}`);
+        const response = await fetch(`api/search/${request}`);
         const data = await response.json();
         setFlutters(data);
         setFilteredProducts(data);
