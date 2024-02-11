@@ -27,7 +27,7 @@ export default function Basket({ fals }) {
   const [numB1, setNumB1] = useState([]);
   const [n, setN] = useState([]);
   const [nkk, setNkk] = useState([]);
-  const [onIds, setOnIds] = useState(0);
+  const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
   const [num1, setNum1] = useState(false);
   const [num2, setNum2] = useState(false);
@@ -36,42 +36,18 @@ export default function Basket({ fals }) {
   //  var y = JSON.parse(Cookies.get("name"));
   //  const [a, setA] = useState(y);
   //   Cookies.set("ras", JSON.stringify([{ name: 1 }]), { expires: 1 });
-  //   пол
-
   useEffect(() => {
-    const y = Cookies.get("nam4");
+    const y = Cookies.get("nam1");
     if (y !== undefined) {
       setNkk(JSON.parse(Cookies.get("nam4")));
-      console.log(JSON.parse(Cookies.get("nam4")), "cn");
-    }
-    if (y === undefined) {
-      setNkk([]);
-    }
-  }, []);
-  useEffect(() => {
-    setNkk((prevOnCard) => {
-      const existingIndex = prevOnCard.findIndex((obj) => obj.name === id.name);
-      if (existingIndex === -1) {
-        return [...prevOnCard, id];
-      } else {
-        return prevOnCard;
-      }
-    });
-  }, [id]);
-  useEffect(() => {
-    if (num1 && nkk.length !== 0) {
-      Cookies.set("nam4", JSON.stringify(nkk), { expires: 1 });
-    } else {
-      setNum1(true);
-    }
-  }, [nkk, num1]);
-  //   пол
-  useEffect(() => {
-    const y = Cookies.get("nam4");
-    if (y !== undefined) {
-      setNkk(JSON.parse(Cookies.get("nam4")));
+      console.log(JSON.parse(Cookies.get("nam4")));
     }
   }, [id]);
+  console.log(nkk);
+  useEffect(() => {
+    Cookies.set("nam1", JSON.stringify(nkk), { expires: 1 });
+  }, [nkk]);
+  // прий дoб
   //  мас 1
   useEffect(() => {
     setNumB2(nkk.length);
@@ -129,8 +105,6 @@ export default function Basket({ fals }) {
     setNkk((prevSenter) => {
       return prevSenter.filter((obj) => obj.id !== m);
     });
-
-    Cookies.set("nam4", JSON.stringify(nkk), { expires: 1 });
   };
   //   уд фanl
   //   updateNumB(0, 11000);
