@@ -11,10 +11,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const { setUserId, setId, nemeB } = useUserContext();
-  const [request, setRequest] = useLocalStorage("onRequest", []);
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search");
 
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -40,7 +42,7 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`api/search/${request}`);
+        const response = await fetch(`api/search/${search}`);
         const data = await response.json();
         setFlutters(data);
         setFilteredProducts(data);
@@ -51,7 +53,7 @@ export default function Page() {
       }
     };
     fetchData();
-  }, [request]);
+  }, [search]);
   console.log(filteredProducts);
   //   bbbbbbbbbbbbbbbbb
   const handleSliderChange = (value) => {

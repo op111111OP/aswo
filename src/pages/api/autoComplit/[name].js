@@ -15,13 +15,18 @@ const font = async (req, res) => {
 
   if (req.method === "GET") {
     Novelty.find(
-      { name: { $regex: name, $options: "i" } },
-      { score: { $meta: "searchScore" } }
+      { name: { $regex: name, $options: 'i' } },
+      { _id: 1, name: 1 }
     )
+      .limit(5)
+
       .then((product) => {
         res.status(200).json(product);
       })
-      .catch((err) => handleError(res, err));
+      .catch((error) => {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+      });
   }
 };
 export default font;

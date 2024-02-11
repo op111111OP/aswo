@@ -21,6 +21,7 @@ export default function Page() {
 
   const searchParams = useSearchParams();
   const onCategori = searchParams.get("categori");
+  const falsepon = searchParams.get("false");
 
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -116,6 +117,7 @@ export default function Page() {
   function fals(t) {
     setCehageCor(t);
   }
+  console.log(falsepon);
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -162,23 +164,25 @@ export default function Page() {
               />
             </div>
           </div>
-          <div className={styles.categori_box_left}>
-            {Array.isArray(resCategori.mas) &&
-              resCategori.mas.map((item, index) => (
-                <div
-                  className={styles.categori_box_left_elem}
-                  key={index}
-                  onClick={() => {
-                    setNum1(num1 + 1);
-                    setIdCategori(item.text);
-                  }}
-                >
-                  <div className={styles.categori_left_elem}>
-                    {index + 1}. {item.text}.
+          {falsepon === "1" && (
+            <div className={styles.categori_box_left}>
+              {Array.isArray(resCategori.mas) &&
+                resCategori.mas.map((item, index) => (
+                  <div
+                    className={styles.categori_box_left_elem}
+                    key={index}
+                    onClick={() => {
+                      setNum1(num1 + 1);
+                      setIdCategori(item.text);
+                    }}
+                  >
+                    <div className={styles.categori_left_elem}>
+                      {index + 1}. {item.text}.
+                    </div>
                   </div>
-                </div>
-              ))}
-          </div>
+                ))}
+            </div>
+          )}
         </div>
         <div className={styles.box_right}>
           <div className={styles.right_h1}>

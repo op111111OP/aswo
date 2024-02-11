@@ -7,10 +7,9 @@ import Menu from "../Memu/Menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLocalStorage } from "react-use";
+import AutoComplit from "../AutoComplit/AutoComplit";
 
 export default function Header() {
-  const [request, setRequest] = useLocalStorage("onRequest", []);
-
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [num, setNum] = useState();
@@ -61,16 +60,12 @@ export default function Header() {
               value={inputValue}
               onChange={handleInputChange}
             />
-            <Link href="/search">
-              <button
-                className={styles.header_button}
-                onClick={() => {
-                  setRequest(inputValue);
-                }}
-              >
+            <Link href={`/search?search=${inputValue}`}>
+              <button className={styles.header_button}>
                 <FaSearch className={styles.FaSearch} />
               </button>
             </Link>
+            {inputValue && <AutoComplit value={inputValue} />}
           </div>
           <div>
             <FaShoppingCart

@@ -80,11 +80,8 @@ export default function App() {
                 }}
               >
                 <div className={styles.slide_box}>
-                  <Link href="/product">
-                    <div
-                      className={styles.link_box}
-                      onClick={() => setId(item._id)}
-                    >
+                  <Link href={`/product?id=${item._id}`}>
+                    <div className={styles.link_box}>
                       <div className={styles.img_box}>
                         <Image
                           className={styles.img}

@@ -51,7 +51,7 @@ export default function Menu({
                 <div className={styles.component_name}>{item.name}</div>
               </div>
             )) || (
-              <Link href={`categori?categori=${item.name}`}>
+              <Link href={`categori?categori=${item.name}&false=2`}>
                 <div
                   className={`${styles.component_name_box} ${styles.component_name_b}`}
                 >
@@ -77,7 +77,7 @@ export default function Menu({
               <div className={styles.component_mas}>
                 {flutters[index].mas.map((item, index) => (
                   <Link
-                    href={`categori?categori=${item.text}`}
+                    href={`categori?categori=${item.text}&false=1`}
                     key={index}
                     className={styles.component_mas_elem}
                   >
