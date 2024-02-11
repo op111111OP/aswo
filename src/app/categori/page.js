@@ -14,7 +14,7 @@ import { useUserContext } from "../Context/store";
 import Cookies from "js-cookie";
 
 export default function Page() {
-  const { setId, seOnIds, numB22 } = useUserContext();
+  const { seOnIds, numB22 } = useUserContext();
   const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
@@ -29,6 +29,36 @@ export default function Page() {
   const [name, setName] = useState("");
   const [n, setN] = useState([]);
   const [num1, setNum1] = useState(1);
+  const [nkk, setNkk] = useState([]);
+  const [id, setId] = useState([]);
+  const [a, setA] = useState(0);
+
+  // прий дoб
+  //   useEffect(() => {
+  //     const y = Cookies.get("nam11");
+  //     if (y !== undefined) {
+  //       setNkk(JSON.parse(Cookies.get("nam11")));
+  //       console.log(JSON.parse(Cookies.get("nam11")), "cn");
+  //     }
+  //     if (y === undefined) {
+  //       setNkk([]);
+  //     }
+  //   }, []);
+  //   useEffect(() => {
+  //     const y = Cookies.get("nam11");
+  //     if (y !== undefined && nkk.length > y.length) {
+  //       Cookies.set("nam11", JSON.stringify(nkk), { expires: 1 });
+  //     }
+  //   }, [nkk]);
+  //   useEffect(() => {
+  //     const a = () => {
+
+  //     };
+  //     a();
+  //   }, [id]);
+  //   console.log(nkk, "h");
+
+  // прий дoб
 
   const num2 = 1;
   const sortByValueAscending = () => {
@@ -49,21 +79,7 @@ export default function Page() {
       setAa1(numB22);
     }
   }, [numB22]);
-  const addToArray = (newItem) => {
-    setN((prevOnCard) => {
-      const existingIndex = prevOnCard.findIndex(
-        (obj) => obj.name === newItem.name
-      );
-      if (existingIndex === -1) {
-        return [...prevOnCard, newItem];
-      } else {
-        return prevOnCard;
-      }
-    });
-  };
-  useEffect(() => {
-    setN(aa1);
-  }, []);
+
   useEffect(() => {
     if (num1 > num2) {
       setIdCategori(IdCategori);
@@ -102,15 +118,42 @@ export default function Page() {
     // Скрыть корзину при клике на боксе
     setCehageCor(false);
   };
-
+  // пол
   const handleBasketClick = (e, object) => {
-    // Ваша логика обработки клика на корзине
-    setId(object);
+    //  const y = Cookies.get("nam4");
+    //  if (y !== undefined) {
+    //    setNkk(JSON.parse(Cookies.get("nam4")));
+    //    console.log(JSON.parse(Cookies.get("nam4")), "cn");
+    //  }
+    setNkk((prevOnCard) => {
+      const existingIndex = prevOnCard.findIndex(
+        (obj) => obj.name === object.name
+      );
+      if (existingIndex === -1) {
+        return [...prevOnCard, object];
+      } else {
+        return prevOnCard;
+      }
+    });
 
     setCehageCor(true);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
   };
+  useEffect(() => {
+    Cookies.set("nam4", JSON.stringify(nkk), { expires: 1 });
+  }, [nkk]);
+
+  useEffect(() => {
+    //  if (nkk.length !== 0 && a === 1) {
+
+    setA(0);
+    //  }
+  }, [a]);
+  //   console.log(JSON.parse(Cookies.get("nam111")), "k");
+  console.log(a);
+  console.log(nkk);
+  //   пол
   function fals(t) {
     setCehageCor(t);
   }
@@ -239,6 +282,7 @@ export default function Page() {
                             price: item.price,
                             id: item._id,
                           });
+                          setA(1);
                         }}
                         className={styles.shopping}
                       />
