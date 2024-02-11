@@ -7,6 +7,7 @@ import Menu from "../Memu/Menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import AutoComplit from "../AutoComplit/AutoComplit";
 export default function Header() {
   const searchParams = useSearchParams();
 
@@ -65,6 +66,7 @@ export default function Header() {
                 <FaSearch className={styles.FaSearch} />
               </button>
             </Link>
+            {inputValue && <AutoComplit  value={inputValue}/>}
           </div>
           <div>
             <Link href={`?bascet=${true}`}>

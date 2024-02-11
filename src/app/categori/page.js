@@ -12,13 +12,17 @@ import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 import Cookies from "js-cookie";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const { setId, seOnIds, numB22 } = useUserContext();
-  const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
+  // const [onCategori, setOnCategori] = useLocalStorage("onCategori", []);
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
 
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
+
+  const searchParams = useSearchParams();
+  const onCategori = searchParams.get("oncategori");
 
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -147,7 +151,6 @@ export default function Page() {
             <div className={styles.price_box}>
               <div className={styles.price_min}>{priceRange[0]}</div>
               <div className={styles.price_max}>{priceRange[1]}</div>
-              <div className={styles.price_ok}>ok</div>
             </div>
             <div className={styles.slider}>
               <Slider
