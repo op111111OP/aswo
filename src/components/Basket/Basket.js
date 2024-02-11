@@ -36,17 +36,17 @@ export default function Basket({ fals }) {
   //  var y = JSON.parse(Cookies.get("name"));
   //  const [a, setA] = useState(y);
   //   Cookies.set("ras", JSON.stringify([{ name: 1 }]), { expires: 1 });
-  useEffect(() => {
-    const y = Cookies.get("nam1");
-    if (y !== undefined) {
-      setNkk(JSON.parse(Cookies.get("nam4")));
-      console.log(JSON.parse(Cookies.get("nam4")));
-    }
-  }, [id]);
-  console.log(nkk);
-  useEffect(() => {
-    Cookies.set("nam1", JSON.stringify(nkk), { expires: 1 });
-  }, [nkk]);
+  //   useEffect(() => {
+  //     const y = Cookies.get("nam1");
+  //     if (y !== undefined) {
+  //       setNkk(JSON.parse(Cookies.get("nam4")));
+  //       console.log(JSON.parse(Cookies.get("nam4")));
+  //     }
+  //   }, [id]);
+  //   console.log(nkk);
+  //   useEffect(() => {
+  //     Cookies.set("nam1", JSON.stringify(nkk), { expires: 1 });
+  //   }, [nkk]);
   // прий дoб
   //  мас 1
   useEffect(() => {
