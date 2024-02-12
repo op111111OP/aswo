@@ -21,11 +21,21 @@ export default function AutoComplit({ value }) {
     fetchData();
   }, [value]);
   return (
-    <div className={styles.auto_complid_box}>
+    <div
+      className={styles.auto_complid_box}
+      style={{ display: flutters ? "block" : "none" }}
+    >
       {flutters &&
         flutters.map((item, index) => (
           <Link key={index} href={`/product?id=${item._id}`}>
-            <div className={styles.auto_complid_element}>{item.name}</div>
+            <div
+              className={styles.auto_complid_element}
+              onClick={() => {
+                setFlutters(false);
+              }}
+            >
+              {item.name}
+            </div>
           </Link>
         ))}
     </div>
