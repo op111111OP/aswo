@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function AutoComplit({ value }) {
   const [flutters, setFlutters] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -87,3 +87,27 @@
 .FaSearch {
   cursor: pointer;
 }
+.auto {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  top: 70px;
+  left: 0px;
+}
+@media (max-width: 1100px) {
+  .header_one {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .header_two {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    padding: 0 15px 0 15px;
+  }
+}
