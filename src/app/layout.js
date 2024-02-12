@@ -8,7 +8,7 @@ const inter = Montserrat({ subsets: ["latin"] });
 import { UserProvider } from "./Context/store";
 
 export const metadata = {
-  title: "Asvo",
+  title: "Aswo",
   description: "",
 };
 
