@@ -40,12 +40,14 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div
-        className={styles.auto}
-        onClick={() => {
-          setInputValue("");
-        }}
-      ></div>
+      {inputValue && (
+        <div
+          className={styles.auto}
+          onClick={() => {
+            setInputValue("");
+          }}
+        ></div>
+      )}
       <div className={styles.header_container_one}>
         <div className={styles.header_one}>
           <div className={styles.box_telephone_box}>
