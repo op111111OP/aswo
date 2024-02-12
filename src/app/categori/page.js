@@ -16,13 +16,10 @@ import { useSearchParams } from "next/navigation";
 export default function Page() {
   const { setId, seOnIds, numB22 } = useUserContext();
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
-
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
-
   const searchParams = useSearchParams();
   const onCategori = searchParams.get("categori");
   const falsepon = searchParams.get("false");
-
   const [priceRange, setPriceRange] = useState([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
@@ -32,6 +29,7 @@ export default function Page() {
   const [name, setName] = useState("");
   const [n, setN] = useState([]);
   const [num1, setNum1] = useState(1);
+  const [nIFalsum, setIFals] = useState(true);
 
   const num2 = 1;
   const sortByValueAscending = () => {
@@ -117,7 +115,7 @@ export default function Page() {
   function fals(t) {
     setCehageCor(t);
   }
-  console.log(falsepon);
+
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -138,8 +136,20 @@ export default function Page() {
           <div className={styles.reflection_box}>
             <div className={styles.reflection}>Відображення:</div>
             <div className={styles.reflection_icon}>
-              <HiSquares2X2 className={styles.reflection_icon1} size={20} />
-              <BsCardList className={styles.reflection_icon2} size={20} />
+              <BsCardList
+                className={styles.reflection_icon1}
+                size={25}
+                onClick={() => {
+                  setIFals(true);
+                }}
+              />
+              <HiSquares2X2
+                className={styles.reflection_icon2}
+                size={25}
+                onClick={() => {
+                  setIFals(false);
+                }}
+              />
             </div>
           </div>
         </div>
@@ -147,10 +157,9 @@ export default function Page() {
       <div className={styles.box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.box_left}>
           <div className={styles.box_slider}>
-            <div className={styles.price_box}>
+            <div className={styles.price_box_cl}>
               <div className={styles.price_min}>{priceRange[0]}</div>
               <div className={styles.price_max}>{priceRange[1]}</div>
-              <div className={styles.price_ok}>ok</div>
             </div>
             <div className={styles.slider}>
               <Slider
@@ -185,16 +194,30 @@ export default function Page() {
           )}
         </div>
         <div className={styles.box_right}>
-          <div className={styles.right_h1}>
-            <div className={styles.right_h2}>Назва</div>
-            <div className={styles.right_h2}>Ціна</div>
-            <div className={styles.right_h2}>Замовлення</div>
-          </div>
-          <div className={styles.right_goods_box}>
+          {nIFalsum && (
+            <div className={styles.right_h1}>
+              <div className={styles.right_h2}>Назва</div>
+              <div className={styles.right_hh}>
+                <div className={styles.right_h2}>Ціна</div>
+                <div className={styles.right_h2}>Замовлення</div>
+              </div>
+            </div>
+          )}
+          <div
+            className={
+              nIFalsum === false
+                ? styles.right_goods_box
+                : styles.right_goods_box1
+            }
+          >
             {Array.isArray(filteredProducts) &&
               filteredProducts.map((item, index) => (
                 <div
-                  className={styles.swiper_slide}
+                  className={
+                    nIFalsum === false
+                      ? styles.swiper_slide
+                      : styles.swiper_slide1
+                  }
                   key={index}
                   onMouseEnter={() => {
                     setCehage(index);
@@ -203,22 +226,38 @@ export default function Page() {
                     setCehage(false);
                   }}
                 >
-                  <div className={styles.slide_box}>
-                    <Link href="./product">
+                  <div
+                    className={
+                      nIFalsum === false ? styles.slide_box : styles.slide_box1
+                    }
+                  >
+                    <Link href={`./product?id=${item._id}`}>
                       <div
-                        className={styles.link_box}
+                        className={
+                          nIFalsum === false
+                            ? styles.link_box
+                            : styles.link_box1
+                        }
                         onClick={() => {
                           setId(item._id);
                         }}
                       >
-                        <div className={styles.img_box}>
+                        <div
+                          className={
+                            nIFalsum === false
+                              ? styles.img_box
+                              : styles.img_box1
+                          }
+                        >
                           <Image
-                            className={styles.img}
+                            className={
+                              nIFalsum === false ? styles.img : styles.img1
+                            }
                             src={item.img}
                             alt="Vercel Logo"
                             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
-                            width={100}
-                            height={100}
+                            width={30}
+                            height={30}
                             style={{
                               height: "100%",
                               width: "100%",
@@ -226,13 +265,47 @@ export default function Page() {
                             }}
                           />
                         </div>
-                        <div className={styles.text_box}>{item.name}</div>
+                        <div
+                          className={
+                            nIFalsum === false
+                              ? styles.text_box
+                              : styles.text_box1
+                          }
+                        >
+                          {item.name}
+                        </div>
                       </div>
                     </Link>
-                    <div className={styles.price_box}>
-                      <div className={styles.text_box_price}>
-                        {item.price}грн
-                      </div>
+                    <div
+                      className={
+                        nIFalsum === false
+                          ? styles.price_box
+                          : styles.price_box1
+                      }
+                    >
+                      {item.price === 0 && (
+                        <div
+                          className={
+                            nIFalsum === false
+                              ? styles.text_box_price
+                              : styles.text_box_price1
+                          }
+                          style={{ fontSize: "10px", width: "77px" }}
+                        >
+                          Зверніться до адміністратора.
+                        </div>
+                      )}
+                      {item.price !== 0 && (
+                        <div
+                          className={
+                            nIFalsum === false
+                              ? styles.text_box_price
+                              : styles.text_box_price1
+                          }
+                        >
+                          {item.price}грн
+                        </div>
+                      )}
 
                       <FaShoppingCart
                         size={25}
@@ -254,7 +327,13 @@ export default function Page() {
                       />
                     </div>
                     {cehage === index && (
-                      <div className={styles.text_botom_box}>
+                      <div
+                        className={
+                          nIFalsum === false
+                            ? styles.text_botom_box
+                            : styles.text_botom_box1
+                        }
+                      >
                         <div>Бренд: {item.brand}</div>
                         <div> Країна виробництва: {item.country}</div>
                       </div>

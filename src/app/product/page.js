@@ -25,7 +25,6 @@ export default function Page() {
         );
         const data = await response.json();
         setFlutters(data);
-        console.log(data, "pp");
       } catch (error) {
         console.log("Что-то пошло не так...", error);
       } finally {

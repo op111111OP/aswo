@@ -72,7 +72,7 @@ export default function Header() {
               size={25}
               className={styles.FaShoppingCart}
               //   onClick={() => {
-              //     setTrueHedLoc((c) => c + 1);
+              //     setTrueHedLoc1(true);
               //   }}
             />
           </div>

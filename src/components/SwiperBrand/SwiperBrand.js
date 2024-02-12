@@ -15,16 +15,38 @@ import Link from "next/link";
 
 export default function App() {
   const imgMas = [
-    "https://doctor-h.com.ua/content/images/29/77x38l75nn0/81827292297291.webp",
-    "https://doctor-h.com.ua/content/images/35/77x38l75nn0/41958778882540.webp",
-    "https://doctor-h.com.ua/content/images/26/180x30l75nn0/92915233356651.webp",
-    "https://doctor-h.com.ua/content/images/4/180x79l75nn0/63441823479041.webp",
-    "https://doctor-h.com.ua/content/images/2/77x38l75nn0/59361050882289.webp",
-    "https://doctor-h.com.ua/content/images/36/180x100l75nn0/39550902971057.webp",
-    "https://doctor-h.com.ua/content/images/34/180x100l75nn0/90360451058740.webp",
-    "https://doctor-h.com.ua/content/images/32/180x68l75nn0/28191980357954.webp",
-    "https://doctor-h.com.ua/content/images/38/77x38l75nn0/53680195548105.webp",
-    "https://doctor-h.com.ua/content/images/17/180x44l75nn0/89967959610766.webp",
+    {
+      img: "https://doctor-h.com.ua/content/images/29/77x38l75nn0/81827292297291.webp",
+      name: "aeg",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/35/77x38l75nn0/41958778882540.webp",
+      name: "ardo",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/26/180x30l75nn0/92915233356651.webp",
+      name: "ametek",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/4/180x79l75nn0/63441823479041.webp",
+      name: "amica",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/2/77x38l75nn0/59361050882289.webp",
+      name: "ariston",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/36/180x100l75nn0/39550902971057.webp",
+      name: "askoll",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/34/180x100l75nn0/90360451058740.webp",
+      name: "atlantic",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/32/180x68l75nn0/28191980357954.webp",
+      name: "beslux",
+    },
   ];
   return (
     <div className={styles.box_carusel}>
@@ -47,9 +69,9 @@ export default function App() {
         {imgMas.map((item, index) => (
           <SwiperSlide className={styles.swiper_slide} key={index}>
             <div className={styles.brand}>
-              <Link href="">
+              <Link href={`/search?search=${item.name}`}>
                 <Image
-                  src={item}
+                  src={item.img}
                   alt="Vercel Logo"
                   sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
                   width={0}

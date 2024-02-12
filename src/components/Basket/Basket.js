@@ -27,7 +27,6 @@ export default function Basket({ fals }) {
   const [n, setN] = useState([]);
   const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
-  console.log("ccc", aa1, n, "n");
 
   const addToArray = (newItem) => {
     setN((prevSenter) => {

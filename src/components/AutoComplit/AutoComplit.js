@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import styles from "./AutoComplit.module.css";
 import Link from "next/link";
@@ -22,9 +23,9 @@ export default function AutoComplit({ value }) {
     <div className={styles.auto_complid_box}>
       {flutters &&
         flutters.map((item, index) => (
-          <div key={index} className={styles.auto_complid_element}>
-            {item.name}
-          </div>
+          <Link key={index} href={`/product?id=${item._id}`}>
+            <div className={styles.auto_complid_element}>{item.name}</div>
+          </Link>
         ))}
     </div>
   );

@@ -14,3 +14,13 @@
   display: block;
   width: 100%;
 }
+@media (max-width: 1300px) {
+  .swiper_slide {
+    top: -30px;
+  }
+  .swiper {
+    user-select: none;
+    width: 100vw;
+    height: 450px;
+  }
+}
