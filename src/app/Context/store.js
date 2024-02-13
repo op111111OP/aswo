@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
   const [numB22, setNumB22] = useState([]);
   const [trueHedLoc, setTrueHedLoc] = useState(false);
   const [nemeB, setNemeB] = useState(1);
-  const [card, setCard] = useState([]);
+  const [card, setCard] = useState([1]);
   const [onCard, setOnCard] = useLocalStorage("onCard6", []);
   const [onCard1, setOnCard1] = useState(1);
   const [defenseCard, setDefenseCard] = useLocalStorage("defenseCard", []);
