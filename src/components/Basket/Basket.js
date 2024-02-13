@@ -53,14 +53,16 @@ export default function Basket({ fals }) {
   //     }
   //   }, [eId]);
   useEffect(() => {
-    const addToArray = (newItem) => {
-      setTwoCard((prevSenter) => {
-        return prevSenter.filter((obj) => obj.id !== newItem);
-      });
+    if (eId !== "") {
+      const addToArray = (newItem) => {
+        setTwoCard((prevSenter) => {
+          return prevSenter.filter((obj) => obj.id !== newItem);
+        });
 
-      setOnTrue((a) => !a);
-    };
-    addToArray(eId);
+        setOnTrue((a) => !a);
+      };
+      addToArray(eId);
+    }
   }, [eId]);
 
   useEffect(() => {
