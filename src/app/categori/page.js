@@ -14,7 +14,7 @@ import { useUserContext } from "../Context/store";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const { setId, seOnIds, numB22 } = useUserContext();
+  const { setId, seOnIds, numB22, setOnCard1 } = useUserContext();
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
   const searchParams = useSearchParams();
@@ -107,7 +107,7 @@ export default function Page() {
   const handleBasketClick = (e, object) => {
     // Ваша логика обработки клика на корзине
     addToArray(object);
-
+    setOnCard1(object);
     setCehageCor(true);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();

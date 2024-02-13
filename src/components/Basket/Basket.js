@@ -15,9 +15,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 // ----------
 
 export default function Basket({ fals }) {
-  const { senter, setOnCard, setNumBas, numBas, setNumB22 } = useUserContext();
+  const { setCard, setOnCard, setNumBas, onCard, setNumB22 } = useUserContext();
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
-
+  const [twoCard, setTwoCard] = useState(onCard);
   const [t, setT] = useState(true);
   const [truF, setTruF] = useState(false);
   const [numB, setNumB] = useState([]);
@@ -27,12 +27,49 @@ export default function Basket({ fals }) {
   const [n, setN] = useState([]);
   const [onIds, setOnIds] = useState("");
   const [numBas1, setNumBas1] = useState(0);
+  const [eId, setEId] = useState("");
+  const [onTrue, setOnTrue] = useState(false);
 
-  const addToArray = (newItem) => {
-    setN((prevSenter) => {
-      return prevSenter.filter((obj) => obj.id !== newItem);
-    });
-  };
+  useEffect(() => {
+    setTwoCard(onCard);
+  }, [onCard]);
+  // jjj
+  //   useEffect(() => {
+  //     if (eId !== "") {
+  //       twoId.map((item, index) =>
+  //         Number(item) === Number(eId)
+  //           ? setTwoCard([
+  //               ...twoCard.slice(0, index),
+  //               ...twoCard.slice(index + 1),
+  //             ])
+  //           : true
+  //       );
+  //       twoId.map((item, index) =>
+  //         Number(item) === Number(eId)
+  //           ? setTwoId([...twoId.slice(0, index), ...twoId.slice(index + 1)])
+  //           : true
+  //       );
+  //       setOnTrue((a) => !a);
+  //     }
+  //   }, [eId]);
+  useEffect(() => {
+    const addToArray = (newItem) => {
+      setTwoCard((prevSenter) => {
+        return prevSenter.filter((obj) => obj.id !== newItem);
+      });
+
+      setOnTrue((a) => !a);
+    };
+    addToArray(eId);
+  }, [eId]);
+
+  useEffect(() => {
+    if (eId !== "") {
+      setCard(twoCard);
+    }
+  }, [onTrue]);
+
+  //  jjj
   useEffect(() => {
     if (numBas1 !== 1 || n.length == 0) {
       setN(aa1);
@@ -133,11 +170,6 @@ export default function Basket({ fals }) {
   // _______________________
 
   fals(t);
-  const handleRemoveItem = (m) => {
-    addToArray(m);
-    setOnCard(m);
-    console.log(m, 22);
-  };
   const handleRemov = (m) => {
     setNumBas(m);
   };
@@ -146,7 +178,7 @@ export default function Basket({ fals }) {
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
       <div className={styles.main1}>
-        {aa1.length === 0 ? (
+        {twoCard.length === 0 ? (
           <div className={styles.h1nov}>Ваш кошик пустий.</div>
         ) : (
           <div className={!truF ? styles.novB : styles.novBnov}>
@@ -327,7 +359,7 @@ export default function Basket({ fals }) {
             {/* ---------------------- */}
 
             <div className={styles.bas_ralac}>
-              {aa1.length === 0 ? (
+              {twoCard.length === 0 ? (
                 <p></p>
               ) : (
                 <div>
@@ -338,8 +370,8 @@ export default function Basket({ fals }) {
                   <div className={styles.price_box_h1}>Вартість</div>
                 </div>
               )}
-              {Array.isArray(aa1) &&
-                aa1.map((item, index) => (
+              {Array.isArray(twoCard) &&
+                twoCard.map((item, index) => (
                   <div className={styles.swiper_slide} key={index}>
                     <div className={styles.image_box}>
                       <Image
@@ -391,10 +423,10 @@ export default function Basket({ fals }) {
                     <BsTrash3
                       className={styles.dustbin}
                       size={20}
-                      onClick={() => {
-                        handleRemoveItem(item.id);
-                        setNumBas1(1);
+                      onClick={(e) => {
+                        setEId(item.id);
                       }}
+                      id={item.id}
                     />
                   </div>
                 ))}

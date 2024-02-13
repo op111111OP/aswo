@@ -8,43 +8,77 @@ export const UserProvider = ({ children }) => {
   const [numBas, setNumBas] = useState(0);
   const [userId, setUserId] = useState(1);
   const [senter, setSenter] = useState([]);
-  const [onCard, setOnCard] = useState("");
+  //   const [onCard, setOnCard] = useState("");
   const [onIds, seOnIds] = useState();
   const [numB22, setNumB22] = useState([]);
   const [trueHedLoc, setTrueHedLoc] = useState(false);
   const [nemeB, setNemeB] = useState(1);
+  const [card, setCard] = useState([]);
+  const [onCard, setOnCard] = useLocalStorage("onCard6", []);
+  const [onCard1, setOnCard1] = useState(1);
+  const [defenseCard, setDefenseCard] = useLocalStorage("defenseCard", []);
+  const [idElem, setIdElem] = useLocalStorage("idElem", []);
 
   useEffect(() => {
-    if (userId !== 1) {
-      setSenter((prevOnCard) => {
-        const existingIndex = prevOnCard.findIndex(
-          (obj) => obj.name === userId.name
-        );
+    setOnCard(card);
+  }, [card]);
+  //   function addIcon(res, e) {
+  //     if (idElem.indexOf(e) === -1) {
+  //       setIdElem([...idElem, e]);
+  //       setOnCard([...onCard1, res]);
+  //     }
+  //   }
+  useEffect(() => {
+    const addToArray = (newItem) => {
+      if (onCard1 !== 1) {
+        const existingIndex = onCard.findIndex((obj) => obj.id === newItem.id);
         if (existingIndex === -1) {
-          return [...prevOnCard, userId];
-        } else {
-          return prevOnCard;
+          setOnCard([...onCard, newItem]);
         }
-      });
-    }
-  }, [userId]);
+      }
+    };
+    addToArray(onCard1);
+  }, [onCard1]);
+  console.log(onCard);
+  //   useEffect(() => {
+  //     if (userId !== 1) {
+  //       setSenter((prevOnCard) => {
+  //         const existingIndex = prevOnCard.findIndex(
+  //           (obj) => obj.name === userId.name
+  //         );
+  //         if (existingIndex === -1) {
+  //           return [...prevOnCard, userId];
+  //         } else {
+  //           return prevOnCard;
+  //         }
+  //       });
+  //     }
+  //   }, [userId]);
 
-  useEffect(() => {
-    if (numBas === 1) {
-      const handleRemoveItem = () => {
-        setSenter((prevSenter) => {
-          return prevSenter.filter((obj) => obj.id !== onCard);
-        });
-      };
-      handleRemoveItem();
+  //   useEffect(() => {
+  //     if (numBas === 1) {
+  //       const handleRemoveItem = () => {
+  //         setSenter((prevSenter) => {
+  //           return prevSenter.filter((obj) => obj.id !== onCard);
+  //         });
+  //       };
+  //       handleRemoveItem();
 
-      setNumBas(5);
-    }
-  }, [numBas]);
+  //       setNumBas(5);
+  //     }
+  //   }, [numBas]);
 
   return (
     <UserContext.Provider
       value={{
+        defenseCard,
+        setDefenseCard,
+        setIdElem,
+        idElem,
+        card,
+        setCard,
+        onCard1,
+        setOnCard1,
         userId,
         setUserId,
         senter,
