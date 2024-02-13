@@ -15,7 +15,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 // ----------
 
 export default function Basket({ fals }) {
-  const { setCard, setOnCard, setNumBas, onCard, setNumB22 } = useUserContext();
+  const { setCard, setOnCard, setNumBas, onCard, setNumB22, setDelcard } =
+    useUserContext();
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
   const [twoCard, setTwoCard] = useState(onCard);
   const [t, setT] = useState(true);
@@ -427,6 +428,7 @@ export default function Basket({ fals }) {
                       size={20}
                       onClick={(e) => {
                         setEId(item.id);
+                        setDelcard(2);
                       }}
                       id={item.id}
                     />

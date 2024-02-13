@@ -18,10 +18,14 @@ export const UserProvider = ({ children }) => {
   const [onCard1, setOnCard1] = useState(1);
   const [defenseCard, setDefenseCard] = useLocalStorage("defenseCard", []);
   const [idElem, setIdElem] = useLocalStorage("idElem", []);
+  const [delcard, setDelcard] = useState(1);
 
-  //   useEffect(() => {
-  //     setOnCard(card);
-  //   }, [card]);
+  useEffect(() => {
+    if (delcard !== 1) {
+      setOnCard(card);
+      setDelcard(3);
+    }
+  }, [card]);
   //   function addIcon(res, e) {
   //     if (idElem.indexOf(e) === -1) {
   //       setIdElem([...idElem, e]);
@@ -71,6 +75,8 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
+        delcard,
+        setDelcard,
         defenseCard,
         setDefenseCard,
         setIdElem,
