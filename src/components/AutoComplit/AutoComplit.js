@@ -28,14 +28,7 @@ export default function AutoComplit({ value }) {
       {flutters &&
         flutters.map((item, index) => (
           <Link key={index} href={`/product?id=${item._id}`}>
-            <div
-              className={styles.auto_complid_element}
-              onClick={() => {
-                setFlutters(false);
-              }}
-            >
-              {item.name}
-            </div>
+            <div className={styles.auto_complid_element}>{item.name}</div>
           </Link>
         ))}
     </div>

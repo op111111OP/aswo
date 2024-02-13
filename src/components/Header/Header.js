@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLocalStorage } from "react-use";
 import AutoComplit from "../AutoComplit/AutoComplit";
+import { FiAlignJustify } from "react-icons/fi";
 
 export default function Header() {
   const [flutters, setFlutters] = useState(null);
@@ -69,20 +70,19 @@ export default function Header() {
               onChange={handleInputChange}
             />
             <Link href={`/search?search=${inputValue}`}>
-              <button className={styles.header_button}>
+              <button
+                className={styles.header_button}
+                onClick={() => {
+                  setInputValue("");
+                }}
+              >
                 <FaSearch className={styles.FaSearch} />
               </button>
             </Link>
             {inputValue && <AutoComplit value={inputValue} />}
           </div>
           <div>
-            <FaShoppingCart
-              size={25}
-              className={styles.FaShoppingCart}
-              //   onClick={() => {
-              //     setTrueHedLoc1(true);
-              //   }}
-            />
+            <FaShoppingCart size={25} className={styles.FaShoppingCart} />
           </div>
         </div>
       </div>
@@ -98,6 +98,8 @@ export default function Header() {
               alt="logo"
             />
           </Link>
+          {/* ///////////////////////////////////111 */}
+          <FiAlignJustify size={55} className={styles.FiAlignJustify} />
 
           <div className={styles.catalogue_box}>
             <div
@@ -191,6 +193,115 @@ export default function Header() {
             >
               Запчастини та комплектуючі до холодильного обладнання
             </div>
+
+            {cehage && (
+              <Menu
+                onMouseEnter={() => {
+                  setCehage(true);
+                }}
+                onMouseLeave={() => {
+                  setCehage(false);
+                }}
+                flutters={idItem}
+                num={num}
+                menuFalse={menuFalse}
+              />
+            )}
+          </div>
+          {/* //////////////////////////////222 */}
+          <div className={styles.catalogue_box2}>
+            <div
+              className={styles.catalogue_elem}
+              onMouseEnter={() => {
+                setCehage(true);
+                setIdItem(flutters[0].HoReCa);
+                setNum("a");
+              }}
+              onMouseOut={() => {
+                setCehage(false);
+              }}
+            >
+              HoReCa
+            </div>
+            <div
+              className={styles.catalogue_elem}
+              onMouseEnter={() => {
+                setCehage(true);
+                setIdItem(flutters[1].bigMachinery);
+                setNum("b");
+              }}
+              onMouseOut={() => {
+                setCehage(false);
+              }}
+            >
+              Велика техніка
+            </div>
+            <div
+              className={styles.catalogue_elem}
+              onMouseEnter={() => {
+                setCehage(true);
+                setIdItem(flutters[2].kukhonnaTekhnika);
+                setNum("c");
+              }}
+              onMouseOut={() => {
+                setCehage(false);
+              }}
+            >
+              Кухонна техніка{" "}
+            </div>
+            <div
+              className={styles.catalogue_elem}
+              onMouseEnter={() => {
+                setCehage(true);
+                setIdItem(flutters[3].equipmentBAHC);
+                setNum("d");
+              }}
+              onMouseOut={() => {
+                setCehage(false);
+              }}
+            >
+              Техніка для догляду за тілом та будинком
+            </div>
+            <div
+              className={styles.catalogue_elem}
+              onMouseEnter={() => {
+                setCehage(true);
+                setIdItem(flutters[4].climateTechno);
+                setNum("f");
+              }}
+              onMouseOut={() => {
+                setCehage(false);
+              }}
+            >
+              Кліматична техніка{" "}
+            </div>
+            <div
+              className={styles.catalogue_elem}
+              onMouseEnter={() => {
+                setCehage(true);
+                setIdItem(flutters[5].universalSPHAR);
+                setNum("g");
+              }}
+              onMouseOut={() => {
+                setCehage(false);
+              }}
+            >
+              Універсальні запчастини для ремонту побутової техніки
+            </div>
+            <div
+              className={styles.catalogue_elem}
+              onMouseEnter={() => {
+                setCehage(true);
+                setIdItem(flutters[6].sparePCRE);
+                setNum("o");
+              }}
+              onMouseOut={() => {
+                setCehage(false);
+              }}
+            >
+              Запчастини та комплектуючі до холодильного обладнання
+            </div>
+
             {cehage && (
               <Menu
                 onMouseEnter={() => {

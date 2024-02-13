@@ -21,16 +21,36 @@
   .swiper {
     user-select: none;
     width: 100vw;
-    height: 470px;
+    height: 450px;
   }
 }
 @media (max-width: 960px) {
   .swiper_slide {
-    top: 50px;
+    top: 20px;
   }
   .swiper {
     user-select: none;
     width: 100vw;
-    height: 500px;
+    height: 300px;
+  }
+}
+@media (max-width: 500px) {
+  .swiper_slide {
+    top: 0px;
+  }
+  .swiper {
+    user-select: none;
+    width: 100vw;
+    height: 200px;
+  }
+}
+@media (max-width: 400px) {
+  .swiper_slide {
+    top: 0px;
+  }
+  .swiper {
+    user-select: none;
+    width: 100vw;
+    height: 170px;
   }
 }

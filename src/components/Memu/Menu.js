@@ -13,11 +13,7 @@ export default function Menu({
   menuFalse,
 }) {
   const [fels, setFals] = useState(true);
-  const userId = (newItem) => {
-    if (newItem !== undefined && newItem !== "") {
-      setOnCategori(newItem);
-    }
-  };
+  const userId = (newItem) => {};
   const userIdG = (newItem) => {
     if (newItem !== undefined && newItem !== "") {
       setOnCategoriG(newItem);
