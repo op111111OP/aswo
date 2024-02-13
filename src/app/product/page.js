@@ -9,16 +9,29 @@ import { useUserContext } from "../Context/store";
 import { BsArrowLeft } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Basket from "../../components/Basket/Basket";
 
 export default function Page() {
-  //   const { id, setUserId } = useUserContext();
+  const { setOnCard1 } = useUserContext();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [flutters, setFlutters] = useState(null);
   const [flut, setFlut] = useState(null);
   const [truF, setTruF] = useState(true);
   const [name, setName] = useState("");
-  //   const [idp, seIdp] = useState();
+  const [cehageCor, setCehageCor] = useState(false);
+  const handleBoxClick = () => {
+    setCehageCor(false);
+  };
+  const handleBasketClick = (e, object) => {
+    setOnCard1(object);
+    setCehageCor(true);
+    e.stopPropagation();
+  };
+  function fals(t) {
+    setCehageCor(t);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,6 +67,7 @@ export default function Page() {
   //   console.log(flut);
   return (
     <div className={styles.main}>
+      {cehageCor && <Basket fals={fals} />}
       {!truF && (
         <BsArrowLeft
           className={styles.dustbinI}
@@ -65,7 +79,7 @@ export default function Page() {
       )}
       {flutters && (
         <div className={styles.right_g_box}>
-          <div className={styles.right_goods_box}>
+          <div className={styles.right_goods_box} onClick={handleBoxClick}>
             {truF && <div className={styles.name}>{flutters.name}</div>}
             <div className={styles.slide_box}>
               <div className={styles.link_box}>
@@ -102,14 +116,14 @@ export default function Page() {
               </div>
 
               {truF && (
-                <div className={styles.price_box}>
+                <div className={styles.price_box} onClick={handleBoxClick}>
                   <div className={styles.price_box_pbox}>
                     <div className={styles.price}>{flutters.price} грн.</div>
                     <FaShoppingCart
                       size={25}
                       color=" #0058a2"
-                      onClick={() =>
-                        setUserId({
+                      onClick={(e) => {
+                        handleBasketClick(e, {
                           categori: flutters.categori,
                           brand: flutters.brand,
                           country: flutters.country,
@@ -118,8 +132,8 @@ export default function Page() {
                           name: flutters.name,
                           price: flutters.price,
                           id: flutters._id,
-                        })
-                      }
+                        });
+                      }}
                       className={styles.shopping}
                     />
                   </div>
@@ -142,16 +156,7 @@ export default function Page() {
           <div className={styles.right_goods_box2}>
             {Array.isArray(flut) &&
               flut.map((item, index) => (
-                <div
-                  className={styles.swiper_slide2}
-                  key={index}
-                  onMouseEnter={() => {
-                    setCehage(index);
-                  }}
-                  onMouseLeave={() => {
-                    setCehage(false);
-                  }}
-                >
+                <div className={styles.swiper_slide2} key={index}>
                   <div className={styles.slide_box2}>
                     <Link href={`./product?id=${item._id2}`}>
                       <div

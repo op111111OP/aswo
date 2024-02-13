@@ -98,18 +98,11 @@ export default function Page() {
   };
 
   const handleBoxClick = () => {
-    // Ваша логика обработки клика на боксе
-    console.log("Clicked on the box");
-    // Скрыть корзину при клике на боксе
     setCehageCor(false);
   };
-
   const handleBasketClick = (e, object) => {
-    // Ваша логика обработки клика на корзине
-    addToArray(object);
     setOnCard1(object);
     setCehageCor(true);
-    // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
   };
   function fals(t) {
@@ -199,7 +192,7 @@ export default function Page() {
               <div className={styles.right_h2}>Назва</div>
               <div className={styles.right_hh}>
                 <div className={styles.right_h2}>Ціна</div>
-                <div className={styles.right_h2}>Замовлення</div>
+                <div className={styles.right_h22}>Замовлення</div>
               </div>
             </div>
           )}

@@ -14,7 +14,7 @@ import { useUserContext } from "../Context/store";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const { setUserId, setId, nemeB } = useUserContext();
+  const { setUserId, setId, setOnCard1 } = useUserContext();
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
 
@@ -66,18 +66,11 @@ export default function Page() {
   };
 
   const handleBoxClick = () => {
-    // Ваша логика обработки клика на боксе
-    console.log("Clicked on the box");
-    // Скрыть корзину при клике на боксе
     setCehageCor(false);
   };
-
   const handleBasketClick = (e, object) => {
-    // Ваша логика обработки клика на корзине
-    addToArray(object);
-
+    setOnCard1(object);
     setCehageCor(true);
-    // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
   };
   function fals(t) {

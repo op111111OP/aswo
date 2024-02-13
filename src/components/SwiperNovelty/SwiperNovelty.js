@@ -19,8 +19,9 @@ import { useUserContext } from "../../app/Context/store";
 import Basket from "../Basket/Basket";
 
 export default function App() {
-  const { setId } = useUserContext();
+  const { setOnCard1 } = useUserContext();
   const [cehageCor, setCehageCor] = useState(false);
+
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
 
@@ -44,7 +45,7 @@ export default function App() {
 
   const handleBasketClick = (e, object) => {
     // addToArray(object);
-
+    setOnCard1(object);
     setCehageCor(true);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе
     e.stopPropagation();
@@ -54,10 +55,10 @@ export default function App() {
   }
 
   return (
-    <div className={styles.box_carusel} onClick={handleBoxClick}>
+    <div className={styles.box_carusel}>
       {cehageCor && <Basket fals={fals} />}
       <div className={styles.now}>Новинки</div>
-      <div id="gallery1">
+      <div id="gallery1" onClick={handleBoxClick}>
         {Array.isArray(flutters) ? (
           <Swiper
             slidesPerView={4}

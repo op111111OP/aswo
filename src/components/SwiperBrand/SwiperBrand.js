@@ -47,6 +47,30 @@ export default function App() {
       img: "https://doctor-h.com.ua/content/images/32/180x68l75nn0/28191980357954.webp",
       name: "beslux",
     },
+    {
+      img: "https://doctor-h.com.ua/content/images/32/180x68l75nn0/28191980357954.webp",
+      name: "beslux",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/34/180x54l75nn0/30449079637884.webp",
+      name: "copreci",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/45/180x74l75nn0/35735801480381.webp",
+      name: "danfoss",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/24/180x101l75nn0/60009054446197.webp",
+      name: "delonghi",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/25/180x59l75nn0/15266602545750.webp",
+      name: "domel",
+    },
+    {
+      img: "https://doctor-h.com.ua/content/images/6/180x100l75nn0/38958517653152.webp",
+      name: "ebi",
+    },
   ];
   return (
     <div className={styles.box_carusel}>

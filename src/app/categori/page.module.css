@@ -173,7 +173,7 @@
 .right_hh {
   display: flex;
   justify-content: space-between;
-  gap: 80px;
+  width: 30%;
 }
 .price_box_cl {
   display: flex;
@@ -219,3 +219,23 @@
   width: 20%;
 }
 /* categori_box_left */
+/* @media (max-width: 1500px) {
+  .right_hh {
+    gap: 120px;
+  }
+}
+@media (max-width: 1100px) {
+  .right_hh {
+    gap: 130px;
+  }
+}
+@media (max-width: 950px) {
+  .right_hh {
+    gap: 130px;
+  }
+}
+@media (max-width: 700px) {
+  .right_hh {
+    gap: 130px;
+  }
+} */

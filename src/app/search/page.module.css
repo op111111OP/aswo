@@ -174,7 +174,7 @@
 .right_hh {
   display: flex;
   justify-content: space-between;
-  gap: 80px;
+  width: 30%;
 }
 .price_box_cl {
   display: flex;
