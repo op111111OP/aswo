@@ -13,15 +13,15 @@ export const UserProvider = ({ children }) => {
   const [numB22, setNumB22] = useState([]);
   const [trueHedLoc, setTrueHedLoc] = useState(false);
   const [nemeB, setNemeB] = useState(1);
-  const [card, setCard] = useState([1]);
+  const [card, setCard] = useState([]);
   const [onCard, setOnCard] = useLocalStorage("onCard6", []);
   const [onCard1, setOnCard1] = useState(1);
   const [defenseCard, setDefenseCard] = useLocalStorage("defenseCard", []);
   const [idElem, setIdElem] = useLocalStorage("idElem", []);
 
-  useEffect(() => {
-    setOnCard(card);
-  }, [card]);
+  //   useEffect(() => {
+  //     setOnCard(card);
+  //   }, [card]);
   //   function addIcon(res, e) {
   //     if (idElem.indexOf(e) === -1) {
   //       setIdElem([...idElem, e]);
