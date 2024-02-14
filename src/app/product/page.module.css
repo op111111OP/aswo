@@ -4,7 +4,7 @@
   padding: 1px;
   align-items: center;
   min-height: 100vh;
-  width: 95vw;
+  width: 95%;
 }
 .auto {
   position: fixed;
@@ -22,8 +22,8 @@
 .img_box {
   display: flex;
   justify-content: center;
-  max-height: 420px;
-  min-height: 400px;
+  max-height: 430px;
+  min-height: 420px;
   overflow: hidden;
   margin: 10px 0px 15px 0px;
   cursor: pointer;
@@ -32,7 +32,8 @@
 .img_box_fals {
   display: flex;
   justify-content: center;
-  max-height: 400px;
+  max-height: 800px;
+  min-height: 800px;
   min-width: 95vh;
   overflow: hidden;
   margin: 0px 0px 15px 0px;
@@ -53,6 +54,12 @@
   justify-content: space-around;
   display: flex;
   flex-direction: column;
+}
+.link_box_fels {
+  width: 90%;
+  margin: 0px 0px 15px 0px;
+  justify-content: center;
+  display: flex;
 }
 
 /* price_box */

@@ -100,7 +100,7 @@ export default function Page() {
           <div className={styles.right_goods_box} onClick={handleBoxClick}>
             {truF && <div className={styles.name}>{flutters.name}</div>}
             <div className={styles.slide_box}>
-              <div className={styles.link_box}>
+              <div className={truF ? styles.link_box : styles.link_box_fals}>
                 <div className={truF ? styles.img_box : styles.img_box_fals}>
                   <Image
                     src={flutters.img}
@@ -111,11 +111,15 @@ export default function Page() {
                     height={100}
                     style={
                       truF
-                        ? { height: "50vh", width: "70%", objectFit: "contain" }
-                        : {
+                        ? {
                             height: "400px",
-                            width: "50vw",
+                            width: "auto",
                             objectFit: "contain",
+                          }
+                        : {
+                            height: "auto",
+                            width: "70vw",
+                            //  objectFit: "contain",
                           }
                     }
                     onClick={() => {
