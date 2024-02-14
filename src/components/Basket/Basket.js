@@ -15,9 +15,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 // ----------
 
 export default function Basket({ fals }) {
-  const { setCard, setOnCard, setNumBas, onCard, setNumB22, setDelcard } =
-    useUserContext();
-  const [aa1, setAa1] = useLocalStorage("resAa1111", []);
+  const { setCard, setNumBas, onCard, setDelcard } = useUserContext();
+  const [aa1, setAa1] = useLocalStorage("resS1", []);
+  const [aa2, setAa2] = useLocalStorage("resSS", []);
   const [twoCard, setTwoCard] = useState(onCard);
   const [t, setT] = useState(true);
   const [truF, setTruF] = useState(false);
@@ -25,12 +25,8 @@ export default function Basket({ fals }) {
   const [numBd, setNumBd] = useState(0);
   const [numB2, setNumB2] = useState(0);
   const [numB1, setNumB1] = useState([]);
-  const [n, setN] = useState([]);
-  const [onIds, setOnIds] = useState("");
-  const [numBas1, setNumBas1] = useState(0);
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
-  const [a, setA] = useState();
 
   function Adrlas(index) {
     setNumB((prevN) => {
@@ -45,6 +41,13 @@ export default function Basket({ fals }) {
     });
   }
 
+  useEffect(() => {
+    setTwoCard(onCard);
+  }, [onCard]);
+
+  useEffect(() => {
+    setTwoCard(onCard);
+  }, [onCard]);
   useEffect(() => {
     setTwoCard(onCard);
   }, [onCard]);
@@ -69,28 +72,25 @@ export default function Basket({ fals }) {
   }, [onTrue]);
 
   //  jjj
-
-  const addOnesx = () => {
-    const numbers = twoCard.map((obj) => obj.price);
-    setNumB(numbers);
-    //  }
-  };
+  useEffect(() => {
+    const addOnesx = () => {
+      const numbers = twoCard.map((obj) => obj.price);
+      setNumB(numbers);
+    };
+    addOnesx();
+  }, [twoCard]);
 
   useEffect(() => {
     const sum = numB.reduce((total, num) => total + num, 0);
     setNumBd(sum);
+    if (numB.length === 0) {
+      const newArray = numB.map((item) => {
+        return item == 0 ? 1 : item / item;
+      });
+      setNumB1(newArray);
+    }
   }, [numB]);
-
-  useEffect(() => {
-    setNumB2(twoCard.length);
-    //  }
-  }, [twoCard]);
-  useEffect(() => {
-    setNumB1(Array(numB2 + 1).fill(1));
-
-    addOnesx();
-  }, [twoCard]);
-
+  console.log(numB1);
   const updateNumB = (index, value) => {
     setNumB((prevNumB) => {
       const updatedNumB = [...prevNumB];
