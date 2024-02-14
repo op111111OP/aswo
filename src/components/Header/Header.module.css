@@ -58,21 +58,26 @@
   flex-direction: column;
   gap: 5px;
   padding: 20px;
+  z-index: 8;
 }
 .header_input {
   height: 30px;
   width: 300px;
   outline: none;
+  z-index: 3;
 }
 .header_button {
-  margin: 3px 0px 0px -20px;
+  position: absolute;
+  right: 3px;
   height: 30px;
   border: none;
   background: none;
   outline: none;
+  z-index: 8;
 }
 .search_container {
   display: flex;
+  position: relative;
 }
 /*  */
 @media screen and (max-width: 445px) {
@@ -83,17 +88,21 @@
 .menu_box {
   position: absolute;
 }
-.FaShoppingCart,
+
 .FaSearch {
+  z-index: 8;
+  cursor: pointer;
+}
+.FaShoppingCart {
   cursor: pointer;
 }
 
 .auto {
-  position: absolute;
+  position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 130vh;
   background-color: transparent;
-  top: 70px;
+  top: 0px;
   left: 0px;
   z-index: 2;
 }

@@ -22,16 +22,13 @@ export default function App() {
       <Swiper
         spaceBetween={30}
         effect={"fade"}
-        navigation={true}
+        navigation={false}
         autoplay={{
           delay: 15000,
           disableOnInteraction: false,
         }}
         loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[EffectFade, Autoplay, Pagination, Navigation]}
+        modules={[EffectFade, Autoplay, Navigation]}
         className={styles.swiper}
       >
         {imgMas.map((item, index) => (

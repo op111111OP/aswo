@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useUserContext } from "../../app/Context/store";
 import Basket from "../Basket/Basket";
+import { useTimeoutFn } from "react-use";
 
 export default function App() {
   const { setOnCard1 } = useUserContext();
@@ -53,10 +54,18 @@ export default function App() {
   function fals(t) {
     setCehageCor(t);
   }
-
+  //   setTimeout(fa(), 1000);
   return (
     <div className={styles.box_carusel}>
       {cehageCor && <Basket fals={fals} />}
+      {cehageCor && (
+        <div
+          className={styles.auto}
+          onClick={() => {
+            setCehageCor(false);
+          }}
+        ></div>
+      )}
       <div className={styles.now}>Новинки</div>
       <div id="gallery1" onClick={handleBoxClick}>
         {Array.isArray(flutters) ? (

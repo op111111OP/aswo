@@ -20,6 +20,7 @@ export default function Page() {
   const [truF, setTruF] = useState(true);
   const [name, setName] = useState("");
   const [cehageCor, setCehageCor] = useState(false);
+
   const handleBoxClick = () => {
     setCehageCor(false);
   };
@@ -68,6 +69,23 @@ export default function Page() {
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
+      {cehageCor && (
+        <div
+          className={styles.auto}
+          onClick={() => {
+            setCehageCor(false);
+          }}
+        ></div>
+      )}
+      <div className={styles.header_auto}>
+        <FaShoppingCart
+          size={25}
+          className={styles.FaShoppingCart}
+          onClick={() => {
+            setCehageCor(true);
+          }}
+        />
+      </div>
       {!truF && (
         <BsArrowLeft
           className={styles.dustbinI}

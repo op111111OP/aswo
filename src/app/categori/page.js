@@ -113,6 +113,23 @@ export default function Page() {
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
+      {cehageCor && (
+        <div
+          className={styles.auto}
+          onClick={() => {
+            setCehageCor(false);
+          }}
+        ></div>
+      )}
+      <div className={styles.header_auto}>
+        <FaShoppingCart
+          size={25}
+          className={styles.FaShoppingCart}
+          onClick={() => {
+            setCehageCor(true);
+          }}
+        />
+      </div>
       <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.main_h1}>
           {num1 > num2 ? IdCategori : onCategori}

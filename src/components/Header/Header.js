@@ -62,13 +62,6 @@ export default function Header() {
             </a>
           </div>
           <div className={styles.search_container}>
-            <input
-              className={styles.header_input}
-              placeholder="Пошук"
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-            />
             <Link href={`/search?search=${inputValue}`}>
               <button
                 className={styles.header_button}
@@ -79,10 +72,17 @@ export default function Header() {
                 <FaSearch className={styles.FaSearch} />
               </button>
             </Link>
+            <input
+              className={styles.header_input}
+              placeholder="Пошук"
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+            />
             {inputValue && <AutoComplit value={inputValue} />}
           </div>
           <div>
-            <FaShoppingCart size={25} className={styles.FaShoppingCart} />
+            {/* <FaShoppingCart size={25} className={styles.FaShoppingCart} /> */}
           </div>
         </div>
       </div>

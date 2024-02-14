@@ -239,3 +239,34 @@
     gap: 130px;
   }
 } */
+.header_auto {
+  position: absolute;
+  width: 1100px;
+  height: 70px;
+  top: 0;
+}
+.FaShoppingCart {
+  position: absolute;
+  top: 22px;
+  right: 10px;
+  color: rgb(249, 251, 253);
+}
+.FaShoppingCart:hover {
+  cursor: pointer;
+  color: rgb(7, 40, 74);
+}
+.auto {
+  position: fixed;
+  width: 100vw;
+  height: 130vh;
+  background-color: transparent;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+}
+@media (max-width: 1100px) {
+  .header_auto {
+    position: absolute;
+    width: 1100px;
+  }
+}

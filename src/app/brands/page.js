@@ -5,11 +5,21 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useUserContext } from "../Context/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "react-use";
+import Basket from "../../components/Basket/Basket";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function App() {
   const { setNemeB } = useUserContext();
+  const [cehageCor, setCehageCor] = useState(false);
+  useEffect(() => {
+    setCehageCor(false);
+  }, []);
+
+  function fals(t) {
+    setCehageCor(t);
+  }
 
   const brend = [
     {
@@ -111,32 +121,53 @@ export default function App() {
   ];
   return (
     <div className={styles.right_goods_box}>
-      {brend.map((item, index) => (
-        <div className={styles.swiper_slide} key={index}>
-          <div className={styles.slide_box}>
-            <Link href={`/search?search=${item.name}`}>
-              <div className={styles.link_box}>
-                <div className={styles.img_box}>
-                  <Image
-                    className={styles.img}
-                    src={item.img}
-                    alt="Vercel Logo"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
-                    width={100}
-                    height={100}
-                    style={{
-                      height: "auto",
-                      width: "120px",
-                      objectFit: "contain",
-                    }}
-                  />
+      {cehageCor && <Basket fals={fals} />}
+
+      {cehageCor && (
+        <div
+          className={styles.auto}
+          onClick={() => {
+            setCehageCor(false);
+          }}
+        ></div>
+      )}
+      <div className={styles.header_auto}>
+        <FaShoppingCart
+          size={25}
+          className={styles.FaShoppingCart}
+          onClick={() => {
+            setCehageCor(true);
+          }}
+        />
+      </div>
+      <div className={styles.right_goods}>
+        {brend.map((item, index) => (
+          <div className={styles.swiper_slide} key={index}>
+            <div className={styles.slide_box}>
+              <Link href={`/search?search=${item.name}`}>
+                <div className={styles.link_box}>
+                  <div className={styles.img_box}>
+                    <Image
+                      className={styles.img}
+                      src={item.img}
+                      alt="Vercel Logo"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
+                      width={100}
+                      height={100}
+                      style={{
+                        height: "auto",
+                        width: "120px",
+                        objectFit: "contain",
+                      }}
+                    />
+                  </div>
+                  <div className={styles.text_box}>{item.name}</div>
                 </div>
-                <div className={styles.text_box}>{item.name}</div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
