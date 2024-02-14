@@ -99,7 +99,7 @@ export default function Header() {
             />
           </Link>
           {/* ///////////////////////////////////111 */}
-          <FiAlignJustify size={55} className={styles.FiAlignJustify} />
+          <FiAlignJustify size={25} className={styles.FiAlignJustify} />
 
           <div className={styles.catalogue_box}>
             <div
