@@ -30,29 +30,12 @@ export default function Basket({ fals }) {
   const [numBas1, setNumBas1] = useState(0);
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
+  const [a, setA] = useState();
 
   useEffect(() => {
     setTwoCard(onCard);
   }, [onCard]);
-  // jjj
-  //   useEffect(() => {
-  //     if (eId !== "") {
-  //       twoId.map((item, index) =>
-  //         Number(item) === Number(eId)
-  //           ? setTwoCard([
-  //               ...twoCard.slice(0, index),
-  //               ...twoCard.slice(index + 1),
-  //             ])
-  //           : true
-  //       );
-  //       twoId.map((item, index) =>
-  //         Number(item) === Number(eId)
-  //           ? setTwoId([...twoId.slice(0, index), ...twoId.slice(index + 1)])
-  //           : true
-  //       );
-  //       setOnTrue((a) => !a);
-  //     }
-  //   }, [eId]);
+
   useEffect(() => {
     if (eId !== "") {
       const addToArray = (newItem) => {
@@ -73,18 +56,9 @@ export default function Basket({ fals }) {
   }, [onTrue]);
 
   //  jjj
-  useEffect(() => {
-    if (numBas1 !== 1 || n.length == 0) {
-      setN(aa1);
-    }
-    if (numBas1 === 1) {
-      setAa1(n);
-      setNumB22(n);
-    }
-  }, [n, aa1]);
 
   const addOnesx = () => {
-    const numbers = aa1.map((obj) => obj.price);
+    const numbers = twoCard.map((obj) => obj.price);
     setNumB(numbers);
     //  }
   };
@@ -95,22 +69,14 @@ export default function Basket({ fals }) {
   }, [numB]);
 
   useEffect(() => {
-    //  if (numC > 0) {
-    //    setMas(senterLoc);
-    //    setNumB2(senterLoc.length);
-    //  } else {
-    //  setMas(senter);
-    setNumB2(aa1.length);
+    setNumB2(twoCard.length);
     //  }
-  }, [aa1]);
+  }, [twoCard]);
   useEffect(() => {
-    //  if (numC > 0) {
-    //    setNumB1(Array(numB2 + 1).fill(1));
-    //  } else {
     setNumB1(Array(numB2 + 1).fill(1));
-    //  }
+
     addOnesx();
-  }, [aa1]);
+  }, [twoCard]);
 
   const updateNumB = (index, value) => {
     setNumB((prevNumB) => {
@@ -400,8 +366,10 @@ export default function Basket({ fals }) {
                         <div
                           className={styles.button1}
                           onClick={() => {
-                            updateNumBn22(index);
-                            updateNumBn(index, item.price);
+                            if (numB1[index] > 1) {
+                              updateNumBn22(index);
+                              updateNumBn(index, item.price);
+                            }
                           }}
                         >
                           -
@@ -427,6 +395,7 @@ export default function Basket({ fals }) {
                       className={styles.dustbin}
                       size={20}
                       onClick={(e) => {
+                        setA(index);
                         setEId(item.id);
                         setDelcard(2);
                       }}
