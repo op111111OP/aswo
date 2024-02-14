@@ -118,3 +118,19 @@ section {
     color-scheme: dark;
   }
 }
+@media (max-width: 1600px) {
+  #l1 {
+    display: none;
+  }
+}
+@media (max-width: 1300px) {
+  #l2,
+  #l4 {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  #l3 {
+    display: none;
+  }
+}

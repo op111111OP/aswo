@@ -178,7 +178,11 @@ export default function Page() {
           <div className={styles.right_goods_box2}>
             {Array.isArray(flut) &&
               flut.map((item, index) => (
-                <div className={styles.swiper_slide2} key={index}>
+                <div
+                  className={styles.swiper_slide2}
+                  key={index}
+                  id={`l${index}`}
+                >
                   <div className={styles.slide_box2}>
                     <Link href={`./product?id=${item._id2}`}>
                       <div
