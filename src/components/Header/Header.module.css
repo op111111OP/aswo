@@ -119,7 +119,13 @@
   align-items: center;
   justify-content: space-between;
   display: none;
-  height: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  background-color: #ffffff;
+  padding: 30px;
+  width: 300px;
 }
 .FaShoppingCart {
   color: rgb(254, 255, 255);
