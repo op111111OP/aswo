@@ -32,6 +32,19 @@ export default function Basket({ fals }) {
   const [onTrue, setOnTrue] = useState(false);
   const [a, setA] = useState();
 
+  function Adrlas(index) {
+    setNumB((prevN) => {
+      const updatedN = [...prevN]; // Створюємо копію масиву
+      updatedN.splice(index, 1); // Видаляємо елемент за індексом
+      return updatedN; // Повертаємо оновлений масив
+    });
+    setNumB1((prevN) => {
+      const updatedN = [...prevN]; // Створюємо копію масиву
+      updatedN.splice(index, 1); // Видаляємо елемент за індексом
+      return updatedN; // Повертаємо оновлений масив
+    });
+  }
+
   useEffect(() => {
     setTwoCard(onCard);
   }, [onCard]);
@@ -395,7 +408,7 @@ export default function Basket({ fals }) {
                       className={styles.dustbin}
                       size={20}
                       onClick={(e) => {
-                        setA(index);
+                        Adrlas(index);
                         setEId(item.id);
                         setDelcard(2);
                       }}
