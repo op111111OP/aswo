@@ -83,10 +83,8 @@ export default function Basket({ fals }) {
   useEffect(() => {
     const sum = numB.reduce((total, num) => total + num, 0);
     setNumBd(sum);
-    if (numB.length === 0) {
-      const newArray = numB.map((item) => {
-        return item == 0 ? 1 : item / item;
-      });
+    if (numB.length > numB1.length) {
+      const newArray = numB.map(() => 1);
       setNumB1(newArray);
     }
   }, [numB]);
