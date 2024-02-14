@@ -32,8 +32,8 @@
 .img_box_fals {
   display: flex;
   justify-content: center;
-  max-height: 800px;
-  min-height: 800px;
+  max-height: 80vh;
+  min-height: 80vh;
   min-width: 95vh;
   overflow: hidden;
   margin: 0px 0px 15px 0px;
