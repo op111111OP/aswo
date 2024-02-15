@@ -46,32 +46,32 @@ export default function App() {
   const handleBoxClick = () => {
     setCehageCor(false);
   };
-  useEffect(() => {
-    function handleResize() {
-      setWindowWidth(window.innerWidth);
-    }
+  //   useEffect(() => {
+  //     function handleResize() {
+  //       setWindowWidth(window.innerWidth);
+  //     }
 
-    window.addEventListener("resize", handleResize);
+  //     window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //     return () => {
+  //       window.removeEventListener("resize", handleResize);
+  //     };
+  //   }, []);
 
-  useEffect(() => {
-    if (window.innerWidth > 900) {
-      setAreySlide(4);
-    }
-    if (window.innerWidth < 900) {
-      setAreySlide(3);
-    }
-    if (window.innerWidth < 600) {
-      setAreySlide(2);
-    }
-    if (window.innerWidth < 450) {
-      setAreySlide(1);
-    }
-  }, [windowWidth]);
+  //   useEffect(() => {
+  //     if (window.innerWidth > 900) {
+  //       setAreySlide(4);
+  //     }
+  //     if (window.innerWidth < 900) {
+  //       setAreySlide(3);
+  //     }
+  //     if (window.innerWidth < 600) {
+  //       setAreySlide(2);
+  //     }
+  //     if (window.innerWidth < 450) {
+  //       setAreySlide(1);
+  //     }
+  //   }, [windowWidth]);
   const handleBasketClick = (e, object) => {
     // addToArray(object);
     setOnCard1(object);

@@ -18,32 +18,32 @@ export default function App() {
   const [areySlide, setAreySlide] = useState(4);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    function handleResize() {
-      setWindowWidth(window.innerWidth);
-    }
+  //   useEffect(() => {
+  //     function handleResize() {
+  //       setWindowWidth(window.innerWidth);
+  //     }
 
-    window.addEventListener("resize", handleResize);
+  //     window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //     return () => {
+  //       window.removeEventListener("resize", handleResize);
+  //     };
+  //   }, []);
 
-  useEffect(() => {
-    if (window.innerWidth > 900) {
-      setAreySlide(8);
-    }
-    if (window.innerWidth < 900) {
-      setAreySlide(5);
-    }
-    if (window.innerWidth < 600) {
-      setAreySlide(3);
-    }
-    if (window.innerWidth < 450) {
-      setAreySlide(2);
-    }
-  }, [windowWidth]);
+  //   useEffect(() => {
+  //     if (window.innerWidth > 900) {
+  //       setAreySlide(8);
+  //     }
+  //     if (window.innerWidth < 900) {
+  //       setAreySlide(5);
+  //     }
+  //     if (window.innerWidth < 600) {
+  //       setAreySlide(3);
+  //     }
+  //     if (window.innerWidth < 450) {
+  //       setAreySlide(2);
+  //     }
+  //   }, [windowWidth]);
   const imgMas = [
     {
       img: "https://doctor-h.com.ua/content/images/29/77x38l75nn0/81827292297291.webp",
