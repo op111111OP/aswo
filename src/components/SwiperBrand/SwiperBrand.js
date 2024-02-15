@@ -15,8 +15,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [areySlide, setAreySlide] = useState(4);
-
   const imgMas = [
     {
       img: "https://doctor-h.com.ua/content/images/29/77x38l75nn0/81827292297291.webp",
@@ -79,7 +77,7 @@ export default function App() {
     <div className={styles.box_carusel}>
       <div className={styles.now}>Бренди</div>
       <Swiper
-        slidesPerView={areySlide}
+        slidesPerView={8}
         spaceBetween={0}
         navigation={false}
         autoplay={{
@@ -91,6 +89,23 @@ export default function App() {
         //     clickable: false,
         //   }}
         modules={[Autoplay, Pagination, Navigation]}
+        breakpoints={{
+          1200: {
+            slidesPerView: 8,
+          },
+          900: {
+            slidesPerView: 5,
+          },
+          600: {
+            slidesPerView: 4,
+          },
+          450: {
+            slidesPerView: 3,
+          },
+          0: {
+            slidesPerView: 2,
+          },
+        }}
         className={styles.swiper}
       >
         {imgMas.map((item, index) => (
