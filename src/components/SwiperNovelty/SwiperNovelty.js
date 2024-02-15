@@ -24,9 +24,7 @@ export default function App() {
   const [cehageCor, setCehageCor] = useState(false);
 
   const [areySlide, setAreySlide] = useState(4);
-  const [windowWidth, setWindowWidth] = useState(
-    document.documentElement.clientWidth
-  );
+  const [windowWidth, setWindowWidth] = useState(document.body.clientWidth);
 
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
