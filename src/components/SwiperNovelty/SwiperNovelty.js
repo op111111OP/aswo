@@ -25,9 +25,7 @@ export default function App() {
   const [flutters, setFlutters] = useState([]);
 
   const [areySlide, setAreySlide] = useState(4);
-  const [windowWidth, setWindowWidth] = useState(
-    document.documentElement.clientWidth
-  );
+  const [windowWidth, setWindowWidth] = useState(document.body.clientWidth);
 
   useEffect(() => {
     const fetchData = async () => {
