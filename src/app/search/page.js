@@ -55,7 +55,12 @@ export default function Page() {
     };
     fetchData();
   }, [search]);
-
+  useEffect(() => {
+    setPriceRange([
+      Math.min(...flutters.map((obj) => obj.price)),
+      Math.max(...flutters.map((obj) => obj.price)),
+    ]);
+  }, [flutters]);
   //   bbbbbbbbbbbbbbbbb
   const handleSliderChange = (value) => {
     setPriceRange(value);
@@ -139,8 +144,8 @@ export default function Page() {
           <div className={styles.slider}>
             <Slider
               range
-              min={0}
-              max={20000}
+              min={Math.min(...flutters.map((obj) => obj.price))}
+              max={Math.max(...flutters.map((obj) => obj.price))}
               step={1}
               value={priceRange}
               onChange={handleSliderChange}

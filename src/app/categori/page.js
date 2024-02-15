@@ -21,7 +21,7 @@ export default function Page() {
   const searchParams = useSearchParams();
   const onCategori = searchParams.get("categori");
   const falsepon = searchParams.get("false");
-  const [priceRange, setPriceRange] = useState([0, 20000]);
+  const [priceRange, setPriceRange] = useState([0, 0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
@@ -88,6 +88,12 @@ export default function Page() {
     };
     fetchData();
   }, [name]);
+  useEffect(() => {
+    setPriceRange([
+      Math.min(...flutters.map((obj) => obj.price)),
+      Math.max(...flutters.map((obj) => obj.price)),
+    ]);
+  }, [flutters]);
 
   //   bbbbbbbbbbbbbbbbb
   const handleSliderChange = (value) => {
@@ -175,8 +181,8 @@ export default function Page() {
             <div className={styles.slider}>
               <Slider
                 range
-                min={0}
-                max={20000}
+                min={Math.min(...flutters.map((obj) => obj.price))}
+                max={Math.max(...flutters.map((obj) => obj.price))}
                 step={1}
                 value={priceRange}
                 onChange={handleSliderChange}
