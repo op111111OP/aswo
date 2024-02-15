@@ -23,6 +23,7 @@ export default function App() {
   const { setOnCard1 } = useUserContext();
   const [cehageCor, setCehageCor] = useState(false);
 
+  const [areySlide, setAreySlide] = useState(4);
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
 
@@ -70,7 +71,7 @@ export default function App() {
       <div id="gallery1" onClick={handleBoxClick}>
         {Array.isArray(flutters) ? (
           <Swiper
-            slidesPerView={4}
+            slidesPerView={areySlide}
             spaceBetween={30}
             navigation={true}
             observeVisibility={true}

@@ -123,6 +123,7 @@
 
   padding: 20px;
   gap: 30px;
+  border-bottom: 0.2px solid #1d71d28e;
 }
 .country_h1 {
 }
@@ -153,9 +154,6 @@
   margin: 0px 0px 15px 0px;
 }
 
-.text_botom_box2 {
-  margin: 30px 0px 0px 0px;
-}
 .text_box2 {
   height: 57px;
 }
@@ -229,6 +227,7 @@
 }
 .text_botom_box2 {
   font-size: 14px;
+  margin: 30px 0px 0px 0px;
 }
 
 .right_goods_box2 {
@@ -305,4 +304,29 @@
   }
 }
 @media (max-width: 900px) {
+  .description_box {
+    margin: 300px 0px 0px 0px;
+    width: 80vw;
+  }
+  .price_box {
+    position: absolute;
+    top: 400px;
+    width: 80vw;
+  }
+  .slide_box {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .link_box {
+    width: 100%;
+    margin: 0px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .price_box_pbox {
+    /* position: relative; */
+  }
 }

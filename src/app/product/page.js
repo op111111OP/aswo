@@ -159,16 +159,25 @@ export default function Page() {
                       className={styles.shopping}
                     />
                   </div>
+
                   <div className={styles.characteristics_box}>
                     <div className={styles.characteristics_h1}>
                       Характеристики
                     </div>
+                    {/* {flutters.country && ( */}
                     <div className={styles.country_box}>
                       <div className={styles.country_h1}>
                         Країна виробництва:{" "}
                       </div>
                       <div className={styles.country}>{flutters.country}</div>
                     </div>
+                    {/* )} */}
+                    {/* {flutters.brand && ( */}
+                    <div className={styles.country_box}>
+                      <div className={styles.country_h1}>Бренд: </div>
+                      <div className={styles.country}>{flutters.brand}</div>
+                    </div>
+                    {/* )} */}
                   </div>
                 </div>
               )}
