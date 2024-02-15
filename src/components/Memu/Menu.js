@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useLocalStorage } from "react-use";
+import { BsX } from "react-icons/bs";
 
 export default function Menu({
   flutters,
@@ -38,6 +39,7 @@ export default function Menu({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
+      <BsX size={20} className={styles.x} onClick={() => setFals(false)} />
       {flutters &&
         flutters.map((item, index) => (
           <div key={index} className={styles.component_box}>

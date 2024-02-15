@@ -1,14 +1,14 @@
 "use client";
 import styles from "./Header.module.css";
 import Image from "next/image";
-import { BsTelephoneFill } from "react-icons/bs";
+import { BsTelephoneFill, BsX } from "react-icons/bs";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import Menu from "../Memu/Menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useLocalStorage } from "react-use";
 import AutoComplit from "../AutoComplit/AutoComplit";
 import { FiAlignJustify } from "react-icons/fi";
+import { BsChevronRight } from "react-icons/bs";
 
 export default function Header() {
   const [flutters, setFlutters] = useState(null);
@@ -16,6 +16,7 @@ export default function Header() {
   const [num, setNum] = useState();
   const [idItem, setIdItem] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [t, setT] = useState(false);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -99,7 +100,11 @@ export default function Header() {
             />
           </Link>
           {/* ///////////////////////////////////111 */}
-          <FiAlignJustify size={25} className={styles.FiAlignJustify} />
+          <FiAlignJustify
+            size={25}
+            className={styles.FiAlignJustify}
+            onClick={() => setT(true)}
+          />
 
           <div className={styles.catalogue_box}>
             <div
@@ -209,113 +214,101 @@ export default function Header() {
             )}
           </div>
           {/* //////////////////////////////222 */}
-          <div className={styles.catalogue_box2}>
-            <div
-              className={styles.catalogue_elem}
-              onMouseEnter={() => {
-                setCehage(true);
-                setIdItem(flutters[0].HoReCa);
-                setNum("a");
-              }}
-              onMouseOut={() => {
-                setCehage(false);
-              }}
-            >
-              HoReCa
-            </div>
-            <div
-              className={styles.catalogue_elem}
-              onMouseEnter={() => {
-                setCehage(true);
-                setIdItem(flutters[1].bigMachinery);
-                setNum("b");
-              }}
-              onMouseOut={() => {
-                setCehage(false);
-              }}
-            >
-              Велика техніка
-            </div>
-            <div
-              className={styles.catalogue_elem}
-              onMouseEnter={() => {
-                setCehage(true);
-                setIdItem(flutters[2].kukhonnaTekhnika);
-                setNum("c");
-              }}
-              onMouseOut={() => {
-                setCehage(false);
-              }}
-            >
-              Кухонна техніка{" "}
-            </div>
-            <div
-              className={styles.catalogue_elem}
-              onMouseEnter={() => {
-                setCehage(true);
-                setIdItem(flutters[3].equipmentBAHC);
-                setNum("d");
-              }}
-              onMouseOut={() => {
-                setCehage(false);
-              }}
-            >
-              Техніка для догляду за тілом та будинком
-            </div>
-            <div
-              className={styles.catalogue_elem}
-              onMouseEnter={() => {
-                setCehage(true);
-                setIdItem(flutters[4].climateTechno);
-                setNum("f");
-              }}
-              onMouseOut={() => {
-                setCehage(false);
-              }}
-            >
-              Кліматична техніка{" "}
-            </div>
-            <div
-              className={styles.catalogue_elem}
-              onMouseEnter={() => {
-                setCehage(true);
-                setIdItem(flutters[5].universalSPHAR);
-                setNum("g");
-              }}
-              onMouseOut={() => {
-                setCehage(false);
-              }}
-            >
-              Універсальні запчастини для ремонту побутової техніки
-            </div>
-            <div
-              className={styles.catalogue_elem}
-              onMouseEnter={() => {
-                setCehage(true);
-                setIdItem(flutters[6].sparePCRE);
-                setNum("o");
-              }}
-              onMouseOut={() => {
-                setCehage(false);
-              }}
-            >
-              Запчастини та комплектуючі до холодильного обладнання
-            </div>
-
-            {cehage && (
-              <Menu
-                onMouseEnter={() => {
+          {t && (
+            <div className={styles.catalogue_box2}>
+              {t && (
+                <div
+                  className={styles.auto}
+                  onClick={() => {
+                    setT(false);
+                    setCehage(false);
+                  }}
+                ></div>
+              )}
+              <BsX size={20} className={styles.x} onClick={() => setT(false)} />
+              <div
+                className={styles.catalogue_elem2}
+                onClick={() => {
                   setCehage(true);
+                  setIdItem(flutters[0].HoReCa);
+                  setNum("o2");
                 }}
-                onMouseLeave={() => {
-                  setCehage(false);
+              >
+                HoReCa{" "}
+                <BsChevronRight size={15} className={styles.BsChevronRight} />
+              </div>
+              <div
+                className={styles.catalogue_elem2}
+                onClick={() => {
+                  setCehage(true);
+                  setIdItem(flutters[1].bigMachinery);
+                  setNum("o2");
                 }}
-                flutters={idItem}
-                num={num}
-                menuFalse={menuFalse}
-              />
-            )}
-          </div>
+              >
+                Велика техніка
+                <BsChevronRight size={15} className={styles.BsChevronRight} />
+              </div>
+              <div
+                className={styles.catalogue_elem2}
+                onClick={() => {
+                  setCehage(true);
+                  setIdItem(flutters[2].kukhonnaTekhnika);
+                  setNum("o2");
+                }}
+              >
+                Кухонна техніка
+                <BsChevronRight size={15} className={styles.BsChevronRight} />
+              </div>
+              <div
+                className={styles.catalogue_elem2}
+                onClick={() => {
+                  setCehage(true);
+                  setIdItem(flutters[3].equipmentBAHC);
+                  setNum("o2");
+                }}
+              >
+                Техніка для догляду за тілом та будинком
+                <BsChevronRight size={15} className={styles.BsChevronRight} />
+              </div>
+              <div
+                className={styles.catalogue_elem2}
+                onClick={() => {
+                  setCehage(true);
+                  setIdItem(flutters[4].climateTechno);
+                  setNum("o2");
+                }}
+              >
+                Кліматична техніка
+                <BsChevronRight size={15} className={styles.BsChevronRight} />
+              </div>
+              <div
+                className={styles.catalogue_elem2}
+                onClick={() => {
+                  setCehage(true);
+                  setIdItem(flutters[5].universalSPHAR);
+                  setNum("o2");
+                }}
+              >
+                Універсальні запчастини для ремонту побутової техніки
+                <BsChevronRight size={15} className={styles.BsChevronRight} />
+              </div>
+              <div
+                className={styles.catalogue_elem2}
+                onClick={() => {
+                  setCehage(true);
+                  setIdItem(flutters[6].sparePCRE);
+                  setNum("o2");
+                }}
+              >
+                Запчастини та комплектуючі до холодильного обладнання
+                <BsChevronRight scale={15} className={styles.BsChevronRight} />
+              </div>
+
+              {cehage && (
+                <Menu flutters={idItem} num={num} menuFalse={menuFalse} />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </header>

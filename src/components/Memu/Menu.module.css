@@ -62,3 +62,21 @@
   justify-content: start;
   height: 200px;
 }
+.t {
+  display: none;
+}
+@media (max-width: 850px) {
+  .t {
+    display: flex;
+  }
+  .container {
+    top: 0px;
+    position: fixed;
+
+    padding: 20px;
+
+    height: 100vh;
+    min-width: 300px;
+    overflow: auto;
+  }
+}

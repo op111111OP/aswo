@@ -122,9 +122,9 @@
   height: 100vh;
   position: fixed;
   top: 0;
-  left: -300px;
+  left: 0px;
   background-color: #ffffff;
-  padding: 30px;
+  padding: 30px 5px 30px 10px;
   width: 300px;
 }
 .FaShoppingCart {
@@ -172,5 +172,26 @@
   }
   .catalogue_box {
     display: none;
+  }
+  .catalogue_elem2 {
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .BsChevronRight {
+    cursor: pointer;
+  }
+  .auto {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    background-color: transparent;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
   }
 }
