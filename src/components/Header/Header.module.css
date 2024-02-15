@@ -80,11 +80,7 @@
   position: relative;
 }
 /*  */
-@media screen and (max-width: 445px) {
-  .telephone {
-    display: none;
-  }
-}
+
 .menu_box {
   position: absolute;
 }
@@ -161,6 +157,9 @@
   }
 }
 @media (max-width: 850px) {
+  .header_input {
+    width: 250px;
+  }
   .FiAlignJustify {
     cursor: pointer;
     display: flex;
@@ -193,5 +192,18 @@
     top: 0px;
     left: 0px;
     z-index: -1;
+  }
+}
+@media screen and (max-width: 550px) {
+  .telephone {
+    display: none;
+  }
+}
+@media screen and (max-width: 420px) {
+  .box_telephone_box {
+    padding: 5px;
+  }
+  .header_input {
+    width: 200px;
   }
 }
