@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 
 export default function App() {
   const [areySlide, setAreySlide] = useState(4);
-  //   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   //   useEffect(() => {
   //     function handleResize() {
