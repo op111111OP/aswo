@@ -12,10 +12,8 @@ import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 import { useSearchParams } from "next/navigation";
-
 export default function Page() {
   const { setId, seOnIds, numB22, setOnCard1 } = useUserContext();
-
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [aa1, setAa1] = useLocalStorage("resAa1111", []);
   const searchParams = useSearchParams();
@@ -31,13 +29,11 @@ export default function Page() {
   const [n, setN] = useState([]);
   const [num1, setNum1] = useState(1);
   const [nIFalsum, setIFals] = useState(true);
-
   const num2 = 1;
   const sortByValueAscending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => a.price - b.price);
     setFilteredProducts(sortedArray);
   };
-
   const sortByValueDescending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
@@ -45,7 +41,6 @@ export default function Page() {
   useEffect(() => {
     setAa1(n);
   }, [n]);
-
   useEffect(() => {
     if (numB22.length !== aa1.length) {
       setAa1(numB22);
@@ -70,7 +65,6 @@ export default function Page() {
     if (num1 > num2) {
       setIdCategori(IdCategori);
     }
-
     setName(num1 > num2 ? IdCategori : onCategori);
   }, [num1, num2]);
   useEffect(() => {
@@ -103,7 +97,6 @@ export default function Page() {
     );
     setFilteredProducts(filtered);
   };
-
   const handleBoxClick = () => {
     setCehageCor(false);
   };
@@ -115,7 +108,6 @@ export default function Page() {
   function fals(t) {
     setCehageCor(t);
   }
-
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -323,7 +315,6 @@ export default function Page() {
                           {item.price}грн
                         </div>
                       )}
-
                       <FaShoppingCart
                         size={25}
                         color=" #0058a2"

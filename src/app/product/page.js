@@ -193,7 +193,7 @@ export default function Page() {
                   id={`l${index}`}
                 >
                   <div className={styles.slide_box2}>
-                    <Link href={`./product?id=${item._id2}`}>
+                    <Link href={`./product?id=${item._id}`}>
                       <div
                         className={styles.link_box2}
                         onClick={() => {

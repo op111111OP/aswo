@@ -9,7 +9,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
-import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 import { useSearchParams } from "next/navigation";
 
@@ -17,19 +16,16 @@ export default function Page() {
   const { setUserId, setId, setOnCard1 } = useUserContext();
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
-
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
   const [nIFalsum, setIFals] = useState(true);
-
   const sortByValueAscending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => a.price - b.price);
     setFilteredProducts(sortedArray);
   };
-
   const sortByValueDescending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
@@ -37,9 +33,7 @@ export default function Page() {
   const addToArray = (newItem) => {
     setUserId(newItem);
   };
-  //   useEffect(() => {
-  //     setNameG(num1 > num2 ? IdCategori : onCategoriG);
-  //   }, [num1, num2]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,6 +49,7 @@ export default function Page() {
     };
     fetchData();
   }, [search]);
+
   useEffect(() => {
     setPriceRange([
       Math.min(...flutters.map((obj) => obj.price)),
@@ -69,7 +64,6 @@ export default function Page() {
     );
     setFilteredProducts(filtered);
   };
-
   const handleBoxClick = () => {
     setCehageCor(false);
   };
@@ -101,7 +95,6 @@ export default function Page() {
           }}
         />
       </div>
-
       <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.main_h2}>
           <div className={styles.main_sort}>Сортування:</div>
@@ -134,7 +127,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-
       <div className={styles.box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.box_slider}>
           <div className={styles.price_box_cl}>
@@ -266,7 +258,6 @@ export default function Page() {
                           {item.price}грн
                         </div>
                       )}
-
                       <FaShoppingCart
                         size={25}
                         color=" #0058a2"
