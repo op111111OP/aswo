@@ -18,6 +18,7 @@ const font = async (req, res) => {
       { name: { $regex: name, $options: "i" } },
       { score: { $meta: "searchScore" } }
     )
+      .limit(30)
       .then((product) => {
         res.status(200).json(product);
       })

@@ -68,7 +68,7 @@
 .price_box1 {
   display: flex;
   justify-content: space-around;
-  width: 30%;
+  min-width: 150px;
 }
 .swiper_slide {
   background-position: center;
@@ -178,12 +178,12 @@
 .right_h1 {
   display: flex;
   justify-content: space-between;
-  padding: 0 2% 1px 20%;
+  padding: 0 3px 1px 20%;
 }
 .right_hh {
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 150px;
 }
 .price_box_cl {
   display: flex;
@@ -283,5 +283,23 @@
 
   .box_right {
     width: 95%;
+  }
+}
+@media (max-width: 650px) {
+  .text_box1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    display: inline-block;
+  }
+}
+@media (max-width: 420px) {
+  .text_box {
+    height: 60px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 200px;
   }
 }

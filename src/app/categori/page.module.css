@@ -59,7 +59,7 @@
 .price_box1 {
   display: flex;
   justify-content: space-around;
-  width: 30%;
+  min-width: 150px;
 }
 .swiper_slide {
   background-position: center;
