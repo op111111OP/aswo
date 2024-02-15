@@ -22,10 +22,14 @@ import { useTimeoutFn } from "react-use";
 export default function App() {
   const { setOnCard1 } = useUserContext();
   const [cehageCor, setCehageCor] = useState(false);
-  const [flutters, setFlutters] = useState([]);
 
   const [areySlide, setAreySlide] = useState(4);
-  const [windowWidth, setWindowWidth] = useState(document.body.clientWidth);
+  const [windowWidth, setWindowWidth] = useState(
+    document.documentElement.clientWidth
+  );
+
+  const [flutters, setFlutters] = useState(null);
+  const [cehage, setCehage] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
