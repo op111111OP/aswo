@@ -22,6 +22,7 @@ import { useTimeoutFn } from "react-use";
 export default function App() {
   const { setOnCard1 } = useUserContext();
   const [cehageCor, setCehageCor] = useState(false);
+  const [flutters, setFlutters] = useState([]);
 
   const [areySlide, setAreySlide] = useState(4);
   const [windowWidth, setWindowWidth] = useState(
