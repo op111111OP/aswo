@@ -2,7 +2,7 @@
 import styles from "./Menu.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "react-use";
 import { BsX } from "react-icons/bs";
 
@@ -25,10 +25,16 @@ export default function Menu({
     const setResCategor = flutters.find((item) =>
       item.mas.some((innerItem) => innerItem.text === i)
     );
-
     //  console.log(resCategori, "m");
     setResCategori(setResCategor);
   }
+  const containerRef = useRef(null);
+  const scrollToTop = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollLeft = 0;
+    }
+  };
+
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
   menuFalse(fels);
@@ -39,7 +45,7 @@ export default function Menu({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <BsX size={20} className={styles.x} onClick={() => setFals(false)} />
+      <BsX size={25} className={styles.x} onClick={() => setFals(false)} />
       {flutters &&
         flutters.map((item, index) => (
           <div key={index} className={styles.component_box}>
