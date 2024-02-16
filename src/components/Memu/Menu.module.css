@@ -75,9 +75,10 @@
 
     padding: 20px 10px;
 
-    height: 100vh;
-    min-width: 300px;
-    overflow: auto;
+    height: 100vh; /* Высота контейнера равна высоте видимой области окна */
+    min-width: 300px; /* Минимальная ширина контейнера */
+    overflow-y: auto; /* Включение вертикальной прокрутки при необходимости */
+    overflow-x: hidden; /* Отключение горизонтальной прокрутки */
   }
   .component_mas_elem_text {
     margin: 10px 0px 0px 0px;
