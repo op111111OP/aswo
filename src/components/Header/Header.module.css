@@ -167,7 +167,9 @@
     margin: 0px 0px 0px 50px;
   }
   .catalogue_box2 {
-    display: flex;
+    display: block;
+    padding: 20px 2px 20px 10px;
+    min-width: 320px;
   }
   .catalogue_box {
     display: none;
@@ -176,7 +178,7 @@
     font-size: 14px;
     cursor: pointer;
     border-bottom: 2px solid transparent;
-    padding: 15px 0;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -192,7 +194,6 @@
     top: 0px;
     left: 0px;
     z-index: -1;
-    /* background-color: sandybrown; */
   }
 }
 @media screen and (max-width: 550px) {
