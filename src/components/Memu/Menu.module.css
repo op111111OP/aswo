@@ -73,10 +73,13 @@
     top: 0px;
     position: fixed;
 
-    padding: 20px;
+    padding: 20px 10px;
 
     height: 100vh;
     min-width: 300px;
     overflow: auto;
+  }
+  .component_mas_elem_text {
+    margin: 10px 0px 0px 0px;
   }
 }

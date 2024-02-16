@@ -168,6 +168,11 @@
   }
   .catalogue_box2 {
     display: flex;
+    overflow: auto;
+    padding: 15px 5px 25px 9px;
+    height: 100vh;
+    position: fixed;
+    min-width: 320px;
   }
   .catalogue_box {
     display: none;
@@ -180,6 +185,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    text-wrap: wrap;
   }
   .BsChevronRight {
     cursor: pointer;
@@ -190,7 +196,7 @@
     height: 100%;
     background-color: transparent;
     top: 0px;
-    left: 0px;
+    right: -2000px;
     z-index: -1;
   }
 }
