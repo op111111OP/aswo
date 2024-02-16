@@ -62,11 +62,11 @@
   justify-content: start;
   height: 200px;
 }
-.t {
+.x {
   display: none;
 }
 @media (max-width: 850px) {
-  .t {
+  .x {
     display: flex;
   }
   .container {
