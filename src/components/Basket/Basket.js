@@ -88,7 +88,7 @@ export default function Basket({ fals }) {
       setNumB1(newArray);
     }
   }, [numB]);
-  console.log(numB1);
+
   const updateNumB = (index, value) => {
     setNumB((prevNumB) => {
       const updatedNumB = [...prevNumB];
@@ -342,7 +342,7 @@ export default function Basket({ fals }) {
               {twoCard.length === 0 ? (
                 <p></p>
               ) : (
-                <div>
+                <div className={styles.h111}>
                   <div className={styles.h1}>Кошик</div>
                   <div className={styles.number_textN}>Назва</div>
                   <div className={styles.number_textP}>Ціна</div>

@@ -105,7 +105,7 @@ export default function Page() {
                   <Image
                     src={flutters.img}
                     alt="Vercel Logo"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
+                    sizes="(max-width: 420px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
                     className={styles.img}
                     width={100}
                     height={100}
@@ -122,6 +122,22 @@ export default function Page() {
                             //  objectFit: "contain",
                           }
                     }
+                    onClick={() => {
+                      setTruF((truF) => !truF);
+                    }}
+                  />
+                  <Image
+                    src={flutters.img}
+                    alt="Vercel Logo"
+                    sizes="(max-width: 420px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
+                    className={styles.img111}
+                    width={100}
+                    height={100}
+                    style={{
+                      height: "auto",
+                      width: "100vw",
+                      objectFit: "contain",
+                    }}
                     onClick={() => {
                       setTruF((truF) => !truF);
                     }}
