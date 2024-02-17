@@ -300,7 +300,8 @@
     width: 100vw;
   }
 
-  .img_box_fals {
+  .right_goods_box2 {
+    flex-wrap: wrap;
   }
 }
 @media (max-width: 900px) {
@@ -325,8 +326,5 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-  }
-  .price_box_pbox {
-    /* position: relative; */
   }
 }
