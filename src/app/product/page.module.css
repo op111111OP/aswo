@@ -42,11 +42,11 @@
 .img_box_fals {
   display: flex;
   justify-content: center;
-  max-height: 90vh;
-  /* min-height: 80vh; */
-  min-width: 70vh;
+  max-height: 80vh;
+  min-height: 80vh;
+
   overflow: hidden;
-  margin: 0px 0px 15px 15%;
+  margin: 0px 0px 15px 30%;
   cursor: pointer;
 }
 
@@ -328,5 +328,23 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px 0px 0px 10px;
+  }
+}
+@media (max-width: 420px) {
+  .name {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0px 20px 0px 15px;
+    overflow-wrap: break-word;
+    max-width: 100%;
   }
 }

@@ -117,8 +117,8 @@ export default function Page() {
                             objectFit: "contain",
                           }
                         : {
-                            height: "auto",
-                            width: "70vw",
+                            height: "80vh",
+                            width: "auto",
                             //  objectFit: "contain",
                           }
                     }
