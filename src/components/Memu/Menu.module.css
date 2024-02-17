@@ -67,15 +67,28 @@
 }
 
 .d {
-  right: 10%;
-  transform: translate(0%, 0%);
+  position: absolute;
+  width: 70vw;
+  height: 83vh;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  left: 50%;
+  transform: translate(-55%, 0%);
 }
 .f {
-  right: 0%;
-  transform: translate(0%, 0%);
+  position: absolute;
+  width: 95vw;
+  height: 83vh;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  left: 50%;
+  transform: translate(-55%, 0%);
 }
 .g {
-  right: 15%;
+  left: 50%;
+  transform: translate(-55%, 0%);
   width: auto;
 }
 .o {
@@ -99,6 +112,10 @@
     height: 75vh;
     overflow-x: auto;
   }
+  .d {
+    height: 75vh;
+    overflow-x: auto;
+  }
 }
 @media (max-width: 1024px) {
   .b {
@@ -106,6 +123,10 @@
     overflow-x: auto;
   }
   .c {
+    height: 70vh;
+    overflow-x: auto;
+  }
+  .d {
     height: 70vh;
     overflow-x: auto;
   }
