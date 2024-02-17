@@ -58,7 +58,7 @@
 .c {
   position: absolute;
   width: 95vw;
-  height: 80vh;
+  height: 83vh;
   flex-direction: column;
   flex-wrap: wrap;
   overflow-x: auto;
@@ -88,6 +88,27 @@
 .x {
   position: absolute;
   color: #00000000;
+}
+
+@media (max-width: 1440px) {
+  .b {
+    height: 75vh;
+    overflow-x: auto;
+  }
+  .c {
+    height: 75vh;
+    overflow-x: auto;
+  }
+}
+@media (max-width: 1024px) {
+  .b {
+    height: 70vh;
+    overflow-x: auto;
+  }
+  .c {
+    height: 70vh;
+    overflow-x: auto;
+  }
 }
 @media (max-width: 850px) {
   .x {

@@ -44,10 +44,7 @@ export default function App() {
       img: "https://doctor-h.com.ua/content/images/34/180x100l75nn0/90360451058740.webp",
       name: "atlantic",
     },
-    {
-      img: "https://doctor-h.com.ua/content/images/32/180x68l75nn0/28191980357954.webp",
-      name: "beslux",
-    },
+
     {
       img: "https://doctor-h.com.ua/content/images/32/180x68l75nn0/28191980357954.webp",
       name: "beslux",

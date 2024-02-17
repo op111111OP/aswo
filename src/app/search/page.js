@@ -151,7 +151,6 @@ export default function Page() {
               <div className={styles.right_h2}>Назва</div>
               <div className={styles.right_hh}>
                 <div className={styles.right_h2}>Ціна</div>
-                <div className={styles.right_h2}>Замовлення</div>
               </div>
             </div>
           )}

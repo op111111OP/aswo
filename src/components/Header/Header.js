@@ -117,6 +117,11 @@ export default function Header() {
               onMouseOut={() => {
                 setCehage(false);
               }}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[0].equipmentBAHC);
+                setNum("a");
+              }}
             >
               HoReCa
             </div>
@@ -129,6 +134,11 @@ export default function Header() {
               }}
               onMouseOut={() => {
                 setCehage(false);
+              }}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[1].bigMachinery);
+                setNum("b");
               }}
             >
               Велика техніка
@@ -143,6 +153,11 @@ export default function Header() {
               onMouseOut={() => {
                 setCehage(false);
               }}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[2].kukhonnaTekhnika);
+                setNum("c");
+              }}
             >
               Кухонна техніка{" "}
             </div>
@@ -155,6 +170,11 @@ export default function Header() {
               }}
               onMouseOut={() => {
                 setCehage(false);
+              }}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[3].equipmentBAHC);
+                setNum("d");
               }}
             >
               Техніка для догляду за тілом та будинком
@@ -169,6 +189,11 @@ export default function Header() {
               onMouseOut={() => {
                 setCehage(false);
               }}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[4].climateTechno);
+                setNum("f");
+              }}
             >
               Кліматична техніка{" "}
             </div>
@@ -182,6 +207,11 @@ export default function Header() {
               onMouseOut={() => {
                 setCehage(false);
               }}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[5].universalSPHAR);
+                setNum("g");
+              }}
             >
               Універсальні запчастини для ремонту побутової техніки
             </div>
@@ -194,6 +224,11 @@ export default function Header() {
               }}
               onMouseOut={() => {
                 setCehage(false);
+              }}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[6].sparePCRE);
+                setNum("o");
               }}
             >
               Запчастини та комплектуючі до холодильного обладнання
