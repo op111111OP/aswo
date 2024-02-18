@@ -27,6 +27,13 @@ export default function Basket({ fals }) {
   const [numB1, setNumB1] = useState([]);
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
+  //   input
+  const [selectedOption, setSelectedOption] = useState("nova");
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+  //   input
 
   function Adrlas(index) {
     setNumB((prevN) => {
@@ -153,7 +160,7 @@ export default function Basket({ fals }) {
   const handleRemov = (m) => {
     setNumBas(m);
   };
-  //   console.log(senter, "b");
+  console.log(selectedOption, "b");
   return (
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
@@ -189,19 +196,22 @@ export default function Basket({ fals }) {
                   }
                   if (!values.last_name) {
                     errors.last_name = "Прізвище обов'язкове поле";
-                  } else if (values.last_name.length > 20) {
+                  } else if (values.last_name.length > 30) {
                     errors.last_name =
-                      "Прізвище не може бути довшим ніж 20 символів";
+                      "Прізвище не може бути довшим ніж 30 символів";
                   }
-                  if (!values.email) {
-                    errors.email = "Email обов'язкове поле";
-                  } else if (
-                    !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-                      values.email
-                    )
-                  ) {
-                    errors.email = "Email некоректний";
+                  if (!values.num) {
+                    errors.last_name = "Відділення обов'язкове поле";
                   }
+                  // if (!values.email) {
+                  //   errors.email = "Email обов'язкове поле";
+                  // } else if (
+                  //   !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+                  //     values.email
+                  //   )
+                  // ) {
+                  //   errors.email = "Email некоректний";
+                  // }
                   if (!values.phone) {
                     errors.phone = "Телефон обов'язкове поле";
                   }
@@ -298,6 +308,44 @@ export default function Basket({ fals }) {
                           Вартість доставки замовлень за тарифами перевізника
                           Нова пошта (оплачується окремо при отриманні).
                         </div>
+                        <Field
+                          type="text"
+                          name="num"
+                          placeholder="Відділення"
+                          className={styles.name2}
+                        />
+                        <ErrorMessage
+                          name="num"
+                          component="div"
+                          className={`${styles.error} ${styles.error2}`}
+                        />
+                        {/* <fieldset>
+                          <div>
+                            <input
+                              type="radio"
+                              id="nova"
+                              name="drone"
+                              value="nova"
+                              checked={selectedOption === "nova"}
+                              onChange={handleOptionChange}
+                            />
+                            <label htmlFor="nova">Післяплата.</label>
+                          </div>
+
+                          <div>
+                            <input
+                              type="radio"
+                              id="card"
+                              name="drone"
+                              value="card"
+                              checked={selectedOption === "card"}
+                              onChange={handleOptionChange}
+                            />
+                            <label htmlFor="card">
+                              Онлайн-оплата банківською карткою.
+                            </label>
+                          </div>
+                        </fieldset> */}
                         <Field
                           type="text"
                           name="street"
