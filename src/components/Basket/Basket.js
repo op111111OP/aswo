@@ -28,10 +28,14 @@ export default function Basket({ fals }) {
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
   //   input
-  const [selectedOption, setSelectedOption] = useState("nova");
+  const [selectedOption, setSelectedOption] = useState("novaP");
+  const [selectedOption1, setSelectedOption1] = useState("nova");
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
+  };
+  const handleOptionChange1 = (event) => {
+    setSelectedOption1(event.target.value);
   };
   //   input
 
@@ -215,9 +219,9 @@ export default function Basket({ fals }) {
                   if (!values.phone) {
                     errors.phone = "Телефон обов'язкове поле";
                   }
-                  if (!values.street) {
-                    errors.street = "Вулиця обов'язкове поле";
-                  }
+                  // if (!values.street) {
+                  //   errors.street = "Вулиця обов'язкове поле";
+                  // }
                   if (!values.city) {
                     errors.city = "Місто обов'язкове поле";
                   }
@@ -319,33 +323,33 @@ export default function Basket({ fals }) {
                           component="div"
                           className={`${styles.error} ${styles.error2}`}
                         />
-                        {/* <fieldset>
-                          <div>
+                        <div className={styles.form_del}>Доставка.</div>
+                        <fieldset className={styles.fieldset}>
+                          <div className={styles.fieldset_input_text}>
                             <input
+                              className={styles.fieldset_input}
                               type="radio"
                               id="nova"
-                              name="drone"
+                              name="aa"
                               value="nova"
-                              checked={selectedOption === "nova"}
-                              onChange={handleOptionChange}
+                              checked={selectedOption1 === "nova"}
+                              onChange={handleOptionChange1}
                             />
-                            <label htmlFor="nova">Післяплата.</label>
+                            <label htmlFor="nova">Новою поштою.</label>
                           </div>
-
-                          <div>
+                          <div className={styles.fieldset_input_text}>
                             <input
+                              className={styles.fieldset_input}
                               type="radio"
-                              id="card"
-                              name="drone"
-                              value="card"
-                              checked={selectedOption === "card"}
-                              onChange={handleOptionChange}
+                              id="cur"
+                              name="aa"
+                              value="cur"
+                              checked={selectedOption1 === "cur"}
+                              onChange={handleOptionChange1}
                             />
-                            <label htmlFor="card">
-                              Онлайн-оплата банківською карткою.
-                            </label>
+                            <label htmlFor="cur">Кур'єром нової пошти.</label>
                           </div>
-                        </fieldset> */}
+                        </fieldset>
                         <Field
                           type="text"
                           name="street"
@@ -368,6 +372,37 @@ export default function Basket({ fals }) {
                           component="div"
                           className={`${styles.error} ${styles.error6}`}
                         />
+                        <div className={styles.form_del}>Оплата.</div>
+                        <fieldset className={styles.fieldset}>
+                          <div className={styles.fieldset_input_text}>
+                            <input
+                              className={styles.fieldset_input}
+                              type="radio"
+                              id="novaP"
+                              name="drone"
+                              value="novaP"
+                              checked={selectedOption === "novaP"}
+                              onChange={handleOptionChange}
+                            />
+                            <label htmlFor="novaP">Післяплата.</label>
+                          </div>
+
+                          <div className={styles.fieldset_input_text}>
+                            <input
+                              className={styles.fieldset_input}
+                              type="radio"
+                              id="card"
+                              name="drone"
+                              value="card"
+                              checked={selectedOption === "card"}
+                              onChange={handleOptionChange}
+                            />
+                            <label htmlFor="card">
+                              Онлайн-оплата банківською карткою.
+                            </label>
+                          </div>
+                        </fieldset>
+
                         <div className={styles.price}>
                           до сплати:{" "}
                           <span className={styles.price_span}>{numBd}</span>
