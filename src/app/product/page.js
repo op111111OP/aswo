@@ -165,11 +165,12 @@ export default function Page() {
                           categori: flutters.categori,
                           brand: flutters.brand,
                           country: flutters.country,
-                          description: flutters.description,
+
                           img: flutters.img,
                           name: flutters.name,
                           price: flutters.price,
                           id: flutters._id,
+                          article: "1",
                         });
                       }}
                       className={styles.shopping}
@@ -258,11 +259,12 @@ export default function Page() {
                             categori: item.categori,
                             brand: item.brand,
                             country: item.country,
-                            description: item.description,
+
                             img: item.img,
                             name: item.name,
                             price: item.price,
                             id: item._id,
+                            article: "1",
                           });
                         }}
                         className={styles.shopping2}

@@ -9,6 +9,8 @@ export default function Page() {
   const [inputValue2, setInputValue2] = useState("");
   const [inputValue3, setInputValue3] = useState("");
   const [fol, setFol] = useState(1);
+  //   ----
+  const [flutters1, setFlutters1] = useState([]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -50,7 +52,23 @@ export default function Page() {
     };
     fetchData();
   }, [inputValue2, fol]);
-  console.log(inputValue2, "inputValue2", inputValue3, flutters);
+  useEffect(() => {
+    if (flutters.length === 1) {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`api/or/adminOrder`);
+          const data = await response.json();
+          setFlutters1(data);
+        } catch (error) {
+          console.log("Что-то пошло не так...", error);
+        } finally {
+          console.log("пошло так...");
+        }
+      };
+      fetchData();
+    }
+  }, [flutters]);
+  console.log("inputValue2", flutters1);
   return (
     <div className={styles.box}>
       {flutters.length === 0 && (

@@ -1,55 +1,11 @@
-// import Orderg from "../models/orderg";
+import Orders from "./models/orderscopy";
 import mongoose from "mongoose";
-import { Schema } from "mongoose";
 
 mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-const productSchema = new Schema({
-  price: { type: Number },
-  name: { type: String },
-  categori: { type: String },
-  article: { type: String },
-  brand: { type: String },
-  country: { type: String },
-  id: { type: String },
-  img: { type: String },
-});
 
-const ordersSchema = new Schema({
-  city: {
-    type: String,
-  },
-  email: {
-    type: String,
-  },
-  first_name: {
-    type: String,
-  },
-  last_name: {
-    type: String,
-  },
-  message: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  },
-  street: {
-    type: String,
-  },
-
-  someField: {
-    type: Number,
-  },
-  userData: [productSchema],
-  department: {
-    type: String,
-  },
-});
-const Orderg =
-  mongoose.models.Orderg || mongoose.model("Orderg", ordersSchema, "order");
 export default async (req, res) => {
   if (req.method === "POST") {
     try {
@@ -63,10 +19,12 @@ export default async (req, res) => {
         someField,
         street,
         userData,
-        department,
+        card,
+        courier,
+        article,
       } = req.body;
 
-      const newOrders = new Orderg({
+      const newOrders = new Orders({
         city,
         email,
         first_name,
@@ -76,10 +34,12 @@ export default async (req, res) => {
         someField,
         street,
         userData,
-        department,
+        card,
+        courier,
+        article,
       });
+      console.log(newOrders);
       await newOrders.save();
-      console.log(newOrders, 11);
 
       return res
         .status(201)

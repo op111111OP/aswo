@@ -10,7 +10,6 @@ mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
 const font = async (req, res) => {
   const { login, password } = req.body;
 
-  console.log(login, password);
   try {
     const user = await UserSchema.find({ login: login, pass: password });
     res.status(200).json(user);

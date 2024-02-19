@@ -138,11 +138,12 @@ export default function App() {
                           categori: item.categori,
                           brand: item.brand,
                           country: item.country,
-                          description: item.description,
+
                           img: item.img,
                           name: item.name,
                           price: item.price,
                           id: item._id,
+                          article: "1",
                         });
                       }}
                       className={styles.FaShoppingCart}

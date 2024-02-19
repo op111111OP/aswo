@@ -27,9 +27,10 @@ export default function Basket({ fals }) {
   const [numB1, setNumB1] = useState([]);
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
+
   //   input
-  const [selectedOption, setSelectedOption] = useState("novaP");
-  const [selectedOption1, setSelectedOption1] = useState("nova");
+  const [selectedOption, setSelectedOption] = useState("postpaid");
+  const [selectedOption1, setSelectedOption1] = useState("mail");
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -140,6 +141,7 @@ export default function Basket({ fals }) {
   //   dddddddddd
   //   dddddddddd
   const handleSubmit = async (values) => {
+    console.log(values, "kk");
     try {
       const response = await fetch("/api/post/orders", {
         method: "POST",
@@ -164,7 +166,7 @@ export default function Basket({ fals }) {
   const handleRemov = (m) => {
     setNumBas(m);
   };
-  console.log(selectedOption, "b");
+
   return (
     <div className={styles.main}>
       <BsX size={20} className={styles.x} onClick={() => setT((t) => !t)} />
@@ -187,10 +189,16 @@ export default function Basket({ fals }) {
                   city: "",
                   someField: "",
                   userData: "",
+                  department: "",
+                  // courier: "",
+                  // card: "",
                 }}
                 validate={(values) => {
-                  values.userData = userData;
-                  values.someField = externalValue;
+                  values.userData = twoCard;
+                  values.someField = numBd;
+                  // values.courier = selectedOption1;
+                  // values.card = selectedOption;
+                  // values.article = "артикул";
                   const errors = {};
                   if (!values.first_name) {
                     errors.first_name = "Ім'я обов'язкове поле";
@@ -200,12 +208,9 @@ export default function Basket({ fals }) {
                   }
                   if (!values.last_name) {
                     errors.last_name = "Прізвище обов'язкове поле";
-                  } else if (values.last_name.length > 30) {
+                  } else if (values.last_name.length > 20) {
                     errors.last_name =
-                      "Прізвище не може бути довшим ніж 30 символів";
-                  }
-                  if (!values.num) {
-                    errors.last_name = "Відділення обов'язкове поле";
+                      "Прізвище не може бути довшим ніж 20 символів";
                   }
                   // if (!values.email) {
                   //   errors.email = "Email обов'язкове поле";
@@ -285,7 +290,7 @@ export default function Basket({ fals }) {
                           placeholder="Телефон"
                           className={styles.phone}
                         />
-                        <ErrorMessage
+                        {/* <ErrorMessage
                           name="phone"
                           component="div"
                           className={`${styles.error} ${styles.error4}`}
@@ -295,7 +300,7 @@ export default function Basket({ fals }) {
                           name="message"
                           placeholder="Коментарі до замовлення"
                           className={styles.textarea}
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className={styles.box_сontacts}>
@@ -312,55 +317,50 @@ export default function Basket({ fals }) {
                           Вартість доставки замовлень за тарифами перевізника
                           Нова пошта (оплачується окремо при отриманні).
                         </div>
-                        <Field
-                          type="text"
-                          name="num"
-                          placeholder="Відділення"
-                          className={styles.name2}
-                        />
-                        <ErrorMessage
-                          name="num"
-                          component="div"
-                          className={`${styles.error} ${styles.error2}`}
-                        />
-                        <div className={styles.form_del}>Доставка.</div>
+
+                        {selectedOption1 === "courier" && (
+                          <Field
+                            type="text"
+                            name="street"
+                            placeholder="Адреса"
+                            className={styles.name1}
+                          />
+                        )}
                         <fieldset className={styles.fieldset}>
                           <div className={styles.fieldset_input_text}>
                             <input
                               className={styles.fieldset_input}
                               type="radio"
                               id="nova"
-                              name="aa"
-                              value="nova"
-                              checked={selectedOption1 === "nova"}
+                              name="courier"
+                              value="mail"
+                              checked={selectedOption1 === "mail"}
                               onChange={handleOptionChange1}
                             />
-                            <label htmlFor="nova">Новою поштою.</label>
+                            <label htmlFor="mail">Новою поштою.</label>
                           </div>
                           <div className={styles.fieldset_input_text}>
                             <input
                               className={styles.fieldset_input}
                               type="radio"
                               id="cur"
-                              name="aa"
-                              value="cur"
-                              checked={selectedOption1 === "cur"}
+                              name="courier"
+                              value="courier"
+                              checked={selectedOption1 === "courier"}
                               onChange={handleOptionChange1}
                             />
-                            <label htmlFor="cur">Кур'єром нової пошти.</label>
+                            <label htmlFor="courier">
+                              Курʼєром нової пошти.
+                            </label>
                           </div>
                         </fieldset>
-                        <Field
-                          type="text"
-                          name="street"
-                          placeholder="Адреса"
-                          className={styles.name1}
-                        />
-                        <ErrorMessage
-                          name="street"
-                          component="div"
-                          className={`${styles.error} ${styles.error5}`}
-                        />
+                        {selectedOption1 === "cur" && (
+                          <ErrorMessage
+                            name="street"
+                            component="div"
+                            className={`${styles.error} ${styles.error5}`}
+                          />
+                        )}
                         <Field
                           type="text"
                           name="city"
@@ -372,47 +372,58 @@ export default function Basket({ fals }) {
                           component="div"
                           className={`${styles.error} ${styles.error6}`}
                         />
-                        <div className={styles.form_del}>Оплата.</div>
+                        <Field
+                          type="text"
+                          name="department"
+                          placeholder="Відділення"
+                          className={styles.name2}
+                        />
+                        <ErrorMessage
+                          name="department"
+                          component="div"
+                          className={`${styles.error} ${styles.error6}`}
+                        />
                         <fieldset className={styles.fieldset}>
                           <div className={styles.fieldset_input_text}>
                             <input
                               className={styles.fieldset_input}
                               type="radio"
                               id="novaP"
-                              name="drone"
-                              value="novaP"
-                              checked={selectedOption === "novaP"}
+                              name="card"
+                              value="postpaid"
+                              checked={selectedOption === "postpaid"}
                               onChange={handleOptionChange}
                             />
-                            <label htmlFor="novaP">Післяплата.</label>
+                            <label htmlFor="postpaid">Післяплата.</label>
                           </div>
 
-                          <div className={styles.fieldset_input_text}>
+                          <div>
                             <input
                               className={styles.fieldset_input}
                               type="radio"
                               id="card"
-                              name="drone"
+                              name="card"
                               value="card"
                               checked={selectedOption === "card"}
                               onChange={handleOptionChange}
                             />
                             <label htmlFor="card">
-                              Онлайн-оплата банківською карткою.
+                              Онлайн-оплата банківською карткою.{" "}
                             </label>
                           </div>
                         </fieldset>
-
                         <div className={styles.price}>
                           до сплати:{" "}
                           <span className={styles.price_span}>{numBd}</span>
                           грн.
                         </div>
-                        <div
+                        <button
                           className={`${styles.issue_order} ${styles.issue_or}`}
+                          disabled={isSubmitting}
+                          type="submit"
                         >
                           Оформити замовлення
-                        </div>
+                        </button>
                       </div>
                     </div>
                   </Form>
