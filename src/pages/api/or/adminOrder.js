@@ -7,7 +7,7 @@ mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
 });
 const ordersSchema = new Schema({});
 const Orderg =
-  mongoose.models.Orderg || mongoose.model("Orderg", ordersSchema, "order");
+  mongoose.models.Orderg || mongoose.model("Orderg", ordersSchema, "adminUser");
 const handleError = (res, err) => {
   console.error("Error:", err);
   res.status(500).json({ error: "Internal Server Error" });
