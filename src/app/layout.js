@@ -8,8 +8,9 @@ const inter = Montserrat({ subsets: ["latin"] });
 import { UserProvider } from "./Context/store";
 
 export const metadata = {
-  title: "Aswo",
-  description: "",
+  title: "ASWO, Excellence in After-Sales Services",
+  description:
+    "ASWO provides you with a service concept for your everyday repair needs. Know more · Manufacturers. ASWO provides ...",
 };
 
 export default function RootLayout({ children }) {

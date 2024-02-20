@@ -194,6 +194,10 @@ export default function Page() {
                       <div className={styles.country_h1}>Бренд: </div>
                       <div className={styles.country}>{flutters.brand}</div>
                     </div>
+                    <div className={styles.country_box}>
+                      <div className={styles.country_h1}>Артикул: </div>
+                      <div className={styles.country}>{flutters.article}</div>
+                    </div>
                     {/* )} */}
                   </div>
                 </div>

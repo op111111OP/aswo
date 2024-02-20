@@ -21,3 +21,109 @@
   padding: 2px 10px;
   width: 300px;
 }
+/* ----- */
+.box_but {
+  border: 1px solid #000;
+  background-color: #b41f1f;
+  padding: 5px 10px;
+  width: 100px;
+}
+.box_but:hover:hover {
+  cursor: pointer;
+}
+.box_4 {
+  width: 95vw;
+  border: 1px solid #000;
+  position: relative;
+}
+.box_ {
+  display: flex;
+  border: 1px solid #000;
+}
+.box_1 {
+  display: flex;
+  border: 1px solid #000;
+}
+.box_11 {
+  display: flex;
+  border: 1px solid #000;
+
+  flex-direction: column;
+}
+.box_1d {
+  border-top: 3px solid #000;
+}
+.box_0 {
+  display: flex;
+  width: 100%;
+}
+.box_00 {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.span {
+  margin: 1px 5px 1px 3px;
+  font-weight: 600;
+}
+.box_1w {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #000;
+}
+.box_1cc {
+  display: flex;
+}
+.box_1a1,
+.box_1a2 {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+.box_1a1 {
+  right: 150px;
+}
+.box_1a2 {
+  right: 0px;
+}
+.box_1ad {
+  height: 65px;
+  padding-top: 3px;
+}
+/* box_4 */
+.box_4_but {
+  color: #1360dd;
+  padding: 5px 10px;
+}
+.box_4_but:hover {
+  cursor: pointer;
+}
+/* box_4 */
+/* f */
+.box_f {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #000;
+  padding: 10px;
+  width: 45vw;
+}
+.issue_order {
+  color: #1360dd;
+  padding: 5px 10px;
+}
+.issue_order:hover {
+  cursor: pointer;
+}
+.name2,
+.phone,
+.email,
+.email,
+.name1 {
+  padding: 5px;
+}
+.box_4_1 {
+  display: flex;
+}
+
+/* f */

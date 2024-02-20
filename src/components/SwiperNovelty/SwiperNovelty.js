@@ -127,6 +127,7 @@ export default function App() {
                       <div className={styles.text_box}>{item.name}</div>
                     </div>
                   </Link>
+                  <div className={styles.article}> Артикул:{item.article}</div>
                   <div className={styles.price_box}>
                     <div className={styles.text_box_price}>{item.price}грн</div>
 
@@ -143,7 +144,7 @@ export default function App() {
                           name: item.name,
                           price: item.price,
                           id: item._id,
-                          article: "1",
+                          article: item.article,
                         });
                       }}
                       className={styles.FaShoppingCart}

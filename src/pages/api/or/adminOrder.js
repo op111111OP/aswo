@@ -1,5 +1,5 @@
 // import Orders from "../models/user";
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
   useNewUrlParser: true,
@@ -7,7 +7,7 @@ mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
 });
 const ordersSchema = new Schema({});
 const Orderg =
-  mongoose.models.Orderg || mongoose.model("Orderg", ordersSchema, "adminUser");
+  mongoose.models.Orderg || mongoose.model("Orderg", ordersSchema, "order");
 const handleError = (res, err) => {
   console.error("Error:", err);
   res.status(500).json({ error: "Internal Server Error" });

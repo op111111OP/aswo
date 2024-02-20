@@ -13,9 +13,8 @@ import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 import { useSearchParams } from "next/navigation";
 export default function Page() {
-  const { setId, seOnIds, numB22, setOnCard1 } = useUserContext();
+  const { setId, setOnCard1 } = useUserContext();
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
-  const [aa1, setAa1] = useLocalStorage("resAa1111", []);
   const searchParams = useSearchParams();
   const onCategori = searchParams.get("categori");
   const falsepon = searchParams.get("false");
@@ -24,12 +23,14 @@ export default function Page() {
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
-  const [IdCategori, setIdCategori] = useState([]);
-  const [name, setName] = useState("");
-  const [n, setN] = useState([]);
-  const [num1, setNum1] = useState(1);
   const [nIFalsum, setIFals] = useState(true);
-  const num2 = 1;
+  //   -----
+  const [flutters1, setFlutters1] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(100); // Установите количество продуктов на странице
+
+  //   -----
   const sortByValueAscending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => a.price - b.price);
     setFilteredProducts(sortedArray);
@@ -38,50 +39,27 @@ export default function Page() {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
   };
-  useEffect(() => {
-    setAa1(n);
-  }, [n]);
-  useEffect(() => {
-    if (numB22.length !== aa1.length) {
-      setAa1(numB22);
-    }
-  }, [numB22]);
-  const addToArray = (newItem) => {
-    setN((prevOnCard) => {
-      const existingIndex = prevOnCard.findIndex(
-        (obj) => obj.name === newItem.name
-      );
-      if (existingIndex === -1) {
-        return [...prevOnCard, newItem];
-      } else {
-        return prevOnCard;
-      }
-    });
-  };
-  useEffect(() => {
-    setN(aa1);
-  }, []);
-  useEffect(() => {
-    if (num1 > num2) {
-      setIdCategori(IdCategori);
-    }
-    setName(num1 > num2 ? IdCategori : onCategori);
-  }, [num1, num2]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`api/categori/${name}`);
+        const response = await fetch(
+          `api/categori/${onCategori}?page=${currentPage}`
+        );
         const data = await response.json();
         setFlutters(data);
+        setFlutters1(data);
         setFilteredProducts(data);
       } catch (error) {
         console.log("Что-то пошло не так...", error);
-      } finally {
-        console.log("пошло так...");
       }
     };
     fetchData();
-  }, [name]);
+  }, [onCategori, currentPage]);
+
+  // Обработчик изменения страницы
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     setPriceRange([
       Math.min(...flutters.map((obj) => obj.price)),
@@ -108,6 +86,7 @@ export default function Page() {
   function fals(t) {
     setCehageCor(t);
   }
+
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -129,9 +108,7 @@ export default function Page() {
         />
       </div>
       <div className={styles.main_h1_box} id="myBox" onClick={handleBoxClick}>
-        <div className={styles.main_h1}>
-          {num1 > num2 ? IdCategori : onCategori}
-        </div>
+        <div className={styles.main_h1}>{onCategori}</div>
         <div className={styles.main_h2}>
           <div className={styles.main_sort}>Сортування:</div>
           <div className={styles.main_p_box}>
@@ -186,18 +163,17 @@ export default function Page() {
             <div className={styles.categori_box_left}>
               {Array.isArray(resCategori.mas) &&
                 resCategori.mas.map((item, index) => (
-                  <div
-                    className={styles.categori_box_left_elem}
+                  <Link
+                    href={`./categori?categori=${item.text}&false=1`}
                     key={index}
-                    onClick={() => {
-                      setNum1(num1 + 1);
-                      setIdCategori(item.text);
-                    }}
+                    className={styles.component_mas_elem}
                   >
-                    <div className={styles.categori_left_elem}>
-                      {index + 1}. {item.text}.
+                    <div className={styles.categori_box_left_elem}>
+                      <div className={styles.categori_left_elem}>
+                        {index + 1}. {item.text}.
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
             </div>
           )}
@@ -286,6 +262,14 @@ export default function Page() {
                     </Link>
                     <div
                       className={
+                        nIFalsum === false ? styles.article : styles.article1
+                      }
+                    >
+                      {" "}
+                      Артикул:{item.article}
+                    </div>
+                    <div
+                      className={
                         nIFalsum === false
                           ? styles.price_box
                           : styles.price_box1
@@ -323,12 +307,11 @@ export default function Page() {
                             categori: item.categori,
                             brand: item.brand,
                             country: item.country,
-
                             img: item.img,
                             name: item.name,
                             price: item.price,
                             id: item._id,
-                            article: "1",
+                            article: item.article,
                           });
                         }}
                         className={styles.shopping}
@@ -349,6 +332,16 @@ export default function Page() {
                   </div>
                 </div>
               ))}
+          </div>
+          <div>
+            {/* {Array.from(
+              { length: Math.ceil(flutters1.length / productsPerPage) },
+              (_, i) => (
+                <button key={i} onClick={() => paginate(i + 1)}>
+                  {i + 1}
+                </button>
+              )
+            )} */}
           </div>
         </div>
       </div>

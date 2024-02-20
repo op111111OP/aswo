@@ -10,6 +10,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 export default function Home() {
   const [cehageCor, setCehageCor] = useState(false);
+
   useEffect(() => {
     setCehageCor(false);
   }, []);

@@ -8,9 +8,9 @@ export const UserProvider = ({ children }) => {
   const [numBas, setNumBas] = useState(0);
   const [userId, setUserId] = useState(1);
   const [senter, setSenter] = useState([]);
-  //   const [onCard, setOnCard] = useState("");
+
   const [onIds, seOnIds] = useState();
-  const [numB22, setNumB22] = useState([]);
+
   const [trueHedLoc, setTrueHedLoc] = useState(false);
   const [nemeB, setNemeB] = useState(1);
   const [card, setCard] = useState([]);
@@ -26,12 +26,7 @@ export const UserProvider = ({ children }) => {
       setDelcard(3);
     }
   }, [card]);
-  //   function addIcon(res, e) {
-  //     if (idElem.indexOf(e) === -1) {
-  //       setIdElem([...idElem, e]);
-  //       setOnCard([...onCard1, res]);
-  //     }
-  //   }
+
   useEffect(() => {
     const addToArray = (newItem) => {
       if (onCard1 !== 1) {
@@ -43,34 +38,6 @@ export const UserProvider = ({ children }) => {
     };
     addToArray(onCard1);
   }, [onCard1]);
-  console.log(onCard);
-  //   useEffect(() => {
-  //     if (userId !== 1) {
-  //       setSenter((prevOnCard) => {
-  //         const existingIndex = prevOnCard.findIndex(
-  //           (obj) => obj.name === userId.name
-  //         );
-  //         if (existingIndex === -1) {
-  //           return [...prevOnCard, userId];
-  //         } else {
-  //           return prevOnCard;
-  //         }
-  //       });
-  //     }
-  //   }, [userId]);
-
-  //   useEffect(() => {
-  //     if (numBas === 1) {
-  //       const handleRemoveItem = () => {
-  //         setSenter((prevSenter) => {
-  //           return prevSenter.filter((obj) => obj.id !== onCard);
-  //         });
-  //       };
-  //       handleRemoveItem();
-
-  //       setNumBas(5);
-  //     }
-  //   }, [numBas]);
 
   return (
     <UserContext.Provider
@@ -97,8 +64,7 @@ export const UserProvider = ({ children }) => {
         numBas,
         onIds,
         seOnIds,
-        numB22,
-        setNumB22,
+
         trueHedLoc,
         setTrueHedLoc,
         nemeB,

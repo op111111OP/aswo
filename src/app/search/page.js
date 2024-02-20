@@ -229,6 +229,14 @@ export default function Page() {
                     </Link>
                     <div
                       className={
+                        nIFalsum === false ? styles.article : styles.article1
+                      }
+                    >
+                      {" "}
+                      Артикул:{item.article}
+                    </div>
+                    <div
+                      className={
                         nIFalsum === false
                           ? styles.price_box
                           : styles.price_box1

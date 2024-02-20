@@ -2,7 +2,7 @@
 import styles from "./Menu.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "react-use";
 import { BsX } from "react-icons/bs";
 
@@ -28,12 +28,6 @@ export default function Menu({
     //  console.log(resCategori, "m");
     setResCategori(setResCategor);
   }
-  const containerRef = useRef(null);
-  const scrollToTop = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft = 0;
-    }
-  };
 
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
@@ -55,7 +49,7 @@ export default function Menu({
                 <div className={styles.component_name}>{item.name}</div>
               </div>
             )) || (
-              <Link href={`categori?categori=${item.name}&false=2`}>
+              <Link href={`./categori?categori=${item.name}&false=2`}>
                 <div
                   className={`${styles.component_name_box} ${styles.component_name_b}`}
                 >
@@ -81,7 +75,7 @@ export default function Menu({
               <div className={styles.component_mas}>
                 {flutters[index].mas.map((item, index) => (
                   <Link
-                    href={`categori?categori=${item.text}&false=1`}
+                    href={`./categori?categori=${item.text}&false=1`}
                     key={index}
                     className={styles.component_mas_elem}
                   >

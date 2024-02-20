@@ -27,9 +27,10 @@ export default function Basket({ fals }) {
   const [numB1, setNumB1] = useState([]);
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
+  const [day, setDay] = useState([]);
 
   //   input
-  const [selectedOption, setSelectedOption] = useState("postpaid");
+  const [selectedOption, setSelectedOption] = useState("postpoint");
   const [selectedOption1, setSelectedOption1] = useState("mail");
 
   const handleOptionChange = (event) => {
@@ -163,8 +164,12 @@ export default function Basket({ fals }) {
   // _______________________
 
   fals(t);
-  const handleRemov = (m) => {
-    setNumBas(m);
+  const updateDei = () => {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    setDay(`${day}-${month}-${year}`);
   };
 
   return (
@@ -190,15 +195,21 @@ export default function Basket({ fals }) {
                   someField: "",
                   userData: "",
                   department: "",
-                  // courier: "",
-                  // card: "",
+                  courier: "",
+                  card: "",
+                  day: "",
+                  numB1: "",
+                  numB: "",
                 }}
                 validate={(values) => {
                   values.userData = twoCard;
                   values.someField = numBd;
-                  // values.courier = selectedOption1;
-                  // values.card = selectedOption;
-                  // values.article = "артикул";
+                  values.courier = selectedOption1;
+                  values.card = selectedOption;
+                  values.day = day;
+                  values.numB1 = numB1;
+                  values.numB = numB;
+
                   const errors = {};
                   if (!values.first_name) {
                     errors.first_name = "Ім'я обов'язкове поле";
@@ -418,6 +429,9 @@ export default function Basket({ fals }) {
                           грн.
                         </div>
                         <button
+                          onClick={() => {
+                            updateDei();
+                          }}
                           className={`${styles.issue_order} ${styles.issue_or}`}
                           disabled={isSubmitting}
                           type="submit"

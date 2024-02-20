@@ -39,9 +39,24 @@ const ordersSchema = new Schema({
   street: {
     type: String,
   },
+  card: {
+    type: String,
+  },
+  courier: {
+    type: String,
+  },
+  day: {
+    type: String,
+  },
 
   someField: {
     type: Number,
+  },
+  numB1: {
+    type: [Number],
+  },
+  numB: {
+    type: [Number],
   },
   userData: [productSchema],
   department: {
@@ -64,6 +79,11 @@ export default async (req, res) => {
         street,
         userData,
         department,
+        courier,
+        card,
+        day,
+        numB1,
+        numB,
       } = req.body;
 
       const newOrders = new Orderg({
@@ -77,6 +97,11 @@ export default async (req, res) => {
         street,
         userData,
         department,
+        courier,
+        card,
+        day,
+        numB1,
+        numB,
       });
       await newOrders.save();
       console.log(newOrders, 11);
