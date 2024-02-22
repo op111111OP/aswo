@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   /* break-inside: avoid-column; */
-  top: 80px;
+  top: 70px;
   position: absolute;
   background: white;
   padding: 50px 20px 20px 20px;

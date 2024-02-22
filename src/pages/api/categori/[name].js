@@ -1,19 +1,32 @@
-import Novelty from "../models/novelty";
+import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
+mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const { Schema } = mongoose;
+const categoriSchema = new Schema({});
+categoriSchema.plugin(mongoosePaginate);
+
+const Categori =
+  mongoose.models.Categori ||
+  mongoose.model("Categori", categoriSchema, "products");
 
 const font = async (req, res) => {
   const { name } = req.query;
-  const page = parseInt(req.query.page) || 1; // Получаем номер страницы из запроса, по умолчанию 1
-  const limit = 100; // Устанавливаем количество продуктов на странице
-  const skip = (page - 1) * limit;
-
+  const page = parseInt(req.query.page) || 1;
+  const limit = 20;
   try {
-    const products = await Novelty.find({ categori: name })
-      .skip(skip)
-      .limit(limit);
-    res.status(200).json(products);
+    const options = {
+      page,
+      limit,
+    };
+    const result = await Categori.paginate({ categori: name }, options);
+
+    res.status(200).json(result);
   } catch (error) {
-    console.error("Ошибка:", error);
-    res.status(500).json({ error: "Внутренняя ошибка сервера" });
+    console.error("Помилка:", error);
+    res.status(500).json({ error: "Внутрішня помилка сервера" });
   }
 };
 

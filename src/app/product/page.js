@@ -170,7 +170,7 @@ export default function Page() {
                           name: flutters.name,
                           price: flutters.price,
                           id: flutters._id,
-                          article: "1",
+                          article: flutters.article,
                         });
                       }}
                       className={styles.shopping}
@@ -268,13 +268,17 @@ export default function Page() {
                             name: item.name,
                             price: item.price,
                             id: item._id,
-                            article: "1",
+                            article: item.article,
                           });
                         }}
                         className={styles.shopping2}
                       />
                     </div>
-
+                    <div className={styles.article}>
+                      {" "}
+                      <span className={styles.span}>Артикул:</span>
+                      {item.article}
+                    </div>
                     <div className={styles.text_botom_box2}>
                       <div>Бренд: {item.brand}</div>
                       <div> Країна виробництва: {item.country}</div>

@@ -12,25 +12,65 @@ import Basket from "../../components/Basket/Basket";
 import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 import { useSearchParams } from "next/navigation";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 export default function Page() {
   const { setId, setOnCard1 } = useUserContext();
   const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const searchParams = useSearchParams();
   const onCategori = searchParams.get("categori");
   const falsepon = searchParams.get("false");
+  const falsepon1 = searchParams.get("currentPage1");
+
   const [priceRange, setPriceRange] = useState([0, 0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
-  const [nIFalsum, setIFals] = useState(true);
+  const [nIFalsum, setIFals] = useState(false);
+  const [nIFalsum1, setIFals1] = useState(false);
+  const [nIFalsum2, setIFals2] = useState(2);
+  // ===============
+  const [showPopup, setShowPopup] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
+
+  const handleMouseEnter = (src) => {
+    setImageSrc(src);
+    setShowPopup(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowPopup(false);
+  };
   //   -----
   const [flutters1, setFlutters1] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(100); // Установите количество продуктов на странице
+  const handleChange = (event, value) => {
+    // Обробка зміни сторінки
+    setCurrentPage(value);
+
+    // Ваш код для отримання даних з новою сторінкою
+  };
 
   //   -----
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 850) {
+        setIFals(false);
+        setIFals1(true);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  useEffect(() => {
+    setCurrentPage("1");
+  }, [falsepon1, onCategori]);
+  //   -----
+
   const sortByValueAscending = () => {
     const sortedArray = [...filteredProducts].sort((a, b) => a.price - b.price);
     setFilteredProducts(sortedArray);
@@ -47,18 +87,15 @@ export default function Page() {
           `api/categori/${onCategori}?page=${currentPage}`
         );
         const data = await response.json();
-        setFlutters(data);
-        setFlutters1(data);
-        setFilteredProducts(data);
+        setFlutters(data.docs);
+        setFlutters1(data.totalPages);
+        setFilteredProducts(data.docs);
       } catch (error) {
         console.log("Что-то пошло не так...", error);
       }
     };
     fetchData();
-  }, [onCategori, currentPage]);
-
-  // Обработчик изменения страницы
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  }, [onCategori, currentPage, falsepon1]);
 
   useEffect(() => {
     setPriceRange([
@@ -164,7 +201,7 @@ export default function Page() {
               {Array.isArray(resCategori.mas) &&
                 resCategori.mas.map((item, index) => (
                   <Link
-                    href={`./categori?categori=${item.text}&false=1`}
+                    href={`./categori?categori=${item.text}&false=1&currentPage1=1`}
                     key={index}
                     className={styles.component_mas_elem}
                   >
@@ -183,6 +220,7 @@ export default function Page() {
             <div className={styles.right_h1}>
               <div className={styles.right_h2}>Назва</div>
               <div className={styles.right_hh}>
+                <div className={styles.aртикул_h2}>Артикул</div>
                 <div className={styles.right_h2}>Ціна</div>
               </div>
             </div>
@@ -232,6 +270,14 @@ export default function Page() {
                               ? styles.img_box
                               : styles.img_box1
                           }
+                          onMouseEnter={
+                            nIFalsum === true
+                              ? () => handleMouseEnter(item.img)
+                              : null
+                          }
+                          onMouseLeave={
+                            nIFalsum === true ? handleMouseLeave : null
+                          }
                         >
                           <Image
                             className={
@@ -248,6 +294,48 @@ export default function Page() {
                               objectFit: "contain",
                             }}
                           />
+                          {showPopup && (
+                            <div
+                              className={styles.img_vv}
+                              style={{
+                                position: "fixed",
+                                top: "50%",
+                                left: "50%",
+                                transform: "translate(-50%, -50%)",
+                                backgroundColor: "white",
+                                padding: "20px",
+                                border: "1px solid #ccc",
+                                zIndex: "9999",
+                              }}
+                            >
+                              <span
+                                onClick={handleMouseLeave}
+                                style={{
+                                  cursor: "pointer",
+                                  position: "absolute",
+                                  top: "10px",
+                                  right: "10px",
+                                }}
+                              >
+                                x
+                              </span>
+                              <Image
+                                className={
+                                  nIFalsum === false ? styles.img : styles.img1
+                                }
+                                src={imageSrc}
+                                alt="Vercel Logo"
+                                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
+                                width={30}
+                                height={30}
+                                style={{
+                                  height: "100%",
+                                  width: "100%",
+                                  objectFit: "contain",
+                                }}
+                              />
+                            </div>
+                          )}
                         </div>
                         <div
                           className={
@@ -266,7 +354,14 @@ export default function Page() {
                       }
                     >
                       {" "}
-                      Артикул:{item.article}
+                      <span
+                        className={
+                          nIFalsum === false ? styles.span : styles.span1
+                        }
+                      >
+                        Артикул:
+                      </span>
+                      {item.article}
                     </div>
                     <div
                       className={
@@ -317,7 +412,7 @@ export default function Page() {
                         className={styles.shopping}
                       />
                     </div>
-                    {cehage === index && (
+                    {cehage === index && nIFalsum1 === false && (
                       <div
                         className={
                           nIFalsum === false
@@ -325,7 +420,19 @@ export default function Page() {
                             : styles.text_botom_box1
                         }
                       >
-                        <div>Бренд: {item.brand}</div>
+                        {item.brand && <div>Бренд: {item.brand}</div>}
+                        <div> Країна виробництва: {item.country}</div>
+                      </div>
+                    )}
+                    {nIFalsum1 && (
+                      <div
+                        className={
+                          nIFalsum === false
+                            ? styles.text_botom_box
+                            : styles.text_botom_box1
+                        }
+                      >
+                        {item.brand && <div>Бренд: {item.brand}</div>}
                         <div> Країна виробництва: {item.country}</div>
                       </div>
                     )}
@@ -333,16 +440,21 @@ export default function Page() {
                 </div>
               ))}
           </div>
-          <div>
-            {/* {Array.from(
-              { length: Math.ceil(flutters1.length / productsPerPage) },
-              (_, i) => (
-                <button key={i} onClick={() => paginate(i + 1)}>
-                  {i + 1}
-                </button>
-              )
-            )} */}
-          </div>
+          {flutters1 > 1 && (
+            <a href="#top">
+              <Stack spacing={2} mt={3} className={styles.stack}>
+                {/* <Link
+                  href={`./categori?categori=${onCategori}&false=1&currentPage1=${currentPage}`}
+                > */}
+                <Pagination
+                  count={flutters1} // Загальна кількість сторінок
+                  page={currentPage}
+                  onChange={handleChange}
+                />
+                {/* </Link> */}
+              </Stack>
+            </a>
+          )}
         </div>
       </div>
     </div>

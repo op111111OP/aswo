@@ -17,12 +17,24 @@ export default function Header() {
   const [idItem, setIdItem] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [t, setT] = useState(false);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 850) {
+        setT(false);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
   function menuFalse(fals) {
     setCehage(fals);
+    setT(fals);
   }
 
   useEffect(() => {

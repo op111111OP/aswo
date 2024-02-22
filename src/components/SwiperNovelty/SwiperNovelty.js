@@ -152,7 +152,7 @@ export default function App() {
                   </div>
                   {cehage === index && (
                     <div className={styles.text_botom_box}>
-                      <div>Бренд: {item.brand}</div>
+                      {item.brand && <div>Бренд: {item.brand}</div>}
                       <div> Країна виробництва: {item.country}</div>
                     </div>
                   )}
