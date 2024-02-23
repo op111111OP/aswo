@@ -81,14 +81,12 @@ export default function App() {
               1200: {
                 slidesPerView: 4,
               },
-              900: {
+              700: {
                 slidesPerView: 3,
               },
-              600: {
+
+              320: {
                 slidesPerView: 2,
-              },
-              450: {
-                slidesPerView: 1,
               },
               0: {
                 slidesPerView: 1,

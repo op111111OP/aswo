@@ -24,14 +24,11 @@
   font-size: 14px;
   margin: 0px 0px 15px 0px;
 }
-.img {
-  /* object-fit: cover; */
-}
+
 .text_botom_box {
   margin: 30px 0px 0px 0px;
 }
-.slide_box {
-}
+
 .price_box {
   display: flex;
   justify-content: space-around;
@@ -74,7 +71,7 @@
 }
 .article {
   font-size: 10px;
-  margin: 0px 0px 10px 0px;
+  margin: 2px 0px 10px 0px;
 }
 @media (max-width: 1100px) {
   .box_carusel {
@@ -90,5 +87,33 @@
   }
   .now {
     margin: 0px 0px 30px 0px;
+  }
+}
+@media (max-width: 420px) {
+  .swiper_slide {
+    height: 350px;
+    z-index: 20;
+  }
+
+  .img_box {
+    height: 150px;
+    margin: 0px 0px 5px 0px;
+  }
+  .swiper {
+    height: 360px;
+    margin: 0px 0px 10px 0px;
+  }
+  .article {
+    margin: 15px 0px 5px 0px;
+  }
+  .price_box {
+    margin: 5px 0px 5px 0px;
+  }
+  .text_botom_box {
+    font-size: 12px;
+    margin: 15px 0px 5px 0px;
+  }
+  .link_box {
+    font-size: 12px;
   }
 }

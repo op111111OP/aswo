@@ -29,7 +29,7 @@ export default function Page() {
   const [cehageCor, setCehageCor] = useState(false);
   const [nIFalsum, setIFals] = useState(false);
   const [nIFalsum1, setIFals1] = useState(false);
-  const [nIFalsum2, setIFals2] = useState(2);
+
   // ===============
   const [showPopup, setShowPopup] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
@@ -49,8 +49,6 @@ export default function Page() {
   const handleChange = (event, value) => {
     // Обробка зміни сторінки
     setCurrentPage(value);
-
-    // Ваш код для отримання даних з новою сторінкою
   };
 
   //   -----
@@ -181,8 +179,8 @@ export default function Page() {
         <div className={styles.box_left}>
           <div className={styles.box_slider}>
             <div className={styles.price_box_cl}>
-              <div className={styles.price_min}>{priceRange[0]}</div>
-              <div className={styles.price_max}>{priceRange[1]}</div>
+              <div className={styles.price_min}>від {priceRange[0]}грн. -</div>
+              <div className={styles.price_max}> {priceRange[1]}грн.</div>
             </div>
             <div className={styles.slider}>
               <Slider
@@ -344,7 +342,9 @@ export default function Page() {
                               : styles.text_box1
                           }
                         >
-                          {item.name}
+                          {window.innerWidth < 600
+                            ? `${item.name.slice(0, 67)}...`
+                            : item.name}
                         </div>
                       </div>
                     </Link>

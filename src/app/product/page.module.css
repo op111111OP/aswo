@@ -311,6 +311,7 @@
   .header_auto {
     position: absolute;
     width: 100vw;
+    right: 7px;
   }
 
   .right_goods_box2 {

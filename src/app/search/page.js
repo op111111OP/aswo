@@ -167,8 +167,8 @@ export default function Page() {
       <div className={styles.box} id="myBox" onClick={handleBoxClick}>
         <div className={styles.box_slider}>
           <div className={styles.price_box_cl}>
-            <div className={styles.price_min}>{priceRange[0]}</div>
-            <div className={styles.price_max}>{priceRange[1]}</div>
+            <div className={styles.price_min}>від {priceRange[0]}грн. -</div>
+            <div className={styles.price_max}> {priceRange[1]}грн.</div>
           </div>
           <div className={styles.slider}>
             <Slider
@@ -311,7 +311,9 @@ export default function Page() {
                               : styles.text_box1
                           }
                         >
-                          {item.name}
+                          {window.innerWidth < 600
+                            ? `${item.name.slice(0, 67)}...`
+                            : item.name}
                         </div>
                       </div>
                     </Link>
