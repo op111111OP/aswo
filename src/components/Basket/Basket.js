@@ -235,9 +235,7 @@ export default function Basket({ fals }) {
                   if (!values.phone) {
                     errors.phone = "Телефон обов'язкове поле";
                   }
-                  // if (!values.street) {
-                  //   errors.street = "Вулиця обов'язкове поле";
-                  // }
+
                   if (!values.city) {
                     errors.city = "Місто обов'язкове поле";
                   }
@@ -301,17 +299,6 @@ export default function Basket({ fals }) {
                           placeholder="Телефон"
                           className={styles.phone}
                         />
-                        {/* <ErrorMessage
-                          name="phone"
-                          component="div"
-                          className={`${styles.error} ${styles.error4}`}
-                        />
-                        <Field
-                          as="textarea"
-                          name="message"
-                          placeholder="Коментарі до замовлення"
-                          className={styles.textarea}
-                        /> */}
                       </div>
                     </div>
                     <div className={styles.box_сontacts}>

@@ -17,6 +17,9 @@ const ordersSchema1 = new Schema({
   img: {
     type: String,
   },
+  novel: {
+    type: Boolean,
+  },
   price: {
     type: Number,
   },
@@ -33,13 +36,14 @@ const ordersSchema1 = new Schema({
 const Orderg1 =
   mongoose.models.Orderg1 ||
   mongoose.model("Orderg1", ordersSchema1, "products");
+
 export default async (req, res) => {
   if (req.method === "POST") {
     try {
-      const { name, article, img, price, brand, country, description } =
+      const { name, article, img, price, brand, country, description, novel } =
         req.body;
 
-      const newOrders1 = new Orderg1({
+      const newOrders14 = new Orderg1({
         name,
         article,
         img,
@@ -47,13 +51,14 @@ export default async (req, res) => {
         brand,
         country,
         description,
+        novel,
       });
-      await newOrders1.save();
-      console.log(newOrders1, 11);
+      await newOrders14.save();
+      console.log(newOrders14, 11);
 
       return res
         .status(201)
-        .json({ message: "Товар успешно добавлен", item: newOrders1 });
+        .json({ message: "Товар успешно добавлен", item: newOrders14 });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: "Что-то пошло не так" });

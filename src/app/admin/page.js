@@ -9,6 +9,7 @@ export default function Page() {
   const [inputValue2, setInputValue2] = useState("");
   const [inputValue3, setInputValue3] = useState("");
   const [fol, setFol] = useState(1);
+  const [fluta, setFluta] = useState([]);
 
   //   ----
   const [flutters1, setFlutters1] = useState([]);
@@ -80,6 +81,18 @@ export default function Page() {
     }
   };
   // ---штзге
+
+  const handleSubmit2 = async (values) => {
+    try {
+      const response = await fetch(`/api/articleAdmin/${values.article}`);
+      const data = await response.json();
+      setFluta(data);
+    } catch (error) {
+      console.log("Что-то пошло не так...", error);
+    } finally {
+      console.log("пошло так...");
+    }
+  };
   const handleSubmit1 = async (values) => {
     try {
       const response = await fetch(`api/delitAdmin/${values.article}`);
@@ -109,7 +122,7 @@ export default function Page() {
       console.error("Ошибка:", error);
     }
   };
-  console.log("inputValue2", flutters1);
+  console.log(fluta.length, fluta);
   return (
     <div className={styles.box}>
       {flutters.length === 0 && (
@@ -148,26 +161,40 @@ export default function Page() {
               <Formik
                 onSubmit={handleSubmit}
                 initialValues={{
-                  name: "",
-                  article: "",
-                  img: "",
-                  price: "",
-                  brand: "",
-                  country: "",
-                  description: "",
+                  name: fluta.length === 1 ? fluta[0].name : "",
+                  article: fluta.length === 1 ? fluta[0].article : "",
+                  img: fluta.length === 1 ? fluta[0].img : "",
+                  price: fluta.length === 1 ? fluta[0].price : "",
+                  brand: fluta.length === 1 ? fluta[0].brand : "",
+                  country: fluta.length === 1 ? fluta[0].country : "",
+                  description: fluta.length === 1 ? fluta[0].description : "",
+                  novel: fluta.length === 1 ? fluta[0].novel : "",
                 }}
                 validate={(values) => {
                   const errors = {};
-
+                  if (fluta.length === 1) {
+                    values.name = values.name || fluta[0].name;
+                    values.article = values.article || fluta[0].article;
+                    values.img = values.img || fluta[0].img;
+                    values.price = values.price || fluta[0].price;
+                    values.brand = values.brand || fluta[0].brand;
+                    values.country = values.country || fluta[0].country;
+                    values.description =
+                      values.description || fluta[0].description;
+                    values.novel = values.novel || fluta[0].novel;
+                  }
                   return errors;
                 }}
               >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, values }) => (
                   <Form className={styles.box_f}>
                     <Field
                       type="text"
                       name="name"
-                      placeholder="name"
+                      placeholder={
+                        values.name ||
+                        (fluta.length === 1 ? fluta[0].name : "name")
+                      }
                       className={styles.name1}
                       id="first_name"
                     />
@@ -179,7 +206,10 @@ export default function Page() {
                     <Field
                       type="text"
                       name="article"
-                      placeholder="article"
+                      placeholder={
+                        values.article ||
+                        (fluta.length === 1 ? fluta[0].article : "article")
+                      }
                       className={styles.name1}
                       id="first_name"
                     />
@@ -192,7 +222,10 @@ export default function Page() {
                     <Field
                       type="text"
                       name="img"
-                      placeholder="img"
+                      placeholder={
+                        values.img ||
+                        (fluta.length === 1 ? fluta[0].img : "img")
+                      }
                       className={styles.email}
                     />
 
@@ -204,7 +237,10 @@ export default function Page() {
                     <Field
                       type="number"
                       name="price"
-                      placeholder="price"
+                      placeholder={
+                        values.price ||
+                        (fluta.length === 1 ? fluta[0].price : "price")
+                      }
                       className={styles.email}
                     />
 
@@ -217,7 +253,10 @@ export default function Page() {
                     <Field
                       type="text"
                       name="brand"
-                      placeholder="brand"
+                      placeholder={
+                        values.brand ||
+                        (fluta.length === 1 ? fluta[0].brand : "brand")
+                      }
                       className={styles.name2}
                     />
                     <ErrorMessage
@@ -228,7 +267,10 @@ export default function Page() {
                     <Field
                       type="text"
                       name="country"
-                      placeholder="country"
+                      placeholder={
+                        values.country ||
+                        (fluta.length === 1 ? fluta[0].country : "country")
+                      }
                       className={styles.name2}
                     />
                     <ErrorMessage
@@ -240,7 +282,12 @@ export default function Page() {
                     <Field
                       type="text"
                       name="description"
-                      placeholder="description"
+                      placeholder={
+                        values.description ||
+                        (fluta.length === 1
+                          ? fluta[0].description
+                          : "description")
+                      }
                       className={styles.name2}
                     />
                     <ErrorMessage
@@ -248,7 +295,20 @@ export default function Page() {
                       component="div"
                       className={`${styles.error} ${styles.error6}`}
                     />
-
+                    <Field
+                      type="text"
+                      name="novel"
+                      placeholder={
+                        values.novel ||
+                        (fluta.length === 1 ? fluta[0].novel : "novel")
+                      }
+                      className={styles.name2}
+                    />
+                    <ErrorMessage
+                      name="novel"
+                      component="div"
+                      className={`${styles.error} ${styles.error6}`}
+                    />
                     <button
                       className={`${styles.issue_order} ${styles.issue_or}`}
                       disabled={isSubmitting}
@@ -260,42 +320,81 @@ export default function Page() {
                 )}
               </Formik>
             </div>
-            <div className={styles.box_4_}>
-              <Formik
-                onSubmit={handleSubmit1}
-                initialValues={{
-                  article: "",
-                }}
-                validate={(values) => {
-                  const errors = {};
+            <div className={styles.box_5_}>
+              <div className={styles.box_4_}>
+                <Formik
+                  onSubmit={handleSubmit1}
+                  initialValues={{
+                    article: "",
+                  }}
+                  validate={(values) => {
+                    const errors = {};
 
-                  return errors;
-                }}
-              >
-                {({ isSubmitting1 }) => (
-                  <Form className={styles.box_f}>
-                    <Field
-                      type="text"
-                      name="article"
-                      placeholder="article"
-                      className={styles.name1}
-                      id="first_name"
-                    />
-                    <ErrorMessage
-                      name="article"
-                      component="div"
-                      className={`${styles.error} ${styles.error1}`}
-                    />
-                    <button
-                      className={`${styles.issue_order} ${styles.issue_or}`}
-                      disabled={isSubmitting1}
-                      type="submit"
-                    >
-                      Видалити
-                    </button>
-                  </Form>
-                )}
-              </Formik>
+                    return errors;
+                  }}
+                >
+                  {({ isSubmitting1 }) => (
+                    <Form className={styles.box_f}>
+                      <Field
+                        type="text"
+                        name="article"
+                        placeholder="article"
+                        className={styles.name1}
+                        id="first_name"
+                      />
+                      <ErrorMessage
+                        name="article"
+                        component="div"
+                        className={`${styles.error} ${styles.error1}`}
+                      />
+                      <button
+                        className={`${styles.issue_order} ${styles.issue_or}`}
+                        disabled={isSubmitting1}
+                        type="submit"
+                      >
+                        Видалити
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+              <div className={styles.box_4_}>
+                <Formik
+                  onSubmit={handleSubmit2}
+                  initialValues={{
+                    article: "",
+                  }}
+                  validate={(values) => {
+                    const errors = {};
+
+                    return errors;
+                  }}
+                >
+                  {({ isSubmitting2 }) => (
+                    <Form className={styles.box_f}>
+                      <Field
+                        type="text"
+                        name="article"
+                        placeholder="article"
+                        className={styles.name1}
+                        id="first_name"
+                      />
+                      <ErrorMessage
+                        name="article"
+                        component="div"
+                        className={`${styles.error} ${styles.error1}`}
+                      />
+                      <button
+                        className={`${styles.issue_order} ${styles.issue_or}`}
+                        disabled={isSubmitting2}
+                        type="submit"
+                      >
+                        Знайти
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
             </div>
           </div>
           <div className={styles.box_4}>

@@ -47,7 +47,7 @@
 .b {
   position: absolute;
   width: 95vw;
-  height: 80vh;
+  height: 83vh;
   flex-direction: column;
   flex-wrap: wrap;
   overflow-x: auto;
@@ -68,7 +68,7 @@
 
 .d {
   position: absolute;
-  width: 70vw;
+  width: 60vw;
   height: 83vh;
   flex-direction: column;
   flex-wrap: wrap;
@@ -115,6 +115,7 @@
   .d {
     height: 75vh;
     overflow-x: auto;
+    width: 83vw;
   }
 }
 @media (max-width: 1024px) {
