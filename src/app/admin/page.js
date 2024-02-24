@@ -168,10 +168,11 @@ export default function Page() {
                   brand: fluta.length === 1 ? fluta[0].brand : "",
                   country: fluta.length === 1 ? fluta[0].country : "",
                   description: fluta.length === 1 ? fluta[0].description : "",
-                  novel: fluta.length === 1 ? fluta[0].novel : "",
+                  novel: fluta.length === 1 ? false : "",
                 }}
                 validate={(values) => {
                   const errors = {};
+
                   if (fluta.length === 1) {
                     values.name = values.name || fluta[0].name;
                     values.article = values.article || fluta[0].article;
@@ -181,7 +182,7 @@ export default function Page() {
                     values.country = values.country || fluta[0].country;
                     values.description =
                       values.description || fluta[0].description;
-                    values.novel = values.novel || fluta[0].novel;
+                    values.novel = values.novel || false;
                   }
                   return errors;
                 }}
