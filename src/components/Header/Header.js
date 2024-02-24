@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BsTelephoneFill, BsX } from "react-icons/bs";
 import { FaShoppingCart, FaSearch } from "react-icons/fa";
 import Menu from "../Memu/Menu";
+import Menu2 from "../Memu2/Menu2";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import AutoComplit from "../AutoComplit/AutoComplit";
@@ -13,6 +14,9 @@ import { BsChevronRight } from "react-icons/bs";
 export default function Header() {
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
+  const [cehage1, setCehage1] = useState(false);
+  const [cehage4, setCehage4] = useState(false);
+  const [cehage5, setCehage5] = useState([]);
   const [num, setNum] = useState();
   const [idItem, setIdItem] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -389,7 +393,30 @@ export default function Header() {
               </div>
 
               {cehage && (
-                <Menu flutters={idItem} num={num} menuFalse={menuFalse} i={i} />
+                <Menu
+                  flutters={idItem}
+                  num={num}
+                  menuFalse={menuFalse}
+                  i={i}
+                  s={(a) => {
+                    setCehage1(a);
+                  }}
+                  handleResize1={(a) => {
+                    setCehage5(a);
+                  }}
+                />
+              )}
+              {cehage1 && (
+                <Menu2
+                  //   flutters={idItem}
+                  //   num={num}
+                  //   menuFalse={menuFalse}
+                  i={i}
+                  ss={(a) => {
+                    setCehage1(a);
+                  }}
+                  cehage5={cehage5}
+                />
               )}
             </div>
           )}

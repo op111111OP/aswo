@@ -7,11 +7,15 @@
   padding: 50px 20px 20px 20px;
   color: rgb(8, 0, 0);
   z-index: 100;
-
+  box-shadow: #000000;
   display: flex;
   overflow: auto;
   overflow-x: auto;
   height: 60vh;
+  box-shadow: 2px 0px 15px #0059a271;
+}
+.component_mas_elem_text {
+  margin: 4px 0px 0px 0px;
 }
 
 .component_name_box {
@@ -41,7 +45,7 @@
 
   flex-wrap: wrap;
   justify-content: start;
-  height: 400px;
+  height: 430px;
   overflow-x: hidden;
 }
 .b {
@@ -104,6 +108,11 @@
 }
 
 @media (max-width: 1440px) {
+  .f {
+    height: 75vh;
+    overflow-x: auto;
+    width: 90vw;
+  }
   .b {
     height: 75vh;
     overflow-x: auto;
@@ -113,18 +122,24 @@
     overflow-x: auto;
   }
   .d {
-    height: 75vh;
+    height: 80vh;
     overflow-x: auto;
-    width: 83vw;
+    width: 90vw;
+  }
+  .g {
+    left: 50%;
+    height: 75vh;
+    transform: translate(-55%, 0%);
+    width: 90vw;
   }
 }
 @media (max-width: 1024px) {
   .b {
-    height: 70vh;
+    height: 75vh;
     overflow-x: auto;
   }
   .c {
-    height: 70vh;
+    height: 75vh;
     overflow-x: auto;
   }
   .d {
@@ -141,12 +156,12 @@
   .container {
     top: 0px;
     position: fixed;
-
+    flex-direction: column;
     padding: 40px 10px;
-
+    display: flex;
     height: 100vh;
-    min-width: 320px;
-    max-width: 90%;
+
+    max-width: 320px;
     overflow-y: auto;
   }
   .b {
@@ -157,20 +172,29 @@
   .component_mas_elem_text {
     margin: 10px 0px 0px 0px;
   }
+  /* -- 850 */
+  .component_mas {
+    display: none;
+  }
+  .component_mas850 {
+    top: 0px;
+    position: fixed;
+    padding: 40px 10px;
+    height: 100vh;
+    min-width: 320px;
+    max-width: 90%;
+    overflow-y: auto;
+    z-index: 30;
+  }
+  .component_name:hover {
+    cursor: pointer;
+  }
+  .x:hover {
+    cursor: pointer;
+  }
+  /* -- */
 }
 @media (max-width: 600px) {
-  .container {
-    top: 0px;
-
-    padding: 40px 10px;
-
-    height: 100vh;
-    flex-direction: column;
-    max-width: 320px;
-    overflow-y: auto;
-    flex-wrap: nowrap;
-    overflow-x: hidden;
-  }
   .b {
     flex-direction: column;
     flex-wrap: nowrap;

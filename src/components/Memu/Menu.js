@@ -2,7 +2,7 @@
 import styles from "./Menu.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "react-use";
 import { BsX } from "react-icons/bs";
 
@@ -12,10 +12,15 @@ export default function Menu({
   onMouseLeave,
   num,
   menuFalse,
+  handleResize1,
+  s,
   i,
 }) {
   const [fels, setFals] = useState(true);
-  const userId = (newItem) => {};
+
+  //  -----------
+
+  //  -----------
   const userIdG = (newItem) => {
     if (newItem !== undefined && newItem !== "") {
       setOnCategoriG(newItem);
@@ -38,7 +43,16 @@ export default function Menu({
             {(item.mas && (
               <div className={styles.component_name_box}>
                 <Image src={item.img} alt={item.name} width={30} height={30} />
-                <div className={styles.component_name}>{item.name}</div>
+                <div
+                  className={styles.component_name}
+                  onClick={() => {
+                    handleResize1(item);
+
+                    s(true);
+                  }}
+                >
+                  {item.name}
+                </div>
               </div>
             )) || (
               <Link
@@ -77,7 +91,6 @@ export default function Menu({
                       className={styles.component_mas_elem_text}
                       onClick={() => {
                         setFals(false);
-                        userId(item.text);
                       }}
                     >
                       {" "}
