@@ -16,11 +16,13 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 export default function Page() {
   const { setId, setOnCard1 } = useUserContext();
-  const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
+  const [resCategori, setResCategori] = useState([]);
+  const [resCategori1, setResCategori1] = useState([]);
   const searchParams = useSearchParams();
   const onCategori = searchParams.get("categori");
   const falsepon = searchParams.get("false");
   const falsepon1 = searchParams.get("currentPage1");
+  const i = searchParams.get("i");
 
   const [priceRange, setPriceRange] = useState([0, 0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -94,7 +96,32 @@ export default function Page() {
     };
     fetchData();
   }, [onCategori, currentPage, falsepon1]);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/findCat/${i}`);
+        const data = await response.json();
+        setResCategori(data);
+      } catch (error) {
+        console.log("Что-то пошло не так...");
+      } finally {
+        console.log("пошло так...");
+      }
+    };
+    fetchData();
+  }, [i]);
+  useEffect(() => {
+    if (resCategori && resCategori.length > 0 && resCategori[0].u) {
+      const masArrayWithP = resCategori[0].u
+        .filter((item) => Array.isArray(item.mas)) // перевірка чи mas є масивом
+        .filter((item) =>
+          item.mas.some((subItem) => subItem.text === onCategori)
+        )
+        .map((item) => item.mas)
+        .flat(); // "розгладжуємо" масив, щоб отримати всі об'єкти mas в одному масиві
+      setResCategori1(masArrayWithP);
+    }
+  }, [resCategori, onCategori]);
   useEffect(() => {
     setPriceRange([
       Math.min(...flutters.map((obj) => obj.price)),
@@ -121,7 +148,7 @@ export default function Page() {
   function fals(t) {
     setCehageCor(t);
   }
-
+  //   console.log(resCategori[0].u, "resCategori");
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -196,8 +223,8 @@ export default function Page() {
           </div>
           {falsepon === "1" && (
             <div className={styles.categori_box_left}>
-              {Array.isArray(resCategori.mas) &&
-                resCategori.mas.map((item, index) => (
+              {Array.isArray(resCategori1) &&
+                resCategori1.map((item, index) => (
                   <Link
                     href={`./categori?categori=${item.text}&false=1&currentPage1=1`}
                     key={index}
@@ -218,7 +245,7 @@ export default function Page() {
             <div className={styles.right_h1}>
               <div className={styles.right_h2}>Назва</div>
               <div className={styles.right_hh}>
-                <div className={styles.aртикул_h2}>Артикул</div>
+                <div className={styles.artic_h2}>Артикул</div>
                 <div className={styles.right_h2}>Ціна</div>
               </div>
             </div>
@@ -306,17 +333,6 @@ export default function Page() {
                                 zIndex: "9999",
                               }}
                             >
-                              <span
-                                onClick={handleMouseLeave}
-                                style={{
-                                  cursor: "pointer",
-                                  position: "absolute",
-                                  top: "10px",
-                                  right: "10px",
-                                }}
-                              >
-                                x
-                              </span>
                               <Image
                                 className={
                                   nIFalsum === false ? styles.img : styles.img1

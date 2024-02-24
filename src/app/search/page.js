@@ -275,17 +275,6 @@ export default function Page() {
                                 zIndex: "9999",
                               }}
                             >
-                              <span
-                                onClick={handleMouseLeave}
-                                style={{
-                                  cursor: "pointer",
-                                  position: "absolute",
-                                  top: "10px",
-                                  right: "10px",
-                                }}
-                              >
-                                x
-                              </span>
                               <Image
                                 className={
                                   nIFalsum === false ? styles.img : styles.img1

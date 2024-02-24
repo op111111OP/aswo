@@ -24,7 +24,7 @@ export default function App() {
         effect={"fade"}
         navigation={false}
         autoplay={{
-          delay: 10000,
+          delay: 6000,
           disableOnInteraction: false,
         }}
         loop={true}

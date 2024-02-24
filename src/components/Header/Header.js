@@ -17,6 +17,8 @@ export default function Header() {
   const [idItem, setIdItem] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [t, setT] = useState(false);
+  const [i, seti] = useState(false);
+  const [i1, seti1] = useState(false);
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 850) {
@@ -123,7 +125,8 @@ export default function Header() {
               className={styles.catalogue_elem}
               onMouseEnter={() => {
                 setCehage(true);
-                setIdItem(flutters[0].HoReCa);
+                setIdItem(flutters[0].u);
+
                 setNum("a");
               }}
               onMouseOut={() => {
@@ -131,7 +134,8 @@ export default function Header() {
               }}
               onClick={() => {
                 setCehage(true);
-                setIdItem(flutters[0].equipmentBAHC);
+                setIdItem(flutters[0].u);
+
                 setNum("a");
               }}
             >
@@ -141,7 +145,9 @@ export default function Header() {
               className={styles.catalogue_elem}
               onMouseEnter={() => {
                 setCehage(true);
-                setIdItem(flutters[1].bigMachinery);
+                setIdItem(flutters[1].u);
+                seti(flutters[1]._id);
+
                 setNum("b");
               }}
               onMouseOut={() => {
@@ -149,7 +155,9 @@ export default function Header() {
               }}
               onClick={() => {
                 setCehage(true);
-                setIdItem(flutters[1].bigMachinery);
+                setIdItem(flutters[1].u);
+                seti(flutters[1]._id);
+
                 setNum("b");
               }}
             >
@@ -159,7 +167,9 @@ export default function Header() {
               className={styles.catalogue_elem}
               onMouseEnter={() => {
                 setCehage(true);
-                setIdItem(flutters[2].kukhonnaTekhnika);
+                setIdItem(flutters[2].u);
+                seti(flutters[2]._id);
+
                 setNum("c");
               }}
               onMouseOut={() => {
@@ -167,7 +177,9 @@ export default function Header() {
               }}
               onClick={() => {
                 setCehage(true);
-                setIdItem(flutters[2].kukhonnaTekhnika);
+                setIdItem(flutters[2].u);
+                seti(flutters[2]._id);
+
                 setNum("c");
               }}
             >
@@ -177,7 +189,9 @@ export default function Header() {
               className={styles.catalogue_elem}
               onMouseEnter={() => {
                 setCehage(true);
-                setIdItem(flutters[3].equipmentBAHC);
+                setIdItem(flutters[3].u);
+                seti(flutters[3]._id);
+
                 setNum("d");
               }}
               onMouseOut={() => {
@@ -185,7 +199,9 @@ export default function Header() {
               }}
               onClick={() => {
                 setCehage(true);
-                setIdItem(flutters[3].equipmentBAHC);
+                setIdItem(flutters[3].u);
+                seti(flutters[3]._id);
+
                 setNum("d");
               }}
             >
@@ -195,7 +211,9 @@ export default function Header() {
               className={styles.catalogue_elem}
               onMouseEnter={() => {
                 setCehage(true);
-                setIdItem(flutters[4].climateTechno);
+                setIdItem(flutters[4].u);
+                seti(flutters[4]._id);
+
                 setNum("f");
               }}
               onMouseOut={() => {
@@ -203,7 +221,9 @@ export default function Header() {
               }}
               onClick={() => {
                 setCehage(true);
-                setIdItem(flutters[4].climateTechno);
+                setIdItem(flutters[4].u);
+                seti(flutters[4]._id);
+
                 setNum("f");
               }}
             >
@@ -213,7 +233,9 @@ export default function Header() {
               className={styles.catalogue_elem}
               onMouseEnter={() => {
                 setCehage(true);
-                setIdItem(flutters[5].universalSPHAR);
+                setIdItem(flutters[5].u);
+                seti(flutters[5]._id);
+
                 setNum("g");
               }}
               onMouseOut={() => {
@@ -221,7 +243,9 @@ export default function Header() {
               }}
               onClick={() => {
                 setCehage(true);
-                setIdItem(flutters[5].universalSPHAR);
+                setIdItem(flutters[5].u);
+                seti(flutters[5]._id);
+
                 setNum("g");
               }}
             >
@@ -231,7 +255,8 @@ export default function Header() {
               className={styles.catalogue_elem}
               onMouseEnter={() => {
                 setCehage(true);
-                setIdItem(flutters[6].sparePCRE);
+                setIdItem(flutters[6].u);
+
                 setNum("o");
               }}
               onMouseOut={() => {
@@ -239,7 +264,8 @@ export default function Header() {
               }}
               onClick={() => {
                 setCehage(true);
-                setIdItem(flutters[6].sparePCRE);
+                setIdItem(flutters[6].u);
+
                 setNum("o");
               }}
             >
@@ -257,6 +283,7 @@ export default function Header() {
                 flutters={idItem}
                 num={num}
                 menuFalse={menuFalse}
+                i={i}
               />
             )}
           </div>
@@ -277,7 +304,7 @@ export default function Header() {
                 className={styles.catalogue_elem2}
                 onClick={() => {
                   setCehage(true);
-                  setIdItem(flutters[0].HoReCa);
+                  setIdItem(flutters[0].u);
                   setNum("o2");
                 }}
               >
@@ -288,7 +315,9 @@ export default function Header() {
                 className={styles.catalogue_elem2}
                 onClick={() => {
                   setCehage(true);
-                  setIdItem(flutters[1].bigMachinery);
+                  setIdItem(flutters[1].u);
+                  seti(flutters[1]._id);
+
                   setNum("o2");
                 }}
               >
@@ -299,7 +328,9 @@ export default function Header() {
                 className={styles.catalogue_elem2}
                 onClick={() => {
                   setCehage(true);
-                  setIdItem(flutters[2].kukhonnaTekhnika);
+                  setIdItem(flutters[2].u);
+                  seti(flutters[2]._id);
+
                   setNum("o2");
                 }}
               >
@@ -310,7 +341,9 @@ export default function Header() {
                 className={styles.catalogue_elem2}
                 onClick={() => {
                   setCehage(true);
-                  setIdItem(flutters[3].equipmentBAHC);
+                  setIdItem(flutters[3].u);
+                  seti(flutters[3]._id);
+
                   setNum("o2");
                 }}
               >
@@ -321,7 +354,9 @@ export default function Header() {
                 className={styles.catalogue_elem2}
                 onClick={() => {
                   setCehage(true);
-                  setIdItem(flutters[4].climateTechno);
+                  setIdItem(flutters[4].u);
+                  seti(flutters[4]._id);
+
                   setNum("o2");
                 }}
               >
@@ -332,7 +367,9 @@ export default function Header() {
                 className={styles.catalogue_elem2}
                 onClick={() => {
                   setCehage(true);
-                  setIdItem(flutters[5].universalSPHAR);
+                  setIdItem(flutters[5].u);
+                  seti(flutters[5]._id);
+
                   setNum("o2");
                 }}
               >
@@ -343,7 +380,7 @@ export default function Header() {
                 className={styles.catalogue_elem2}
                 onClick={() => {
                   setCehage(true);
-                  setIdItem(flutters[6].sparePCRE);
+                  setIdItem(flutters[6].u);
                   setNum("o2");
                 }}
               >
@@ -352,7 +389,7 @@ export default function Header() {
               </div>
 
               {cehage && (
-                <Menu flutters={idItem} num={num} menuFalse={menuFalse} />
+                <Menu flutters={idItem} num={num} menuFalse={menuFalse} i={i} />
               )}
             </div>
           )}

@@ -12,6 +12,7 @@ export default function Menu({
   onMouseLeave,
   num,
   menuFalse,
+  i,
 }) {
   const [fels, setFals] = useState(true);
   const userId = (newItem) => {};
@@ -21,15 +22,6 @@ export default function Menu({
     }
   };
 
-  function userIdCategori(i) {
-    const setResCategor = flutters.find((item) =>
-      item.mas.some((innerItem) => innerItem.text === i)
-    );
-    //  console.log(resCategori, "m");
-    setResCategori(setResCategor);
-  }
-
-  const [resCategori, setResCategori] = useLocalStorage("resCategori", []);
   const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
   menuFalse(fels);
 
@@ -77,7 +69,7 @@ export default function Menu({
               <div className={styles.component_mas}>
                 {flutters[index].mas.map((item, index) => (
                   <Link
-                    href={`./categori?categori=${item.text}&false=1&currentPage1=a`}
+                    href={`./categori?categori=${item.text}&false=1&currentPage1=a&i=${i}`}
                     key={index}
                     className={styles.component_mas_elem}
                   >
@@ -86,7 +78,6 @@ export default function Menu({
                       onClick={() => {
                         setFals(false);
                         userId(item.text);
-                        userIdCategori(item.text);
                       }}
                     >
                       {" "}
