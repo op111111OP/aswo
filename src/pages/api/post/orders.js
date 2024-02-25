@@ -30,9 +30,7 @@ const ordersSchema = new Schema({
   last_name: {
     type: String,
   },
-  message: {
-    type: String,
-  },
+
   phone: {
     type: String,
   },
@@ -73,7 +71,7 @@ export default async (req, res) => {
         email,
         first_name,
         last_name,
-        message,
+
         phone,
         someField,
         street,
@@ -91,7 +89,7 @@ export default async (req, res) => {
         email,
         first_name,
         last_name,
-        message,
+
         phone,
         someField,
         street,

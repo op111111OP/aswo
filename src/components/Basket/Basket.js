@@ -15,9 +15,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 // ----------
 
 export default function Basket({ fals }) {
-  const { setCard, setNumBas, onCard, setDelcard } = useUserContext();
-  const [aa1, setAa1] = useLocalStorage("resS1", []);
-  const [aa2, setAa2] = useLocalStorage("resSS", []);
+  const { setCard, onCard, setDelcard } = useUserContext();
   const [twoCard, setTwoCard] = useState(onCard);
   const [t, setT] = useState(true);
   const [truF, setTruF] = useState(false);
@@ -189,7 +187,6 @@ export default function Basket({ fals }) {
                   last_name: "",
                   email: "",
                   phone: "",
-                  message: "",
                   street: "",
                   city: "",
                   someField: "",
