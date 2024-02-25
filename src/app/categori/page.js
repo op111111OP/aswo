@@ -52,8 +52,14 @@ export default function Page() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const handleChange = (event, value) => {
-    // Обробка зміни сторінки
     setCurrentPage(value);
+    //  ---
+    const newCountryCheckboxes = {};
+    Object.keys(countryCheckboxes).forEach((country) => {
+      newCountryCheckboxes[country] = false;
+    });
+    // Оновлюємо стан інп
+    setCountryCheckboxes(newCountryCheckboxes);
   };
 
   //   -----
@@ -181,7 +187,7 @@ export default function Page() {
     }
   }, [filteredProducts]);
 
-  // ---
+  // ---mas
   useEffect(() => {
     const countCountries = (selectedCountries) => {
       const countryCounts = {};
@@ -269,6 +275,7 @@ export default function Page() {
                 className={styles.slider_el}
               />
             </div>
+            {/* in */}
             {countri && (
               <div className={styles.categori_box_left1}>
                 {Array.isArray(countri) &&
@@ -293,6 +300,7 @@ export default function Page() {
                   ))}
               </div>
             )}
+            {/* in */}
           </div>
           {falsepon === "1" && (
             <div className={styles.categori_box_left}>

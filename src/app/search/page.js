@@ -41,10 +41,14 @@ export default function Page() {
     setShowPopup(false);
   };
   const handleChange = (event, value) => {
-    // Обробка зміни сторінки
     setCurrentPage(value);
-
-    // Ваш код для отримання даних з новою сторінкою
+    //  ---
+    const newCountryCheckboxes = {};
+    Object.keys(countryCheckboxes).forEach((country) => {
+      newCountryCheckboxes[country] = false;
+    });
+    // Оновлюємо стан інп
+    setCountryCheckboxes(newCountryCheckboxes);
   };
   useEffect(() => {
     function handleResize() {

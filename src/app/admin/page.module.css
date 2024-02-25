@@ -22,15 +22,25 @@
   width: 300px;
 }
 /* ----- */
+/* кн алік */
 .box_but {
-  border: 1px solid #000;
+  border: 1px solid #2d12c6;
   background-color: #b41f1f;
   padding: 5px 10px;
   width: 100px;
+  transition: background-color 4s, width 4s;
 }
-.box_but:hover:hover {
+.box_but:hover {
   cursor: pointer;
+  background-color: #e61313;
+  border: 2px solid #150955;
 }
+.box_butClik {
+  background-color: #c1c1c9c1;
+  width: 20px;
+}
+
+/* кн алік */
 .box_4 {
   width: 95vw;
   border: 1px solid #000;

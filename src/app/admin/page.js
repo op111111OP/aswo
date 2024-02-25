@@ -10,7 +10,16 @@ export default function Page() {
   const [inputValue3, setInputValue3] = useState("");
   const [fol, setFol] = useState(1);
   const [fluta, setFluta] = useState([]);
+  //   кн клік
+  const [activeItems, setActiveItems] = useState({});
 
+  const toggleActive = (itemId) => {
+    setActiveItems((prevActiveItems) => ({
+      ...prevActiveItems,
+      [itemId]: !prevActiveItems[itemId],
+    }));
+  };
+  //   кн клік
   //   ----
   const [flutters1, setFlutters1] = useState([]);
 
@@ -37,8 +46,6 @@ export default function Page() {
         body: JSON.stringify({
           login: `${inputValue2}`,
           password: `${inputValue3}`,
-          //  login: "max",
-          //  password: "6HrFrdc*#?rx!8x",
         }),
       };
 
@@ -486,9 +493,13 @@ export default function Page() {
                         </div>
                       ))}
                   </div>
+                  {/* кнопка слик */}
                   <div
-                    className={styles.box_but}
+                    className={`${styles.box_but} ${
+                      activeItems[item._id] && styles.box_butClik
+                    }`}
                     onClick={() => {
+                      toggleActive(item._id);
                       tId(item._id);
                     }}
                   >
