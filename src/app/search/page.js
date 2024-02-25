@@ -29,7 +29,9 @@ export default function Page() {
   const [nIFalsum1, setIFals1] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
-
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [countryCheckboxes, setCountryCheckboxes] = useState({});
+  const [countri, setCountri] = useState([{}]);
   const handleMouseEnter = (src) => {
     setImageSrc(src);
     setShowPopup(true);
@@ -78,6 +80,7 @@ export default function Page() {
         setFlutters(data.docs);
         setFlutters1(data.totalPages);
         setFilteredProducts(data.docs);
+        setSelectedCountries(data.docs);
       } catch (error) {
         console.log("Что-то пошло не так...", error);
       } finally {
@@ -112,6 +115,51 @@ export default function Page() {
   function fals(t) {
     setCehageCor(t);
   }
+  //   -----------країна
+  //   ______mas
+
+  const handleCheckboxChange = (e) => {
+    const value = e.target.value;
+    const checked = e.target.checked;
+    setCountryCheckboxes((prevState) => ({
+      ...prevState,
+      [value]: checked,
+    }));
+
+    setFilteredProducts(selectedCountries);
+  };
+
+  useEffect(() => {
+    setFilteredProducts(
+      filteredProducts.filter((item) =>
+        Object.keys(countryCheckboxes).some(
+          (country) => country === item.country && countryCheckboxes[country]
+        )
+      )
+    );
+  }, [countryCheckboxes]);
+  useEffect(() => {
+    if (filteredProducts.length === 0) {
+      setFilteredProducts(selectedCountries);
+    }
+  }, [filteredProducts]);
+
+  // ---
+  useEffect(() => {
+    const countCountries = (selectedCountries) => {
+      const countryCounts = {};
+      selectedCountries.forEach((item) => {
+        countryCounts[item.country] = (countryCounts[item.country] || 0) + 1;
+      });
+      return Object.entries(countryCounts).map(([country, num]) => ({
+        country,
+        num,
+      }));
+    };
+    const countedCountries = countCountries(selectedCountries);
+    setCountri(countedCountries);
+  }, [selectedCountries]);
+  //   -----------країна
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -181,6 +229,30 @@ export default function Page() {
               className={styles.slider_el}
             />
           </div>
+          {countri && (
+            <div className={styles.categori_box_left1}>
+              {Array.isArray(countri) &&
+                countri.map((item, index) => (
+                  <div key={index} className={styles.component_mas_in}>
+                    {item.country !== "false" && (
+                      <label htmlFor={`checkbox_${index}_1`}>
+                        {item.country}
+                      </label>
+                    )}
+
+                    <input
+                      id={`checkbox_${index}_1`}
+                      className={styles.main_input}
+                      type="checkbox"
+                      value={item.country}
+                      checked={countryCheckboxes[item.country]}
+                      onChange={handleCheckboxChange}
+                    />
+                    <div className={styles.main_input_box1}>{item.num}</div>
+                  </div>
+                ))}
+            </div>
+          )}
         </div>
         <div className={styles.box_right}>
           {nIFalsum && (
