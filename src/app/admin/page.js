@@ -483,7 +483,7 @@ export default function Page() {
                       item.userData.map((item, index) => (
                         <div key={index} className={styles.box_1d}>
                           <div className={styles.box_1}>
-                            Артикль: {item.article}
+                            Артикул: {item.article}
                           </div>
                           <div className={styles.box_1}>{item.name}</div>
 

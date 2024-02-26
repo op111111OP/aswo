@@ -141,7 +141,7 @@
 }
 .text_botom_box {
   font-size: 14px;
-  margin: 28px 0px 0px 0px;
+  margin: 15px 0px 0px 0px;
 }
 
 .text_botom_box1 {
@@ -463,7 +463,7 @@
     height: 130px;
   }
   .text_botom_box {
-    margin: 8px 0px 0px 0px;
+    margin: 6px 0px 2px 0px;
   }
 }
 @media (max-width: 600px) {

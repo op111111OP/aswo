@@ -25,16 +25,20 @@ export default function Page() {
   const i = searchParams.get("i");
 
   const [priceRange, setPriceRange] = useState([0, 0]);
-  const [countri, setCountri] = useState([{}]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
   const [nIFalsum, setIFals] = useState(false);
   const [nIFalsum1, setIFals1] = useState(false);
-
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts1, setFilteredProducts1] = useState([]);
+  const [filteredProducts2, setFilteredProducts2] = useState([]);
   const [selectedCountries, setSelectedCountries] = useState([]);
+  const [countri, setCountri] = useState([{}]);
+  const [countri1, setCountri1] = useState([{}]);
   const [countryCheckboxes, setCountryCheckboxes] = useState({});
+  const [countryCheckboxes1, setCountryCheckboxes1] = useState({});
   // ===============
   const [showPopup, setShowPopup] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
@@ -60,6 +64,12 @@ export default function Page() {
     });
     // Оновлюємо стан інп
     setCountryCheckboxes(newCountryCheckboxes);
+    const newCountryCheckboxes1 = {};
+    Object.keys(countryCheckboxes1).forEach((country) => {
+      newCountryCheckboxes1[country] = false;
+    });
+    // Оновлюємо стан інп
+    setCountryCheckboxes1(newCountryCheckboxes1);
   };
 
   //   -----
@@ -75,6 +85,21 @@ export default function Page() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    //  ---
+    const newCountryCheckboxes = {};
+    Object.keys(countryCheckboxes).forEach((country) => {
+      newCountryCheckboxes[country] = false;
+    });
+    // Оновлюємо стан інп
+    setCountryCheckboxes(newCountryCheckboxes);
+    const newCountryCheckboxes1 = {};
+    Object.keys(countryCheckboxes1).forEach((country) => {
+      newCountryCheckboxes1[country] = false;
+    });
+    // Оновлюємо стан інп
+    setCountryCheckboxes1(newCountryCheckboxes1);
+  }, [selectedCountries, currentPage, onCategori]);
   useEffect(() => {
     setCurrentPage("1");
   }, [falsepon1, onCategori]);
@@ -169,25 +194,20 @@ export default function Page() {
       [value]: checked,
     }));
 
-    setFilteredProducts(selectedCountries);
+    setFilteredProducts1(selectedCountries);
   };
 
   useEffect(() => {
-    setFilteredProducts(
-      filteredProducts.filter((item) =>
+    setFilteredProducts1(
+      filteredProducts1.filter((item) =>
         Object.keys(countryCheckboxes).some(
           (country) => country === item.country && countryCheckboxes[country]
         )
       )
     );
   }, [countryCheckboxes]);
-  useEffect(() => {
-    if (filteredProducts.length === 0) {
-      setFilteredProducts(selectedCountries);
-    }
-  }, [filteredProducts]);
 
-  // ---mas
+  // ---
   useEffect(() => {
     const countCountries = (selectedCountries) => {
       const countryCounts = {};
@@ -203,7 +223,73 @@ export default function Page() {
     setCountri(countedCountries);
   }, [selectedCountries]);
   //   -----------країна
+  //   -----------країна
+  //   -----------бренд
+  //   ______mas
 
+  const handleCheckboxChange1 = (e) => {
+    const value = e.target.value;
+    const checked = e.target.checked;
+    setCountryCheckboxes1((prevState) => ({
+      ...prevState,
+      [value]: checked,
+    }));
+
+    setFilteredProducts2(selectedCountries);
+  };
+
+  useEffect(() => {
+    if (filteredProducts.length === 0) {
+      setFilteredProducts(selectedCountries);
+    }
+  }, [filteredProducts]);
+
+  // ---
+  useEffect(() => {
+    setFilteredProducts2(
+      filteredProducts2.filter((item) =>
+        Object.keys(countryCheckboxes1).some(
+          (brand) => brand === item.brand && countryCheckboxes1[brand]
+        )
+      )
+    );
+  }, [countryCheckboxes1]);
+
+  useEffect(() => {
+    const countCountries = (selectedCountries) => {
+      const countryCounts = {};
+      selectedCountries.forEach((item) => {
+        countryCounts[item.brand] = (countryCounts[item.brand] || 0) + 1;
+      });
+      return Object.entries(countryCounts).map(([brand, num]) => ({
+        brand,
+        num,
+      }));
+    };
+    const countedCountries1 = countCountries(selectedCountries);
+    setCountri1(countedCountries1);
+  }, [selectedCountries]);
+
+  //   -----------бренд
+  // ---------------------
+  useEffect(() => {
+    const mergeArrays = (filteredProducts1, filteredProducts2) => {
+      if (filteredProducts1.length === 0) {
+        setFilteredProducts(filteredProducts2);
+      } else if (filteredProducts2.length === 0) {
+        setFilteredProducts(filteredProducts1);
+      } else {
+        const combinedArray = [...filteredProducts1, ...filteredProducts2];
+        const uniqueSet = new Set(combinedArray.map((obj) => obj._id));
+        const uniqueArray = Array.from(uniqueSet).map((id) =>
+          combinedArray.find((obj) => obj._id === id)
+        );
+        setFilteredProducts(uniqueArray);
+      }
+    };
+    mergeArrays(filteredProducts1, filteredProducts2);
+  }, [filteredProducts1, filteredProducts2]);
+  // ---------------------
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -278,32 +364,70 @@ export default function Page() {
             {/* in */}
             {countri && (
               <div className={styles.categori_box_left1}>
+                <div className={styles.categori_box_left1_h1}>
+                  {" "}
+                  Країна виробництва:
+                </div>
                 {Array.isArray(countri) &&
                   countri.map((item, index) => (
                     <div key={index} className={styles.component_mas_in}>
                       {item.country !== "false" && (
-                        <label htmlFor={`checkbox_${index}_1`}>
+                        <label htmlFor={`checkbox1_${index}_1`}>
                           {item.country}
                         </label>
                       )}
-
-                      <input
-                        id={`checkbox_${index}_1`}
-                        className={styles.main_input}
-                        type="checkbox"
-                        value={item.country}
-                        checked={countryCheckboxes[item.country]}
-                        onChange={handleCheckboxChange}
-                      />
-                      <div className={styles.main_input_box1}>{item.num}</div>
+                      {item.country !== "false" && (
+                        <input
+                          id={`checkbox1_${index}_1`}
+                          className={styles.main_input}
+                          type="checkbox"
+                          value={item.country}
+                          checked={countryCheckboxes[item.country]}
+                          onChange={handleCheckboxChange}
+                        />
+                      )}
+                      {item.country !== "false" && (
+                        <div className={styles.main_input_box1}>{item.num}</div>
+                      )}
                     </div>
                   ))}
               </div>
             )}
             {/* in */}
+            {/* in бр*/}
+            {countri1 && (
+              <div className={styles.categori_box_left1}>
+                <div className={styles.categori_box_left1_h1}>Бренд:</div>
+                {Array.isArray(countri1) &&
+                  countri1.map((item, index) => (
+                    <div key={index} className={styles.component_mas_in}>
+                      {item.brand !== "false" && (
+                        <label htmlFor={`checkbox2_${index}_1`}>
+                          {item.brand}
+                        </label>
+                      )}
+                      {item.brand !== "false" && (
+                        <input
+                          id={`checkbox2_${index}_1`}
+                          className={styles.main_input}
+                          type="checkbox"
+                          value={item.brand}
+                          checked={countryCheckboxes1[item.brand]}
+                          onChange={handleCheckboxChange1}
+                        />
+                      )}{" "}
+                      {item.brand !== "false" && (
+                        <div className={styles.main_input_box1}>{item.num}</div>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            )}
+            {/* in бр*/}
           </div>
           {falsepon === "1" && (
             <div className={styles.categori_box_left}>
+              <div className={styles.llef_h2}></div>
               {Array.isArray(resCategori1) &&
                 resCategori1.map((item, index) => (
                   <Link
