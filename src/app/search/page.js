@@ -38,6 +38,7 @@ export default function Page() {
   const [countri1, setCountri1] = useState([{}]);
   const [countryCheckboxes, setCountryCheckboxes] = useState({});
   const [countryCheckboxes1, setCountryCheckboxes1] = useState({});
+  const [botClick, setBotClick] = useState(false);
   const handleMouseEnter = (src) => {
     setImageSrc(src);
     setShowPopup(true);
@@ -236,7 +237,7 @@ export default function Page() {
     const countedCountries1 = countCountries(selectedCountries);
     setCountri1(countedCountries1);
   }, [selectedCountries]);
-  console.log(countryCheckboxes1, "countryCheckboxes1");
+
   //   -----------бренд
   // ---------------------
   useEffect(() => {
@@ -310,84 +311,95 @@ export default function Page() {
         </div>
       </div>
       <div className={styles.box} id="myBox" onClick={handleBoxClick}>
-        <div className={styles.box_slider}>
-          <div className={styles.price_box_cl}>
-            <div className={styles.price_min}>від {priceRange[0]}грн. -</div>
-            <div className={styles.price_max}> {priceRange[1]}грн.</div>
-          </div>
-          <div className={styles.slider}>
-            <Slider
-              range
-              min={Math.min(...flutters.map((obj) => obj.price))}
-              max={Math.max(...flutters.map((obj) => obj.price))}
-              step={1}
-              value={priceRange}
-              onChange={handleSliderChange}
-              className={styles.slider_el}
-            />
-          </div>
-          {/* in */}
-          {countri && (
-            <div className={styles.categori_box_left1}>
-              <div className={styles.categori_box_left1_h1}>
-                {" "}
-                Країна виробництва:
+        <div
+          className={styles.main_buton_left}
+          onClick={() => setBotClick(!botClick)}
+        >
+          {botClick ? "Згорнути сортування" : "Розгорнути сортування"}
+        </div>
+
+        <div
+          className={`${styles.box_left} ${botClick && styles.box_left_activ}`}
+        >
+          <div className={styles.box_slider}>
+            <div className={styles.price_box_cl}>
+              <div className={styles.price_min}>від {priceRange[0]}грн. -</div>
+              <div className={styles.price_max}> {priceRange[1]}грн.</div>
+            </div>
+            <div className={styles.slider}>
+              <Slider
+                range
+                min={Math.min(...flutters.map((obj) => obj.price))}
+                max={Math.max(...flutters.map((obj) => obj.price))}
+                step={1}
+                value={priceRange}
+                onChange={handleSliderChange}
+                className={styles.slider_el}
+              />
+            </div>
+            {/* in */}
+            <div className={styles.categori_box_left1000}></div>
+            {countri && (
+              <div className={styles.categori_box_left1}>
+                <div className={styles.categori_box_left1_h1}> Країна:</div>
+                {Array.isArray(countri) &&
+                  countri.map((item, index) => (
+                    <div key={index} className={styles.component_mas_in}>
+                      {item.country !== "false" && (
+                        <label htmlFor={`checkbox1_${index}_1`}>
+                          {item.country}
+                        </label>
+                      )}
+                      {item.country !== "false" && (
+                        <input
+                          id={`checkbox1_${index}_1`}
+                          className={styles.main_input}
+                          type="checkbox"
+                          value={item.country}
+                          checked={countryCheckboxes[item.country]}
+                          onChange={handleCheckboxChange}
+                        />
+                      )}
+                      {item.country !== "false" && (
+                        <div className={styles.main_input_box1}>{item.num}</div>
+                      )}
+                    </div>
+                  ))}
               </div>
-              {Array.isArray(countri) &&
-                countri.map((item, index) => (
-                  <div key={index} className={styles.component_mas_in}>
-                    {item.country !== "false" && (
-                      <label htmlFor={`checkbox1_${index}_1`}>
-                        {item.country}
-                      </label>
-                    )}
-                    {item.country !== "false" && (
-                      <input
-                        id={`checkbox1_${index}_1`}
-                        className={styles.main_input}
-                        type="checkbox"
-                        value={item.country}
-                        checked={countryCheckboxes[item.country]}
-                        onChange={handleCheckboxChange}
-                      />
-                    )}
-                    {item.country !== "false" && (
-                      <div className={styles.main_input_box1}>{item.num}</div>
-                    )}
-                  </div>
-                ))}
-            </div>
-          )}
-          {/* in */}
-          {/* in бр*/}
-          {countri1 && (
-            <div className={styles.categori_box_left1}>
-              <div className={styles.categori_box_left1_h1}>Бренд:</div>
-              {Array.isArray(countri1) &&
-                countri1.map((item, index) => (
-                  <div key={index} className={styles.component_mas_in}>
-                    {item.brand !== "false" && (
-                      <label htmlFor={`checkbox2_${index}_1`}>
-                        {item.brand}
-                      </label>
-                    )}
-                    {item.brand !== "false" && (
-                      <input
-                        id={`checkbox2_${index}_1`}
-                        className={styles.main_input}
-                        type="checkbox"
-                        value={item.brand}
-                        checked={countryCheckboxes1[item.brand]}
-                        onChange={handleCheckboxChange1}
-                      />
-                    )}{" "}
-                    {item.brand !== "false" && (
-                      <div className={styles.main_input_box1}>{item.num}</div>
-                    )}
-                  </div>
-                ))}
-            </div>
-          )}
+            )}
+            {/* in */}
+            {/* in бр*/}
+            {countri1 && (
+              <div className={styles.categori_box_left1}>
+                <div className={styles.categori_box_left1_h1}>Бренд:</div>
+                {Array.isArray(countri1) &&
+                  countri1.map((item, index) => (
+                    <div key={index} className={styles.component_mas_in}>
+                      {item.brand !== "false" && (
+                        <label htmlFor={`checkbox2_${index}_1`}>
+                          {item.brand}
+                        </label>
+                      )}
+                      {item.brand !== "false" && (
+                        <input
+                          id={`checkbox2_${index}_1`}
+                          className={styles.main_input}
+                          type="checkbox"
+                          value={item.brand}
+                          checked={countryCheckboxes1[item.brand]}
+                          onChange={handleCheckboxChange1}
+                        />
+                      )}{" "}
+                      {item.brand !== "false" && (
+                        <div className={styles.main_input_box1}>{item.num}</div>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+          <div />
+          <div />
           {/* in бр*/}
         </div>
         <div className={styles.box_right}>

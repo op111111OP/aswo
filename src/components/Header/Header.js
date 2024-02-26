@@ -415,12 +415,11 @@ export default function Header() {
             )}
             {cehage1 && (
               <Menu2
-                //   flutters={idItem}
-                //   num={num}
-                //   menuFalse={menuFalse}
                 i={i}
                 ss={(a) => {
                   setCehage1(a);
+                  setCehage(a);
+                  setT(a);
                 }}
                 cehage5={cehage5}
               />

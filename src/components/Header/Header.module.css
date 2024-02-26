@@ -201,6 +201,7 @@
     justify-content: space-between;
     width: 100%;
     font-weight: 700;
+    z-index: 10;
   }
   .BsChevronRight {
     cursor: pointer;
@@ -211,8 +212,8 @@
     height: 100%;
     background-color: transparent;
     top: 0px;
-    left: 0px;
-    z-index: -1;
+    left: 320px;
+    z-index: 1;
   }
 }
 @media screen and (max-width: 570px) {

@@ -15,9 +15,6 @@ export default function Menu2({
   //   menuFalse,
   i,
 }) {
-  const [fels, setFals] = useState(true);
-  const [fels1, setFals1] = useState(false);
-  const [t, setT] = useState([]);
   //  -----------
 
   //  -----------
@@ -47,7 +44,7 @@ export default function Menu2({
               <div
                 className={styles.component_mas_elem_text}
                 onClick={() => {
-                  setFals(false);
+                  ss(false);
                 }}
               >
                 {" "}

@@ -129,7 +129,7 @@ export default function Page() {
       console.error("Ошибка:", error);
     }
   };
-  console.log(fluta.length, fluta);
+
   return (
     <div className={styles.box}>
       {flutters.length === 0 && (
