@@ -119,11 +119,13 @@
   height: 100vh;
   position: fixed;
   top: 0;
-  left: 0px;
+  left: -400px;
   background-color: #ffffff;
   padding: 30px 5px 30px 10px;
   width: 300px;
 }
+/* anim */
+
 .FaShoppingCart {
   color: rgb(254, 255, 255);
 }
@@ -179,6 +181,13 @@
     display: block;
     padding: 20px 2px 20px 10px;
     min-width: 320px;
+    left: -400;
+
+    border-top-right-radius: 50px;
+    transition: left 2s;
+  }
+  .catalogue_box2anim {
+    left: 0;
   }
   .catalogue_box {
     display: none;

@@ -22,7 +22,7 @@ export default function Header() {
   const [inputValue, setInputValue] = useState("");
   const [t, setT] = useState(false);
   const [i, seti] = useState(false);
-  const [i1, seti1] = useState(false);
+  const [tanim, setTanim] = useState(false);
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 850) {
@@ -121,9 +121,10 @@ export default function Header() {
           <FiAlignJustify
             size={25}
             className={styles.FiAlignJustify}
-            onClick={() => setT(true)}
+            onClick={() => {
+              setT(true);
+            }}
           />
-
           <div className={styles.catalogue_box}>
             <div
               className={styles.catalogue_elem}
@@ -292,134 +293,139 @@ export default function Header() {
             )}
           </div>
           {/* //////////////////////////////222 */}
-          {t && (
-            <div className={styles.catalogue_box2}>
-              {t && (
-                <div
-                  className={styles.auto}
-                  onClick={() => {
-                    setT(false);
-                    setCehage(false);
-                  }}
-                ></div>
-              )}
-              <BsX size={20} className={styles.x} onClick={() => setT(false)} />
-              <div
-                className={styles.catalogue_elem2}
-                onClick={() => {
-                  setCehage(true);
-                  setIdItem(flutters[0].u);
-                  setNum("o2");
-                }}
-              >
-                HoReCa{" "}
-                <BsChevronRight size={15} className={styles.BsChevronRight} />
-              </div>
-              <div
-                className={styles.catalogue_elem2}
-                onClick={() => {
-                  setCehage(true);
-                  setIdItem(flutters[1].u);
-                  seti(flutters[1]._id);
 
-                  setNum("o2");
-                }}
-              >
-                Велика техніка
-                <BsChevronRight size={15} className={styles.BsChevronRight} />
-              </div>
+          <div
+            className={`${styles.catalogue_box2} ${
+              t && styles.catalogue_box2anim
+            }`}
+          >
+            {t && (
               <div
-                className={styles.catalogue_elem2}
+                className={styles.auto}
                 onClick={() => {
-                  setCehage(true);
-                  setIdItem(flutters[2].u);
-                  seti(flutters[2]._id);
-
-                  setNum("o2");
+                  setT(false);
+                  setCehage(false);
+                  setCehage1(false);
                 }}
-              >
-                Кухонна техніка
-                <BsChevronRight size={15} className={styles.BsChevronRight} />
-              </div>
-              <div
-                className={styles.catalogue_elem2}
-                onClick={() => {
-                  setCehage(true);
-                  setIdItem(flutters[3].u);
-                  seti(flutters[3]._id);
-
-                  setNum("o2");
-                }}
-              >
-                Техніка для догляду за тілом та будинком
-                <BsChevronRight size={15} className={styles.BsChevronRight} />
-              </div>
-              <div
-                className={styles.catalogue_elem2}
-                onClick={() => {
-                  setCehage(true);
-                  setIdItem(flutters[4].u);
-                  seti(flutters[4]._id);
-
-                  setNum("o2");
-                }}
-              >
-                Кліматична техніка
-                <BsChevronRight size={15} className={styles.BsChevronRight} />
-              </div>
-              <div
-                className={styles.catalogue_elem2}
-                onClick={() => {
-                  setCehage(true);
-                  setIdItem(flutters[5].u);
-                  seti(flutters[5]._id);
-
-                  setNum("o2");
-                }}
-              >
-                Універсальні запчастини для ремонту побутової техніки
-                <BsChevronRight size={15} className={styles.BsChevronRight} />
-              </div>
-              <div
-                className={styles.catalogue_elem2}
-                onClick={() => {
-                  setCehage(true);
-                  setIdItem(flutters[6].u);
-                  setNum("o2");
-                }}
-              >
-                Запчастини та комплектуючі до холодильного обладнання
-                <BsChevronRight scale={15} className={styles.BsChevronRight} />
-              </div>
-
-              {cehage && (
-                <Menu
-                  flutters={idItem}
-                  num={num}
-                  menuFalse={menuFalse}
-                  i={i}
-                  s={(a) => {
-                    setCehage1(a);
-                  }}
-                  handleResize1={(a) => {
-                    setCehage5(a);
-                  }}
-                />
-              )}
-              {cehage1 && (
-                <Menu2
-                  //   flutters={idItem}
-                  //   num={num}
-                  //   menuFalse={menuFalse}
-                  i={i}
-                  ss={(a) => {
-                    setCehage1(a);
-                  }}
-                  cehage5={cehage5}
-                />
-              )}
+              ></div>
+            )}
+            <BsX size={20} className={styles.x} onClick={() => setT(false)} />
+            <div
+              className={styles.catalogue_elem2}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[0].u);
+                setNum("o2");
+              }}
+            >
+              HoReCa{" "}
+              <BsChevronRight size={15} className={styles.BsChevronRight} />
             </div>
-          )}
+            <div
+              className={styles.catalogue_elem2}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[1].u);
+                seti(flutters[1]._id);
+
+                setNum("o2");
+              }}
+            >
+              Велика техніка
+              <BsChevronRight size={15} className={styles.BsChevronRight} />
+            </div>
+            <div
+              className={styles.catalogue_elem2}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[2].u);
+                seti(flutters[2]._id);
+
+                setNum("o2");
+              }}
+            >
+              Кухонна техніка
+              <BsChevronRight size={15} className={styles.BsChevronRight} />
+            </div>
+            <div
+              className={styles.catalogue_elem2}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[3].u);
+                seti(flutters[3]._id);
+
+                setNum("o2");
+              }}
+            >
+              Техніка для догляду за тілом та будинком
+              <BsChevronRight size={15} className={styles.BsChevronRight} />
+            </div>
+            <div
+              className={styles.catalogue_elem2}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[4].u);
+                seti(flutters[4]._id);
+
+                setNum("o2");
+              }}
+            >
+              Кліматична техніка
+              <BsChevronRight size={15} className={styles.BsChevronRight} />
+            </div>
+            <div
+              className={styles.catalogue_elem2}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[5].u);
+                seti(flutters[5]._id);
+
+                setNum("o2");
+              }}
+            >
+              Універсальні запчастини для ремонту побутової техніки
+              <BsChevronRight size={15} className={styles.BsChevronRight} />
+            </div>
+            <div
+              className={styles.catalogue_elem2}
+              onClick={() => {
+                setCehage(true);
+                setIdItem(flutters[6].u);
+                setNum("o2");
+              }}
+            >
+              Запчастини та комплектуючі до холодильного обладнання
+              <BsChevronRight scale={15} className={styles.BsChevronRight} />
+            </div>
+
+            {cehage && (
+              <Menu
+                flutters={idItem}
+                num={num}
+                menuFalse={menuFalse}
+                i={i}
+                s={(a) => {
+                  setCehage1(a);
+                }}
+                handleResize1={(a) => {
+                  setCehage5(a);
+                }}
+                cehage={cehage}
+              />
+            )}
+            {cehage1 && (
+              <Menu2
+                //   flutters={idItem}
+                //   num={num}
+                //   menuFalse={menuFalse}
+                i={i}
+                ss={(a) => {
+                  setCehage1(a);
+                }}
+                cehage5={cehage5}
+              />
+            )}
+          </div>
         </div>
       </div>
     </header>

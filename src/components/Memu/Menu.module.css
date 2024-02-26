@@ -160,9 +160,18 @@
     padding: 40px 10px;
     display: flex;
     height: 100vh;
+    left: -400;
+
+    border-top-right-radius: 50px;
+    transition: left 2s, border-top-right-radius 3s;
 
     max-width: 320px;
     overflow-y: auto;
+  }
+
+  .catalogue_box2anim {
+    left: 0;
+    border-top-right-radius: 0px;
   }
   .b {
     flex-direction: row;

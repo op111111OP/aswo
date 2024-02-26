@@ -13,6 +13,7 @@ export default function Menu({
   num,
   menuFalse,
   handleResize1,
+  cehage,
   s,
   i,
 }) {
@@ -32,7 +33,9 @@ export default function Menu({
 
   return (
     <div
-      className={`${styles.container} ${styles[num]}`}
+      className={`${styles.container} ${styles[num]} ${
+        cehage && styles.catalogue_box2anim
+      }`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
