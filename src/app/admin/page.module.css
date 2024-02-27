@@ -44,7 +44,11 @@
 .box_4 {
   width: 95vw;
   border: 1px solid #000;
+
   position: relative;
+}
+.box_4 {
+  border-bottom: 5px solid #0a2fe6;
 }
 .box_ {
   display: flex;

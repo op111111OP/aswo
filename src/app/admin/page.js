@@ -129,6 +129,7 @@ export default function Page() {
       console.error("Ошибка:", error);
     }
   };
+  console.log(fluta, "fluta");
 
   return (
     <div className={styles.box}>
@@ -168,6 +169,7 @@ export default function Page() {
               <Formik
                 onSubmit={handleSubmit}
                 initialValues={{
+                  categori: fluta.categori === 1 ? fluta[0].categori : "",
                   name: fluta.length === 1 ? fluta[0].name : "",
                   article: fluta.length === 1 ? fluta[0].article : "",
                   img: fluta.length === 1 ? fluta[0].img : "",
@@ -181,6 +183,7 @@ export default function Page() {
                   const errors = {};
 
                   if (fluta.length === 1) {
+                    values.categori = values.categori || fluta[0].categori;
                     values.name = values.name || fluta[0].name;
                     values.article = values.article || fluta[0].article;
                     values.img = values.img || fluta[0].img;
@@ -196,6 +199,21 @@ export default function Page() {
               >
                 {({ isSubmitting, values }) => (
                   <Form className={styles.box_f}>
+                    <Field
+                      type="text"
+                      name="categori"
+                      placeholder={
+                        values.categori ||
+                        (fluta.length === 1 ? fluta[0].categori : "categori")
+                      }
+                      className={styles.name1}
+                      id="first_name"
+                    />
+                    <ErrorMessage
+                      name="categori"
+                      component="div"
+                      className={`${styles.error} ${styles.error1}`}
+                    />
                     <Field
                       type="text"
                       name="name"
@@ -408,7 +426,7 @@ export default function Page() {
           <div className={styles.box_4}>
             {Array.isArray(flutters1) &&
               flutters1.map((item, index) => (
-                <div key={index}>
+                <div key={index} className={styles.box_011}>
                   <div className={styles.box_0}>
                     <div className={styles.box_00}>
                       <div className={styles.box_}>
@@ -494,17 +512,19 @@ export default function Page() {
                       ))}
                   </div>
                   {/* кнопка слик */}
-                  <div
-                    className={`${styles.box_but} ${
-                      activeItems[item._id] && styles.box_butClik
-                    }`}
-                    onClick={() => {
-                      toggleActive(item._id);
-                      tId(item._id);
-                    }}
-                  >
-                    Видалити.
-                  </div>
+                  {item.city !== "eee" && (
+                    <div
+                      className={`${styles.box_but} ${
+                        activeItems[item._id] && styles.box_butClik
+                      }`}
+                      onClick={() => {
+                        toggleActive(item._id);
+                        tId(item._id);
+                      }}
+                    >
+                      Видалити.
+                    </div>
+                  )}
                 </div>
               ))}
           </div>

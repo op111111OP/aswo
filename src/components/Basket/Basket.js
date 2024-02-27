@@ -12,6 +12,8 @@ import { BsX } from "react-icons/bs";
 import { PiWechatLogoFill } from "react-icons/pi";
 import { ImTruck } from "react-icons/im";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import NovaPoshta from "novaposhta";
+
 // ----------
 
 export default function Basket({ fals }) {
@@ -19,6 +21,7 @@ export default function Basket({ fals }) {
   const [twoCard, setTwoCard] = useState(onCard);
   const [t, setT] = useState(true);
   const [truF, setTruF] = useState(false);
+  const [truK, setTruK] = useState(true);
   const [numB, setNumB] = useState([]);
   const [numBd, setNumBd] = useState(0);
   const [numB2, setNumB2] = useState(0);
@@ -132,12 +135,30 @@ export default function Basket({ fals }) {
       });
     }
   };
-  //   updateNumB(0, 11000);
-  //   updateNumBn(2, 1);
 
-  // Змінити перший елемент на 2
-  //   __________________
-  //   dddddddddd
+  //   dddddddddd відділення
+
+  const api = new NovaPoshta({ apiKey: "8764786e4aa64a72682768a26ef85caf" });
+
+  api.address
+    .getWarehouses({ CityName: "Суми" }) // Замініть 'Київ' на назву потрібного вам міста
+    .then((json) => {
+      // Обробляємо отримані дані про відділення
+      // console.log(json);
+    })
+    .catch((errors) => {
+      // Обробка помилок
+      if (Array.isArray(errors)) {
+        errors.forEach((error) =>
+          console.log(
+            `[${error.code || "-"}] ${
+              error.en || error.uk || error.ru || error.message
+            }`
+          )
+        );
+      }
+    });
+
   //   dddddddddd
   const handleSubmit = async (values) => {
     console.log(values, "kk");
@@ -209,17 +230,9 @@ export default function Basket({ fals }) {
 
                   const errors = {};
                   if (!values.first_name) {
-                    errors.first_name = "Ім'я обов'язкове поле";
-                  } else if (values.first_name.length > 20) {
-                    errors.first_name =
-                      "Ім'я не може бути довшим ніж 20 символів";
+                    errors.first_name = "це обов'язкове поле";
                   }
-                  if (!values.last_name) {
-                    errors.last_name = "Прізвище обов'язкове поле";
-                  } else if (values.last_name.length > 20) {
-                    errors.last_name =
-                      "Прізвище не може бути довшим ніж 20 символів";
-                  }
+
                   // if (!values.email) {
                   //   errors.email = "Email обов'язкове поле";
                   // } else if (
@@ -430,114 +443,118 @@ export default function Basket({ fals }) {
             )}
             {/* ---------------------- */}
 
-            <div className={styles.bas_ralac}>
-              {twoCard.length === 0 ? (
-                <p></p>
-              ) : (
-                <div className={styles.h111}>
-                  <div className={styles.h1}>Кошик</div>
-                  <div className={styles.number_textN}>Назва</div>
-                  <div className={styles.number_textP}>Ціна</div>
-                  <div className={styles.number_text}>Кількість</div>
-                  <div className={styles.price_box_h1}>Вартість</div>
-                </div>
-              )}
-              {Array.isArray(twoCard) &&
-                twoCard.map((item, index) => (
-                  <div className={styles.swiper_slide} key={index}>
-                    <div className={styles.image_box}>
-                      <Image
-                        className={styles.img}
-                        src={item.img}
-                        alt="Vercel Logo"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
-                        width={35}
-                        height={35}
-                        style={{
-                          height: "100%",
-                          width: "100%",
-                          objectFit: "contain",
+            {truK && (
+              <div className={styles.bas_ralac}>
+                {twoCard.length === 0 ? (
+                  <p></p>
+                ) : (
+                  <div className={styles.h111}>
+                    <div className={styles.h1}>Кошик</div>
+                    <div className={styles.number_textN}>Назва</div>
+                    <div className={styles.number_textP}>Ціна</div>
+                    <div className={styles.number_text}>Кількість</div>
+                    <div className={styles.price_box_h1}>Вартість</div>
+                  </div>
+                )}
+                {Array.isArray(twoCard) &&
+                  twoCard.map((item, index) => (
+                    <div className={styles.swiper_slide} key={index}>
+                      <div className={styles.image_box}>
+                        <Image
+                          className={styles.img}
+                          src={item.img}
+                          alt="Vercel Logo"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
+                          width={35}
+                          height={35}
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                            objectFit: "contain",
+                          }}
+                        />
+                      </div>
+                      <div className={styles.text}>
+                        <div className={styles.name}>{item.name}</div>
+                        <div className={styles.priceB}>{item.price} грн.</div>
+                      </div>
+                      <div className={styles.number_box}>
+                        <div className={styles.button_box}>
+                          <div
+                            className={styles.button1}
+                            onClick={() => {
+                              if (numB1[index] > 1) {
+                                updateNumBn22(index);
+                                updateNumBn(index, item.price);
+                              }
+                            }}
+                          >
+                            -
+                          </div>
+                          <div className={styles.button2}>{numB1[index]}</div>
+                          <div
+                            className={styles.button3}
+                            onClick={() => {
+                              updateNumB22(index);
+                              updateNumB(index, item.price);
+                            }}
+                          >
+                            +
+                          </div>
+                        </div>
+                      </div>
+                      <div className={styles.price_boxB}>
+                        <div className={styles.price_spanB}>
+                          {numB[index]} грн.
+                        </div>
+                      </div>
+                      <BsTrash3
+                        className={styles.dustbin}
+                        size={20}
+                        onClick={(e) => {
+                          Adrlas(index);
+                          setEId(item.id);
+                          setDelcard(2);
                         }}
+                        id={item.id}
                       />
                     </div>
-                    <div className={styles.text}>
-                      <div className={styles.name}>{item.name}</div>
-                      <div className={styles.priceB}>{item.price} грн.</div>
-                    </div>
-                    <div className={styles.number_box}>
-                      <div className={styles.button_box}>
-                        <div
-                          className={styles.button1}
-                          onClick={() => {
-                            if (numB1[index] > 1) {
-                              updateNumBn22(index);
-                              updateNumBn(index, item.price);
-                            }
-                          }}
-                        >
-                          -
-                        </div>
-                        <div className={styles.button2}>{numB1[index]}</div>
-                        <div
-                          className={styles.button3}
-                          onClick={() => {
-                            updateNumB22(index);
-                            updateNumB(index, item.price);
-                          }}
-                        >
-                          +
-                        </div>
-                      </div>
-                    </div>
-                    <div className={styles.price_boxB}>
-                      <div className={styles.price_spanB}>
-                        {numB[index]} грн.
-                      </div>
-                    </div>
-                    <BsTrash3
-                      className={styles.dustbin}
-                      size={20}
-                      onClick={(e) => {
-                        Adrlas(index);
-                        setEId(item.id);
-                        setDelcard(2);
-                      }}
-                      id={item.id}
-                    />
-                  </div>
-                ))}
+                  ))}
+              </div>
+            )}
+          </div>
+        )}
+        {truK && (
+          <div className={styles.issue_box}>
+            <div className={styles.issue_come}>
+              <BsArrowLeft className={styles.issue_} size={20} />
+              <div
+                className={styles.issue_}
+                onClick={() => {
+                  setT((t) => !t);
+                  setTruF(true);
+                }}
+              >
+                Повернутись до покупок
+              </div>
+            </div>
+            <div className={styles.issue_total}>
+              <div className={styles.issue_price}>
+                Всього:
+                <span className={styles.issue_price_span}> {numBd} грн</span>
+              </div>
+              <div
+                className={styles.issue_order}
+                onClick={() => {
+                  setTruF(true);
+                  setTruK(false);
+                }}
+              >
+                Перейти до оформлення
+              </div>
             </div>
           </div>
         )}
-
-        <div className={styles.issue_box}>
-          <div className={styles.issue_come}>
-            <BsArrowLeft className={styles.issue_} size={20} />
-            <div
-              className={styles.issue_}
-              onClick={() => {
-                setT((t) => !t);
-                setTruF(true);
-              }}
-            >
-              Повернутись до покупок
-            </div>
-          </div>
-          <div className={styles.issue_total}>
-            <div className={styles.issue_price}>
-              Всього:
-              <span className={styles.issue_price_span}> {numBd} грн</span>
-            </div>
-            <div
-              className={styles.issue_order}
-              onClick={() => {
-                setTruF(true);
-              }}
-            >
-              Перейти до оформлення
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
