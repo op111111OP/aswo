@@ -1,3 +1,5 @@
+"use client";
+import Link from "next/link";
 import styles from "./Footer.module.css";
 
 import { BsTelephoneFill } from "react-icons/bs";
@@ -15,6 +17,14 @@ export default function Footer() {
             <BsTelephoneFill />
             <div className={styles.telephone}>0800 800 112</div>
           </a>
+        </div>
+        <div className={styles.footer_box_opl}>
+          <Link href={`./exchange`}>
+            <div className={styles.footer_box_oplOb}>Обмін та повернення</div>{" "}
+          </Link>
+          <Link href={`./payment`}>
+            <div className={styles.footer_box_oplOb}>Оплата і доставка</div>{" "}
+          </Link>
         </div>
       </div>
     </footer>

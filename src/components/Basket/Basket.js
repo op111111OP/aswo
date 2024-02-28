@@ -1,10 +1,20 @@
 "use client";
+// ------------
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import NovaPoshta from "novaposhta";
 
+// ------------
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Basket.module.css";
 import { useLocalStorage } from "react-use";
-import { BsTrash3 } from "react-icons/bs";
+import {
+  BsChevronDown,
+  BsChevronUp,
+  BsTrash3,
+  BsWindowStack,
+} from "react-icons/bs";
 import { useUserContext } from "../../app/Context/store";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsX } from "react-icons/bs";
@@ -12,7 +22,6 @@ import { BsX } from "react-icons/bs";
 import { PiWechatLogoFill } from "react-icons/pi";
 import { ImTruck } from "react-icons/im";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import NovaPoshta from "novaposhta";
 
 // ----------
 
@@ -29,10 +38,24 @@ export default function Basket({ fals }) {
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
   const [day, setDay] = useState([]);
+  const [trueCtrel1, setTrueCtrel1] = useState(false);
+  const [trueCtrel2, setTrueCtrel2] = useState(false);
+  //   -------------
+  const api = new NovaPoshta({ apiKey: "8764786e4aa64a72682768a26ef85caf" });
+  const [Warehouses, setWarehouses] = useState(false);
+  const [Cities, setCities] = useState(false);
+  const [CityName, setCityName] = useState(false);
+  const [CitiesInput, setCitiesInput] = useState("");
+  const [CitiesInput1, setCitiesInput1] = useState("");
+  const [trueClickText, setTrueClickText] = useState(false);
 
+  //   -------------
+  console.log(CitiesInput, "CitiesInput1");
   //   input
-  const [selectedOption, setSelectedOption] = useState("postpoint");
-  const [selectedOption1, setSelectedOption1] = useState("mail");
+  const [selectedOption, setSelectedOption] = useState(
+    "Онлайн-оплата банківською карткою (WayForPay)"
+  );
+  const [selectedOption1, setSelectedOption1] = useState("Нова пошта");
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -137,28 +160,23 @@ export default function Basket({ fals }) {
   };
 
   //   dddddddddd відділення
-
-  const api = new NovaPoshta({ apiKey: "8764786e4aa64a72682768a26ef85caf" });
-
-  api.address
-    .getWarehouses({ CityName: "Суми" }) // Замініть 'Київ' на назву потрібного вам міста
-    .then((json) => {
-      // Обробляємо отримані дані про відділення
-      // console.log(json);
-    })
-    .catch((errors) => {
-      // Обробка помилок
-      if (Array.isArray(errors)) {
-        errors.forEach((error) =>
-          console.log(
-            `[${error.code || "-"}] ${
-              error.en || error.uk || error.ru || error.message
-            }`
-          )
-        );
-      }
-    });
-
+  useEffect(() => {
+    api.address
+      .getWarehouses({ CityName: String(CityName) })
+      .then((json) => {
+        setWarehouses(json.data);
+      })
+      .catch((errors) => {});
+  }, [CityName]);
+  useEffect(() => {
+    api.address
+      .searchSettlements({ CityName: CitiesInput })
+      .then((json) => {
+        setCities(json);
+        // console.log(Cities.data[0].Addresses);
+      })
+      .catch((errors) => {});
+  }, [CitiesInput]);
   //   dddddddddd
   const handleSubmit = async (values) => {
     console.log(values, "kk");
@@ -204,8 +222,7 @@ export default function Basket({ fals }) {
               <Formik
                 onSubmit={handleSubmit}
                 initialValues={{
-                  first_name: "",
-                  last_name: "",
+                  pib: "",
                   email: "",
                   phone: "",
                   street: "",
@@ -218,6 +235,7 @@ export default function Basket({ fals }) {
                   day: "",
                   numB1: "",
                   numB: "",
+                  CitiesInput: "",
                 }}
                 validate={(values) => {
                   values.userData = twoCard;
@@ -227,21 +245,13 @@ export default function Basket({ fals }) {
                   values.day = day;
                   values.numB1 = numB1;
                   values.numB = numB;
+                  values.CitiesInput = CitiesInput;
 
                   const errors = {};
-                  if (!values.first_name) {
-                    errors.first_name = "це обов'язкове поле";
+                  if (!values.pib) {
+                    errors.pib = "це обов'язкове поле";
                   }
 
-                  // if (!values.email) {
-                  //   errors.email = "Email обов'язкове поле";
-                  // } else if (
-                  //   !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-                  //     values.email
-                  //   )
-                  // ) {
-                  //   errors.email = "Email некоректний";
-                  // }
                   if (!values.phone) {
                     errors.phone = "Телефон обов'язкове поле";
                   }
@@ -249,9 +259,10 @@ export default function Basket({ fals }) {
                   if (!values.city) {
                     errors.city = "Місто обов'язкове поле";
                   }
-                  if (!values.message) {
-                    values.message = "Коментарі відсутні";
+                  if (!values.street) {
+                    errors.street = "Адреса обов'язкове поле";
                   }
+
                   return errors;
                 }}
               >
@@ -263,34 +274,28 @@ export default function Basket({ fals }) {
                     <div className={styles.box_сontacts}>
                       <div className={styles.box_h3}>
                         <div className={styles.h3_dox}>
-                          <PiWechatLogoFill size="30px" />
-                          <h3 className={styles.h3}>Контактні дані</h3>
+                          <PiWechatLogoFill size="20px" />
+                          <h4 className={styles.h3}>Контактні дані</h4>
                         </div>
                       </div>
-                      <div className={styles.form_сontacts}>
+                      <div
+                        className={`${styles.form_сontacts} ${styles.form_сontacts2v}`}
+                      >
+                        {/* хх */}
                         <Field
                           type="text"
-                          name="first_name"
-                          placeholder="Ім'я"
-                          className={styles.name1}
-                          id="first_name"
+                          name="pib"
+                          placeholder="ПІБ"
+                          className={styles.name3}
                         />
                         <ErrorMessage
-                          name="first_name"
+                          name="pib"
                           component="div"
-                          className={`${styles.error} ${styles.error1}`}
+                          className={`${styles.error} ${styles.error6}`}
                         />
-                        <Field
-                          type="text"
-                          name="last_name"
-                          placeholder="Прізвище"
-                          className={styles.name2}
-                        />
-                        <ErrorMessage
-                          name="last_name"
-                          component="div"
-                          className={`${styles.error} ${styles.error2}`}
-                        />
+                      </div>
+                      {/* хх */}
+                      <div className={styles.tel_box}>
                         <Field
                           type="email"
                           name="email"
@@ -314,67 +319,199 @@ export default function Basket({ fals }) {
                     <div className={styles.box_сontacts}>
                       <div className={styles.box_h3}>
                         <div className={styles.h3_dox}>
-                          <ImTruck size="30px" />
-                          <h3 className={styles.h3}>Способи доставки</h3>
+                          <ImTruck size="20px" />
+                          <h4 className={styles.h3}>Способи доставки</h4>
                         </div>
                       </div>
                       <div
                         className={`${styles.form_сontacts} ${styles.form_delivery}`}
                       >
-                        <div className={styles.form_delivery_text}>
-                          Вартість доставки замовлень за тарифами перевізника
-                          Нова пошта (оплачується окремо при отриманні).
-                        </div>
+                        {/* 1 */}
+                        <fieldset
+                          className={`${styles.fieldset} ${
+                            trueCtrel1 && styles.fieldset_true
+                          }`}
+                        >
+                          <div
+                            className={styles.iconCt}
+                            onClick={() => {
+                              setTrueCtrel1(!trueCtrel1);
+                            }}
+                          >
+                            {trueCtrel1 && <BsChevronUp size="20px" />}
+                            {!trueCtrel1 && <BsChevronDown size="20px" />}
+                          </div>
+                          {/*  */}
 
-                        {selectedOption1 === "courier" && (
+                          <div className={styles.fieldset_input1}>
+                            <div className={styles.fieldset_input_text}>
+                              <input
+                                className={styles.fieldset_input}
+                                type="radio"
+                                id="nova"
+                                name="courier"
+                                value="Нова пошта"
+                                checked={selectedOption1 === "Нова пошта"}
+                                onChange={handleOptionChange1}
+                              />
+                              <label htmlFor="Нова пошта">Нова пошта.</label>
+                            </div>
+                            <div className={styles.fieldset_input_text}>
+                              <input
+                                className={styles.fieldset_input}
+                                type="radio"
+                                id="ykr"
+                                name="courier"
+                                value="Укрпошта"
+                                checked={selectedOption1 === "Укрпошта"}
+                                onChange={handleOptionChange1}
+                              />
+                              <label htmlFor="Укрпошта">Укрпошта.</label>
+                            </div>
+                            <div className={styles.fieldset_input_text}>
+                              <input
+                                className={styles.fieldset_input}
+                                type="radio"
+                                id="meest1"
+                                name="courier"
+                                value="Meest Express"
+                                checked={selectedOption1 === "Meest Express"}
+                                onChange={handleOptionChange1}
+                              />
+                              <label htmlFor="Meest Express">
+                                Meest Express.
+                              </label>
+                            </div>
+                            <div className={styles.fieldset_input_text}>
+                              <input
+                                className={styles.fieldset_input}
+                                type="radio"
+                                id="meest2"
+                                name="courier"
+                                value="Delivery"
+                                checked={selectedOption1 === "Delivery"}
+                                onChange={handleOptionChange1}
+                              />
+                              <label htmlFor="Delivery">Delivery.</label>
+                            </div>
+                            <h5 className={styles.h3}>Самовивіз:</h5>
+                            <div className={styles.fieldset_input_text}>
+                              <input
+                                className={styles.fieldset_input}
+                                type="radio"
+                                id="meest3"
+                                name="courier"
+                                value="Харків"
+                                checked={selectedOption1 === "Харків"}
+                                onChange={handleOptionChange1}
+                              />
+                              <label htmlFor="Харків">Харків.</label>
+                            </div>
+                            <div className={styles.fieldset_input_text}>
+                              <input
+                                className={styles.fieldset_input}
+                                type="radio"
+                                id="meest4"
+                                name="courier"
+                                value="Київ"
+                                checked={selectedOption1 === "Київ"}
+                                onChange={handleOptionChange1}
+                              />
+                              <label htmlFor="Київ">Київ.</label>
+                            </div>
+                            <div className={styles.fieldset_input_text}>
+                              <input
+                                className={styles.fieldset_input}
+                                type="radio"
+                                id="meest5"
+                                name="courier"
+                                value="Львів"
+                                checked={selectedOption1 === "Львів"}
+                                onChange={handleOptionChange1}
+                              />
+                              <label htmlFor="Львів">Львів.</label>
+                            </div>
+                          </div>
+                        </fieldset>
+                        {/* 1 and*/}
+
+                        {selectedOption1 === "Львів" ||
+                        selectedOption1 === "Харків" ||
+                        selectedOption1 === "Київ" ? (
                           <Field
                             type="text"
                             name="street"
                             placeholder="Адреса"
                             className={styles.name1}
                           />
-                        )}
-                        <fieldset className={styles.fieldset}>
-                          <div className={styles.fieldset_input_text}>
-                            <input
-                              className={styles.fieldset_input}
-                              type="radio"
-                              id="nova"
-                              name="courier"
-                              value="mail"
-                              checked={selectedOption1 === "mail"}
-                              onChange={handleOptionChange1}
-                            />
-                            <label htmlFor="mail">Новою поштою.</label>
-                          </div>
-                          <div className={styles.fieldset_input_text}>
-                            <input
-                              className={styles.fieldset_input}
-                              type="radio"
-                              id="cur"
-                              name="courier"
-                              value="courier"
-                              checked={selectedOption1 === "courier"}
-                              onChange={handleOptionChange1}
-                            />
-                            <label htmlFor="courier">
-                              Курʼєром нової пошти.
-                            </label>
-                          </div>
-                        </fieldset>
-                        {selectedOption1 === "cur" && (
+                        ) : null}
+
+                        {selectedOption1 === "Львів" ||
+                        selectedOption1 === "Харків" ||
+                        selectedOption1 === "Київ" ? (
                           <ErrorMessage
                             name="street"
                             component="div"
                             className={`${styles.error} ${styles.error5}`}
                           />
-                        )}
+                        ) : null}
+                        {/* -----------------------пош нова */}
+                        <div className={styles.nov_box}>
+                          <input
+                            type="text"
+                            className={styles.nov_box_input}
+                            onChange={(event) => {
+                              setCitiesInput(event.target.value),
+                                setTrueClickText(true);
+                            }}
+                            value={CitiesInput}
+                          />
+                          {trueClickText && Cities && (
+                            <div>
+                              {Cities.data[0].Addresses.map((item, index) => (
+                                <div
+                                  key={index}
+                                  id={`${index}_nov`}
+                                  onClick={() => {
+                                    setCityName(item.MainDescription);
+                                    setTrueClickText(false);
+                                    setCitiesInput(item.MainDescription);
+                                  }}
+                                >
+                                  {item.MainDescription}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {Warehouses && (
+                            <Autocomplete
+                              disablePortal
+                              className={styles.nov_icon}
+                              id="combo-box-demo"
+                              inputValue={CitiesInput1}
+                              onInputChange={(event, newInputValue) => {
+                                setCitiesInput1(newInputValue);
+                              }}
+                              options={Warehouses.map(
+                                (warehouse) => warehouse.Description
+                              )}
+                              sx={{ width: 300 }}
+                              renderInput={(params) => (
+                                <TextField {...params} label="NovaPoshta" />
+                              )}
+                            />
+                          )}
+                        </div>
+                        {/* -----------------------пош нова and*/}
+
                         <Field
                           type="text"
                           name="city"
                           placeholder="Місто"
                           className={styles.name2}
                         />
+
                         <ErrorMessage
                           name="city"
                           component="div"
@@ -391,35 +528,118 @@ export default function Basket({ fals }) {
                           component="div"
                           className={`${styles.error} ${styles.error6}`}
                         />
-                        <fieldset className={styles.fieldset}>
-                          <div className={styles.fieldset_input_text}>
-                            <input
-                              className={styles.fieldset_input}
-                              type="radio"
-                              id="novaP"
-                              name="card"
-                              value="postpaid"
-                              checked={selectedOption === "postpaid"}
-                              onChange={handleOptionChange}
-                            />
-                            <label htmlFor="postpaid">Післяплата.</label>
+                        <div className={styles.fieldset_box}>
+                          <div className={styles.box_h3}>
+                            <div className={styles.h3_dox}>
+                              <BsWindowStack size="20px" />
+                              <h4 className={styles.h3}>Оплата</h4>
+                            </div>
                           </div>
-
-                          <div>
-                            <input
-                              className={styles.fieldset_input}
-                              type="radio"
-                              id="card"
-                              name="card"
-                              value="card"
-                              checked={selectedOption === "card"}
-                              onChange={handleOptionChange}
-                            />
-                            <label htmlFor="card">
-                              Онлайн-оплата банківською карткою.{" "}
-                            </label>
-                          </div>
-                        </fieldset>
+                          {/* 2 */}
+                          <fieldset
+                            className={`${styles.fieldset1} ${
+                              trueCtrel2 && styles.fieldset1_true
+                            }`}
+                          >
+                            <div
+                              className={styles.iconCt}
+                              onClick={() => {
+                                setTrueCtrel2(!trueCtrel2);
+                              }}
+                            >
+                              {trueCtrel2 && <BsChevronUp size="20px" />}
+                              {!trueCtrel2 && <BsChevronDown size="20px" />}
+                            </div>
+                            <div className={styles.fieldset_input1}>
+                              <div className={styles.fieldset_input_text}>
+                                <input
+                                  className={styles.fieldset_input}
+                                  type="radio"
+                                  id="card1"
+                                  name="card"
+                                  value="Онлайн-оплата банківською карткою (WayForPay)"
+                                  checked={
+                                    selectedOption ===
+                                    "Онлайн-оплата банківською карткою (WayForPay)"
+                                  }
+                                  onChange={handleOptionChange}
+                                />
+                                <label htmlFor="Онлайн-оплата банківською карткою (WayForPay)">
+                                  Онлайн-оплата банківською карткою (WayForPay).
+                                </label>
+                              </div>
+                              <div className={styles.coment}>
+                                Ви можете сплатити любою карткою Visa або
+                                MasterCard - цілодобово.
+                              </div>
+                              <div className={styles.fieldset_input_text}>
+                                <input
+                                  className={styles.fieldset_input}
+                                  type="radio"
+                                  id="card2"
+                                  name="card"
+                                  value="Післяплата у відділенні при отриманні"
+                                  checked={
+                                    selectedOption ===
+                                    "Післяплата у відділенні при отриманні"
+                                  }
+                                  onChange={handleOptionChange}
+                                />
+                                <label htmlFor="Післяплата у відділенні при отриманні">
+                                  Післяплата у відділенні при отриманні.
+                                </label>
+                              </div>
+                              <div className={styles.coment}>
+                                -------------------------------------------------------
+                              </div>
+                              <div className={styles.fieldset_input_text}>
+                                <input
+                                  className={styles.fieldset_input}
+                                  type="radio"
+                                  id="card3"
+                                  name="card"
+                                  value="Оплата по реквізитам"
+                                  checked={
+                                    selectedOption === "Оплата по реквізитам"
+                                  }
+                                  onChange={handleOptionChange}
+                                />
+                                <label htmlFor="Оплата по реквізитам">
+                                  Оплата по реквізитам.
+                                </label>
+                              </div>
+                              <div className={styles.coment}>
+                                -------------------------------------------------------
+                              </div>
+                              <div className={styles.fieldset_input_text}>
+                                <input
+                                  className={styles.fieldset_input}
+                                  type="radio"
+                                  id="card4"
+                                  name="card"
+                                  value="Оплата по реквізитам юр. особа з ПДВ"
+                                  checked={
+                                    selectedOption ===
+                                    "Оплата по реквізитам юр. особа з ПДВ"
+                                  }
+                                  onChange={handleOptionChange}
+                                />
+                                <label htmlFor="Оплата по реквізитам юр. особа з ПДВ">
+                                  Оплата по реквізитам юр. особа з ПДВ.
+                                </label>
+                              </div>
+                              <div className={styles.coment}>
+                                Безготівковий розрахунок з ПДВ ця форма оплати
+                                найбільше підходить для фірм (юридичних осіб,
+                                платників ПДВ). Весь пакет документів, включаючи
+                                податкову накладну, ви отримуєте разом із
+                                товаром. Рахунок-фактуру на товар Ви можете
+                                отримати в офісі компанії або електронною
+                                поштою.
+                              </div>
+                            </div>
+                          </fieldset>
+                        </div>
                         <div className={styles.price}>
                           до сплати:{" "}
                           <span className={styles.price_span}>{numBd}</span>

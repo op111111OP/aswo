@@ -6,10 +6,9 @@
 }
 .footer_box {
   width: 1100px;
-  height: 150px;
+  height: 120px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
 }
 .box_telephone {
   display: flex;
@@ -20,4 +19,32 @@
   flex-direction: column;
   gap: 5px;
   padding: 20px;
+}
+/* ------ */
+.footer_box_opl {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
+.footer_box_oplOb:hover {
+  color: #127ce5;
+}
+.footer_box_oplOb {
+  border-bottom: 1px solid #000;
+}
+/* ------ */
+@media (max-width: 1100px) {
+  .footer {
+    width: 100vw;
+    padding: 20px;
+  }
+}
+@media (max-width: 530px) {
+  .footer_box {
+    flex-direction: column;
+  }
+  .footer_box_oplOb {
+    width: 185px;
+  }
 }
