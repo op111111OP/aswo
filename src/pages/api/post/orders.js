@@ -18,9 +18,6 @@ const productSchema = new Schema({
 });
 
 const ordersSchema = new Schema({
-  city: {
-    type: String,
-  },
   email: {
     type: String,
   },
@@ -45,6 +42,9 @@ const ordersSchema = new Schema({
   CitiesInput: {
     type: String,
   },
+  CitiesInput1: {
+    type: String,
+  },
 
   someField: {
     type: Number,
@@ -66,7 +66,6 @@ export default async (req, res) => {
   if (req.method === "POST") {
     try {
       const {
-        city,
         email,
         pib,
         phone,
@@ -80,10 +79,10 @@ export default async (req, res) => {
         numB1,
         numB,
         CitiesInput,
+        CitiesInput1,
       } = req.body;
 
       const newOrders = new Orderg({
-        city,
         email,
         pib,
         phone,
@@ -97,6 +96,7 @@ export default async (req, res) => {
         numB1,
         numB,
         CitiesInput,
+        CitiesInput1,
       });
       await newOrders.save();
       console.log(newOrders, 11);

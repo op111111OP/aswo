@@ -54,6 +54,9 @@ export default function Page() {
         * За умови наявності товару на магазині
       </div>
       <h4 className={styles.box}>Максимальні габарити для доставки:</h4>
+      <div className={styles.box_p}>
+        довжина: 80 см, Ширина: 80 см, Висота: 200 см
+      </div>
       <h3 className={styles.box}>Оплата замовлення.</h3>
 
       <div className={styles.boxn}>

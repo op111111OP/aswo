@@ -226,7 +226,7 @@ export default function Basket({ fals }) {
                   email: "",
                   phone: "",
                   street: "",
-                  city: "",
+
                   someField: "",
                   userData: "",
                   department: "",
@@ -236,6 +236,7 @@ export default function Basket({ fals }) {
                   numB1: "",
                   numB: "",
                   CitiesInput: "",
+                  CitiesInput1: "",
                 }}
                 validate={(values) => {
                   values.userData = twoCard;
@@ -246,6 +247,7 @@ export default function Basket({ fals }) {
                   values.numB1 = numB1;
                   values.numB = numB;
                   values.CitiesInput = CitiesInput;
+                  values.CitiesInput1 = CitiesInput1;
 
                   const errors = {};
                   if (!values.pib) {
@@ -255,14 +257,6 @@ export default function Basket({ fals }) {
                   if (!values.phone) {
                     errors.phone = "Телефон обов'язкове поле";
                   }
-
-                  if (!values.city) {
-                    errors.city = "Місто обов'язкове поле";
-                  }
-                  if (!values.street) {
-                    errors.street = "Адреса обов'язкове поле";
-                  }
-
                   return errors;
                 }}
               >
@@ -457,77 +451,85 @@ export default function Basket({ fals }) {
                         ) : null}
                         {/* -----------------------пош нова */}
                         <div className={styles.nov_box}>
-                          <input
-                            type="text"
-                            className={styles.nov_box_input}
-                            onChange={(event) => {
-                              setCitiesInput(event.target.value),
-                                setTrueClickText(true);
-                            }}
-                            value={CitiesInput}
-                          />
-                          {trueClickText && Cities && (
-                            <div>
-                              {Cities.data[0].Addresses.map((item, index) => (
-                                <div
-                                  key={index}
-                                  id={`${index}_nov`}
-                                  onClick={() => {
-                                    setCityName(item.MainDescription);
-                                    setTrueClickText(false);
-                                    setCitiesInput(item.MainDescription);
-                                  }}
-                                >
-                                  {item.MainDescription}
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {Warehouses && (
-                            <Autocomplete
-                              disablePortal
-                              className={styles.nov_icon}
-                              id="combo-box-demo"
-                              inputValue={CitiesInput1}
-                              onInputChange={(event, newInputValue) => {
-                                setCitiesInput1(newInputValue);
+                          <div className={styles.nov_box_inputg}>
+                            <input
+                              type="text"
+                              placeholder="Місто"
+                              className={styles.nov_box_input}
+                              onChange={(event) => {
+                                setCitiesInput(event.target.value),
+                                  setTrueClickText(true);
                               }}
-                              options={Warehouses.map(
-                                (warehouse) => warehouse.Description
-                              )}
-                              sx={{ width: 300 }}
-                              renderInput={(params) => (
-                                <TextField {...params} label="NovaPoshta" />
-                              )}
+                              value={CitiesInput}
                             />
+                            {trueClickText && Cities && (
+                              <div className={styles.nov_box_input_poick}>
+                                {Cities.data[0].Addresses.map((item, index) => (
+                                  <div
+                                    key={index}
+                                    id={`${index}_nov`}
+                                    onClick={() => {
+                                      setCityName(item.MainDescription);
+                                      setTrueClickText(false);
+                                      setCitiesInput(item.MainDescription);
+                                    }}
+                                    className={styles.nov_box_input_poick_map}
+                                  >
+                                    {item.MainDescription}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+
+                          {selectedOption1 === "Нова пошта" && Warehouses && (
+                            <div className={styles.nov_icon1}>
+                              <Autocomplete
+                                disablePortal
+                                className={styles.nov_icon}
+                                id="combo-box-demo"
+                                inputValue={CitiesInput1}
+                                onInputChange={(event, newInputValue) => {
+                                  setCitiesInput1(newInputValue);
+                                }}
+                                options={Warehouses.map(
+                                  (warehouse) => warehouse.Description
+                                )}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => (
+                                  <TextField
+                                    className={styles.nov_icon3}
+                                    {...params}
+                                    label="Відділення нової пошти"
+                                  />
+                                )}
+                              />
+                            </div>
                           )}
                         </div>
                         {/* -----------------------пош нова and*/}
 
-                        <Field
-                          type="text"
-                          name="city"
-                          placeholder="Місто"
-                          className={styles.name2}
-                        />
-
-                        <ErrorMessage
-                          name="city"
-                          component="div"
-                          className={`${styles.error} ${styles.error6}`}
-                        />
-                        <Field
-                          type="text"
-                          name="department"
-                          placeholder="Відділення"
-                          className={styles.name2}
-                        />
-                        <ErrorMessage
-                          name="department"
-                          component="div"
-                          className={`${styles.error} ${styles.error6}`}
-                        />
+                        {selectedOption1 !== "Нова пошта" &&
+                          selectedOption1 !== "Львів" &&
+                          selectedOption1 !== "Київ" &&
+                          selectedOption1 !== "Харків" && (
+                            <Field
+                              type="text"
+                              name="department"
+                              placeholder="Відділення"
+                              className={styles.name2}
+                            />
+                          )}
+                        {selectedOption1 !== "Нова пошта" &&
+                          selectedOption1 !== "Львів" &&
+                          selectedOption1 !== "Київ" &&
+                          selectedOption1 !== "Харків" && (
+                            <ErrorMessage
+                              name="department"
+                              component="div"
+                              className={`${styles.error} ${styles.error6}`}
+                            />
+                          )}
                         <div className={styles.fieldset_box}>
                           <div className={styles.box_h3}>
                             <div className={styles.h3_dox}>
