@@ -50,7 +50,7 @@ export default function Basket({ fals }) {
   const [trueClickText, setTrueClickText] = useState(false);
 
   //   -------------
-  console.log(CitiesInput, "CitiesInput1");
+
   //   input
   const [selectedOption, setSelectedOption] = useState(
     "Онлайн-оплата банківською карткою (WayForPay)"
@@ -451,36 +451,46 @@ export default function Basket({ fals }) {
                         ) : null}
                         {/* -----------------------пош нова */}
                         <div className={styles.nov_box}>
-                          <div className={styles.nov_box_inputg}>
-                            <input
-                              type="text"
-                              placeholder="Місто"
-                              className={styles.nov_box_input}
-                              onChange={(event) => {
-                                setCitiesInput(event.target.value),
-                                  setTrueClickText(true);
-                              }}
-                              value={CitiesInput}
-                            />
-                            {trueClickText && Cities && (
-                              <div className={styles.nov_box_input_poick}>
-                                {Cities.data[0].Addresses.map((item, index) => (
-                                  <div
-                                    key={index}
-                                    id={`${index}_nov`}
-                                    onClick={() => {
-                                      setCityName(item.MainDescription);
-                                      setTrueClickText(false);
-                                      setCitiesInput(item.MainDescription);
-                                    }}
-                                    className={styles.nov_box_input_poick_map}
-                                  >
-                                    {item.MainDescription}
+                          {selectedOption1 !== "Львів" &&
+                            selectedOption1 !== "Харків" &&
+                            selectedOption1 !== "Київ" && (
+                              <div className={styles.nov_box_inputg}>
+                                <input
+                                  type="text"
+                                  placeholder="Місто"
+                                  className={styles.nov_box_input}
+                                  onChange={(event) => {
+                                    setCitiesInput(event.target.value),
+                                      setTrueClickText(true);
+                                  }}
+                                  value={CitiesInput}
+                                />
+                                {trueClickText && Cities && (
+                                  <div className={styles.nov_box_input_poick}>
+                                    {Cities.data[0].Addresses.map(
+                                      (item, index) => (
+                                        <div
+                                          key={index}
+                                          id={`${index}_nov`}
+                                          onClick={() => {
+                                            setCityName(item.MainDescription);
+                                            setTrueClickText(false);
+                                            setCitiesInput(
+                                              item.MainDescription
+                                            );
+                                          }}
+                                          className={
+                                            styles.nov_box_input_poick_map
+                                          }
+                                        >
+                                          {item.MainDescription}
+                                        </div>
+                                      )
+                                    )}
                                   </div>
-                                ))}
+                                )}
                               </div>
                             )}
-                          </div>
 
                           {selectedOption1 === "Нова пошта" && Warehouses && (
                             <div className={styles.nov_icon1}>
@@ -537,7 +547,7 @@ export default function Basket({ fals }) {
                               <h4 className={styles.h3}>Оплата</h4>
                             </div>
                           </div>
-                          {/* 2 */}
+                          {/* 2 -оплата*/}
                           <fieldset
                             className={`${styles.fieldset1} ${
                               trueCtrel2 && styles.fieldset1_true
@@ -641,6 +651,7 @@ export default function Basket({ fals }) {
                               </div>
                             </div>
                           </fieldset>
+                          {/* 2 -оплата and*/}
                         </div>
                         <div className={styles.price}>
                           до сплати:{" "}

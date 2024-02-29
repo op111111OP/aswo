@@ -438,23 +438,6 @@
   justify-content: start;
 }
 
-@media (max-width: 950px) {
-  .box {
-    width: 100%;
-    margin: 25px 0px 0px 0px;
-  }
-  .textarea,
-  .phone,
-  .email,
-  .name2,
-  .name1 {
-    width: 100%;
-  }
-  .main {
-    width: 100%;
-    min-width: 100vw;
-  }
-}
 /* пош нова */
 .nov_box {
   width: 100%;
@@ -462,7 +445,6 @@
 }
 .nov_box_input_poick {
   position: absolute;
-  padding: 10px;
   width: 95%;
   top: 80px;
   left: 15;
@@ -471,6 +453,7 @@
 }
 .nov_box_input_poick_map {
   cursor: pointer;
+  margin: 3px 10px 3px 10px;
 }
 .nov_box_input_poick_map:hover {
   color: #1469df;
@@ -505,6 +488,22 @@
   height: 30px;
 }
 /* пош нова and */
+@media (max-width: 950px) {
+  .box {
+    width: 100%;
+    margin: 2px 0px 0px 0px;
+  }
+  .textarea,
+  .phone,
+  .email,
+  .name2,
+  .name1 {
+    width: 100%;
+  }
+  .main {
+    min-width: 80vw;
+  }
+}
 @media (max-width: 850px) {
   .image_box {
     height: 100%;
@@ -543,6 +542,9 @@
   .number_textP {
     right: 290px;
   }
+  .main {
+    min-width: 90vw;
+  }
 }
 @media (max-width: 650px) {
   .issue_box {
@@ -555,6 +557,9 @@
     padding-top: 10px;
     padding-bottom: 20px;
     font-size: 16px;
+  }
+  .main {
+    min-width: 100vw;
   }
 }
 @media (max-width: 600px) {
@@ -591,12 +596,21 @@
     height: 50px;
     width: 50px;
   }
+  .tel_box {
+    flex-direction: column;
+  }
+  .fieldset1_true {
+    height: 300px;
+  }
 
   .name {
     font-size: 12px;
     width: 100%;
 
     margin: 0px 0px 0px 0px;
+  }
+  .fieldset1 {
+    height: 60px;
   }
   .price_box_h1,
   .number_text,
@@ -605,10 +619,27 @@
     display: none;
   }
 }
+@media (max-width: 500px) {
+  .fieldset1 {
+    height: 80px;
+  }
+}
 @media (max-width: 420px) {
   .issue_order {
     font-size: 12px;
     width: 220px;
+  }
+  .fieldset1_true {
+    height: 380px;
+  }
+  .fieldset1 {
+    height: 100px;
+  }
+}
+
+@media (max-width: 320px) {
+  .fieldset1_true {
+    height: 400px;
   }
 }
 
