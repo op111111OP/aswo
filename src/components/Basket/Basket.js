@@ -50,7 +50,7 @@ export default function Basket({ fals }) {
   const [trueClickText, setTrueClickText] = useState(false);
 
   //   -------------
-  console.log(twoCard, "twoCard");
+
   //   input
   const [selectedOption, setSelectedOption] = useState(
     "Онлайн-оплата банківською карткою (WayForPay)"

@@ -112,7 +112,6 @@ export default function Page() {
     }
   };
   const handleSubmit = async (values) => {
-    console.log(values, "kk");
     try {
       const response = await fetch("/api/postCopy/ord", {
         method: "POST",
@@ -131,7 +130,6 @@ export default function Page() {
       console.error("Ошибка:", error);
     }
   };
-  console.log(flutters1, "fluta");
 
   return (
     <div className={styles.box}>
@@ -178,6 +176,7 @@ export default function Page() {
                   price: fluta.length === 1 ? fluta[0].price : "",
                   brand: fluta.length === 1 ? fluta[0].brand : "",
                   country: fluta.length === 1 ? fluta[0].country : "",
+                  com: fluta.length === 1 ? fluta[0].com : "",
                   description: fluta.length === 1 ? fluta[0].description : "",
                   novel: fluta.length === 1 ? false : "",
                 }}
@@ -192,6 +191,7 @@ export default function Page() {
                     values.price = values.price || fluta[0].price;
                     values.brand = values.brand || fluta[0].brand;
                     values.country = values.country || fluta[0].country;
+                    values.com = values.com || fluta[0].com;
                     values.description =
                       values.description || fluta[0].description;
                     values.novel = values.novel || false;
@@ -309,6 +309,27 @@ export default function Page() {
                     />
                     <Field
                       type="text"
+                      name="com"
+                      placeholder={
+                        values.com ||
+                        (fluta.length === 1 ? fluta[0].com : "com")
+                      }
+                      className={styles.name2}
+                    />
+                    <ErrorMessage
+                      name="com"
+                      component="div"
+                      className={`${styles.error} ${styles.error6}`}
+                    />
+                    {/* ----------- */}
+
+                    <ErrorMessage
+                      name="description"
+                      component="div"
+                      className={`${styles.error} ${styles.error6}`}
+                    />
+                    <Field
+                      as="textarea"
                       name="description"
                       placeholder={
                         values.description ||
@@ -316,13 +337,9 @@ export default function Page() {
                           ? fluta[0].description
                           : "description")
                       }
-                      className={styles.name2}
+                      className={styles.textarea}
                     />
-                    <ErrorMessage
-                      name="description"
-                      component="div"
-                      className={`${styles.error} ${styles.error6}`}
-                    />
+                    {/* ----------- */}
                     <Field
                       type="text"
                       name="novel"
@@ -362,7 +379,7 @@ export default function Page() {
                   }}
                 >
                   {({ isSubmitting1 }) => (
-                    <Form className={styles.box_f}>
+                    <Form className={styles.box_f1}>
                       <Field
                         type="text"
                         name="article"
@@ -399,7 +416,7 @@ export default function Page() {
                   }}
                 >
                   {({ isSubmitting2 }) => (
-                    <Form className={styles.box_f}>
+                    <Form className={styles.box_f1}>
                       <Field
                         type="text"
                         name="article"

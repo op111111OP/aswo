@@ -17,6 +17,9 @@ const ordersSchema1 = new Schema({
   img: {
     type: String,
   },
+  com: {
+    type: String,
+  },
   novel: {
     type: Boolean,
   },
@@ -40,8 +43,17 @@ const Orderg1 =
 export default async (req, res) => {
   if (req.method === "POST") {
     try {
-      const { name, article, img, price, brand, country, description, novel } =
-        req.body;
+      const {
+        name,
+        article,
+        img,
+        price,
+        brand,
+        country,
+        description,
+        novel,
+        com,
+      } = req.body;
 
       const newOrders14 = new Orderg1({
         name,
@@ -52,6 +64,7 @@ export default async (req, res) => {
         country,
         description,
         novel,
+        com,
       });
       await newOrders14.save();
       console.log(newOrders14, 11);
