@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function AutoComplit({ value }) {
   const [flutters, setFlutters] = useState(null);
+  const [tryAuto, setTryAuto] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,9 +27,13 @@ export default function AutoComplit({ value }) {
       style={{ display: flutters ? "block" : "none" }}
     >
       {flutters &&
-        flutters.map((item, index) => (
+        tryAuto &&
+        Object.values(flutters).map((item, index) => (
           <Link key={index} href={`/product?id=${item._id}`}>
-            <div className={styles.auto_complid_element}>
+            <div
+              className={styles.auto_complid_element}
+              onClick={() => setTryAuto(false)}
+            >
               {index + 1}.{item.name}
             </div>
           </Link>

@@ -20,7 +20,7 @@ export default function Page() {
   const [truF, setTruF] = useState(true);
   const [name, setName] = useState("");
   const [cehageCor, setCehageCor] = useState(false);
-
+  console.log(flutters, "c");
   const handleBoxClick = () => {
     setCehageCor(false);
   };
@@ -165,7 +165,7 @@ export default function Page() {
                           categori: flutters.categori,
                           brand: flutters.brand,
                           country: flutters.country,
-
+                          com: item.com,
                           img: flutters.img,
                           name: flutters.name,
                           price: flutters.price,
@@ -263,7 +263,7 @@ export default function Page() {
                             categori: item.categori,
                             brand: item.brand,
                             country: item.country,
-
+                            com: item.com,
                             img: item.img,
                             name: item.name,
                             price: item.price,

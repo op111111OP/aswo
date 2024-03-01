@@ -181,6 +181,7 @@ export default function Page() {
     setOnCard1(object);
     setCehageCor(true);
     e.stopPropagation();
+    console.log(object, "FaShoppingCart");
   };
   function fals(t) {
     setCehageCor(t);
@@ -644,6 +645,7 @@ export default function Page() {
                             price: item.price,
                             id: item._id,
                             article: item.article,
+                            com: item.com,
                           });
                         }}
                         className={styles.shopping}

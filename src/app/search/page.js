@@ -585,6 +585,7 @@ export default function Page() {
                             price: item.price,
                             id: item._id,
                             article: item.article,
+                            com: item.com,
                           });
                         }}
                         className={styles.shopping}

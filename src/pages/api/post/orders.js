@@ -15,12 +15,14 @@ const productSchema = new Schema({
   country: { type: String },
   id: { type: String },
   img: { type: String },
+  com: { type: String },
 });
 
 const ordersSchema = new Schema({
   email: {
     type: String,
   },
+
   pib: {
     type: String,
   },
@@ -67,6 +69,7 @@ export default async (req, res) => {
     try {
       const {
         email,
+
         pib,
         phone,
         someField,
@@ -84,6 +87,7 @@ export default async (req, res) => {
 
       const newOrders = new Orderg({
         email,
+
         pib,
         phone,
         someField,

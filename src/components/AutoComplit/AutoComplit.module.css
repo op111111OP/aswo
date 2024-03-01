@@ -6,12 +6,13 @@
   z-index: 1;
   width: 300px;
   font-size: 14px;
-  padding: 10px;
+
   cursor: pointer;
   z-index: 3;
 }
 .auto_complid_element {
   border-bottom: 2px solid #7270ff;
+  margin: 10px 0px 10px 10px;
 }
 .auto_complid_element:hover {
   color: #211dff;

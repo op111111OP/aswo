@@ -11,6 +11,7 @@ export default function Page() {
   const [fol, setFol] = useState(1);
   const [fluta, setFluta] = useState([]);
   //   кн клік
+
   const [activeItems, setActiveItems] = useState({});
 
   const toggleActive = (itemId) => {
@@ -19,6 +20,7 @@ export default function Page() {
       [itemId]: !prevActiveItems[itemId],
     }));
   };
+
   //   кн клік
   //   ----
   const [flutters1, setFlutters1] = useState([]);
@@ -129,7 +131,7 @@ export default function Page() {
       console.error("Ошибка:", error);
     }
   };
-  console.log(fluta, "fluta");
+  console.log(flutters1, "fluta");
 
   return (
     <div className={styles.box}>
@@ -427,102 +429,129 @@ export default function Page() {
             {Array.isArray(flutters1) &&
               flutters1.map((item, index) => (
                 <div key={index} className={styles.box_011}>
-                  <div className={styles.box_0}>
-                    <div className={styles.box_00}>
-                      <div className={styles.box_}>
-                        {item.first_name} {item.last_name}
-                      </div>
-                      <div className={styles.box_}>
-                        <span className={styles.span}> Місто:</span> {item.city}
+                  {index > 0 && (
+                    <div className={styles.box_span}>{index}. замовлення.</div>
+                  )}
+                  {index > 0 && (
+                    <div className={styles.box_0}>
+                      <div className={styles.box_00}>
+                        <div className={styles.box_}>{item.pib}</div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}> Місто:</span>{" "}
+                          {item.CitiesInput}
+                        </div>
+
+                        <div className={styles.box_}>
+                          {" "}
+                          <span className={styles.span}> email:</span>
+                          {item.email}
+                        </div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}> Телефон:</span>{" "}
+                          {item.phone}
+                        </div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}></span> {}
+                        </div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}>Дата замовлення:</span>{" "}
+                          {item.day}
+                        </div>
                       </div>
 
-                      <div className={styles.box_}>
-                        {" "}
-                        <span className={styles.span}> email:</span>
-                        {item.email}
-                      </div>
-                      <div className={styles.box_}>
-                        <span className={styles.span}> Телефон:</span>{" "}
-                        {item.phone}
-                      </div>
-                      <div className={styles.box_}>
-                        <span className={styles.span}></span> {}
-                      </div>
-                      <div className={styles.box_}>
-                        <span className={styles.span}>Дата замовлення:</span>{" "}
-                        {item.day}
+                      <div className={styles.box_00}>
+                        <div className={styles.box_}>
+                          {" "}
+                          <span className={styles.span}> Адреса:</span>
+                          {item.street}
+                        </div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}> Відділення:</span>
+                          {item.department}
+                        </div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}>
+                            {" "}
+                            Відділення Нова Пошта:
+                          </span>
+                          {item.CitiesInput1}
+                        </div>
+
+                        <div className={styles.box_}>
+                          {" "}
+                          <span className={styles.span}> Доставка:</span>
+                          {item.courier}
+                        </div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}> Оплата:</span>
+                          {item.card}
+                        </div>
+                        <div className={styles.box_}>
+                          <span className={styles.span}> Всього:</span>
+                          {item.someField}грн.
+                        </div>
                       </div>
                     </div>
+                  )}
+                  <div className={styles.box_aaaaaaa}>
+                    {index > 0 && (
+                      <div className={styles.box_11}>
+                        {Array.isArray(item.userData) &&
+                          item.userData.map((item, index) => (
+                            <div key={index} className={styles.box_1k}>
+                              <div className={styles.box_1d}>
+                                <div className={styles.box_1}>
+                                  Артикул: {item.article}
+                                </div>
+                                <div className={styles.box_1}>{item.name}</div>
 
-                    <div className={styles.box_00}>
-                      <div className={styles.box_}>
-                        {" "}
-                        <span className={styles.span}> Адреса:</span>
-                        {item.street}
+                                <div className={styles.box_1}>
+                                  Ціна: {item.price}грн.
+                                </div>
+                              </div>
+                              <div className={styles.box_1}>{item.com}</div>
+                            </div>
+                          ))}
                       </div>
-                      <div className={styles.box_}>
-                        <span className={styles.span}> Відділення:</span>
-                        {item.department}
-                      </div>
-
-                      <div className={styles.box_}>
-                        {" "}
-                        <span className={styles.span}> Доставка:</span>
-                        {item.courier}
-                      </div>
-                      <div className={styles.box_}>
-                        <span className={styles.span}> Оплата:</span>
-                        {item.card}
-                      </div>
-                      <div className={styles.box_}>
-                        <span className={styles.span}> Всього:</span>
-                        {item.someField}грн.
-                      </div>
+                    )}
+                    <div className={styles.box_aaaaaaa_box_1a1}>
+                      {index > 0 && (
+                        <div className={styles.box_1a1}>
+                          {Array.isArray(item.numB1) &&
+                            item.numB1.map((item, index) => (
+                              <div key={index} className={styles.box_1ad}>
+                                Кількість: {item} шт.
+                              </div>
+                            ))}
+                        </div>
+                      )}
+                      {index > 0 && (
+                        <div className={styles.box_1a2}>
+                          {Array.isArray(item.numB) &&
+                            item.numB.map((item, index) => (
+                              <div key={index} className={styles.box_1ad}>
+                                Вартість: {item}грн.
+                              </div>
+                            ))}
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className={styles.box_1a1}>
-                    {Array.isArray(item.numB1) &&
-                      item.numB1.map((item, index) => (
-                        <div key={index} className={styles.box_1ad}>
-                          Кількість: {item} шт.
-                        </div>
-                      ))}
-                  </div>
-                  <div className={styles.box_1a2}>
-                    {Array.isArray(item.numB) &&
-                      item.numB.map((item, index) => (
-                        <div key={index} className={styles.box_1ad}>
-                          Вартість: {item}грн.
-                        </div>
-                      ))}
-                  </div>
-                  <div className={styles.box_11}>
-                    {Array.isArray(item.userData) &&
-                      item.userData.map((item, index) => (
-                        <div key={index} className={styles.box_1d}>
-                          <div className={styles.box_1}>
-                            Артикул: {item.article}
-                          </div>
-                          <div className={styles.box_1}>{item.name}</div>
 
-                          <div className={styles.box_1cc}>
-                            Ціна: {item.price}грн.
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                  {/* кнопка слик */}
-                  {item.city !== "eee" && (
-                    <div
-                      className={`${styles.box_but} ${
-                        activeItems[item._id] && styles.box_butClik
-                      }`}
-                      onClick={() => {
-                        toggleActive(item._id);
-                        tId(item._id);
-                      }}
-                    >
-                      Видалити.
+                  {/* кнопка клик */}
+                  {index > 0 && (
+                    <div className={styles.box_but_1}>
+                      <div
+                        className={`${styles.box_but} ${
+                          activeItems[item._id] && styles.box_butClik
+                        }`}
+                        onClick={() => {
+                          toggleActive(item._id);
+                          tId(item._id);
+                        }}
+                      >
+                        Видалити.
+                      </div>
                     </div>
                   )}
                 </div>

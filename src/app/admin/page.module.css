@@ -33,39 +33,70 @@
 .box_but:hover {
   cursor: pointer;
   background-color: #e61313;
-  border: 2px solid #150955;
+  border: 1px solid #150955;
 }
 .box_butClik {
   background-color: #c1c1c9c1;
   width: 20px;
+}
+.box_but1 {
+  border: 1px solid #2878db;
+  background-color: #4389d9;
+  padding: 5px 10px;
+  width: 100px;
+  transition: background-color 4s;
+}
+.box_but1:hover {
+  cursor: pointer;
+
+  border: 1px solid #150955;
+}
+.box_butClik1 {
+  background-color: #d88143f9;
+}
+.box_but_1 {
+  display: flex;
+  gap: 120px;
 }
 
 /* кн алік */
 .box_4 {
   width: 95vw;
   border: 1px solid #000;
-
+  border-bottom: 5px solid #0a2fe6;
   position: relative;
 }
-.box_4 {
-  border-bottom: 5px solid #0a2fe6;
-}
+
 .box_ {
   display: flex;
   border: 1px solid #000;
+  align-items: center;
+  padding: 3px;
+}
+.box_com {
+  display: flex;
+  border: 1px solid #000;
+  min-height: 67px;
 }
 .box_1 {
   display: flex;
   border: 1px solid #000;
+  height: 30px;
+  align-items: center;
+  padding: 2px;
 }
 .box_11 {
   display: flex;
   border: 1px solid #000;
+  width: 70%;
 
   flex-direction: column;
 }
 .box_1d {
   border-top: 3px solid #000;
+}
+.box_1k {
+  border-top: 2px solid #000;
 }
 .box_0 {
   display: flex;
@@ -88,21 +119,37 @@
 .box_1cc {
   display: flex;
 }
+.box_1ccCom {
+  border-top: 1px solid #000;
+  width: 100%;
+  height: 35px;
+  display: flex;
+}
 .box_1a1,
 .box_1a2 {
   display: flex;
   flex-direction: column;
-  position: absolute;
 }
 .box_1a1 {
-  right: 150px;
 }
 .box_1a2 {
-  right: 0px;
+}
+.box_aaaaaaa_box_1a1 {
+  display: flex;
+  width: 30%;
 }
 .box_1ad {
-  height: 65px;
-  padding-top: 3px;
+  height: 126px;
+  width: 100%;
+  padding: 6px;
+  border-top: 3px solid #000;
+  border-bottom: 1px solid #000;
+
+  border-right: 1px solid #000;
+}
+.box_aaaaaaa {
+  display: flex;
+  border: 1px solid #000;
 }
 /* box_4 */
 .box_4_but {
@@ -129,6 +176,10 @@
 .issue_order:hover {
   cursor: pointer;
 }
+.box_span {
+  font-size: 18px;
+  font-weight: 800;
+}
 .name2,
 .phone,
 .email,
@@ -149,3 +200,12 @@
 }
 
 /* знай */
+@media (max-width: 800px) {
+  .box_0 {
+    display: flex;
+    flex-direction: column;
+  }
+  .box_00 {
+    width: 100%;
+  }
+}
