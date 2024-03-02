@@ -175,6 +175,16 @@
 .price_box_cl {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
+  margin: 0px 0px 20px -10px;
+}
+.price_box_cl_label {
+  font-size: 14px;
+}
+.price_box_cl_input {
+  width: 72px;
+  padding: 2px;
+  border: 1px solid #0033ff;
 }
 .slider {
   width: 160px;
@@ -184,7 +194,8 @@
 }
 .slider_el {
   width: 160px;
-  background-color: #2c57f6;
+
+  /* background-color: #2c57f6; */
 }
 .shopping {
   cursor: pointer;

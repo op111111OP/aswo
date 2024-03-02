@@ -9,7 +9,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import Basket from "../../components/Basket/Basket";
-import { useLocalStorage } from "react-use";
 import { useUserContext } from "../Context/store";
 import { useSearchParams } from "next/navigation";
 import Pagination from "@mui/material/Pagination";
@@ -360,8 +359,35 @@ export default function Page() {
         >
           <div className={styles.box_slider}>
             <div className={styles.price_box_cl}>
-              <div className={styles.price_min}>від {priceRange[0]}грн. -</div>
-              <div className={styles.price_max}> {priceRange[1]}грн.</div>
+              <label
+                htmlFor="price-range"
+                className={styles.price_box_cl_label}
+              >
+                від:
+              </label>
+
+              <input
+                type="number"
+                value={priceRange[0]}
+                className={styles.price_box_cl_input}
+                onChange={(event) => {
+                  handleSliderChange([event.target.value, priceRange[1]]);
+                }}
+              ></input>
+              <label
+                htmlFor="price-range"
+                className={styles.price_box_cl_label}
+              >
+                до:
+              </label>
+              <input
+                type="number"
+                value={priceRange[1]}
+                className={styles.price_box_cl_input}
+                onChange={(event) => {
+                  handleSliderChange([priceRange[0], event.target.value]);
+                }}
+              ></input>
             </div>
             <div className={styles.slider}>
               <Slider
@@ -372,6 +398,14 @@ export default function Page() {
                 value={priceRange}
                 onChange={handleSliderChange}
                 className={styles.slider_el}
+                handleStyle={{
+                  borderColor: "blue",
+                  height: 18,
+                  width: 18,
+                  // marginLeft: -5,
+                  marginTop: -7,
+                  backgroundColor: "white",
+                }}
               />
             </div>
             {/* in */}
