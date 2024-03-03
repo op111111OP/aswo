@@ -43,6 +43,11 @@ export default function Page() {
   const [imageSrc, setImageSrc] = useState("");
   //   --
   const [botClick, setBotClick] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
+
+  const handleImageError = (imgSrc) => {
+    setImageErrors((prevErrors) => ({ ...prevErrors, [imgSrc]: true }));
+  };
 
   const handleMouseEnter = (src) => {
     setImageSrc(src);
@@ -564,17 +569,29 @@ export default function Page() {
                             className={
                               nIFalsum === false ? styles.img : styles.img1
                             }
-                            src={item.img}
+                            src={
+                              imageErrors[item.img]
+                                ? "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/favicon.ico"
+                                : item.img
+                            }
                             alt="Vercel Logo"
                             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
                             width={30}
                             height={30}
+                            onError={() => handleImageError(item.img)}
                             style={{
                               height: "100%",
                               width: "100%",
                               objectFit: "contain",
+                              ...(imageErrors[item.img] && {
+                                filter: "blur(3px) opacity(30%) ",
+                                //  grayscale(100%)
+                                transform: "scale(0.7)",
+                                //   backgroundColor: "#0b6dedb9",
+                              }),
                             }}
                           />
+
                           {showPopup && (
                             <div
                               className={styles.img_vv}

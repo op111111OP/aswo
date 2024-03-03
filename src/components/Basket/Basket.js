@@ -554,7 +554,7 @@ export default function Basket({ fals }) {
                             }`}
                           >
                             <div
-                              className={styles.iconCt}
+                              className={styles.iconCt1}
                               onClick={() => {
                                 setTrueCtrel2(!trueCtrel2);
                               }}

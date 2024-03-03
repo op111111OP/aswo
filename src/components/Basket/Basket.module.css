@@ -423,6 +423,20 @@
   top: 4px;
   right: 10px;
   cursor: pointer;
+  z-index: 100;
+  height: 30px;
+  width: 30px;
+  padding-left: 15px;
+}
+.iconCt1 {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 100;
+  height: 30px;
+  width: 30px;
+  padding-left: 15px;
 }
 .fieldset_input {
   width: 15px;
@@ -433,7 +447,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-
   padding-left: 0px;
   justify-content: start;
 }
@@ -472,18 +485,21 @@
 
 .nov_icon {
   min-width: 100%;
+  max-width: 100%;
   max-height: 30px;
   padding-left: 5px;
   padding-right: 5px;
 }
 .nov_icon3 {
   min-width: 100%;
-  max-height: 30px;
+  max-width: 100%;
+  max-height: 50px;
   padding-left: 5px;
   padding-right: 5px;
 }
 .nov_icon1 {
   width: 100%;
+  max-width: 100%;
   margin: 20px 0px 20px 0px;
   height: 30px;
 }
@@ -599,9 +615,6 @@
   .tel_box {
     flex-direction: column;
   }
-  .fieldset1_true {
-    height: 300px;
-  }
 
   .name {
     font-size: 12px;
@@ -609,9 +622,7 @@
 
     margin: 0px 0px 0px 0px;
   }
-  .fieldset1 {
-    height: 60px;
-  }
+
   .price_box_h1,
   .number_text,
   .number_textP,
@@ -619,27 +630,33 @@
     display: none;
   }
 }
-@media (max-width: 500px) {
-  .fieldset1 {
-    height: 80px;
-  }
+/* .fieldset1 {
+  position: relative;
+  font-size: 14px;
+  height: 55px;
+  padding: 2px;
+  overflow: hidden;
+  transition: height 2s;
 }
+.fieldset1_true {
+  height: 250px;
+} */
+
 @media (max-width: 420px) {
   .issue_order {
     font-size: 12px;
     width: 220px;
   }
-  .fieldset1_true {
-    height: 380px;
-  }
   .fieldset1 {
-    height: 100px;
+    position: relative;
+    font-size: 14px;
+    height: 80px;
+    padding: 2px;
+    overflow: hidden;
+    transition: height 2s;
   }
-}
-
-@media (max-width: 320px) {
   .fieldset1_true {
-    height: 400px;
+    height: 350px;
   }
 }
 
