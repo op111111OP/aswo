@@ -320,6 +320,7 @@
     gap: 20px;
     flex-wrap: wrap;
     width: 50vw;
+    margin: 20px 0px 5px 0px;
   }
   .box_left {
     width: 100vw;

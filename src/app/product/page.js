@@ -190,7 +190,7 @@ export default function Page() {
                           categori: flutters.categori,
                           brand: flutters.brand,
                           country: flutters.country,
-                          com: item.com,
+                          com: flutters.com,
                           img: flutters.img,
                           name: flutters.name,
                           price: flutters.price,
