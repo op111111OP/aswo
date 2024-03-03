@@ -462,6 +462,7 @@ export default function Basket({ fals }) {
                                   onChange={(event) => {
                                     setCitiesInput(event.target.value),
                                       setTrueClickText(true);
+                                    setCityName(event.target.value);
                                   }}
                                   value={CitiesInput}
                                 />
