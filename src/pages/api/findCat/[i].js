@@ -14,7 +14,7 @@ const hand = (res, err) => {
 
 const font = async (req, res) => {
   const { i } = req.query;
-  console.log(i);
+
   Nov.find({ _id: i })
     .then((product) => {
       res.status(200).json(product);

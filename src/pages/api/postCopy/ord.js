@@ -67,7 +67,6 @@ export default async (req, res) => {
         com,
       });
       await newOrders14.save();
-      console.log(newOrders14, 11);
 
       return res
         .status(201)

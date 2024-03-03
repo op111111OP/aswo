@@ -130,6 +130,29 @@ export default function Page() {
       console.error("Ошибка:", error);
     }
   };
+  //   --put---
+  const [fluttersPut, setFluttersPut] = useState(false);
+
+  const handleSubmitPut = async (values) => {
+    try {
+      const response = await fetch(`api/put/put`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          article: values.article,
+          com: values.description,
+        }),
+      });
+      const data = await response.json();
+      setFluttersPut(data);
+    } catch (error) {
+      console.log("Что-то пошло не так...", error);
+    }
+  };
+
+  //   --put---and
 
   return (
     <div className={styles.box}>
@@ -440,6 +463,59 @@ export default function Page() {
                   )}
                 </Formik>
               </div>
+              {/* put */}
+              <div className={styles.box_4_}>
+                <Formik
+                  onSubmit={handleSubmitPut}
+                  initialValues={{
+                    article: "",
+
+                    description: "",
+                  }}
+                  validate={(values) => {
+                    const errors = {};
+
+                    return errors;
+                  }}
+                >
+                  {({ isSubmitting11 }) => (
+                    <Form className={styles.box_f1}>
+                      <Field
+                        type="text"
+                        name="article"
+                        placeholder="article"
+                        className={styles.name1}
+                        id="first_name22"
+                      />
+                      <ErrorMessage
+                        name="article"
+                        component="div"
+                        className={`${styles.error} ${styles.error1}`}
+                      />
+                      <ErrorMessage
+                        name="description"
+                        component="div"
+                        className={`${styles.error} ${styles.error6}`}
+                      />
+                      <Field
+                        as="textarea"
+                        name="description"
+                        placeholder=""
+                        className={styles.textarea}
+                      />
+
+                      <button
+                        className={`${styles.issue_order} ${styles.issue_or}`}
+                        disabled={isSubmitting11}
+                        type="submit"
+                      >
+                        Змінити
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+              {/* put  and*/}
             </div>
           </div>
           <div className={styles.box_4}>

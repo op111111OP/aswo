@@ -17,7 +17,7 @@ const handleError4 = (res, err) => {
 
 const font = async (req, res) => {
   const { id } = req.query;
-  console.log(id);
+
   Novelty4.deleteOne({ _id: id })
     .then(() => {
       res.status(200).json({ delit: true });

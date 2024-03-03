@@ -103,7 +103,6 @@ export default async (req, res) => {
         CitiesInput1,
       });
       await newOrders.save();
-      console.log(newOrders, 11);
 
       return res
         .status(201)

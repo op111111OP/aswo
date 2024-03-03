@@ -16,7 +16,7 @@ const handa = (res, err) => {
 
 const font = async (req, res) => {
   const { id } = req.query;
-  console.log(id);
+
   Nova.find({ article: id })
     .then((product) => {
       res.status(200).json(product);
