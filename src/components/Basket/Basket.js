@@ -760,17 +760,15 @@ export default function Basket({ fals }) {
         )}
         {truK && (
           <div className={styles.issue_box}>
-            <div className={styles.issue_come}>
+            <div
+              className={styles.issue_come}
+              onClick={() => {
+                setT((t) => !t);
+                setTruF(true);
+              }}
+            >
               <BsArrowLeft className={styles.issue_} size={20} />
-              <div
-                className={styles.issue_}
-                onClick={() => {
-                  setT((t) => !t);
-                  setTruF(true);
-                }}
-              >
-                Повернутись до покупок
-              </div>
+              <div className={styles.issue_}>Повернутись до покупок</div>
             </div>
             <div className={styles.issue_total}>
               <div className={styles.issue_price}>

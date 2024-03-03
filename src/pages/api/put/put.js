@@ -51,9 +51,7 @@ const handleError = (res, err) => {
 };
 
 const font = async (req, res) => {
-  //   const { com, article } = req.body;
-  const com = "ta";
-  const article = "DZ-6-2 88*56-1";
+  const { com, article } = req.body;
   try {
     const updatedPut = await Put.findOneAndUpdate(
       { article: article },

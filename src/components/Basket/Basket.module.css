@@ -80,12 +80,10 @@
   padding: 4px;
   font-size: 14px;
 }
-.swiper_slide:hover .dustbin {
-  color: #000000;
-}
+
 .image_box {
   height: 100%;
-  width: 200px;
+  width: 70px;
 }
 .main1 {
   display: flex;
@@ -101,7 +99,7 @@
 .text {
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 80%;
   justify-content: space-between;
   padding-right: 3%;
 }
@@ -175,12 +173,14 @@
 .dustbin {
   position: absolute;
   right: 5px;
-
   color: rgba(0, 0, 0, 0);
   cursor: pointer;
   top: 50%;
   right: 1%;
   transform: translate(-2%, -50%);
+}
+.swiper_slide:hover .dustbin {
+  color: #000000;
 }
 /* absolute */
 /* issue_box */
@@ -504,7 +504,18 @@
   height: 30px;
 }
 /* пош нова and */
+@media (max-width: 1430px) {
+  .dustbin {
+    color: rgb(0, 0, 0);
+  }
+}
 @media (max-width: 950px) {
+  .dustbin {
+    right: 1px;
+  }
+  .main {
+    width: 90vw;
+  }
   .box {
     width: 100%;
     margin: 2px 0px 0px 0px;
@@ -516,14 +527,19 @@
   .name1 {
     width: 100%;
   }
-  .main {
-    min-width: 80vw;
-  }
 }
 @media (max-width: 850px) {
   .image_box {
     height: 100%;
     width: 100px;
+  }
+  .main {
+    min-width: 100vw;
+  }
+  .dustbin {
+    top: 80%;
+
+    transform: translate(-2%, -50%);
   }
 }
 @media (max-width: 768px) {
@@ -558,9 +574,6 @@
   .number_textP {
     right: 290px;
   }
-  .main {
-    min-width: 90vw;
-  }
 }
 @media (max-width: 650px) {
   .issue_box {
@@ -573,9 +586,6 @@
     padding-top: 10px;
     padding-bottom: 20px;
     font-size: 16px;
-  }
-  .main {
-    min-width: 100vw;
   }
 }
 @media (max-width: 600px) {
@@ -603,6 +613,13 @@
   }
 }
 @media (max-width: 550px) {
+  .text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 2px;
+  }
   .swiper_slide {
     flex-direction: column;
 
@@ -630,17 +647,6 @@
     display: none;
   }
 }
-/* .fieldset1 {
-  position: relative;
-  font-size: 14px;
-  height: 55px;
-  padding: 2px;
-  overflow: hidden;
-  transition: height 2s;
-}
-.fieldset1_true {
-  height: 250px;
-} */
 
 @media (max-width: 420px) {
   .issue_order {

@@ -585,9 +585,7 @@ export default function Page() {
                               objectFit: "contain",
                               ...(imageErrors[item.img] && {
                                 filter: "blur(3px) opacity(30%) ",
-                                //  grayscale(100%)
                                 transform: "scale(0.7)",
-                                //   backgroundColor: "#0b6dedb9",
                               }),
                             }}
                           />
@@ -610,7 +608,13 @@ export default function Page() {
                                 className={
                                   nIFalsum === false ? styles.img : styles.img1
                                 }
-                                src={imageSrc}
+                                src={
+                                  imageErrors[imageSrc]
+                                    ? "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/favicon.ico"
+                                    : imageSrc
+                                }
+                                //   src={imageSrc}
+                                onError={() => handleImageError(imageSrc)}
                                 alt="Vercel Logo"
                                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
                                 width={30}
@@ -619,6 +623,10 @@ export default function Page() {
                                   height: "100%",
                                   width: "100%",
                                   objectFit: "contain",
+                                  ...(imageErrors[imageSrc] && {
+                                    filter: "blur(3px) opacity(30%) ",
+                                    transform: "scale(0.7)",
+                                  }),
                                 }}
                               />
                             </div>

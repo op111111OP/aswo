@@ -21,7 +21,7 @@ export default function Home() {
           },
           body: JSON.stringify({
             article: "DZ-6-2 88*56-1",
-            com: "da",
+            com: "",
           }),
         });
         const data = await response.json();

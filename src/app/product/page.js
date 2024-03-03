@@ -20,6 +20,11 @@ export default function Page() {
   const [truF, setTruF] = useState(true);
   const [name, setName] = useState("");
   const [cehageCor, setCehageCor] = useState(false);
+  const [imageErrors, setImageErrors] = useState(false);
+
+  const handleImageError = () => {
+    setImageErrors(true);
+  };
   console.log(flutters, "c");
   const handleBoxClick = () => {
     setCehageCor(false);
@@ -103,10 +108,15 @@ export default function Page() {
               <div className={truF ? styles.link_box : styles.link_box_fals}>
                 <div className={truF ? styles.img_box : styles.img_box_fals}>
                   <Image
-                    src={flutters.img}
+                    src={
+                      imageErrors
+                        ? "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/favicon.ico"
+                        : flutters.img
+                    }
                     alt="Vercel Logo"
                     sizes="(max-width: 420px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
                     className={styles.img}
+                    onError={handleImageError}
                     width={100}
                     height={100}
                     style={
@@ -115,11 +125,18 @@ export default function Page() {
                             height: "400px",
                             width: "auto",
                             objectFit: "contain",
+                            ...(imageErrors && {
+                              filter: "blur(3px) opacity(30%) ",
+                              transform: "scale(0.7)",
+                            }),
                           }
                         : {
                             height: "80vh",
                             width: "auto",
-                            //  objectFit: "contain",
+                            ...(imageErrors && {
+                              filter: "blur(3px) opacity(30%) ",
+                              transform: "scale(0.7)",
+                            }),
                           }
                     }
                     onClick={() => {
@@ -127,7 +144,11 @@ export default function Page() {
                     }}
                   />
                   <Image
-                    src={flutters.img}
+                    src={
+                      imageErrors
+                        ? "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/favicon.ico"
+                        : flutters.img
+                    }
                     alt="Vercel Logo"
                     sizes="(max-width: 420px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
                     className={styles.img111}
@@ -137,6 +158,10 @@ export default function Page() {
                       height: "auto",
                       width: "100vw",
                       objectFit: "contain",
+                      ...(imageErrors && {
+                        filter: "blur(3px) opacity(30%) ",
+                        transform: "scale(0.7)",
+                      }),
                     }}
                     onClick={() => {
                       setTruF((truF) => !truF);
@@ -181,15 +206,12 @@ export default function Page() {
                     <div className={styles.characteristics_h1}>
                       Характеристики
                     </div>
-                    {/* {flutters.country && ( */}
                     <div className={styles.country_box}>
                       <div className={styles.country_h1}>
                         Країна виробництва:{" "}
                       </div>
                       <div className={styles.country}>{flutters.country}</div>
                     </div>
-                    {/* )} */}
-                    {/* {flutters.brand && ( */}
                     <div className={styles.country_box}>
                       <div className={styles.country_h1}>Бренд: </div>
                       <div className={styles.country}>{flutters.brand}</div>
@@ -198,7 +220,6 @@ export default function Page() {
                       <div className={styles.country_h1}>Артикул: </div>
                       <div className={styles.country}>{flutters.article}</div>
                     </div>
-                    {/* )} */}
                   </div>
                 </div>
               )}
