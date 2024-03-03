@@ -316,8 +316,8 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    width: 50%;
     width: 50vw;
+    margin: 20px 0px 5px 0px;
   }
   .right_hh {
     width: 25%;
