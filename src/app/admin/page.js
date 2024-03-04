@@ -130,7 +130,7 @@ export default function Page() {
       console.error("Ошибка:", error);
     }
   };
-  //   --put---
+  //   --put---com
   const [fluttersPut, setFluttersPut] = useState(false);
 
   const handleSubmitPut = async (values) => {
@@ -147,6 +147,29 @@ export default function Page() {
       });
       const data = await response.json();
       setFluttersPut(data);
+    } catch (error) {
+      console.log("Что-то пошло не так...", error);
+    }
+  };
+
+  //   --put---and
+  //   --put---price
+  const [fluttersPut1, setFluttersPut1] = useState(false);
+
+  const handleSubmitPut1 = async (values) => {
+    try {
+      const response = await fetch(`api/putPrice/putPrice`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          article: values.article,
+          com: values.price,
+        }),
+      });
+      const data = await response.json();
+      setFluttersPut1(data);
     } catch (error) {
       console.log("Что-то пошло не так...", error);
     }
@@ -463,7 +486,7 @@ export default function Page() {
                   )}
                 </Formik>
               </div>
-              {/* put */}
+              {/* put1 */}
               <div className={styles.box_4_}>
                 <Formik
                   onSubmit={handleSubmitPut}
@@ -500,7 +523,7 @@ export default function Page() {
                       <Field
                         as="textarea"
                         name="description"
-                        placeholder=""
+                        placeholder="Коментар"
                         className={styles.textarea}
                       />
 
@@ -515,7 +538,59 @@ export default function Page() {
                   )}
                 </Formik>
               </div>
-              {/* put  and*/}
+              {/* put1  and*/}
+              {/* put2 */}
+              <div className={styles.box_4_}>
+                <Formik
+                  onSubmit={handleSubmitPut1}
+                  initialValues={{
+                    article: "",
+                    price: "",
+                  }}
+                  validate={(values) => {
+                    const errors = {};
+                    return errors;
+                  }}
+                >
+                  {({ isSubmitting112 }) => (
+                    <Form className={styles.box_f1}>
+                      <Field
+                        type="text"
+                        name="article"
+                        placeholder="article"
+                        className={styles.name1}
+                        id="first_name22"
+                      />
+                      <ErrorMessage
+                        name="article"
+                        component="div"
+                        className={`${styles.error} ${styles.error1}`}
+                      />
+                      <Field
+                        type="number"
+                        name="price"
+                        placeholder="price"
+                        className={styles.name1}
+                        id="first_name22"
+                      />
+                      <ErrorMessage
+                        name="price"
+                        component="div"
+                        className={`${styles.error} ${styles.error1}`}
+                      />
+
+                      <button
+                        className={`${styles.issue_order} ${styles.issue_or}`}
+                        disabled={isSubmitting112}
+                        type="submit"
+                      >
+                        Змінити
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+              {/* put2  and*/}
             </div>
           </div>
           <div className={styles.box_4}>
