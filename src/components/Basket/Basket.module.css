@@ -63,13 +63,15 @@
   align-items: center;
   position: relative;
   margin: 20px 0px 0px 0px;
+  width: 95%;
 }
 .button2 {
   width: 50px;
 }
 .swiper_slide {
   height: 55px;
-  width: 95%;
+  width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -622,7 +624,6 @@
   }
   .swiper_slide {
     flex-direction: column;
-
     height: auto;
   }
   .image_box {

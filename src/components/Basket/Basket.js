@@ -190,6 +190,7 @@ export default function Basket({ fals }) {
       });
 
       if (response.ok) {
+        setT((t) => !t);
         alert("Замовленя прийнято. Дякую за покупку!");
       } else {
         console.error("Ошибка при отправке формы");
