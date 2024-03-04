@@ -33,7 +33,6 @@ export default function Basket({ fals }) {
   const [truK, setTruK] = useState(true);
   const [numB, setNumB] = useState([]);
   const [numBd, setNumBd] = useState(0);
-  const [numB2, setNumB2] = useState(0);
   const [numB1, setNumB1] = useState([]);
   const [eId, setEId] = useState("");
   const [onTrue, setOnTrue] = useState(false);
@@ -190,8 +189,10 @@ export default function Basket({ fals }) {
       });
 
       if (response.ok) {
-        setT((t) => !t);
+        setCard([]);
+        setDelcard(2);
         alert("Замовленя прийнято. Дякую за покупку!");
+        setT((t) => !t);
       } else {
         console.error("Ошибка при отправке формы");
       }
@@ -252,7 +253,7 @@ export default function Basket({ fals }) {
 
                   const errors = {};
                   if (!values.pib) {
-                    errors.pib = "це обов'язкове поле";
+                    errors.pib = "ПІБ обов'язкове поле";
                   }
 
                   if (!values.phone) {
@@ -282,6 +283,7 @@ export default function Basket({ fals }) {
                           name="pib"
                           placeholder="ПІБ"
                           className={styles.name3}
+                          id="pib"
                         />
                         <ErrorMessage
                           name="pib"
@@ -297,17 +299,16 @@ export default function Basket({ fals }) {
                           placeholder="Email"
                           className={styles.email}
                         />
-
-                        <ErrorMessage
-                          name="email"
-                          component="div"
-                          className={`${styles.error} ${styles.error3}`}
-                        />
                         <Field
                           type="text"
                           name="phone"
                           placeholder="Телефон"
                           className={styles.phone}
+                        />
+                        <ErrorMessage
+                          name="phone"
+                          component="div"
+                          className={`${styles.error} ${styles.error3}`}
                         />
                       </div>
                     </div>
@@ -467,6 +468,7 @@ export default function Basket({ fals }) {
                                   }}
                                   value={CitiesInput}
                                 />
+
                                 {trueClickText && Cities && (
                                   <div className={styles.nov_box_input_poick}>
                                     {Cities.data[0].Addresses.map(
@@ -539,7 +541,7 @@ export default function Basket({ fals }) {
                             <ErrorMessage
                               name="department"
                               component="div"
-                              className={`${styles.error} ${styles.error6}`}
+                              className={`${styles.error} ${styles.error61}`}
                             />
                           )}
                         <div className={styles.fieldset_box}>

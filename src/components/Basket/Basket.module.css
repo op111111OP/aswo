@@ -254,6 +254,7 @@
   gap: 10px;
   justify-content: space-between;
   padding: 2px 15px 15px 15px;
+  position: relative;
 }
 .box_h3 {
   width: 100%;
@@ -357,9 +358,14 @@
   top: 32px;
 }
 .error3 {
-  left: 15px;
-  top: 82px;
+  right: 15px;
+  top: 30px;
 }
+.error62 {
+  left: 15px;
+  top: 33px;
+}
+
 .error4 {
   right: 15px;
   top: 82px;
@@ -370,7 +376,7 @@
 }
 .error6 {
   left: 15px;
-  top: 137px;
+  top: 30px;
 }
 .issue_or {
   width: 300px;
