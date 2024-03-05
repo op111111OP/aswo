@@ -6,6 +6,7 @@ const nextConfig = {
       "doctor-h.com.ua",
       "lh3.googleusercontent.com",
       "drive.google.com",
+      "zapchasty.com.ua",
     ],
   },
   experimental: {
