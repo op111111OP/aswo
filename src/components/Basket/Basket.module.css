@@ -466,8 +466,8 @@
 }
 .nov_box_input_poick {
   position: absolute;
-  width: 95%;
-  top: 80px;
+  width: 100%;
+  top: 30px;
   left: 15;
   background-color: rgb(246, 246, 250);
   z-index: 30;
@@ -480,11 +480,11 @@
   color: #1469df;
 }
 .nov_box_inputg {
-}
-.nov_box_input {
   position: relative;
 }
+
 .nov_box_input {
+  position: relative;
   width: 100%;
   height: 30px;
   padding-left: 5px;
