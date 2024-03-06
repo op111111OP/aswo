@@ -40,13 +40,14 @@
   margin: 0px 0px 15px 0px;
 }
 .img_box_fals {
+  position: relative;
   display: flex;
   justify-content: center;
   max-height: 80vh;
   min-height: 80vh;
-
+  width: 80vw;
   overflow: hidden;
-  margin: 0px 0px 15px 30%;
+  margin: 0px 10px 15px 10px;
   cursor: pointer;
 }
 

@@ -131,7 +131,6 @@ export default function Page() {
     }
   };
   //   --put---com
-  const [fluttersPut, setFluttersPut] = useState(false);
 
   const handleSubmitPut = async (values) => {
     try {
@@ -146,7 +145,6 @@ export default function Page() {
         }),
       });
       const data = await response.json();
-      setFluttersPut(data);
     } catch (error) {
       console.log("Что-то пошло не так...", error);
     }
@@ -154,7 +152,6 @@ export default function Page() {
 
   //   --put---and
   //   --put---price
-  const [fluttersPut1, setFluttersPut1] = useState(false);
 
   const handleSubmitPut1 = async (values) => {
     try {
@@ -169,7 +166,6 @@ export default function Page() {
         }),
       });
       const data = await response.json();
-      setFluttersPut1(data);
     } catch (error) {
       console.log("Что-то пошло не так...", error);
     }

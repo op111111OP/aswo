@@ -4,14 +4,13 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useUserContext } from "../Context/store";
+
 import { useEffect, useState } from "react";
-import { useLocalStorage } from "react-use";
+
 import Basket from "../../components/Basket/Basket";
 import { FaShoppingCart } from "react-icons/fa";
 
 export default function App() {
-  const { setNemeB } = useUserContext();
   const [cehageCor, setCehageCor] = useState(false);
   useEffect(() => {
     setCehageCor(false);

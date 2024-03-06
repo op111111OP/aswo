@@ -2,22 +2,18 @@
 // Import Swiper React components
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import "./SwipeNovelty.css";
 import styles from "./SwiperNovelty.module.css";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { FaShoppingCart } from "react-icons/fa";
-// import required modules
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useUserContext } from "../../app/Context/store";
 import Basket from "../Basket/Basket";
-import { useTimeoutFn } from "react-use";
 
 export default function App() {
   const { setOnCard1 } = useUserContext();
@@ -45,7 +41,6 @@ export default function App() {
   };
 
   const handleBasketClick = (e, object) => {
-    // addToArray(object);
     setOnCard1(object);
     setCehageCor(true);
     // Остановить всплытие события, чтобы не срабатывал клик на боксе

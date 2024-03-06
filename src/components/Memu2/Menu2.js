@@ -1,31 +1,11 @@
 "use client";
 import styles from "./Menu2.module.css";
 import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { useLocalStorage } from "react-use";
 import { BsX } from "react-icons/bs";
 
-export default function Menu2({
-  cehage5,
-  ss,
-  //   flutters,
-
-  //   num,
-  //   menuFalse,
-  i,
-}) {
-  //  -----------
-
-  //  -----------
-
-  //   menuFalse(fels);
-
+export default function Menu2({ cehage5, ss, i }) {
   return (
-    <div
-      // className={`${styles.slide} ${cehage4 && styles.active}`}
-      className={styles.container}
-    >
+    <div className={styles.container}>
       {/* -----------------2222222222222222222222 */}
 
       <div className={styles.component_mas850}>

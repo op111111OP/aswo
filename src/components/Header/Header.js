@@ -2,7 +2,7 @@
 import styles from "./Header.module.css";
 import Image from "next/image";
 import { BsTelephoneFill, BsX } from "react-icons/bs";
-import { FaShoppingCart, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import Menu from "../Memu/Menu";
 import Menu2 from "../Memu2/Menu2";
 import { useEffect, useState } from "react";
@@ -15,14 +15,13 @@ export default function Header() {
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [cehage1, setCehage1] = useState(false);
-  const [cehage4, setCehage4] = useState(false);
   const [cehage5, setCehage5] = useState([]);
   const [num, setNum] = useState();
   const [idItem, setIdItem] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [t, setT] = useState(false);
   const [i, seti] = useState(false);
-  const [tanim, setTanim] = useState(false);
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 850) {
@@ -100,9 +99,7 @@ export default function Header() {
             />
             {inputValue && <AutoComplit value={inputValue} />}
           </div>
-          <div>
-            {/* <FaShoppingCart size={25} className={styles.FaShoppingCart} /> */}
-          </div>
+          <div></div>
         </div>
       </div>
       <div className={styles.header_container_two}>

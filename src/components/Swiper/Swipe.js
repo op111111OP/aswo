@@ -2,14 +2,11 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./Swipe.module.css";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-// import required modules
-import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
+import { EffectFade, Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
 
 export default function App() {

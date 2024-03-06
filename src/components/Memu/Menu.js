@@ -2,8 +2,8 @@
 import styles from "./Menu.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useLocalStorage } from "react-use";
+import { useState } from "react";
+
 import { BsX } from "react-icons/bs";
 
 export default function Menu({
@@ -22,13 +22,7 @@ export default function Menu({
   //  -----------
 
   //  -----------
-  const userIdG = (newItem) => {
-    if (newItem !== undefined && newItem !== "") {
-      setOnCategoriG(newItem);
-    }
-  };
 
-  const [onCategoriG, setOnCategoriG] = useLocalStorage("onCategoriG", []);
   menuFalse(fels);
 
   return (
@@ -73,7 +67,6 @@ export default function Menu({
                   <div
                     className={styles.component_name}
                     onClick={() => {
-                      userIdG(item.name);
                       setFals(false);
                     }}
                   >

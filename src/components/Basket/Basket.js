@@ -8,7 +8,6 @@ import NovaPoshta from "novaposhta";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Basket.module.css";
-import { useLocalStorage } from "react-use";
 import {
   BsChevronDown,
   BsChevronUp,
@@ -172,13 +171,11 @@ export default function Basket({ fals }) {
       .searchSettlements({ CityName: CitiesInput })
       .then((json) => {
         setCities(json);
-        // console.log(Cities.data[0].Addresses);
       })
       .catch((errors) => {});
   }, [CitiesInput]);
   //   dddddddddd
   const handleSubmit = async (values) => {
-    console.log(values, "kk");
     try {
       const response = await fetch("/api/post/orders", {
         method: "POST",
@@ -228,7 +225,6 @@ export default function Basket({ fals }) {
                   email: "",
                   phone: "",
                   street: "",
-
                   someField: "",
                   userData: "",
                   department: "",

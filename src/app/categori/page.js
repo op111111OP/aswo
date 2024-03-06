@@ -22,9 +22,7 @@ export default function Page() {
   const falsepon = searchParams.get("false");
   const falsepon1 = searchParams.get("currentPage1");
   const i = searchParams.get("i");
-
   const [priceRange, setPriceRange] = useState([0, 0]);
-
   const [flutters, setFlutters] = useState([]);
   const [cehage, setCehage] = useState(false);
   const [cehageCor, setCehageCor] = useState(false);
@@ -185,7 +183,6 @@ export default function Page() {
     setOnCard1(object);
     setCehageCor(true);
     e.stopPropagation();
-    console.log(object, "FaShoppingCart");
   };
   function fals(t) {
     setCehageCor(t);
@@ -230,7 +227,7 @@ export default function Page() {
     setCountri(countedCountries);
   }, [selectedCountries]);
   //   -----------країна
-  //   -----------країна
+
   //   -----------бренд
   //   ______mas
 

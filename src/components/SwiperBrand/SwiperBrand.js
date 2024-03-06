@@ -2,17 +2,13 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./SwiperBrand.module.css";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-// import required modules
-import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export default function App() {
   const imgMas = [
@@ -82,9 +78,6 @@ export default function App() {
           disableOnInteraction: true,
         }}
         loop={true}
-        //   pagination={{
-        //     clickable: false,
-        //   }}
         modules={[Autoplay, Pagination, Navigation]}
         breakpoints={{
           1200: {

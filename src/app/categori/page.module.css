@@ -5,7 +5,6 @@
   align-items: center;
   min-height: 100vh;
   width: 95vw;
-  /* overflow: hidden; */
 }
 
 .now {
@@ -82,7 +81,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   width: 100%;
 }
 
@@ -195,8 +193,6 @@
 }
 .slider_el {
   width: 160px;
-
-  /* background-color: #2c57f6; */
 }
 .shopping {
   cursor: pointer;
@@ -297,14 +293,11 @@
 @media (max-width: 1650px) {
   .right_hh {
     width: 30%;
+    .swiper_slide {
+      width: 23%;
+    }
   }
 }
-@media (max-width: 1650px) {
-  .swiper_slide {
-    width: 23%;
-  }
-}
-
 @media (max-width: 1430px) {
   .box_left {
     width: 100vw;
@@ -399,7 +392,6 @@
     justify-content: end;
   }
 }
-
 .stack {
   margin: 10px 0px 10px 0px;
 }
@@ -446,13 +438,12 @@
     cursor: pointer;
     background-color: #1d399f;
   }
-  /* an */
+  /* anima---------------------------------------------*/
 
   .box_left {
     width: 97vw;
     margin: 0px 0px 20px 15px;
     max-height: 0;
-
     opacity: 0;
     transition: max-height 2s ease, opacity 2s ease;
   }
@@ -461,7 +452,7 @@
     max-height: 650px; /* Оберіть висоту, достатню для вмісту */
     opacity: 1;
   }
-  /* an */
+  /* anima and--------------------------------------- */
   .reflection_box {
     display: none;
   }

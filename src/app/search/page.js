@@ -15,7 +15,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
 export default function Page() {
-  const { setUserId, setId, setOnCard1 } = useUserContext();
+  const { setId, setOnCard1 } = useUserContext();
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const [priceRange, setPriceRange] = useState([0, 100000]);
@@ -53,7 +53,7 @@ export default function Page() {
     setShowPopup(false);
   };
 
-  const handleChange = (event, value) => {
+  const handleChange = (value) => {
     setCurrentPage(value);
     //  ---
     const newCountryCheckboxes = {};
@@ -107,10 +107,6 @@ export default function Page() {
     const sortedArray = [...filteredProducts].sort((a, b) => b.price - a.price);
     setFilteredProducts(sortedArray);
   };
-  const addToArray = (newItem) => {
-    setUserId(newItem);
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {

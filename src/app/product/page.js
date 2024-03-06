@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import styles from "./page.module.css";
@@ -25,7 +24,7 @@ export default function Page() {
   const handleImageError = () => {
     setImageErrors(true);
   };
-  console.log(flutters, "c");
+  //   console.log(flutters, "c");
   const handleBoxClick = () => {
     setCehageCor(false);
   };
@@ -70,7 +69,6 @@ export default function Page() {
     };
     fetchData();
   }, [name]);
-  //   console.log(flut);
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -131,6 +129,10 @@ export default function Page() {
                             }),
                           }
                         : {
+                            //  position: "absolute",
+                            //  top: "10px",
+                            //  left: "0px",
+                            //  transform: "translate(-50%, -0%)",
                             height: "80vh",
                             width: "auto",
                             ...(imageErrors && {

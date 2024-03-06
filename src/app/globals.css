@@ -99,6 +99,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 a {
   color: inherit;
@@ -128,8 +129,3 @@ section {
     display: none;
   }
 }
-/* @media (max-width: 900px) {
-  #l3 {
-    display: none;
-  }
-} */

@@ -5,19 +5,17 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [id, setId] = useLocalStorage("Id", "");
+  const [idElem, setIdElem] = useLocalStorage("idElem", []);
+  const [defenseCard, setDefenseCard] = useLocalStorage("defenseCard", []);
   const [numBas, setNumBas] = useState(0);
   const [userId, setUserId] = useState(1);
   const [senter, setSenter] = useState([]);
-
   const [onIds, seOnIds] = useState();
-
   const [trueHedLoc, setTrueHedLoc] = useState(false);
   const [nemeB, setNemeB] = useState(1);
   const [card, setCard] = useState([]);
   const [onCard, setOnCard] = useLocalStorage("onCard6", []);
   const [onCard1, setOnCard1] = useState(1);
-  const [defenseCard, setDefenseCard] = useLocalStorage("defenseCard", []);
-  const [idElem, setIdElem] = useLocalStorage("idElem", []);
   const [delcard, setDelcard] = useState(1);
 
   useEffect(() => {
@@ -64,7 +62,6 @@ export const UserProvider = ({ children }) => {
         numBas,
         onIds,
         seOnIds,
-
         trueHedLoc,
         setTrueHedLoc,
         nemeB,

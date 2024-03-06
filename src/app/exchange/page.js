@@ -1,6 +1,4 @@
 "use client";
-// Import Swiper React components
-
 import styles from "./page.module.css";
 
 export default function Page() {
