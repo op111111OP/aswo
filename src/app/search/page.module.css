@@ -465,12 +465,13 @@
     width: 97vw;
     margin: 0px 0px 20px 15px;
     max-height: 0;
-
+    display: none;
     opacity: 0;
     transition: max-height 2s ease, opacity 2s ease;
   }
 
   .box_left_activ {
+    display: flex;
     max-height: 650px; /* Оберіть висоту, достатню для вмісту */
     opacity: 1;
   }
