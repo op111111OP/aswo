@@ -9,6 +9,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Basket from "../../components/Basket/Basket";
+import ImageZoom from "../../components/ImageZoom/ImageZoom";
 
 export default function Page() {
   const { setOnCard1 } = useUserContext();
@@ -16,10 +17,11 @@ export default function Page() {
   const id = searchParams.get("id");
   const [flutters, setFlutters] = useState(null);
   const [flut, setFlut] = useState(null);
-  const [truF, setTruF] = useState(true);
+
   const [name, setName] = useState("");
   const [cehageCor, setCehageCor] = useState(false);
   const [imageErrors, setImageErrors] = useState(false);
+  const [src, setSrc] = useState();
 
   const handleImageError = () => {
     setImageErrors(true);
@@ -40,13 +42,11 @@ export default function Page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          // `/api/oneproduct/${id}`
-          `/api/oneproduct/${id}`
-        );
+        const response = await fetch(`/api/oneproduct/${id}`);
         const data = await response.json();
         setFlutters(data);
         setName(data.categori);
+        setSrc(data.img);
       } catch (error) {
         console.log("Что-то пошло не так...", error);
       } finally {
@@ -69,6 +69,7 @@ export default function Page() {
     };
     fetchData();
   }, [name]);
+
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -89,142 +90,68 @@ export default function Page() {
           }}
         />
       </div>
-      {!truF && (
-        <BsArrowLeft
-          className={styles.dustbinI}
-          size={40}
-          onClick={() => {
-            setTruF(true);
-          }}
-        />
-      )}
+
       {flutters && (
         <div className={styles.right_g_box}>
           <div className={styles.right_goods_box} onClick={handleBoxClick}>
-            {truF && <div className={styles.name}>{flutters.name}</div>}
+            <div className={styles.name}>{flutters.name}</div>
             <div className={styles.slide_box}>
-              <div className={truF ? styles.link_box : styles.link_box_fals}>
-                <div className={truF ? styles.img_box : styles.img_box_fals}>
-                  <Image
-                    src={
-                      imageErrors
-                        ? "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/favicon.ico"
-                        : flutters.img
-                    }
-                    alt="Vercel Logo"
-                    sizes="(max-width: 420px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
-                    className={styles.img}
-                    onError={handleImageError}
-                    width={100}
-                    height={100}
-                    style={
-                      truF
-                        ? {
-                            height: "400px",
-                            width: "auto",
-                            objectFit: "contain",
-                            ...(imageErrors && {
-                              filter: "blur(3px) opacity(30%) ",
-                              transform: "scale(0.7)",
-                            }),
-                          }
-                        : {
-                            //  position: "absolute",
-                            //  top: "10px",
-                            //  left: "0px",
-                            //  transform: "translate(-50%, -0%)",
-                            height: "80vh",
-                            width: "auto",
-                            ...(imageErrors && {
-                              filter: "blur(3px) opacity(30%) ",
-                              transform: "scale(0.7)",
-                            }),
-                          }
-                    }
-                    onClick={() => {
-                      setTruF((truF) => !truF);
-                    }}
-                  />
-                  <Image
-                    src={
-                      imageErrors
-                        ? "https://www.aswo.com/typo3conf/ext/aswo/Resources/Public/Images/favicon.ico"
-                        : flutters.img
-                    }
-                    alt="Vercel Logo"
-                    sizes="(max-width: 420px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 75vw, 100vw"
-                    className={styles.img111}
-                    width={100}
-                    height={100}
-                    style={{
-                      height: "auto",
-                      width: "100vw",
-                      objectFit: "contain",
-                      ...(imageErrors && {
-                        filter: "blur(3px) opacity(30%) ",
-                        transform: "scale(0.7)",
-                      }),
-                    }}
-                    onClick={() => {
-                      setTruF((truF) => !truF);
-                    }}
-                  />
+              <div className={styles.link_box}>
+                <div className={styles.img_box}>
+                  <ImageZoom src={src} />
                 </div>
-                {truF && (
-                  <div className={styles.description_box}>
-                    <div className={styles.description_h1}>Опис</div>
-                    <div className={styles.description}>
-                      {flutters.description}
-                    </div>
+
+                <div className={styles.description_box}>
+                  <div className={styles.description_h1}>Опис</div>
+                  <div className={styles.description}>
+                    {flutters.description}
                   </div>
-                )}
+                </div>
               </div>
 
-              {truF && (
-                <div className={styles.price_box} onClick={handleBoxClick}>
-                  <div className={styles.price_box_pbox}>
-                    <div className={styles.price}>{flutters.price} грн.</div>
-                    <FaShoppingCart
-                      size={25}
-                      color=" #0058a2"
-                      onClick={(e) => {
-                        handleBasketClick(e, {
-                          categori: flutters.categori,
-                          brand: flutters.brand,
-                          country: flutters.country,
-                          com: flutters.com,
-                          img: flutters.img,
-                          name: flutters.name,
-                          price: flutters.price,
-                          id: flutters._id,
-                          article: flutters.article,
-                        });
-                      }}
-                      className={styles.shopping}
-                    />
-                  </div>
+              <div className={styles.price_box} onClick={handleBoxClick}>
+                <div className={styles.price_box_pbox}>
+                  <div className={styles.price}>{flutters.price} грн.</div>
+                  <FaShoppingCart
+                    size={25}
+                    color=" #0058a2"
+                    onClick={(e) => {
+                      handleBasketClick(e, {
+                        categori: flutters.categori,
+                        brand: flutters.brand,
+                        country: flutters.country,
+                        com: flutters.com,
+                        img: flutters.img,
+                        name: flutters.name,
+                        price: flutters.price,
+                        id: flutters._id,
+                        article: flutters.article,
+                      });
+                    }}
+                    className={styles.shopping}
+                  />
+                </div>
 
-                  <div className={styles.characteristics_box}>
-                    <div className={styles.characteristics_h1}>
-                      Характеристики
+                <div className={styles.characteristics_box}>
+                  <div className={styles.characteristics_h1}>
+                    Характеристики
+                  </div>
+                  <div className={styles.country_box}>
+                    <div className={styles.country_h1}>
+                      Країна виробництва:{" "}
                     </div>
-                    <div className={styles.country_box}>
-                      <div className={styles.country_h1}>
-                        Країна виробництва:{" "}
-                      </div>
-                      <div className={styles.country}>{flutters.country}</div>
-                    </div>
-                    <div className={styles.country_box}>
-                      <div className={styles.country_h1}>Бренд: </div>
-                      <div className={styles.country}>{flutters.brand}</div>
-                    </div>
-                    <div className={styles.country_box}>
-                      <div className={styles.country_h1}>Артикул: </div>
-                      <div className={styles.country}>{flutters.article}</div>
-                    </div>
+                    <div className={styles.country}>{flutters.country}</div>
+                  </div>
+                  <div className={styles.country_box}>
+                    <div className={styles.country_h1}>Бренд: </div>
+                    <div className={styles.country}>{flutters.brand}</div>
+                  </div>
+                  <div className={styles.country_box}>
+                    <div className={styles.country_h1}>Артикул: </div>
+                    <div className={styles.country}>{flutters.article}</div>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
           {/* //// */}
