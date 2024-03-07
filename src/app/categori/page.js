@@ -294,6 +294,7 @@ export default function Page() {
     mergeArrays(filteredProducts1, filteredProducts2);
   }, [filteredProducts1, filteredProducts2]);
   // ---------------------
+
   return (
     <div className={styles.main}>
       {cehageCor && <Basket fals={fals} />}
@@ -450,26 +451,29 @@ export default function Page() {
                   {Array.isArray(countri1) &&
                     countri1.map((item, index) => (
                       <div key={index} className={styles.component_mas_in}>
-                        {item.brand !== "false" && (
-                          <label htmlFor={`checkbox2_${index}_1`}>
-                            {item.brand}
-                          </label>
-                        )}
-                        {item.brand !== "false" && (
-                          <input
-                            id={`checkbox2_${index}_1`}
-                            className={styles.main_input}
-                            type="checkbox"
-                            value={item.brand}
-                            checked={countryCheckboxes1[item.brand]}
-                            onChange={handleCheckboxChange1}
-                          />
-                        )}{" "}
-                        {item.brand !== "false" && (
-                          <div className={styles.main_input_box1}>
-                            {item.num}
-                          </div>
-                        )}
+                        {item.brand !== "false" &&
+                          item.brand !== "undefined" && (
+                            <label htmlFor={`checkbox2_${index}_1`}>
+                              {item.brand}
+                            </label>
+                          )}
+                        {item.brand !== "false" &&
+                          item.brand !== "undefined" && (
+                            <input
+                              id={`checkbox2_${index}_1`}
+                              className={styles.main_input}
+                              type="checkbox"
+                              value={item.brand}
+                              checked={countryCheckboxes1[item.brand]}
+                              onChange={handleCheckboxChange1}
+                            />
+                          )}{" "}
+                        {item.brand !== "false" &&
+                          item.brand !== "undefined" && (
+                            <div className={styles.main_input_box1}>
+                              {item.num}
+                            </div>
+                          )}
                       </div>
                     ))}
                 </div>

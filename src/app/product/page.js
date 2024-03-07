@@ -3,9 +3,9 @@ import Image from "next/image";
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useUserContext } from "../Context/store";
-import { BsArrowLeft } from "react-icons/bs";
+
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Basket from "../../components/Basket/Basket";
@@ -20,13 +20,31 @@ export default function Page() {
 
   const [name, setName] = useState("");
   const [cehageCor, setCehageCor] = useState(false);
-  const [imageErrors, setImageErrors] = useState(false);
+  const [trueDes, setTrueDes] = useState(false);
+  const [showButton, setShowButton] = useState(false);
   const [src, setSrc] = useState();
+  // ----кнопка
+  const contentRef = useRef(null);
 
-  const handleImageError = () => {
-    setImageErrors(true);
-  };
-  //   console.log(flutters, "c");
+  useEffect(() => {
+    const handleResize = () => {
+      const contentBox = contentRef.current;
+      if (contentBox && contentBox.scrollHeight > contentBox.clientHeight) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    handleResize(); // Перевіряємо при першому рендері
+
+    window.addEventListener("resize", handleResize); // Додаємо слухач події resize
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Прибираємо слухач події при видаленні компонента
+    };
+  }, []);
+
   const handleBoxClick = () => {
     setCehageCor(false);
   };
@@ -98,17 +116,37 @@ export default function Page() {
             <div className={styles.slide_box}>
               <div className={styles.link_box}>
                 <div className={styles.img_box}>
+                  {/* zoom */}
                   <ImageZoom src={src} />
                 </div>
+                {/* zoom and*/}
+                {/* опис */}
 
                 <div className={styles.description_box}>
                   <div className={styles.description_h1}>Опис</div>
-                  <div className={styles.description}>
+                  <div
+                    className={
+                      trueDes ? styles.description_full : styles.description
+                    }
+                    ref={contentRef}
+                  >
                     {flutters.description}
+                    <div
+                      className={
+                        showButton
+                          ? styles.description_buton
+                          : styles.description_buton_full
+                      }
+                      onClick={() => {
+                        setTrueDes((trueDes) => !trueDes);
+                      }}
+                    >
+                      {trueDes ? "Згорнути" : "Розгорнути"}
+                    </div>
                   </div>
                 </div>
               </div>
-
+              {/* опис anf */}
               <div className={styles.price_box} onClick={handleBoxClick}>
                 <div className={styles.price_box_pbox}>
                   <div className={styles.price}>{flutters.price} грн.</div>

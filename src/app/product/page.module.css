@@ -87,9 +87,39 @@
   padding: 5px;
   font-weight: 500;
 }
+/* clik full */
 .description {
   padding: 5px;
+  max-height: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
+.description_full {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: auto;
+}
+.description_buton {
+  padding: 5px;
+  background-color: #1d72d2;
+  color: azure;
+  cursor: pointer;
+  z-index: 20;
+  position: absolute;
+  bottom: -20px;
+  right: 5px;
+}
+.description_box {
+  position: relative;
+}
+.description_buton_full {
+  display: none;
+}
+/* clik full and */
 /* description_box and */
 /* price_box */
 .price_box {
