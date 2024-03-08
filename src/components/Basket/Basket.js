@@ -559,8 +559,18 @@ export default function Basket({ fals }) {
                                 setTrueCtrel2(!trueCtrel2);
                               }}
                             >
-                              {trueCtrel2 && <BsChevronUp size="20px" />}
-                              {!trueCtrel2 && <BsChevronDown size="20px" />}
+                              {trueCtrel2 && (
+                                <BsChevronUp
+                                  size="20px"
+                                  className={styles.fieldset_icon}
+                                />
+                              )}
+                              {!trueCtrel2 && (
+                                <BsChevronDown
+                                  size="20px"
+                                  className={styles.fieldset_icon}
+                                />
+                              )}
                             </div>
                             <div className={styles.fieldset_input1}>
                               <div className={styles.fieldset_input_text}>
