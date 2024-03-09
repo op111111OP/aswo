@@ -248,6 +248,30 @@ export default function Basket({ fals }) {
                   values.CitiesInput1 = CitiesInput1;
 
                   const errors = {};
+                  if (
+                    selectedOption1 !== "Львів" &&
+                    selectedOption1 !== "Харків" &&
+                    selectedOption1 !== "Київ" &&
+                    !values.CitiesInput
+                  ) {
+                    errors.CitiesInput = "Місто обов'язкове поле";
+                  }
+                  if (
+                    selectedOption1 === "Нова пошта" &&
+                    !values.CitiesInput1
+                  ) {
+                    errors.CitiesInput1 = "Відділення обов'язкове поле";
+                  }
+                  if (
+                    selectedOption1 !== "Нова пошта" &&
+                    selectedOption1 !== "Львів" &&
+                    selectedOption1 !== "Київ" &&
+                    selectedOption1 !== "Харків" &&
+                    !values.department
+                  ) {
+                    errors.department = "Відділення обов'язкове поле";
+                  }
+
                   if (!values.pib) {
                     errors.pib = "ПІБ обов'язкове поле";
                   }
@@ -337,7 +361,7 @@ export default function Basket({ fals }) {
 
                           <div className={styles.fieldset_input1}>
                             <div className={styles.fieldset_input_text}>
-                              <input
+                              <Field
                                 className={styles.fieldset_input}
                                 type="radio"
                                 id="nova"
@@ -349,7 +373,7 @@ export default function Basket({ fals }) {
                               <label htmlFor="Нова пошта">Нова пошта.</label>
                             </div>
                             <div className={styles.fieldset_input_text}>
-                              <input
+                              <Field
                                 className={styles.fieldset_input}
                                 type="radio"
                                 id="ykr"
@@ -361,7 +385,7 @@ export default function Basket({ fals }) {
                               <label htmlFor="Укрпошта">Укрпошта.</label>
                             </div>
                             <div className={styles.fieldset_input_text}>
-                              <input
+                              <Field
                                 className={styles.fieldset_input}
                                 type="radio"
                                 id="meest1"
@@ -375,7 +399,7 @@ export default function Basket({ fals }) {
                               </label>
                             </div>
                             <div className={styles.fieldset_input_text}>
-                              <input
+                              <Field
                                 className={styles.fieldset_input}
                                 type="radio"
                                 id="meest2"
@@ -388,7 +412,7 @@ export default function Basket({ fals }) {
                             </div>
                             <h5 className={styles.h3}>Самовивіз:</h5>
                             <div className={styles.fieldset_input_text}>
-                              <input
+                              <Field
                                 className={styles.fieldset_input}
                                 type="radio"
                                 id="meest3"
@@ -400,7 +424,7 @@ export default function Basket({ fals }) {
                               <label htmlFor="Харків">Харків.</label>
                             </div>
                             <div className={styles.fieldset_input_text}>
-                              <input
+                              <Field
                                 className={styles.fieldset_input}
                                 type="radio"
                                 id="meest4"
@@ -412,7 +436,7 @@ export default function Basket({ fals }) {
                               <label htmlFor="Київ">Київ.</label>
                             </div>
                             <div className={styles.fieldset_input_text}>
-                              <input
+                              <Field
                                 className={styles.fieldset_input}
                                 type="radio"
                                 id="meest5"
@@ -453,8 +477,9 @@ export default function Basket({ fals }) {
                             selectedOption1 !== "Харків" &&
                             selectedOption1 !== "Київ" && (
                               <div className={styles.nov_box_inputg}>
-                                <input
+                                <Field
                                   type="text"
+                                  name="CitiesInput"
                                   placeholder="Місто"
                                   className={styles.nov_box_input}
                                   onChange={(event) => {
@@ -464,7 +489,11 @@ export default function Basket({ fals }) {
                                   }}
                                   value={CitiesInput}
                                 />
-
+                                <ErrorMessage
+                                  name="CitiesInput"
+                                  component="div"
+                                  className={`${styles.error} ${styles.error6}`}
+                                />
                                 {trueClickText && Cities && (
                                   <div className={styles.nov_box_input_poick}>
                                     {Cities.data[0].Addresses.map(
@@ -496,6 +525,7 @@ export default function Basket({ fals }) {
                             <div className={styles.nov_icon1}>
                               <Autocomplete
                                 disablePortal
+                                name="CitiesInput1"
                                 className={styles.nov_icon}
                                 id="combo-box-demo"
                                 inputValue={CitiesInput1}
@@ -514,32 +544,41 @@ export default function Basket({ fals }) {
                                   />
                                 )}
                               />
+                              {!CitiesInput1 && (
+                                <ErrorMessage
+                                  name="CitiesInput1"
+                                  component="div"
+                                  className={`${styles.error} ${styles.error623}`}
+                                />
+                              )}
                             </div>
                           )}
                         </div>
                         {/* -----------------------пош нова and*/}
 
-                        {selectedOption1 !== "Нова пошта" &&
-                          selectedOption1 !== "Львів" &&
-                          selectedOption1 !== "Київ" &&
-                          selectedOption1 !== "Харків" && (
-                            <Field
-                              type="text"
-                              name="department"
-                              placeholder="Відділення"
-                              className={styles.name2}
-                            />
-                          )}
-                        {selectedOption1 !== "Нова пошта" &&
-                          selectedOption1 !== "Львів" &&
-                          selectedOption1 !== "Київ" &&
-                          selectedOption1 !== "Харків" && (
-                            <ErrorMessage
-                              name="department"
-                              component="div"
-                              className={`${styles.error} ${styles.error61}`}
-                            />
-                          )}
+                        <div className={styles.name22}>
+                          {selectedOption1 !== "Нова пошта" &&
+                            selectedOption1 !== "Львів" &&
+                            selectedOption1 !== "Київ" &&
+                            selectedOption1 !== "Харків" && (
+                              <Field
+                                type="text"
+                                name="department"
+                                placeholder="Відділення"
+                                className={styles.name2}
+                              />
+                            )}
+                          {selectedOption1 !== "Нова пошта" &&
+                            selectedOption1 !== "Львів" &&
+                            selectedOption1 !== "Київ" &&
+                            selectedOption1 !== "Харків" && (
+                              <ErrorMessage
+                                name="department"
+                                component="div"
+                                className={`${styles.error} ${styles.error6}`}
+                              />
+                            )}
+                        </div>
                         <div className={styles.fieldset_box}>
                           <div className={styles.box_h3}>
                             <div className={styles.h3_dox}>
@@ -574,7 +613,7 @@ export default function Basket({ fals }) {
                             </div>
                             <div className={styles.fieldset_input1}>
                               <div className={styles.fieldset_input_text}>
-                                <input
+                                <Field
                                   className={styles.fieldset_input}
                                   type="radio"
                                   id="card1"
@@ -595,7 +634,7 @@ export default function Basket({ fals }) {
                                 MasterCard - цілодобово.
                               </div>
                               <div className={styles.fieldset_input_text}>
-                                <input
+                                <Field
                                   className={styles.fieldset_input}
                                   type="radio"
                                   id="card2"
@@ -615,7 +654,7 @@ export default function Basket({ fals }) {
                                 -------------------------------------------------------
                               </div>
                               <div className={styles.fieldset_input_text}>
-                                <input
+                                <Field
                                   className={styles.fieldset_input}
                                   type="radio"
                                   id="card3"
@@ -634,7 +673,7 @@ export default function Basket({ fals }) {
                                 -------------------------------------------------------
                               </div>
                               <div className={styles.fieldset_input_text}>
-                                <input
+                                <Field
                                   className={styles.fieldset_input}
                                   type="radio"
                                   id="card4"

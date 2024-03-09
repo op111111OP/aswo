@@ -415,7 +415,7 @@ export default function Page() {
             <div className={styles.categori_box_left1000}>
               {countri && (
                 <div className={styles.categori_box_left1}>
-                  <div className={styles.categori_box_left1_h1}> Країна:</div>
+                  <div className={styles.categori_box_left1_h1}>Країна:</div>
                   {Array.isArray(countri) &&
                     countri.map((item, index) => (
                       <div key={index} className={styles.component_mas_in}>
@@ -483,7 +483,7 @@ export default function Page() {
           </div>
           {falsepon === "1" && (
             <div className={styles.categori_box_left}>
-              <div className={styles.llef_h2}>Категорії:</div>
+              <div className={styles.llef_h2}>Поля із категорії:</div>
               {Array.isArray(resCategori1) &&
                 resCategori1.map((item, index) => (
                   <Link

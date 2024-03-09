@@ -318,6 +318,9 @@
 .form_delivery .name2 {
   width: 100%;
 }
+.name22 {
+  position: relative;
+}
 .textarea {
   width: 100%;
   height: 70px;
@@ -364,6 +367,10 @@
 .error62 {
   left: 15px;
   top: 33px;
+}
+.error623 {
+  left: 15px;
+  top: 53px;
 }
 
 .error4 {
@@ -450,6 +457,7 @@
   width: 15px;
   height: 15px;
   margin: 2px 6px 2px 6px;
+  cursor: pointer;
 }
 .fieldset_input_text {
   width: 100%;
@@ -481,6 +489,8 @@
 }
 .nov_box_inputg {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .nov_box_input {
@@ -510,6 +520,7 @@
   max-width: 100%;
   margin: 20px 0px 20px 0px;
   height: 30px;
+  position: relative;
 }
 /* пош нова and */
 @media (max-width: 1430px) {
@@ -518,6 +529,9 @@
   }
 }
 @media (max-width: 950px) {
+  .nov_box_input {
+    order: 2;
+  }
   .dustbin {
     right: 1px;
   }
