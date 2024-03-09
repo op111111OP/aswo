@@ -5,7 +5,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import styles from "./page.module.css";
 import { useEffect, useState, useRef } from "react";
 import { useUserContext } from "../Context/store";
-import { useLocalStorage } from "react-use";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Basket from "../../components/Basket/Basket";
@@ -24,7 +23,7 @@ export default function Page() {
   const [src, setSrc] = useState();
 
   // ----кнопка
-  const [buton, setButon] = useLocalStorage("buton", false);
+
   const [trueDes, setTrueDes] = useState(true);
   const [showButton, setShowButton] = useState(false);
   const contentRef = useRef(null);
@@ -33,24 +32,20 @@ export default function Page() {
     if (contentBox && contentBox.offsetHeight > 200) {
       setShowButton(true);
       setTrueDes(false);
-      console.log(contentBox.offsetHeight, "11");
     }
     if (contentBox && contentBox.offsetHeight < 201) {
       setShowButton(false);
       setTrueDes(false);
-      console.log(contentBox.offsetHeight, "222");
     }
     const handleResize = () => {
       const contentBox = contentRef.current;
       if (contentBox.scrollHeight > contentBox.clientHeight) {
         setShowButton(true);
         setTrueDes(false);
-        console.log(contentBox.scrollHeight, contentBox.clientHeight);
       }
       if (contentBox.scrollHeight < 219 || contentBox.clientHeight < 200) {
         setShowButton(false);
         setTrueDes(false);
-        console.log(contentBox.scrollHeight, "dddddddd");
       }
     };
     window.addEventListener("resize", handleResize);
@@ -58,9 +53,6 @@ export default function Page() {
       window.removeEventListener("resize", handleResize);
     };
   }, [contentRef.current]);
-
-  console.log(showButton, "showButton");
-
   // ----кнопка
   const handleBoxClick = () => {
     setCehageCor(false);
