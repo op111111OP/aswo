@@ -5,7 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import styles from "./page.module.css";
 import { useEffect, useState, useRef } from "react";
 import { useUserContext } from "../Context/store";
-
+import { useLocalStorage } from "react-use";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Basket from "../../components/Basket/Basket";
@@ -13,6 +13,7 @@ import ImageZoom from "../../components/ImageZoom/ImageZoom";
 
 export default function Page() {
   const { setOnCard1 } = useUserContext();
+
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [flutters, setFlutters] = useState(null);
@@ -20,31 +21,47 @@ export default function Page() {
 
   const [name, setName] = useState("");
   const [cehageCor, setCehageCor] = useState(false);
-  const [trueDes, setTrueDes] = useState(false);
-  const [showButton, setShowButton] = useState(false);
   const [src, setSrc] = useState();
-  // ----кнопка
-  const contentRef = useRef(null);
 
+  // ----кнопка
+  const [buton, setButon] = useLocalStorage("buton", false);
+  const [trueDes, setTrueDes] = useState(true);
+  const [showButton, setShowButton] = useState(false);
+  const contentRef = useRef(null);
   useEffect(() => {
+    const contentBox = contentRef.current;
+    if (contentBox && contentBox.offsetHeight > 200) {
+      setShowButton(true);
+      setTrueDes(false);
+      console.log(contentBox.offsetHeight, "11");
+    }
+    if (contentBox && contentBox.offsetHeight < 201) {
+      setShowButton(false);
+      setTrueDes(false);
+      console.log(contentBox.offsetHeight, "222");
+    }
     const handleResize = () => {
       const contentBox = contentRef.current;
-      if (contentBox && contentBox.scrollHeight > contentBox.clientHeight) {
+      if (contentBox.scrollHeight > contentBox.clientHeight) {
         setShowButton(true);
-      } else {
+        setTrueDes(false);
+        console.log(contentBox.scrollHeight, contentBox.clientHeight);
+      }
+      if (contentBox.scrollHeight < 219 || contentBox.clientHeight < 200) {
         setShowButton(false);
+        setTrueDes(false);
+        console.log(contentBox.scrollHeight, "dddddddd");
       }
     };
-
-    handleResize(); // Перевіряємо при першому рендері
-
-    window.addEventListener("resize", handleResize); // Додаємо слухач події resize
-
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize); // Прибираємо слухач події при видаленні компонента
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [contentRef.current]);
 
+  console.log(showButton, "showButton");
+
+  // ----кнопка
   const handleBoxClick = () => {
     setCehageCor(false);
   };
@@ -146,7 +163,7 @@ export default function Page() {
                   </div>
                 </div>
               </div>
-              {/* опис anf */}
+              {/* опис and */}
               <div className={styles.price_box} onClick={handleBoxClick}>
                 <div className={styles.price_box_pbox}>
                   <div className={styles.price}>{flutters.price} грн.</div>
