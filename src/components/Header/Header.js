@@ -21,6 +21,8 @@ export default function Header() {
   const [inputValue, setInputValue] = useState("");
   const [t, setT] = useState(false);
   const [i, seti] = useState(false);
+  const [v, setV] = useState(false);
+  const [x, setX] = useState(false);
 
   useEffect(() => {
     function handleResize() {
@@ -40,6 +42,11 @@ export default function Header() {
   function menuFalse(fals) {
     setCehage(fals);
     setT(fals);
+  }
+  function vv(c, x1) {
+    setV(c);
+    setX(x1);
+    setCehage(false);
   }
 
   useEffect(() => {
@@ -115,16 +122,20 @@ export default function Header() {
             />
           </Link>
           {/* ///////////////////////////////////111 */}
+          {/* ікон меню */}
           <FiAlignJustify
-            size={25}
+            size={28}
             className={styles.FiAlignJustify}
             onClick={() => {
               setT(true);
             }}
           />
+          {/* меню велике */}
           <div className={styles.catalogue_box}>
             <div
-              className={styles.catalogue_elem}
+              className={`${styles.catalogue_elem} ${
+                v === "a" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[0].u);
@@ -144,7 +155,9 @@ export default function Header() {
               HoReCa
             </div>
             <div
-              className={styles.catalogue_elem}
+              className={`${styles.catalogue_elem} ${
+                v === "b" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[1].u);
@@ -166,7 +179,9 @@ export default function Header() {
               Велика техніка
             </div>
             <div
-              className={styles.catalogue_elem}
+              className={`${styles.catalogue_elem} ${
+                v === "c" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[2].u);
@@ -188,7 +203,9 @@ export default function Header() {
               Кухонна техніка{" "}
             </div>
             <div
-              className={styles.catalogue_elem}
+              className={`${styles.catalogue_elem} ${
+                v === "d" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[3].u);
@@ -210,7 +227,9 @@ export default function Header() {
               Техніка для догляду за тілом та будинком
             </div>
             <div
-              className={styles.catalogue_elem}
+              className={`${styles.catalogue_elem} ${
+                v === "f" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[4].u);
@@ -232,7 +251,9 @@ export default function Header() {
               Кліматична техніка{" "}
             </div>
             <div
-              className={styles.catalogue_elem}
+              className={`${styles.catalogue_elem} ${
+                v === "g" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[5].u);
@@ -254,7 +275,9 @@ export default function Header() {
               Універсальні запчастини для ремонту побутової техніки
             </div>
             <div
-              className={styles.catalogue_elem}
+              className={`${styles.catalogue_elem} ${
+                v === "o" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onMouseEnter={() => {
                 setCehage(true);
                 setIdItem(flutters[6].u);
@@ -273,7 +296,7 @@ export default function Header() {
             >
               Запчастини та комплектуючі до холодильного обладнання
             </div>
-
+            {/* меню велике and*/}
             {cehage && (
               <Menu
                 onMouseEnter={() => {
@@ -286,10 +309,12 @@ export default function Header() {
                 num={num}
                 menuFalse={menuFalse}
                 i={i}
+                vv={vv}
+                x={x}
               />
             )}
           </div>
-          {/* //////////////////////////////222 */}
+          {/* //////////////////////////////222 {/* меню мале*/}
 
           <div
             className={`${styles.catalogue_box2} ${
@@ -394,7 +419,7 @@ export default function Header() {
               Запчастини та комплектуючі до холодильного обладнання
               <BsChevronRight scale={15} className={styles.BsChevronRight} />
             </div>
-
+            {/* меню мале and*/}
             {cehage && (
               <Menu
                 flutters={idItem}

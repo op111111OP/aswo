@@ -44,9 +44,23 @@
   text-align: center;
   font-size: 14px;
   cursor: pointer;
-  border-bottom: 2px solid transparent;
+
   padding: 15px 0;
   font-weight: 550;
+  text-decoration: none;
+}
+
+.catalogue_elem_clisk {
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1d52e2;
+  padding: 15px 0;
+  font-weight: 550;
+  text-decoration: underline;
+}
+.catalogue_elem:hover {
+  color: #1d52e2;
 }
 
 .box_telephone {

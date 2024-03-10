@@ -2,8 +2,8 @@
 import styles from "./Menu.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useSessionStorage } from "react-use";
 import { BsX } from "react-icons/bs";
 
 export default function Menu({
@@ -16,14 +16,28 @@ export default function Menu({
   cehage,
   s,
   i,
+  vv,
+  x,
 }) {
+  //   const [activeId, setActiveId] = useSessionStorage("activeId", null);
+  //   const [activeId, setActiveId] = useState(null);
   const [fels, setFals] = useState(true);
+  const [num1, setNum1] = useState(num);
 
-  //  -----------
+  //   clik
+  useEffect(() => {
+    setNum1(num);
+  }, []);
 
-  //  -----------
-
+  const handleClick = (a) => {
+    vv(num1, a);
+    setFals(false);
+  };
   menuFalse(fels);
+  //   clik and
+  //  -----------
+
+  //  -----------
 
   return (
     <div
@@ -67,7 +81,12 @@ export default function Menu({
                   <div
                     className={styles.component_name}
                     onClick={() => {
-                      setFals(false);
+                      handleClick(item.name);
+                    }}
+                    style={{
+                      color: x === item.name ? "blue" : "black",
+                      textDecoration: x === item.name ? "underline" : "none",
+                      cursor: "pointer",
                     }}
                   >
                     {item.name}
@@ -86,11 +105,15 @@ export default function Menu({
                     <div
                       className={styles.component_mas_elem_text}
                       onClick={() => {
-                        setFals(false);
+                        handleClick(item.text);
+                      }}
+                      style={{
+                        color: x === item.text ? "blue" : "black",
+                        textDecoration: x === item.text ? "underline" : "none",
+                        cursor: "pointer",
                       }}
                     >
-                      {" "}
-                      {index + 1}.{item.text}.
+                      <div id="1"></div> {index + 1}.{item.text}.
                     </div>
                   </Link>
                 ))}
