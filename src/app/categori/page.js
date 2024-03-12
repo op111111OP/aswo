@@ -36,6 +36,7 @@ export default function Page() {
   const [countri1, setCountri1] = useState([{}]);
   const [countryCheckboxes, setCountryCheckboxes] = useState({});
   const [countryCheckboxes1, setCountryCheckboxes1] = useState({});
+
   // ===============
   const [showPopup, setShowPopup] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
@@ -405,7 +406,6 @@ export default function Page() {
                   borderColor: "blue",
                   height: 18,
                   width: 18,
-                  // marginLeft: -5,
                   marginTop: -7,
                   backgroundColor: "white",
                 }}
@@ -492,7 +492,17 @@ export default function Page() {
                     className={styles.component_mas_elem}
                   >
                     <div className={styles.categori_box_left_elem}>
-                      <div className={styles.categori_left_elem}>
+                      <div
+                        className={styles.categori_left_elem}
+                        onClick={() => {
+                          setClick(item.text);
+                        }}
+                        style={{
+                          color: onCategori === item.text ? "blue" : "black",
+                          textDecoration:
+                            onCategori === item.text ? "underline" : "none",
+                        }}
+                      >
                         {index + 1}. {item.text}.
                       </div>
                     </div>

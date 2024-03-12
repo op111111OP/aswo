@@ -10,8 +10,11 @@ import Link from "next/link";
 import AutoComplit from "../AutoComplit/AutoComplit";
 import { FiAlignJustify } from "react-icons/fi";
 import { BsChevronRight } from "react-icons/bs";
+import { useSearchParams } from "next/navigation";
 
 export default function Header() {
+  const searchParams = useSearchParams();
+  const onCategori = searchParams.get("categori");
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [cehage1, setCehage1] = useState(false);
@@ -22,7 +25,6 @@ export default function Header() {
   const [t, setT] = useState(false);
   const [i, seti] = useState(false);
   const [v, setV] = useState(false);
-  const [x, setX] = useState(false);
 
   useEffect(() => {
     function handleResize() {
@@ -43,9 +45,8 @@ export default function Header() {
     setCehage(fals);
     setT(fals);
   }
-  function vv(c, x1) {
+  function vv(c) {
     setV(c);
-    setX(x1);
     setCehage(false);
   }
 
@@ -310,7 +311,7 @@ export default function Header() {
                 menuFalse={menuFalse}
                 i={i}
                 vv={vv}
-                x={x}
+                x={onCategori}
               />
             )}
           </div>

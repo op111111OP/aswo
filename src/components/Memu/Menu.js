@@ -3,7 +3,6 @@ import styles from "./Menu.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useSessionStorage } from "react-use";
 import { BsX } from "react-icons/bs";
 
 export default function Menu({
@@ -19,20 +18,8 @@ export default function Menu({
   vv,
   x,
 }) {
-  //   const [activeId, setActiveId] = useSessionStorage("activeId", null);
-  //   const [activeId, setActiveId] = useState(null);
   const [fels, setFals] = useState(true);
-  const [num1, setNum1] = useState(num);
 
-  //   clik
-  useEffect(() => {
-    setNum1(num);
-  }, []);
-
-  const handleClick = (a) => {
-    vv(num1, a);
-    setFals(false);
-  };
   menuFalse(fels);
   //   clik and
   //  -----------
@@ -81,7 +68,7 @@ export default function Menu({
                   <div
                     className={styles.component_name}
                     onClick={() => {
-                      handleClick(item.name);
+                      vv(num);
                     }}
                     style={{
                       color: x === item.name ? "blue" : "black",
@@ -105,7 +92,7 @@ export default function Menu({
                     <div
                       className={styles.component_mas_elem_text}
                       onClick={() => {
-                        handleClick(item.text);
+                        vv(num);
                       }}
                       style={{
                         color: x === item.text ? "blue" : "black",
