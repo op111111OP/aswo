@@ -55,7 +55,7 @@ export default function Header() {
     setCehage(false);
     setT(false);
   }
-  console.log(v, "n");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -470,6 +470,7 @@ export default function Header() {
                 }}
                 vv={vv}
                 cehage={cehage}
+                x={onCategori}
               />
             )}
             {cehage1 && (

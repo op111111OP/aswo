@@ -14,18 +14,16 @@ export default function Menu({
   menuFalse,
   handleResize1,
   cehage,
+
   s,
   i,
   vv,
   x,
 }) {
   const [fels, setFals] = useState(true);
+  const [nameS, setNameS] = useState(false);
 
   menuFalse(fels);
-  //   clik and
-  //  -----------
-
-  //  -----------
 
   return (
     <div
@@ -69,11 +67,13 @@ export default function Menu({
                   <div
                     className={styles.component_name}
                     onClick={() => {
+                      setNameS(item.name);
                       vv(num === "o2" ? num1 : num);
                     }}
                     style={{
-                      color: x === item.name ? "blue" : "black",
-                      textDecoration: x === item.name ? "underline" : "none",
+                      color: nameS || x === item.name ? "blue" : "black",
+                      textDecoration:
+                        nameS || x === item.name ? "underline" : "none",
                       cursor: "pointer",
                     }}
                   >
