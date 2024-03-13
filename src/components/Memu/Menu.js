@@ -10,6 +10,7 @@ export default function Menu({
   onMouseEnter,
   onMouseLeave,
   num,
+  num1,
   menuFalse,
   handleResize1,
   cehage,
@@ -68,7 +69,7 @@ export default function Menu({
                   <div
                     className={styles.component_name}
                     onClick={() => {
-                      vv(num);
+                      vv(num === "o2" ? num1 : num);
                     }}
                     style={{
                       color: x === item.name ? "blue" : "black",

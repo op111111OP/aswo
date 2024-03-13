@@ -3,7 +3,7 @@ import styles from "./Menu2.module.css";
 import Link from "next/link";
 import { BsX } from "react-icons/bs";
 
-export default function Menu2({ cehage5, ss, i }) {
+export default function Menu2({ cehage5, ss, i, x }) {
   return (
     <div className={styles.container}>
       {/* -----------------2222222222222222222222 */}
@@ -25,6 +25,11 @@ export default function Menu2({ cehage5, ss, i }) {
                 className={styles.component_mas_elem_text}
                 onClick={() => {
                   ss(false);
+                }}
+                style={{
+                  color: x === item.text ? "blue" : "black",
+                  textDecoration: x === item.text ? "underline" : "none",
+                  cursor: "pointer",
                 }}
               >
                 {" "}

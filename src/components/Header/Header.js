@@ -15,11 +15,15 @@ import { useSearchParams } from "next/navigation";
 export default function Header() {
   const searchParams = useSearchParams();
   const onCategori = searchParams.get("categori");
+
   const [flutters, setFlutters] = useState(null);
   const [cehage, setCehage] = useState(false);
   const [cehage1, setCehage1] = useState(false);
+
   const [cehage5, setCehage5] = useState([]);
   const [num, setNum] = useState();
+  const [num1, setNum1] = useState();
+
   const [idItem, setIdItem] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [t, setT] = useState(false);
@@ -47,9 +51,11 @@ export default function Header() {
   }
   function vv(c) {
     setV(c);
-    setCehage(false);
-  }
 
+    setCehage(false);
+    setT(false);
+  }
+  console.log(v, "n");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -334,87 +340,115 @@ export default function Header() {
             )}
             <BsX size={20} className={styles.x} onClick={() => setT(false)} />
             <div
-              className={styles.catalogue_elem2}
+              className={`${styles.catalogue_elem2} ${
+                v === "a" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onClick={() => {
                 setCehage(true);
                 setIdItem(flutters[0].u);
                 setNum("o2");
+                setV("a");
+                setNum1("a");
               }}
             >
               HoReCa{" "}
               <BsChevronRight size={15} className={styles.BsChevronRight} />
             </div>
             <div
-              className={styles.catalogue_elem2}
+              className={`${styles.catalogue_elem2} ${
+                v === "b" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onClick={() => {
                 setCehage(true);
                 setIdItem(flutters[1].u);
                 seti(flutters[1]._id);
 
                 setNum("o2");
+                setV("b");
+                setNum1("b");
               }}
             >
               Велика техніка
               <BsChevronRight size={15} className={styles.BsChevronRight} />
             </div>
             <div
-              className={styles.catalogue_elem2}
+              className={`${styles.catalogue_elem2} ${
+                v === "c" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onClick={() => {
                 setCehage(true);
                 setIdItem(flutters[2].u);
                 seti(flutters[2]._id);
 
                 setNum("o2");
+                setV("c");
+                setNum1("c");
               }}
             >
               Кухонна техніка
               <BsChevronRight size={15} className={styles.BsChevronRight} />
             </div>
             <div
-              className={styles.catalogue_elem2}
+              className={`${styles.catalogue_elem2} ${
+                v === "d" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onClick={() => {
                 setCehage(true);
                 setIdItem(flutters[3].u);
                 seti(flutters[3]._id);
 
                 setNum("o2");
+                setV("d");
+                setNum1("d");
               }}
             >
               Техніка для догляду за тілом та будинком
               <BsChevronRight size={15} className={styles.BsChevronRight} />
             </div>
             <div
-              className={styles.catalogue_elem2}
+              className={`${styles.catalogue_elem2} ${
+                v === "f" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onClick={() => {
                 setCehage(true);
                 setIdItem(flutters[4].u);
                 seti(flutters[4]._id);
 
                 setNum("o2");
+                setV("f");
+                setNum1("f");
               }}
             >
               Кліматична техніка
               <BsChevronRight size={15} className={styles.BsChevronRight} />
             </div>
             <div
-              className={styles.catalogue_elem2}
+              className={`${styles.catalogue_elem2} ${
+                v === "g" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onClick={() => {
                 setCehage(true);
                 setIdItem(flutters[5].u);
                 seti(flutters[5]._id);
 
                 setNum("o2");
+                setV("g");
+                setNum1("g");
               }}
             >
               Універсальні запчастини для ремонту побутової техніки
               <BsChevronRight size={15} className={styles.BsChevronRight} />
             </div>
             <div
-              className={styles.catalogue_elem2}
+              className={`${styles.catalogue_elem2} ${
+                v === "o" ? styles.catalogue_elem_clisk : styles.xxxc
+              }`}
               onClick={() => {
                 setCehage(true);
                 setIdItem(flutters[6].u);
                 setNum("o2");
+
+                setNum1("o");
               }}
             >
               Запчастини та комплектуючі до холодильного обладнання
@@ -425,6 +459,7 @@ export default function Header() {
               <Menu
                 flutters={idItem}
                 num={num}
+                num1={num1}
                 menuFalse={menuFalse}
                 i={i}
                 s={(a) => {
@@ -433,6 +468,7 @@ export default function Header() {
                 handleResize1={(a) => {
                   setCehage5(a);
                 }}
+                vv={vv}
                 cehage={cehage}
               />
             )}
@@ -445,6 +481,7 @@ export default function Header() {
                   setT(a);
                 }}
                 cehage5={cehage5}
+                x={onCategori}
               />
             )}
           </div>
