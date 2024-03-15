@@ -106,7 +106,34 @@
 .box_0 {
   display: flex;
   width: 100%;
+  position: relative;
 }
+/* form cortct price */
+.box_4_corekt {
+  position: absolute;
+  background-color: #e9dddd;
+  z-index: 5;
+}
+.box_but2 {
+  background-color: #0b48f1;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.box_but2:hover {
+  background-color: #1abf48;
+  color: #faf8f8;
+}
+.box_but2_box {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+/* form cortct price */
 .box_00 {
   display: flex;
   flex-direction: column;
@@ -135,10 +162,7 @@
   display: flex;
   flex-direction: column;
 }
-.box_1a1 {
-}
-.box_1a2 {
-}
+
 .box_aaaaaaa_box_1a1 {
   display: flex;
   width: 30%;
@@ -189,6 +213,8 @@
 }
 .issue_order:hover {
   cursor: pointer;
+  background-color: #0688f9;
+  color: #fdfefe;
 }
 .box_span {
   font-size: 18px;

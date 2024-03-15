@@ -10,6 +10,7 @@ export default function Page() {
   const [inputValue3, setInputValue3] = useState("");
   const [fol, setFol] = useState(1);
   const [fluta, setFluta] = useState([]);
+  const [indexBut, setIndexBut] = useState(false);
   //   кн клік
 
   const [activeItems, setActiveItems] = useState({});
@@ -21,8 +22,7 @@ export default function Page() {
     }));
   };
 
-  //   кн клік
-  //   ----
+  //  кн клік
   const [flutters1, setFlutters1] = useState([]);
 
   const handleInputChange = (event) => {
@@ -170,6 +170,25 @@ export default function Page() {
       console.log("Что-то пошло не так...", error);
     }
   };
+
+  //   --put---and
+  //   --put---покупки
+
+  const handleSubmitPut2 = async (formData) => {
+    try {
+      const response = await fetch(`api/putOrder/putOrder`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Використовуємо дані з formData
+      });
+      const data = await response.json();
+    } catch (error) {
+      console.log("Что-то пошло не так...", error);
+    }
+  };
+  const [inputValues11, setInputValues11] = useState([]);
 
   //   --put---and
 
@@ -397,7 +416,7 @@ export default function Page() {
                       className={`${styles.error} ${styles.error6}`}
                     />
                     <button
-                      className={`${styles.issue_order} ${styles.issue_or}`}
+                      className={`${styles.issue_order} ${styles.issue_or} `}
                       disabled={isSubmitting}
                       type="submit"
                     >
@@ -598,6 +617,155 @@ export default function Page() {
                   )}
                   {index > 0 && (
                     <div className={styles.box_0}>
+                      {/* ---------------------форма зміни замовлення ---------------------*/}
+                      {indexBut === index && (
+                        <div
+                          className={`${styles.box_4_box} ${styles.box_4_corekt}`}
+                        >
+                          <div className={styles.box_4_1}>
+                            <div className={styles.box_4_}>
+                              <Formik
+                                onSubmit={(values, { setSubmitting }) => {
+                                  handleSubmitPut2(values);
+                                  setSubmitting(false);
+                                }}
+                                initialValues={{
+                                  id: item._id,
+                                  email: item.email,
+                                  pib: item.pib,
+                                  phone: item.phone,
+                                  street: item.street,
+                                  card: item.card,
+                                  courier: item.courier,
+                                  day: item.day,
+                                  CitiesInput: item.CitiesInput,
+                                  CitiesInput1: item.CitiesInput1,
+                                  someField: item.someField,
+                                  numB1: item.numB1,
+                                  numB: item.numB,
+                                  userData: item.userData,
+                                  department: item.department,
+                                }}
+                                validate={(values) => {
+                                  const errors = {};
+                                  values.numB1 = inputValues11;
+                                  return errors;
+                                }}
+                              >
+                                {({ isSubmitting3, values }) => (
+                                  <Form className={styles.box_f}>
+                                    <Field
+                                      type="text"
+                                      name="email"
+                                      placeholder="email"
+                                      className={styles.name1}
+                                      id="first_name"
+                                    />
+
+                                    <Field
+                                      type="text"
+                                      name="pib"
+                                      placeholder="pib"
+                                      className={styles.name1}
+                                      id="first_name"
+                                    />
+
+                                    <Field
+                                      type="number"
+                                      name="someField"
+                                      placeholder="Всього"
+                                      className={styles.email}
+                                    />
+                                    <Field
+                                      type="text"
+                                      name="street"
+                                      placeholder="Адреса"
+                                      className={styles.email}
+                                    />
+                                    <Field
+                                      type="text"
+                                      name="card"
+                                      placeholder="Оплата"
+                                      className={styles.name2}
+                                    />
+
+                                    <Field
+                                      type="text"
+                                      name="courier"
+                                      placeholder="Доставка"
+                                      className={styles.name2}
+                                    />
+
+                                    <Field
+                                      type="text"
+                                      name="CitiesInput"
+                                      placeholder="Місто"
+                                      className={styles.name2}
+                                    />
+                                    <Field
+                                      type="text"
+                                      name="CitiesInput1"
+                                      placeholder="Відділення Нова Пошта"
+                                      className={styles.name2}
+                                    />
+                                    <Field
+                                      type="text"
+                                      name="department"
+                                      placeholder="Відділення"
+                                      className={styles.name2}
+                                    />
+
+                                    {/* ----------- */}
+                                    {item.numB1.map((numItem, index) => (
+                                      <div key={index}>
+                                        <input
+                                          type="number"
+                                          value={
+                                            inputValues11.length > 0
+                                              ? inputValues11[index]
+                                              : numItem
+                                          }
+                                          onChange={(e) => {
+                                            const newValue = parseInt(
+                                              e.target.value,
+                                              10
+                                            );
+                                            const updatedValues = [
+                                              ...inputValues11,
+                                            ];
+                                            updatedValues[index] = newValue;
+                                            setInputValues11(updatedValues);
+                                          }}
+                                        />
+                                      </div>
+                                    ))}
+
+                                    <div className={styles.box_but2_box}>
+                                      <button
+                                        className={`${styles.issue_order} ${styles.issue_or}`}
+                                        disabled={isSubmitting3}
+                                        type="submit"
+                                      >
+                                        Оформити
+                                      </button>
+                                      <div
+                                        className={styles.box_but2}
+                                        onClick={() => {
+                                          setIndexBut(false);
+                                        }}
+                                      >
+                                        Вийти
+                                      </div>
+                                    </div>
+                                  </Form>
+                                )}
+                              </Formik>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ---------------------форма зміни замовлення and---------------------*/}
                       <div className={styles.box_00}>
                         <div className={styles.box_}>{item.pib}</div>
                         <div className={styles.box_}>
@@ -715,6 +883,15 @@ export default function Page() {
                         }}
                       >
                         Видалити.
+                      </div>
+                      <div
+                        className={styles.box_but2}
+                        onClick={() => {
+                          setIndexBut(index);
+                          setInputValues11(item.numB1);
+                        }}
+                      >
+                        Змінити замовлення.
                       </div>
                     </div>
                   )}
